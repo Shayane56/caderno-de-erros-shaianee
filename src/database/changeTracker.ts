@@ -21,5 +21,5 @@ export async function trackDeletion(entity: EntityName, id: string, at = nowIso(
 
 /** Tabelas que participam de toda operação de escrita rastreada. */
 export function writeTables() {
-  return [db.subjects, db.topics, db.errors, db.history, db.reviews, db.decks, db.cards, db.cardReviews, db.tombstones, db.pendingChanges];
+  return [db.subjects, db.topics, db.errors, db.history, db.reviews, db.decks, db.cards, db.cardReviews, db.questions, db.questionAttempts, db.tombstones, db.pendingChanges];
 }

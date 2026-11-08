@@ -4,7 +4,7 @@ export const SECONDARY_PHRASE =
   'A aprovação também é construída a partir dos erros que você aprende a não repetir.';
 
 /** Versão do formato do arquivo de backup. */
-export const BACKUP_FORMAT_VERSION = 3;
+export const BACKUP_FORMAT_VERSION = 4;
 
 /** Quantidade máxima de pontos de restauração automáticos mantidos. */
 export const MAX_SNAPSHOTS = 5;

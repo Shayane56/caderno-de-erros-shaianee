@@ -4,6 +4,8 @@ import type {
   Deck,
   ErrorRecord,
   Flashcard,
+  Question,
+  QuestionAttempt,
   HistoryEntry,
   PendingChange,
   ReviewEntry,
@@ -37,6 +39,8 @@ export class CadernoDatabase extends Dexie {
   decks!: EntityTable<Deck, 'id'>;
   cards!: EntityTable<Flashcard, 'id'>;
   cardReviews!: EntityTable<CardReview, 'id'>;
+  questions!: EntityTable<Question, 'id'>;
+  questionAttempts!: EntityTable<QuestionAttempt, 'id'>;
 
   constructor(name = DB_NAME) {
     super(name);
@@ -104,6 +108,13 @@ export class CadernoDatabase extends Dexie {
       decks: 'id, name, subjectId, updatedAt',
       cards: 'id, deckId, type, sourceErrorId, createdAt, updatedAt',
       cardReviews: 'id, cardId, deckId, reviewedAt',
+    });
+
+    // v4 — Banco de Questões: questões cadastradas pela usuária e respostas
+    // (inclusive às questões do banco embutido). Apenas tabelas novas.
+    this.version(4).stores({
+      questions: 'id, subject, banca, format, updatedAt',
+      questionAttempts: 'id, questionId, answeredAt, subject',
     });
   }
 }
