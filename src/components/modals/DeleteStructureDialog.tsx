@@ -127,7 +127,7 @@ export function DeleteStructureDialog({ target, subjects, topics, onClose }: Del
           <fieldset className="space-y-2">
             <legend className="mb-1 font-semibold text-ink">O que fazer com os dados vinculados?</legend>
             <label className={cn('flex cursor-pointer gap-3 rounded-2xl border p-3.5 transition', effectiveMode === 'move' ? 'border-rose-medium bg-blush/40' : 'border-line', !canMove && 'cursor-not-allowed opacity-60')}>
-              <input type="radio" name="delete-mode" className="mt-1 accent-[#DB2777]" checked={effectiveMode === 'move'} disabled={!canMove} onChange={() => setMode('move')} />
+              <input type="radio" name="delete-mode" className="mt-1 accent-rose-pink" checked={effectiveMode === 'move'} disabled={!canMove} onChange={() => setMode('move')} />
               <span className="flex-1">
                 <span className="flex items-center gap-1.5 font-semibold text-ink">
                   <ArrowRightLeft className="h-4 w-4 text-rose-pink" aria-hidden /> Transferir para {isSubject ? 'outra matéria' : 'outro tópico'} (recomendado)

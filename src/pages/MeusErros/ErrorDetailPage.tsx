@@ -8,6 +8,7 @@ import {
   FilePlus2,
   FileQuestion,
   History,
+  Layers,
   Import,
   Lightbulb,
   Pencil,
@@ -29,6 +30,12 @@ import { useErrorForm } from '@/components/modals/ErrorFormProvider';
 import { DeleteErrorDialog } from '@/components/modals/DeleteErrorDialog';
 import { getOriginMeta } from '@/constants/origins';
 import { describeDaysSince, formatDateTime } from '@/utils/dates';
+import { useCardEditor } from '@/components/flashcards/CardEditorProvider';
+import { useToast } from '@/components/common/Toast';
+import { useCardsFromError } from '@/hooks/useFlashcards';
+import { cardInputFromError } from '@/services/flashcards/cardService';
+import { findOrCreateDeckForSubject } from '@/services/flashcards/deckService';
+import { errorMessage } from '@/services/errors';
 
 const HISTORY_ICONS: Record<HistoryEventType, LucideIcon> = {
   created: FilePlus2,
@@ -42,7 +49,7 @@ const HISTORY_ICONS: Record<HistoryEventType, LucideIcon> = {
 
 function Block({ icon: Icon, title, children, tone = 'default' }: { icon: LucideIcon; title: string; children: React.ReactNode; tone?: 'default' | 'pink' | 'green' }) {
   const tones = {
-    default: 'bg-white',
+    default: 'bg-surface',
     pink: 'bg-blush/50 ring-1 ring-petal',
     green: 'bg-emerald-50/60 ring-1 ring-emerald-100',
   };
@@ -65,6 +72,9 @@ export default function ErrorDetailPage() {
   const { lookup } = useCatalog();
   const { openEdit } = useErrorForm();
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const cardEditor = useCardEditor();
+  const toast = useToast();
+  const linkedCards = useCardsFromError(id);
 
   if (record === undefined) return <PageLoader />;
   if (record === null) {
@@ -88,6 +98,17 @@ export default function ErrorDetailPage() {
   const topic = lookup.topics.get(record.topicId)?.name ?? 'Tópico removido';
   const origin = getOriginMeta(record.origin);
   const isUrl = /^https?:\/\//i.test(record.reference.trim());
+  const linkedCard = linkedCards?.[0];
+
+  const makeFlashcard = async () => {
+    try {
+      // O baralho da matéria é criado automaticamente na primeira vez.
+      const deck = await findOrCreateDeckForSubject(record.subjectId);
+      cardEditor.openCreate({ deckId: deck.id, prefill: cardInputFromError(record, deck.id, topic) });
+    } catch (error) {
+      toast.error('Não foi possível preparar o flashcard', errorMessage(error));
+    }
+  };
 
   return (
     <div className="space-y-5">
@@ -116,6 +137,15 @@ export default function ErrorDetailPage() {
               <Button icon={Repeat} onClick={() => navigate(`/segundo-ciclo/revisar/${record.id}`)}>
                 Revisar erro
               </Button>
+              {linkedCard ? (
+                <Button variant="secondary" icon={Layers} onClick={() => navigate(`/flashcards/baralho/${linkedCard.deckId}`)}>
+                  Ver flashcard
+                </Button>
+              ) : (
+                <Button variant="secondary" icon={Layers} onClick={() => void makeFlashcard()}>
+                  Virar flashcard
+                </Button>
+              )}
               <Button variant="outline" icon={Pencil} onClick={() => openEdit(record)}>
                 Editar
               </Button>
@@ -201,7 +231,7 @@ export default function ErrorDetailPage() {
                   const Icon = HISTORY_ICONS[h.type] ?? History;
                   return (
                     <li key={h.id} className="relative">
-                      <span className="absolute -left-[31px] flex h-5 w-5 items-center justify-center rounded-full bg-white text-rose-pink ring-2 ring-petal">
+                      <span className="absolute -left-[31px] flex h-5 w-5 items-center justify-center rounded-full bg-surface text-rose-pink ring-2 ring-petal">
                         <Icon className="h-3 w-3" aria-hidden />
                       </span>
                       <p className="text-sm text-ink">{h.summary}</p>

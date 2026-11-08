@@ -6,10 +6,11 @@
 -- O script é idempotente (pode ser executado mais de uma vez).
 -- =============================================================================
 
--- Uma linha por entidade (matéria, tópico, erro, histórico, revisão) de cada usuária.
+-- Uma linha por entidade (matéria, tópico, erro, histórico, revisão, baralho, flashcard
+-- e resposta de estudo) de cada usuária.
 create table if not exists public.caderno_records (
   user_id           uuid        not null default auth.uid() references auth.users (id) on delete cascade,
-  entity            text        not null check (entity in ('subjects', 'topics', 'errors', 'history', 'reviews')),
+  entity            text        not null,
   id                text        not null,
   data              jsonb,                                   -- registro completo (null quando excluído)
   updated_at        timestamptz not null,                    -- última alteração feita no aparelho
@@ -17,6 +18,12 @@ create table if not exists public.caderno_records (
   server_updated_at timestamptz not null default now(),      -- cursor de sincronização
   primary key (user_id, entity, id)
 );
+
+-- Entidades aceitas. Recriada a cada execução para incluir os Flashcards em projetos
+-- configurados antes da versão 3 (basta executar este arquivo novamente).
+alter table public.caderno_records drop constraint if exists caderno_records_entity_check;
+alter table public.caderno_records add constraint caderno_records_entity_check
+  check (entity in ('subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews'));
 
 create index if not exists caderno_records_user_cursor_idx
   on public.caderno_records (user_id, server_updated_at);

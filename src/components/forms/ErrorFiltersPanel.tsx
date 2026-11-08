@@ -28,10 +28,10 @@ function Chip({ active, onClick, children, color }: { active: boolean; onClick: 
       onClick={onClick}
       className={cn(
         'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition',
-        active ? 'border-rose-pink bg-rose-pink text-white shadow-soft' : 'border-line bg-white text-ink-muted hover:border-rose-medium hover:text-rose-ink',
+        active ? 'border-rose-pink bg-rose-pink text-white shadow-soft' : 'border-line bg-surface text-ink-muted hover:border-rose-medium hover:text-rose-ink',
       )}
     >
-      {color && <span className="h-2 w-2 rounded-full ring-1 ring-white/70" style={{ backgroundColor: color }} aria-hidden />}
+      {color && <span className="h-2 w-2 rounded-full ring-1 ring-surface/70" style={{ backgroundColor: color }} aria-hidden />}
       {children}
     </button>
   );
@@ -79,7 +79,7 @@ export function ErrorFiltersPanel({ filters, onChange, subjects, topics }: Error
           aria-controls={`${id}-panel`}
           className={cn(
             'relative inline-flex h-[46px] shrink-0 items-center gap-2 rounded-2xl border px-4 text-sm font-semibold transition lg:hidden',
-            open || filterCount ? 'border-rose-medium bg-blush text-rose-ink' : 'border-line bg-white text-ink-muted',
+            open || filterCount ? 'border-rose-medium bg-blush text-rose-ink' : 'border-line bg-surface text-ink-muted',
           )}
         >
           <Funnel className="h-4 w-4" aria-hidden />

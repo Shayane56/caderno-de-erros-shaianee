@@ -18,9 +18,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-gradient-to-br from-rose-pink to-rose-deep text-white shadow-[0_6px_16px_-6px_rgba(219,39,119,0.55)] hover:brightness-105 active:brightness-95',
+    'bg-gradient-to-br from-rose-pink to-rose-deep text-white shadow-[0_6px_16px_-6px_rgb(var(--c-rose-pink)/0.55)] hover:brightness-105 active:brightness-95',
   secondary: 'bg-blush text-rose-ink hover:bg-petal',
-  outline: 'border border-line bg-white text-ink hover:border-rose-medium hover:text-rose-ink',
+  outline: 'border border-line bg-surface text-ink hover:border-rose-medium hover:text-rose-ink',
   ghost: 'text-ink-muted hover:bg-blush hover:text-rose-ink',
   danger: 'bg-red-600 text-white hover:bg-red-700 shadow-[0_6px_16px_-6px_rgba(220,38,38,0.5)]',
   success: 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-[0_6px_16px_-6px_rgba(22,163,74,0.5)]',

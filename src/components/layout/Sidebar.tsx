@@ -7,10 +7,10 @@ import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
 
-export function Sidebar({ pendingReviews }: { pendingReviews: number }) {
+export function Sidebar({ pendingReviews, dueCards = 0 }: { pendingReviews: number; dueCards?: number }) {
   const { openCreate } = useErrorForm();
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[272px] flex-col border-r border-line bg-white lg:flex" aria-label="Menu principal">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[272px] flex-col border-r border-line bg-surface lg:flex" aria-label="Menu principal">
       <div className="px-6 pb-5 pt-7">
         <BrandTitle />
       </div>
@@ -37,12 +37,17 @@ export function Sidebar({ pendingReviews }: { pendingReviews: number }) {
                 <span
                   className={cn(
                     'flex h-9 w-9 items-center justify-center rounded-xl transition',
-                    isActive ? 'bg-white text-rose-pink shadow-soft' : 'text-rose-antique group-hover:text-rose-pink',
+                    isActive ? 'bg-surface text-rose-pink shadow-soft' : 'text-rose-antique group-hover:text-rose-pink',
                   )}
                 >
                   <item.icon className="h-[18px] w-[18px]" aria-hidden />
                 </span>
                 <span className="flex-1">{item.label}</span>
+                {item.to === '/flashcards' && dueCards > 0 && (
+                  <span className="rounded-full bg-rose-pink px-2 py-0.5 text-[11px] font-bold text-white" aria-label={`${dueCards} flashcards para hoje`}>
+                    {dueCards}
+                  </span>
+                )}
                 {item.to === '/segundo-ciclo' && pendingReviews > 0 && (
                   <span className="rounded-full bg-rose-pink px-2 py-0.5 text-[11px] font-bold text-white" aria-label={`${pendingReviews} erros para revisar`}>
                     {pendingReviews}

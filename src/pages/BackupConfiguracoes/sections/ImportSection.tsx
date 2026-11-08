@@ -24,6 +24,9 @@ const ENTITY_LABELS: Record<string, string> = {
   errors: 'Erros',
   history: 'Histórico',
   reviews: 'Revisões',
+  decks: 'Baralhos',
+  cards: 'Flashcards',
+  cardReviews: 'Respostas de estudo',
 };
 
 function PlanRow({ label, counts, mode }: { label: string; counts: EntityPlanCounts; mode: ImportMode }) {
@@ -183,7 +186,7 @@ export function ImportSection() {
                     mode === value ? (value === 'replace' ? 'border-red-300 bg-red-50/50' : 'border-rose-medium bg-blush/40') : 'border-line hover:border-rose-medium/50',
                   )}
                 >
-                  <input type="radio" name="import-mode" value={value} checked={mode === value} onChange={() => void updatePlan(parsed, value)} className="mt-1 accent-[#DB2777]" />
+                  <input type="radio" name="import-mode" value={value} checked={mode === value} onChange={() => void updatePlan(parsed, value)} className="mt-1 accent-rose-pink" />
                   <span>
                     <span className="flex items-center gap-1.5 text-sm font-semibold text-ink">
                       <Icon className="h-4 w-4 text-rose-pink" aria-hidden /> {title}
@@ -219,7 +222,7 @@ export function ImportSection() {
                 </tr>
               </thead>
               <tbody>
-                {(['subjects', 'topics', 'errors', 'history', 'reviews'] as const).map((k) => (
+                {(['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews'] as const).map((k) => (
                   <PlanRow key={k} label={ENTITY_LABELS[k]} counts={plan[k]} mode={mode} />
                 ))}
               </tbody>
@@ -228,7 +231,7 @@ export function ImportSection() {
 
           {mode === 'replace' && (
             <p className="rounded-2xl bg-red-50 p-3 text-sm text-red-800">
-              Serão removidos dos dados atuais: {plan.toRemove.subjects} matéria(s), {plan.toRemove.topics} tópico(s) e {plan.toRemove.errors} erro(s).
+              Serão removidos dos dados atuais: {plan.toRemove.subjects} matéria(s), {plan.toRemove.topics} tópico(s), {plan.toRemove.errors} erro(s), {plan.toRemove.decks} baralho(s) e {plan.toRemove.cards} flashcard(s).
             </p>
           )}
 

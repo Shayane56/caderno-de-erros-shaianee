@@ -2,6 +2,9 @@
  * Tipos centrais do domínio do Caderno de Erros.
  * Todas as datas são armazenadas como strings ISO 8601 (UTC).
  */
+import type { CardReview, Deck, Flashcard } from './flashcards';
+
+export * from './flashcards';
 
 /** Classificação de prioridade (exatamente três). */
 export type Priority = 'alta' | 'media' | 'superado';
@@ -84,7 +87,10 @@ export interface ReviewEntry {
 }
 
 /** Entidades sincronizáveis/exportáveis. */
-export type EntityName = 'subjects' | 'topics' | 'errors' | 'history' | 'reviews';
+export type EntityName = 'subjects' | 'topics' | 'errors' | 'history' | 'reviews' | 'decks' | 'cards' | 'cardReviews';
+
+/** Todas as entidades, na ordem de dependência (pais antes dos filhos). */
+export const ENTITY_NAMES: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews'];
 
 /** Registro de exclusão (necessário para propagar exclusões na sincronização). */
 export interface Tombstone {
@@ -112,7 +118,7 @@ export interface Snapshot {
   id: string;
   createdAt: string;
   reason: string;
-  counts: { subjects: number; topics: number; errors: number };
+  counts: { subjects: number; topics: number; errors: number; decks?: number; cards?: number };
   data: BackupData;
 }
 
@@ -136,6 +142,9 @@ export interface BackupData {
   errors: ErrorRecord[];
   history: HistoryEntry[];
   reviews: ReviewEntry[];
+  decks: Deck[];
+  cards: Flashcard[];
+  cardReviews: CardReview[];
 }
 
 export interface BackupFile extends BackupData {

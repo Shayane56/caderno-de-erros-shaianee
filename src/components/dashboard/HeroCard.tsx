@@ -19,8 +19,8 @@ export function HeroCard({ pending }: { pending: number }) {
   const { openCreate } = useErrorForm();
   const navigate = useNavigate();
   return (
-    <section className="relative overflow-hidden rounded-[32px] border border-line bg-gradient-to-br from-white via-blush/70 to-petal/80 p-6 shadow-soft sm:p-8">
-      <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/50 blur-2xl" aria-hidden />
+    <section className="relative overflow-hidden rounded-[32px] border border-line bg-gradient-to-br from-surface via-blush/70 to-petal/80 p-6 shadow-soft sm:p-8">
+      <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-surface/50 blur-2xl" aria-hidden />
       <div className="pointer-events-none absolute -bottom-24 right-24 h-56 w-56 rounded-full bg-rose-medium/10 blur-2xl" aria-hidden />
       <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center">
         <Avatar photo={photo} size={104} className="shadow-lift" />

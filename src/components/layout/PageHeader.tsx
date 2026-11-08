@@ -14,7 +14,7 @@ export function PageHeader({ title, subtitle, icon: Icon, actions, eyebrow }: Pa
     <header className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
       <div className="flex min-w-0 items-start gap-3.5">
         {Icon && (
-          <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-rose-pink shadow-soft ring-1 ring-line sm:flex">
+          <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-surface text-rose-pink shadow-soft ring-1 ring-line sm:flex">
             <Icon className="h-6 w-6" aria-hidden />
           </span>
         )}

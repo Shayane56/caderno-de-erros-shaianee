@@ -39,7 +39,7 @@ export function PriorityPicker({ value, onChange, error, name = 'priority' }: Pr
               />
               <span
                 className={cn(
-                  'flex h-full items-start gap-2.5 rounded-2xl border border-line bg-white p-3 ring-0 ring-inset transition',
+                  'flex h-full items-start gap-2.5 rounded-2xl border border-line bg-surface p-3 ring-0 ring-inset transition',
                   'hover:border-rose-medium/60 peer-focus-visible:shadow-ring peer-checked:ring-2',
                   ring[id],
                 )}
@@ -93,7 +93,7 @@ export function OriginPicker({ value, onChange, error, name = 'origin' }: Origin
                 className="peer sr-only"
               />
               <span
-                className="flex h-full items-start gap-3 rounded-2xl border border-line bg-white p-3 transition hover:border-rose-medium/60 peer-focus-visible:shadow-ring peer-checked:ring-2 peer-checked:ring-inset"
+                className="flex h-full items-start gap-3 rounded-2xl border border-line bg-surface p-3 transition hover:border-rose-medium/60 peer-focus-visible:shadow-ring peer-checked:ring-2 peer-checked:ring-inset"
                 style={checked ? { borderColor: `${meta.color}66`, backgroundColor: `${meta.color}0D`, ['--tw-ring-color' as string]: `${meta.color}40` } : undefined}
               >
                 <OriginIcon origin={id} />

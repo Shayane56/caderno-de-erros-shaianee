@@ -110,7 +110,7 @@ function AuthForm() {
             role="tab"
             aria-selected={mode === value}
             onClick={() => setMode(value)}
-            className={cn('flex-1 rounded-[10px] py-2 transition', mode === value ? 'bg-white text-rose-pink shadow-soft' : 'text-ink-muted')}
+            className={cn('flex-1 rounded-[10px] py-2 transition', mode === value ? 'bg-surface text-rose-pink shadow-soft' : 'text-ink-muted')}
           >
             {label}
           </button>

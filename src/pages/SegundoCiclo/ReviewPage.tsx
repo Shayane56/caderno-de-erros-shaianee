@@ -128,13 +128,13 @@ export default function ReviewPage() {
         )}
       </div>
       {total > 1 && (
-        <div className="h-1.5 overflow-hidden rounded-full bg-white ring-1 ring-line" role="progressbar" aria-valuenow={session.index + 1} aria-valuemin={1} aria-valuemax={total} aria-label="Progresso da revisão">
+        <div className="h-1.5 overflow-hidden rounded-full bg-surface ring-1 ring-line" role="progressbar" aria-valuenow={session.index + 1} aria-valuemin={1} aria-valuemax={total} aria-label="Progresso da revisão">
           <div className="h-full rounded-full bg-gradient-to-r from-rose-medium to-rose-pink transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
       )}
 
       <article className="card overflow-hidden" aria-label="Revisão do erro">
-        <header className="border-b border-line bg-gradient-to-br from-white to-blush/60 p-5 sm:p-7">
+        <header className="border-b border-line bg-gradient-to-br from-surface to-blush/60 p-5 sm:p-7">
           <p className="text-sm font-semibold text-rose-antique">
             {subject} <span className="text-ink-soft">›</span> {topic}
           </p>

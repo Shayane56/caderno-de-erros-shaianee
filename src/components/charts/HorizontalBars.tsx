@@ -43,7 +43,7 @@ export function HorizontalBars({ data, seriesName, color = CHART_COLORS.primary,
             tickFormatter={(v: string) => truncateLabel(v, maxChars)}
           />
           <Tooltip
-            cursor={{ fill: '#FCE7F3', opacity: 0.6 }}
+            cursor={{ fill: 'rgb(var(--c-blush))', opacity: 0.6 }}
             content={<ChartTooltip title={(_l, p) => String(p[0]?.payload?.hint ?? p[0]?.payload?.name ?? '')} />}
           />
           <Bar dataKey="value" name={seriesName} fill={color} radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>

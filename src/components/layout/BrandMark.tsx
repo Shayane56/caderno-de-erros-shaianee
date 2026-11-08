@@ -8,15 +8,15 @@ export function BrandMark({ className }: { className?: string }) {
     <svg viewBox="0 0 64 64" className={cn('h-10 w-10 shrink-0', className)} aria-hidden>
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E879A9" />
-          <stop offset="1" stopColor="#DB2777" />
+          <stop offset="0" style={{ stopColor: 'rgb(var(--c-rose-medium))' }} />
+          <stop offset="1" style={{ stopColor: 'rgb(var(--c-rose-pink))' }} />
         </linearGradient>
       </defs>
       <rect width="64" height="64" rx="18" fill={`url(#${gradientId})`} />
       <rect x="17" y="13" width="30" height="38" rx="5" fill="#FFFFFF" />
-      <rect x="17" y="13" width="6" height="38" rx="3" fill="#F9D5E5" />
-      <path d="M28 25h13M28 31h13M28 37h8" stroke="#D98BAE" strokeWidth="2.6" strokeLinecap="round" />
-      <path d="M38.5 41.5l3 3 6-7" stroke="#DB2777" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <rect x="17" y="13" width="6" height="38" rx="3" fill="rgb(var(--c-petal))" />
+      <path d="M28 25h13M28 31h13M28 37h8" stroke="rgb(var(--c-rose-antique))" strokeWidth="2.6" strokeLinecap="round" />
+      <path d="M38.5 41.5l3 3 6-7" stroke="rgb(var(--c-rose-pink))" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </svg>
   );
 }

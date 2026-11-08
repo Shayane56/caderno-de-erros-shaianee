@@ -11,7 +11,7 @@ export function UpdatePrompt() {
   return (
     <div
       role="status"
-      className="fixed inset-x-4 bottom-[calc(5.5rem+var(--safe-bottom))] z-50 mx-auto flex max-w-md animate-slide-up items-center gap-3 rounded-2xl border border-line bg-white p-3.5 shadow-lift lg:bottom-6 lg:left-auto lg:right-6"
+      className="fixed inset-x-4 bottom-[calc(5.5rem+var(--safe-bottom))] z-50 mx-auto flex max-w-md animate-slide-up items-center gap-3 rounded-2xl border border-line bg-surface p-3.5 shadow-lift lg:bottom-6 lg:left-auto lg:right-6"
     >
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blush text-rose-pink">
         <RefreshCw className="h-[18px] w-[18px]" aria-hidden />

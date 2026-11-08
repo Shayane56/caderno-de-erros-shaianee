@@ -1,6 +1,9 @@
 import Dexie, { type EntityTable } from 'dexie';
 import type {
+  CardReview,
+  Deck,
   ErrorRecord,
+  Flashcard,
   HistoryEntry,
   PendingChange,
   ReviewEntry,
@@ -31,6 +34,9 @@ export class CadernoDatabase extends Dexie {
   pendingChanges!: EntityTable<PendingChange, 'key'>;
   settings!: EntityTable<SettingEntry, 'key'>;
   snapshots!: EntityTable<Snapshot, 'id'>;
+  decks!: EntityTable<Deck, 'id'>;
+  cards!: EntityTable<Flashcard, 'id'>;
+  cardReviews!: EntityTable<CardReview, 'id'>;
 
   constructor(name = DB_NAME) {
     super(name);
@@ -91,6 +97,14 @@ export class CadernoDatabase extends Dexie {
             t.updatedAt = t.updatedAt ?? t.createdAt;
           });
       });
+
+    // v3 — Flashcards: baralhos, cartões (com agendamento) e respostas de estudo.
+    // Apenas tabelas novas: nenhum dado existente é alterado.
+    this.version(3).stores({
+      decks: 'id, name, subjectId, updatedAt',
+      cards: 'id, deckId, type, sourceErrorId, createdAt, updatedAt',
+      cardReviews: 'id, cardId, deckId, reviewedAt',
+    });
   }
 }
 

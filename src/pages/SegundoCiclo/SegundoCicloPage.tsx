@@ -1,3 +1,4 @@
+import { THEME } from '@/constants/theme';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, CalendarClock, CircleCheckBig, Flame, Hourglass, Play, Repeat, RotateCcw, Target } from 'lucide-react';
@@ -21,7 +22,7 @@ import type { ReviewSessionState } from './ReviewPage';
 
 function QueueItem({ record, lookup, onReview }: { record: ErrorRecord; lookup: LookupMaps; onReview: () => void }) {
   return (
-    <li className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-4 sm:flex-row sm:items-center">
+    <li className="flex flex-col gap-3 rounded-2xl border border-line bg-surface p-4 sm:flex-row sm:items-center">
       <div className="min-w-0 flex-1">
         <p className="truncate text-xs font-semibold text-rose-antique">
           {lookup.subjects.get(record.subjectId)?.name ?? '—'} <span className="text-ink-soft">›</span> {lookup.topics.get(record.topicId)?.name ?? '—'}
@@ -89,12 +90,12 @@ export default function SegundoCicloPage() {
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Prioridade alta" value={view.alta.length} icon={Flame} accent={PRIORITIES.alta.color} hint="revisar primeiro" />
         <StatCard label="Prioridade média" value={view.media.length} icon={RotateCcw} accent="#B7791F" hint="reforço" />
-        <StatCard label="Revisões realizadas" value={data.reviews.length} icon={CircleCheckBig} accent="#DB2777" hint={`${view.reviewsWeek} nos últimos 7 dias`} />
+        <StatCard label="Revisões realizadas" value={data.reviews.length} icon={CircleCheckBig} accent={THEME.pink} hint={`${view.reviewsWeek} nos últimos 7 dias`} />
         <StatCard
           label="Mais tempo sem revisão"
           value={oldest ? `${daysSince(lastTouch(oldest))} d` : '—'}
           icon={CalendarClock}
-          accent="#D98BAE"
+          accent={THEME.antique}
           hint={oldest ? (oldest.lastReviewedAt ? 'desde a última revisão' : 'desde o registro') : 'nada pendente'}
         />
       </div>

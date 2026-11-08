@@ -87,7 +87,7 @@ export function PeriodColumns({
           <CartesianGrid vertical={false} stroke={CHART_COLORS.grid} />
           <XAxis dataKey="label" {...axisProps} minTickGap={12} />
           <YAxis {...axisProps} allowDecimals={false} width={44} />
-          <Tooltip cursor={{ fill: '#FCE7F3', opacity: 0.6 }} content={<ChartTooltip />} />
+          <Tooltip cursor={{ fill: 'rgb(var(--c-blush))', opacity: 0.6 }} content={<ChartTooltip />} />
           <Bar dataKey={dataKey} name={name} fill={color} radius={[4, 4, 0, 0]} maxBarSize={24} isAnimationActive={false} />
         </BarChart>
       </ResponsiveContainer>

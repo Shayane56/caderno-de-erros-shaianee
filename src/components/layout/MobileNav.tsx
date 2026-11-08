@@ -8,11 +8,11 @@ import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
 
-const PRIMARY = ['/', '/erros', '/segundo-ciclo'];
+const PRIMARY = ['/', '/erros', '/segundo-ciclo', '/flashcards'];
 
 export function MobileHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-white/90 pt-[var(--safe-top)] backdrop-blur-md lg:hidden">
+    <header className="sticky top-0 z-30 border-b border-line bg-surface/90 pt-[var(--safe-top)] backdrop-blur-md lg:hidden">
       <div className="flex h-16 items-center justify-between gap-3 px-4">
         <BrandTitle compact />
         <SyncIndicator compact />
@@ -21,7 +21,7 @@ export function MobileHeader() {
   );
 }
 
-export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
+export function BottomNav({ pendingReviews, dueCards = 0 }: { pendingReviews: number; dueCards?: number }) {
   const { openCreate } = useErrorForm();
   const [moreOpen, setMoreOpen] = useState(false);
   const location = useLocation();
@@ -38,7 +38,7 @@ export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
     <>
       <nav
         aria-label="Navegação principal"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 pb-[var(--safe-bottom)] shadow-[0_-8px_24px_-12px_rgba(219,39,119,0.18)] backdrop-blur-md lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface/95 pb-[var(--safe-bottom)] shadow-[0_-8px_24px_-12px_rgb(var(--c-rose-pink)/0.18)] backdrop-blur-md lg:hidden"
       >
         <div className="mx-auto flex h-16 max-w-xl items-stretch px-2">
           {items.slice(0, 2).map((item) => (
@@ -52,24 +52,27 @@ export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
               type="button"
               onClick={() => openCreate()}
               aria-label="Registrar novo erro"
-              className="-mt-7 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-medium to-rose-pink text-white shadow-[0_10px_24px_-8px_rgba(219,39,119,0.7)] ring-4 ring-white transition active:scale-95"
+              className="-mt-7 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-medium to-rose-pink text-white shadow-[0_10px_24px_-8px_rgb(var(--c-rose-pink)/0.7)] ring-4 ring-surface transition active:scale-95"
             >
               <Plus className="h-7 w-7" aria-hidden />
             </button>
           </div>
-          {items.slice(2).map((item) => (
-            <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
-              <span className="relative">
-                <item.icon className="h-[22px] w-[22px]" aria-hidden />
-                {pendingReviews > 0 && (
-                  <span className="absolute -right-2.5 -top-1.5 min-w-[18px] rounded-full bg-rose-pink px-1 text-center text-[10px] font-bold leading-[18px] text-white">
-                    {pendingReviews > 99 ? '99+' : pendingReviews}
-                  </span>
-                )}
-              </span>
-              {item.shortLabel}
-            </NavLink>
-          ))}
+          {items.slice(2).map((item) => {
+            const badge = item.to === '/segundo-ciclo' ? pendingReviews : item.to === '/flashcards' ? dueCards : 0;
+            return (
+              <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
+                <span className="relative">
+                  <item.icon className="h-[22px] w-[22px]" aria-hidden />
+                  {badge > 0 && (
+                    <span className="absolute -right-2.5 -top-1.5 min-w-[18px] rounded-full bg-rose-pink px-1 text-center text-[10px] font-bold leading-[18px] text-white">
+                      {badge > 99 ? '99+' : badge}
+                    </span>
+                  )}
+                </span>
+                {item.shortLabel}
+              </NavLink>
+            );
+          })}
           <button type="button" onClick={() => setMoreOpen(true)} className={linkClass(moreActive)} aria-haspopup="dialog">
             <Ellipsis className="h-[22px] w-[22px]" aria-hidden />
             Mais

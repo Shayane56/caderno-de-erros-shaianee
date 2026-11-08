@@ -47,7 +47,7 @@ export function ChartFrame({ title, subtitle, icon, children, table, empty, empt
                 aria-label={label}
                 title={label}
                 onClick={() => setView(id)}
-                className={cn('flex h-8 w-8 items-center justify-center rounded-[10px] transition', view === id ? 'bg-white text-rose-pink shadow-soft' : 'text-ink-soft hover:text-rose-ink')}
+                className={cn('flex h-8 w-8 items-center justify-center rounded-[10px] transition', view === id ? 'bg-surface text-rose-pink shadow-soft' : 'text-ink-soft hover:text-rose-ink')}
               >
                 <Icon className="h-4 w-4" aria-hidden />
               </button>
