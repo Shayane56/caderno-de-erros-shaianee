@@ -84,7 +84,7 @@ export function ErrorsToCardsModal({ open, onClose, deck }: ErrorsToCardsModalPr
             Cancelar
           </Button>
           <Button icon={Sparkles} onClick={() => void run()} loading={running} disabled={selected.length === 0}>
-            Criar {selected.length} cartão{selected.length === 1 ? '' : 'ões'}
+            Criar {selected.length} {selected.length === 1 ? 'cartão' : 'cartões'}
           </Button>
         </>
       }

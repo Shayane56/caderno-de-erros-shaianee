@@ -4,6 +4,8 @@ const v = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
+  // Classes montadas dinamicamente (ex.: `cover-${estampa}`, `paper-${papel}`).
+  safelist: [{ pattern: /^(paper|cover)-(pautado|quadriculado|pontilhado|liso|bolinhas|listras|xadrez|coracoes|estrelas)$/ }],
   theme: {
     extend: {
       colors: {

@@ -34,7 +34,7 @@ export function FlashcardsTodayCard() {
         ) : due > 0 ? (
           <>
             <p className="mt-1 text-sm text-ink-muted">
-              {due} cartão{due === 1 ? '' : 'ões'} esperando por você · {data.reviewsToday.length} respondido(s) hoje
+              {due} {due === 1 ? 'cartão' : 'cartões'} esperando por você · {data.reviewsToday.length} respondido(s) hoje
             </p>
             <DueCounts counts={queue.counts} className="mt-2" />
           </>

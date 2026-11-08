@@ -112,6 +112,10 @@
     background-image:
       linear-gradient(90deg, transparent 2.6rem, var(--paper-margin) 2.6rem, var(--paper-margin) calc(2.6rem + 1.5px), transparent calc(2.6rem + 1.5px)),
       repeating-linear-gradient(180deg, transparent 0, transparent calc(var(--paper-line) - 1px), var(--paper-rule) calc(var(--paper-line) - 1px), var(--paper-rule) var(--paper-line));
+    /* Sobe as linhas para que a escrita "sente" sobre elas, como num caderno. */
+    background-position:
+      0 0,
+      0 calc(var(--paper-line) * -0.2);
   }
 
   .paper-quadriculado {
@@ -143,6 +147,7 @@
   .hl {
     --hl: #fff27a;
     color: #2e2629;
+    background-color: transparent; /* remove o amarelo padrão do <mark> */
     background-image: linear-gradient(100deg, transparent 0.12em, var(--hl) 0.24em, var(--hl) calc(100% - 0.28em), transparent calc(100% - 0.1em));
     padding: 0.02em 0.3em;
     margin: 0 -0.08em;

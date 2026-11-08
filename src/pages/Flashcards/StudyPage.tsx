@@ -50,7 +50,7 @@ function Summary({ stats, deckName, laterToday, nextDueAt, onBack, onTrain }: { 
         <h1 className="font-display text-2xl font-semibold">{stats.answered ? 'Estudo de hoje concluído!' : 'Tudo em dia por aqui!'}</h1>
         <p className="mt-2 text-sm text-ink-muted">
           {stats.answered
-            ? `Você respondeu ${stats.answered} cartão${stats.answered === 1 ? '' : 'ões'} de “${deckName}”. A memória agradece — e o dia da prova também.`
+            ? `Você respondeu ${stats.answered} ${stats.answered === 1 ? 'cartão' : 'cartões'} de “${deckName}”. A memória agradece — e o dia da prova também.`
             : `Não há cartões de “${deckName}” para estudar agora. Os próximos aparecem sozinhos nos dias certos.`}
         </p>
         {stats.answered > 0 && (

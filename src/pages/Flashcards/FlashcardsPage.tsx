@@ -157,7 +157,7 @@ export default function FlashcardsPage() {
                 return (
                   <li key={deck.id} className="group min-w-0">
                     <Link to={`/flashcards/baralho/${deck.id}`} className="block pl-2 transition duration-200 hover:-translate-y-1 focus-visible:-translate-y-1" aria-label={`Abrir baralho ${deck.name}`}>
-                      <DeckCover {...deck} subtitle={`${total} cartão${total === 1 ? '' : 'ões'}`} />
+                      <DeckCover {...deck} subtitle={`${total} ${total === 1 ? 'cartão' : 'cartões'}`} />
                     </Link>
                     <div className="mt-2.5 space-y-2 pl-2">
                       <DueCounts counts={counts} compact />
