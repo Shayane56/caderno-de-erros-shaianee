@@ -25,7 +25,8 @@ describe('exportação JSON', () => {
     expect(fileName).toMatch(/^caderno-de-erros-backup-\d{4}-\d{2}-\d{2}-\d{4}\.json$/);
     const json = JSON.parse(content);
     expect(json.app).toBe('caderno-de-erros');
-    expect(json.formatVersion).toBe(3);
+    expect(json.formatVersion).toBe(4);
+    expect(json.questions).toEqual([]);
     expect(json.decks).toEqual([]);
     expect(json.cards).toEqual([]);
     expect(json.subjects[0]).toMatchObject({ id: subject.id, name: subject.name });

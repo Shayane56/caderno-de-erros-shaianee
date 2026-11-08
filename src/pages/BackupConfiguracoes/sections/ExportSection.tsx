@@ -23,6 +23,8 @@ export function ExportSection() {
     reviews: await db.reviews.count(),
     decks: await db.decks.count(),
     cards: await db.cards.count(),
+    questions: await db.questions.count(),
+    attempts: await db.questionAttempts.count(),
   }));
 
   const handleExport = async () => {
@@ -51,6 +53,8 @@ export function ExportSection() {
             ['Revisões', counts?.reviews],
             ['Baralhos', counts?.decks],
             ['Flashcards', counts?.cards],
+            ['Minhas questões', counts?.questions],
+            ['Questões respondidas', counts?.attempts],
           ] as const
         ).map(([label, value]) => (
           <div key={label} className="rounded-2xl bg-canvas p-3">
@@ -60,7 +64,7 @@ export function ExportSection() {
         ))}
       </dl>
       <p className="mt-3 text-xs text-ink-muted">
-        Inclui matérias, tópicos, erros (com prioridades, origens e datas), histórico de alterações, revisões, baralhos e flashcards (com imagens e progresso de estudo).
+        Inclui matérias, tópicos, erros (com prioridades, origens e datas), histórico de alterações, revisões, baralhos e flashcards (com imagens e progresso de estudo), suas questões cadastradas e as respostas do Banco de Questões.
       </p>
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button icon={Download} onClick={() => void handleExport()} loading={loading}>

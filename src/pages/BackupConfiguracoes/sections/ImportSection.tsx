@@ -27,6 +27,8 @@ const ENTITY_LABELS: Record<string, string> = {
   decks: 'Baralhos',
   cards: 'Flashcards',
   cardReviews: 'Respostas de estudo',
+  questions: 'Minhas questões',
+  questionAttempts: 'Respostas de questões',
 };
 
 function PlanRow({ label, counts, mode }: { label: string; counts: EntityPlanCounts; mode: ImportMode }) {
@@ -222,7 +224,7 @@ export function ImportSection() {
                 </tr>
               </thead>
               <tbody>
-                {(['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews'] as const).map((k) => (
+                {(['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts'] as const).map((k) => (
                   <PlanRow key={k} label={ENTITY_LABELS[k]} counts={plan[k]} mode={mode} />
                 ))}
               </tbody>
