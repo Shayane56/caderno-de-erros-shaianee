@@ -26,7 +26,7 @@ export const ORIGINS: Record<OriginId, OriginMeta> = {
     strategy:
       'Priorize a teoria: estude o conteúdo base (aulas, PDF, lei seca) antes de voltar às questões e crie resumos dos conceitos novos.',
     icon: CircleHelp,
-    color: '#8B5CF6',
+    color: '#6250D6',
     badgeClass: 'bg-violet-50 text-violet-700 ring-violet-200',
     softBg: 'bg-violet-50',
   },
@@ -52,7 +52,7 @@ export const ORIGINS: Record<OriginId, OriginMeta> = {
     strategy:
       'Aumente a frequência das revisões espaçadas, use flashcards para prazos e exceções e revise o Segundo Ciclo com regularidade.',
     icon: Brain,
-    color: '#14B8A6',
+    color: '#1BAF7A',
     badgeClass: 'bg-teal-50 text-teal-700 ring-teal-200',
     softBg: 'bg-teal-50',
   },
@@ -65,7 +65,7 @@ export const ORIGINS: Record<OriginId, OriginMeta> = {
     strategy:
       'Treine leitura ativa: sublinhe o comando da questão (correta/incorreta, exceto), atenção a palavras restritivas e releia antes de marcar.',
     icon: ScanSearch,
-    color: '#F97316',
+    color: '#EB6834',
     badgeClass: 'bg-orange-50 text-orange-700 ring-orange-200',
     softBg: 'bg-orange-50',
   },

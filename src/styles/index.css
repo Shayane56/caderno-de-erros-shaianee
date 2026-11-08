@@ -1,0 +1,96 @@
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/playfair-display';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-top: env(safe-area-inset-top, 0px);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-ink;
+  }
+
+  ::selection {
+    background: #f9d5e5;
+    color: #51434b;
+  }
+
+  :focus-visible {
+    outline: 2px solid #db2777;
+    outline-offset: 2px;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .card {
+    @apply min-w-0 rounded-3xl border border-line bg-white shadow-soft;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+
+  .field-hint {
+    @apply mt-1 text-xs text-ink-muted;
+  }
+
+  .field-error {
+    @apply mt-1.5 flex items-center gap-1 text-xs font-medium text-red-600;
+  }
+
+  .input {
+    @apply block w-full rounded-2xl border border-line bg-white px-4 py-2.5 text-[15px] text-ink placeholder:text-ink-soft transition
+      focus:border-rose-medium focus:shadow-ring focus:outline-none disabled:cursor-not-allowed disabled:bg-canvas;
+  }
+
+  .input-invalid {
+    @apply border-red-300 focus:border-red-400;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset;
+  }
+
+  .section-title {
+    @apply font-display text-lg font-semibold text-ink;
+  }
+
+  .scrollbar-soft {
+    scrollbar-width: thin;
+    scrollbar-color: #f9d5e5 transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

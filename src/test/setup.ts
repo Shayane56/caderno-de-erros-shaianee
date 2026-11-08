@@ -27,6 +27,13 @@ if (!window.matchMedia) {
 }
 
 if (!Element.prototype.scrollIntoView) Element.prototype.scrollIntoView = () => {};
+// jsdom não implementa rolagem nem layout: evita ruído esperado nos testes.
+window.scrollTo = (() => {}) as typeof window.scrollTo;
+const originalWarn = console.warn;
+console.warn = (...args: unknown[]) => {
+  if (typeof args[0] === 'string' && args[0].includes('of chart should be greater than 0')) return;
+  originalWarn(...args);
+};
 
 beforeEach(async () => {
   await db.delete();
