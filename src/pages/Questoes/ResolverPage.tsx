@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/common/EmptyState';
 import { PageLoader } from '@/components/common/Spinner';
 import { useToast } from '@/components/common/Toast';
 import { useErrorForm } from '@/components/modals/ErrorFormProvider';
-import { QuestionMeta, QuestionView } from '@/components/questions/QuestionView';
+import { QuestionWorkspace, SidePanel } from '@/components/questions/QuestionWorkspace';
 import { useQuestionData } from '@/hooks/useQuestions';
 import { filterQuestions, filtersFromParams } from '@/services/questions/filters';
 import { answerQuestion, errorPrefillFromQuestion } from '@/services/questions/questionService';
@@ -15,6 +15,8 @@ import { answerLabel } from '@/services/questions/questionModel';
 import { errorMessage } from '@/services/errors';
 import { truncate } from '@/utils/text';
 import { cn } from '@/utils/cn';
+import { useNow } from '@/hooks/useNow';
+import { formatClock } from '@/services/study/focusTimer';
 
 interface Result {
   chosen: QuestionAnswer;
@@ -56,6 +58,9 @@ function ResolverPage() {
   const [results, setResults] = useState<Record<string, Result>>({});
   const [saving, setSaving] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [sessionStart] = useState(() => Date.now());
+  const [shownAt, setShownAt] = useState(() => Date.now());
+  const now = useNow(1000).getTime();
 
   useEffect(() => {
     if (data.loading || ids) return;
@@ -73,19 +78,20 @@ function ResolverPage() {
   const answered = !!result;
 
   useEffect(() => setChosen(result?.chosen ?? null), [question?.id, result?.chosen]);
+  useEffect(() => setShownAt(Date.now()), [question?.id]);
 
   const respond = useCallback(async () => {
     if (!question || chosen === null || answered || saving) return;
     setSaving(true);
     try {
-      const attempt = await answerQuestion(question, chosen);
+      const attempt = await answerQuestion(question, chosen, { durationMs: Date.now() - shownAt });
       setResults((r) => ({ ...r, [question.id]: { chosen, correct: attempt.correct } }));
     } catch (error) {
       toast.error('Não foi possível registrar a resposta', errorMessage(error));
     } finally {
       setSaving(false);
     }
-  }, [question, chosen, answered, saving, toast]);
+  }, [question, chosen, answered, saving, toast, shownAt]);
 
   const next = useCallback(() => {
     if (!ids) return;
@@ -202,85 +208,88 @@ function ResolverPage() {
   const progress = ((index + (answered ? 1 : 0)) / ids.length) * 100;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
-      <div className="flex items-center justify-between gap-3">
-        <Link to={backTo} className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-muted hover:text-rose-ink">
-          <ArrowLeft className="h-4 w-4" aria-hidden /> <span className="sm:hidden">Voltar</span>
-          <span className="hidden sm:inline">Banco de Questões</span>
-        </Link>
-        <div className="flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-ink-muted sm:gap-3">
-          <span>
-            <span className="hidden sm:inline">Questão </span>
-            <span className="text-ink">{index + 1}</span> de {ids.length}
-          </span>
-          {done > 0 && (
-            <span className="chip bg-emerald-50 text-emerald-700 ring-emerald-200">
-              {correct}/{done} certas
-            </span>
-          )}
-          {!shuffled && ids.length > 1 && (
+    <>
+      <QuestionWorkspace
+        backTo={backTo}
+        backLabel="Banco de Questões"
+        index={index}
+        total={ids.length}
+        progressPct={progress}
+        clock={formatClock(now - sessionStart)}
+        question={question}
+        chosen={chosen}
+        onChoose={setChosen}
+        answered={answered}
+        extraTools={
+          !shuffled && ids.length > 1 ? (
             <button
               type="button"
-              title="Embaralhar a ordem das questões"
-              aria-label="Embaralhar a ordem das questões"
-              className="rounded-xl p-2 text-ink-muted transition hover:bg-blush hover:text-rose-ink"
               onClick={() => {
                 const p = new URLSearchParams(params);
                 p.set('embaralhar', '1');
                 p.delete('inicio');
                 setParams(p, { replace: true });
               }}
+              className="flex min-w-[68px] flex-col items-center gap-1 rounded-2xl bg-surface px-2 py-2.5 text-[11px] font-semibold text-ink-muted shadow-soft ring-1 ring-line/80 transition hover:text-rose-ink"
             >
-              <Shuffle className="h-4 w-4" aria-hidden />
+              <Shuffle className="h-5 w-5" aria-hidden />
+              Embaralhar
             </button>
-          )}
-        </div>
-      </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-surface ring-1 ring-line" role="progressbar" aria-valuenow={index + 1} aria-valuemin={1} aria-valuemax={ids.length} aria-label="Progresso da lista">
-        <div className="h-full rounded-full bg-gradient-to-r from-rose-medium to-rose-pink transition-all duration-500" style={{ width: `${progress}%` }} />
-      </div>
-
-      <article className="card overflow-hidden" aria-label="Questão">
-        <header className="border-b border-line bg-gradient-to-br from-surface to-blush/50 p-5 sm:px-7">
-          <QuestionMeta question={question} />
-          <p className="mt-2 text-sm font-semibold text-rose-antique">
-            {question.subject} <span className="text-ink-soft">›</span> {question.topic || 'Geral'}
-          </p>
-        </header>
-        <div className="p-5 sm:p-7">
-          <QuestionView question={question} chosen={chosen} onChoose={setChosen} answered={answered} number={index + 1} />
-        </div>
-        <footer className="flex flex-col gap-2 border-t border-line bg-canvas/50 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
-          <Button variant="ghost" icon={ArrowLeft} disabled={index === 0} onClick={() => setIndex(index - 1)} className="hidden sm:inline-flex">
-            Anterior
-          </Button>
-          <div className="flex flex-col-reverse gap-2 sm:flex-row">
-            {answered && !result.correct && (
-              <Button variant="secondary" icon={NotebookPen} onClick={() => void registerError(question, result.chosen)}>
-                Registrar no caderno de erros
-              </Button>
-            )}
-            {answered ? (
-              <Button iconRight={ArrowRight} onClick={next}>
-                {index + 1 >= ids.length ? 'Ver resultado' : 'Próxima'}
-              </Button>
-            ) : (
-              <>
-                <Button variant="ghost" onClick={next} className={cn(index + 1 >= ids.length && 'hidden')}>
-                  Pular
+          ) : null
+        }
+        side={
+          <SidePanel title="Progresso">
+            <p className="text-sm font-bold text-ink">
+              {done} / {ids.length} respondidas
+            </p>
+            <div className="mt-2 h-2 overflow-hidden rounded-full bg-lilac">
+              <div className="h-full rounded-full bg-gradient-to-r from-rose-medium to-rose-pink" style={{ width: `${(done / ids.length) * 100}%` }} />
+            </div>
+            <dl className="mt-3 grid grid-cols-2 gap-2 text-center">
+              <div className="rounded-2xl bg-emerald-50 p-2">
+                <dt className="text-[11px] font-semibold text-emerald-800">Acertos</dt>
+                <dd className="text-lg font-extrabold text-emerald-800">{correct}</dd>
+              </div>
+              <div className="rounded-2xl bg-red-50 p-2">
+                <dt className="text-[11px] font-semibold text-red-800">Erros</dt>
+                <dd className="text-lg font-extrabold text-red-800">{done - correct}</dd>
+              </div>
+            </dl>
+          </SidePanel>
+        }
+        footer={
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <Button variant="outline" icon={ArrowLeft} disabled={index === 0} onClick={() => setIndex(index - 1)} className="hidden sm:inline-flex">
+              Anterior
+            </Button>
+            <div className="flex flex-col-reverse gap-2 sm:flex-row">
+              {answered && !result.correct && (
+                <Button variant="secondary" icon={NotebookPen} onClick={() => void registerError(question, result.chosen)}>
+                  Registrar no caderno de erros
                 </Button>
-                <Button icon={CheckCheck} disabled={chosen === null} loading={saving} onClick={() => void respond()}>
-                  Responder
+              )}
+              {answered ? (
+                <Button iconRight={ArrowRight} onClick={next}>
+                  {index + 1 >= ids.length ? 'Ver resultado' : 'Próxima'}
                 </Button>
-              </>
-            )}
+              ) : (
+                <>
+                  <Button variant="outline" iconRight={ArrowRight} onClick={next} className={cn(index + 1 >= ids.length && 'hidden')}>
+                    Pular
+                  </Button>
+                  <Button icon={CheckCheck} disabled={chosen === null} loading={saving} onClick={() => void respond()} className="px-8">
+                    Responder
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
-        </footer>
-      </article>
-      <p className="text-center text-[11px] text-ink-soft">
+        }
+      />
+      <p className="mt-3 text-center text-[11px] text-ink-soft">
         Atalhos: letras A–E (ou 1–5) escolhem · C/E nos itens Certo ou Errado · Enter responde e avança
         {answered && !result.correct ? ` · gabarito ${answerLabel(question.answer)}` : ''}
       </p>
-    </div>
+    </>
   );
 }

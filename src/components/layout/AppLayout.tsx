@@ -6,6 +6,7 @@ import { Sidebar } from './Sidebar';
 import { BottomNav, MobileHeader } from './MobileNav';
 import { UpdatePrompt } from './UpdatePrompt';
 import { WelcomeDialog } from './WelcomeDialog';
+import { FocusPill } from '@/components/mimo/FocusPill';
 import { useFlashcardData, useStudyQueue } from '@/hooks/useFlashcards';
 import { totalDue } from '@/components/flashcards/DueCounts';
 
@@ -37,6 +38,7 @@ export function AppLayout() {
       <BottomNav pendingReviews={pendingReviews} dueCards={dueCards} />
       <UpdatePrompt />
       <WelcomeDialog />
+      <FocusPill />
     </div>
   );
 }

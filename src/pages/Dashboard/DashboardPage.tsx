@@ -23,7 +23,9 @@ import {
 import { useAppData } from '@/hooks/useData';
 import { StatCard } from '@/components/cards/StatCard';
 import { ErrorListItem } from '@/components/cards/ErrorListItem';
-import { HeroCard } from '@/components/dashboard/HeroCard';
+import { HomeHeader } from '@/components/dashboard/HomeHeader';
+import { WeekProgressCard } from '@/components/dashboard/WeekProgressCard';
+import { QuickAccess } from '@/components/dashboard/QuickAccess';
 import { MotivationCard } from '@/components/dashboard/MotivationCard';
 import { DifficultyList } from '@/components/dashboard/DifficultyList';
 import { FlashcardsTodayCard } from '@/components/dashboard/FlashcardsTodayCard';
@@ -87,12 +89,24 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      <HomeHeader />
       <div className="grid gap-6 xl:grid-cols-3">
-        <div className="min-w-0 xl:col-span-2">
-          <HeroCard pending={overview.pending} />
+        <div className="min-w-0 space-y-6 xl:col-span-2">
+          <WeekProgressCard />
+          <QuickAccess />
         </div>
         <MotivationCard />
       </div>
+      <FlashcardsTodayCard />
+
+      <h2 className="section-title flex items-center gap-2 pt-2 text-xl">
+        <NotebookText className="h-5 w-5 text-rose-pink" aria-hidden /> Seu caderno de erros
+        {overview.pending > 0 && (
+          <Link to="/segundo-ciclo" className="ml-auto rounded-full bg-blush px-3 py-1 text-xs font-bold text-rose-ink transition hover:bg-petal">
+            {overview.pending} para revisar →
+          </Link>
+        )}
+      </h2>
 
       <section aria-label="Indicadores principais" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-6">
         <StatCard label="Erros registrados" value={overview.total} icon={NotebookText} to="/erros" hint={`${overview.topics} tópicos`} />
@@ -127,8 +141,6 @@ export default function DashboardPage() {
           </div>
         </StatCard>
       </section>
-
-      <FlashcardsTodayCard />
 
       {overview.total === 0 ? (
         <section className="card p-6 sm:p-10">

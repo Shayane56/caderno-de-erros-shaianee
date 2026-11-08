@@ -1,4 +1,4 @@
-# Caderno de Erros — Shaiane Carvalho 💗
+# Mimo — Estude. Reveja. Conquiste. 💗
 
 > *Transformando dificuldades em aprendizado e erros em acertos.*
 > *A aprovação também é construída a partir dos erros que você aprende a não repetir.*
@@ -50,7 +50,31 @@ npm run preview    # serve a versão de produção → http://localhost:4173
 
 ## Funcionalidades
 
-**Painel** — cartões com total de erros, matérias, prioridade alta, média, superados e percentual de
+**Visual Mimo** — identidade nova (logo do livrinho com coração, fonte arredondada Nunito, rosa + lavanda,
+cards bem arredondados) e o gatinho mascote Mimo desenhado em SVG (lendo, de fone, abraçando um coração,
+comemorando). O tema Mimo é o padrão; os temas antigos continuam em *Configurações → Aparência*, com modo escuro.
+
+**Início** — "Olá, [nome]! 💜", *Seu progresso da semana* (acerto nas questões, questões respondidas, cartões
+revisados e minutos de foco, comparando com a semana anterior), *Acesso rápido* (continuar estudando, estatísticas,
+revisar erros, criar simulado), mensagem do Mimo, flashcards do dia e o resumo do caderno de erros.
+
+**Estatísticas** — períodos de 7, 30 e 90 dias: acertos, questões, tempo de estudo (Modo Foco + tempo nas
+questões e cartões fora das sessões, sem contar duas vezes), dias estudando, gráfico de desempenho ao longo do
+tempo, *pontos fracos* (assuntos com menor acerto, com atalho para treinar) e "Você evoluiu!".
+
+**Modo Foco** — sessões cronometradas (25 min a 2 h ou personalizada), pausa/retomada, cronômetro flutuante em
+todas as telas (continua após recarregar a página), aviso sonoro, vibração e notificação no fim, histórico de
+sessões e lista de apps para deixar de lado. Um site não consegue bloquear outros apps do celular; a tela explica
+como ativar o modo foco do iPhone/Android para isso.
+
+**Simulados** — escolha matérias, assuntos e bancas, quantidade (10 a 80) e tempo (sem limite a 4 h). O gabarito
+só aparece no final; o simulado pode ser continuado depois, encerra sozinho quando o tempo acaba e mostra nota,
+tempo, desempenho por matéria e gabarito comentado, com "Registrar no caderno de erros" nas que errou.
+
+**Na tela da questão** — cronômetro, progresso, **anotações** pessoais em cada questão (salvas automaticamente),
+**calculadora** e a *Dica do Mimo*.
+
+**Painel do caderno** — cartões com total de erros, matérias, prioridade alta, média, superados e percentual de
 superação; gráficos de erros por matéria, distribuição por prioridade e por origem, evolução ao longo do
 tempo e pendentes × superados; últimos registros, matérias e tópicos com mais dificuldades, erros que
 precisam de revisão e mensagem motivacional. Todos os números vêm do banco de dados e se atualizam sozinhos.
@@ -163,7 +187,7 @@ Baralhos, cartões (com imagens e progresso) e respostas entram no **backup JSON
 continuam aceitos), nos **pontos de restauração** e na **sincronização em nuvem**.
 
 > Já usa a sincronização? Execute novamente o [docs/supabase.sql](docs/supabase.sql) no Supabase (é seguro
-> repetir) para o banco na nuvem aceitar os flashcards e o Banco de Questões.
+> repetir) para o banco na nuvem aceitar os flashcards, o Banco de Questões e as novidades do Mimo.
 
 ## Como fazer backups
 
@@ -236,6 +260,7 @@ Passo a passo completo: **[docs/SINCRONIZACAO.md](docs/SINCRONIZACAO.md)** · Sc
 | Flashcards com repetição espaçada, lacunas, certo/errado, imagens e marca-texto | ✅ Completo |
 | Temas de cores, modo escuro e personalização de baralhos | ✅ Completo |
 | Banco de Questões com 153 questões inéditas, provas coladas e registro de erro preenchido | ✅ Completo |
+| Visual Mimo, Modo Foco, simulados, anotações, calculadora e Estatísticas | ✅ Completo |
 | Backup JSON (exportar/importar/validar/mesclar/substituir) e pontos de restauração | ✅ Completo |
 | PWA instalável e funcionamento offline | ✅ Completo (instalação requer HTTPS ou `localhost`) |
 | Publicação automática no GitHub Pages | ⚙️ Requer ativar o Pages no repositório (1 clique) |
@@ -247,7 +272,7 @@ Passo a passo completo: **[docs/SINCRONIZACAO.md](docs/SINCRONIZACAO.md)** · Sc
 npm test
 ```
 
-112 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
+121 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
 exclusão; validação de formulários (unidade e interface); matérias e tópicos (duplicação, exclusão com
 transferência ou em cascata); alteração de prioridade e de origem (serviço e interface); filtros combinados e
 pesquisa; Segundo Ciclo (fila, correção oculta, revelar, marcar como superado); cálculos estatísticos;

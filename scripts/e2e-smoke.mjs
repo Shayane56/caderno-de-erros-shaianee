@@ -101,7 +101,7 @@ await scenario('Cadastro, validação, persistência após recarregar, revisão 
   const welcome = page.getByRole('dialog', { name: /Boas-vindas/ });
   await welcome.getByLabel('Qual é o seu nome?').fill('Shaiane Carvalho');
   await welcome.getByRole('button', { name: 'Começar' }).click();
-  await page.getByRole('heading', { name: /(Bom dia|Boa tarde|Boa noite), Shaiane/ }).waitFor();
+  await page.getByRole('heading', { name: /Olá, Shaiane!/ }).waitFor();
 
   // Validação: salvar vazio exibe mensagens.
   await page.getByRole('button', { name: 'Registrar novo erro' }).first().click();
@@ -321,11 +321,11 @@ await scenario('Experiência mobile (iPhone e Android)', async () => {
     await page.screenshot({ path: path.join(OUT, `${label}-painel.png`), fullPage: true });
     // Menu "Mais" e navegação inferior.
     await page.getByRole('button', { name: 'Mais', exact: true }).click();
-    await page.getByRole('dialog', { name: 'Mais opções' }).getByRole('link', { name: /Minha Evolução/ }).click();
-    await page.getByRole('heading', { name: 'Minha Evolução' }).waitFor();
+    await page.getByRole('dialog', { name: 'Mais opções' }).getByRole('link', { name: /Estatísticas/ }).click();
+    await page.getByRole('heading', { name: /Suas Estatísticas/ }).waitFor();
     await page.waitForTimeout(400);
     await page.screenshot({ path: path.join(OUT, `${label}-evolucao.png`), fullPage: true });
-    await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link', { name: 'Erros', exact: true }).click();
+    await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link', { name: /Erros$/ }).click();
     await page.getByRole('heading', { name: 'Meus Erros' }).waitFor();
     await page.screenshot({ path: path.join(OUT, `${label}-meus-erros.png`), fullPage: true });
     // Formulário em tela de celular.

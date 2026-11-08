@@ -135,11 +135,11 @@ export function questionReference(q: Question): string {
 }
 
 /** Formulário do caderno de erros já preenchido a partir de uma questão errada. */
-export async function errorPrefillFromQuestion(q: Question, chosen: QuestionAnswer): Promise<Partial<ErrorInput>> {
+export async function errorPrefillFromQuestion(q: Question, chosen: QuestionAnswer | null): Promise<Partial<ErrorInput>> {
   const ids = await ensureSubjectTopic(q.subject, q.topic);
   return {
     ...ids,
-    description: `Errei esta questão (marquei ${answerLabel(chosen)}; gabarito ${answerLabel(q.answer)}):\n\n${questionAsText(q)}`,
+    description: `Errei esta questão (${chosen === null ? 'deixei em branco' : `marquei ${answerLabel(chosen)}`}; gabarito ${answerLabel(q.answer)}):\n\n${questionAsText(q)}`,
     correction: `Gabarito: ${answerLabel(q.answer)}.${q.explanation ? `\n${q.explanation}` : ''}`,
     reference: questionReference(q),
   };

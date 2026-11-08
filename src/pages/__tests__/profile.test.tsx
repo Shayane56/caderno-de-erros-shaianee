@@ -13,11 +13,11 @@ describe('nome de quem usa o caderno (sem login)', () => {
     await user.click(within(dialog).getByRole('button', { name: 'Começar' }));
 
     expect(screen.queryByRole('dialog', { name: /Boas-vindas/ })).not.toBeInTheDocument();
-    expect(await screen.findByRole('heading', { level: 1, name: /(Bom dia|Boa tarde|Boa noite), Maria/ })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: /Olá, Maria!/ })).toBeInTheDocument();
     expect(screen.getAllByText('Maria Souza').length).toBeGreaterThan(0);
     expect(screen.queryByText(/Shaiane/)).not.toBeInTheDocument();
-    expect(document.title).toBe('Caderno de Erros — Maria Souza');
-    expect((await exportBackup()).file.owner).toBe('Caderno de Erros — Maria Souza');
+    expect(document.title).toBe('Mimo — Maria Souza');
+    expect((await exportBackup()).file.owner).toBe('Mimo — Maria Souza');
   });
 
   it('"Agora não" mantém a saudação sem nome e não pergunta de novo', async () => {
@@ -27,7 +27,7 @@ describe('nome de quem usa o caderno (sem login)', () => {
     await user.click(within(dialog).getByRole('button', { name: 'Agora não' }));
     expect(await screen.findByRole('heading', { level: 1, name: /^(Bom dia|Boa tarde|Boa noite)/ })).not.toHaveTextContent(',');
     expect(getProfile()).toMatchObject({ name: '', skipped: true });
-    expect(screen.getAllByText('Meu caderno').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Seu perfil').length).toBeGreaterThan(0);
   });
 
   it('troca o nome em Personalização', async () => {
