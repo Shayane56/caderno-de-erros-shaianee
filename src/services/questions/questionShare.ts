@@ -39,7 +39,7 @@ export async function importQuestionsFile(text: string): Promise<{ created: numb
     throw new AppError('invalid_file', 'O arquivo selecionado não é um JSON válido.');
   }
   const list = json && typeof json === 'object' && Array.isArray((json as { questions?: unknown }).questions) ? (json as { questions: unknown[] }).questions : null;
-  if (!list) throw new AppError('invalid_file', 'Este arquivo não contém questões do Caderno de Erros.');
+  if (!list) throw new AppError('invalid_file', 'Este arquivo não contém questões do Mimo.');
   let created = 0;
   let skipped = 0;
   await db.transaction('rw', [db.questions, db.pendingChanges], async () => {

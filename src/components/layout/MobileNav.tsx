@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
 
-const PRIMARY = ['/', '/erros', '/segundo-ciclo', '/flashcards'];
+const PRIMARY = ['/', '/erros', '/questoes', '/flashcards'];
 
 export function MobileHeader() {
   return (
@@ -43,7 +43,14 @@ export function BottomNav({ pendingReviews, dueCards = 0 }: { pendingReviews: nu
         <div className="mx-auto flex h-16 max-w-xl items-stretch px-2">
           {items.slice(0, 2).map((item) => (
             <NavLink key={item.to} to={item.to} end={item.to === '/'} className={({ isActive }) => linkClass(isActive)}>
-              <item.icon className="h-[22px] w-[22px]" aria-hidden />
+              <span className="relative">
+                <item.icon className="h-[22px] w-[22px]" aria-hidden />
+                {item.to === '/erros' && pendingReviews > 0 && (
+                  <span className="absolute -right-2.5 -top-1.5 min-w-[18px] rounded-full bg-rose-pink px-1 text-center text-[10px] font-bold leading-[18px] text-white" aria-label={`${pendingReviews} erros para revisar`}>
+                    {pendingReviews > 99 ? '99+' : pendingReviews}
+                  </span>
+                )}
+              </span>
               {item.shortLabel}
             </NavLink>
           ))}
@@ -58,7 +65,7 @@ export function BottomNav({ pendingReviews, dueCards = 0 }: { pendingReviews: nu
             </button>
           </div>
           {items.slice(2).map((item) => {
-            const badge = item.to === '/segundo-ciclo' ? pendingReviews : item.to === '/flashcards' ? dueCards : 0;
+            const badge = item.to === '/flashcards' ? dueCards : 0;
             return (
               <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
                 <span className="relative">

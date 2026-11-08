@@ -1,3 +1,4 @@
+@import '@fontsource-variable/nunito';
 @import '@fontsource-variable/plus-jakarta-sans';
 @import '@fontsource-variable/playfair-display';
 /* Fontes dos flashcards (carregadas só quando usadas). */
@@ -25,6 +26,18 @@
   body {
     @apply bg-canvas font-sans text-ink antialiased;
     min-height: 100dvh;
+    /* Brilhos suaves de rosa e lavanda no fundo (visual Mimo). */
+    background-image:
+      radial-gradient(60rem 40rem at -10% -10%, rgb(var(--bg-glow-1) / 0.7), transparent 60%),
+      radial-gradient(50rem 36rem at 110% 0%, rgb(var(--bg-glow-2) / 0.75), transparent 60%),
+      radial-gradient(48rem 30rem at 60% 115%, rgb(var(--bg-glow-1) / 0.45), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1.font-display,
+  h2.font-display {
+    font-weight: 800;
+    letter-spacing: -0.015em;
   }
 
   h1,
@@ -51,7 +64,7 @@
 
 @layer components {
   .card {
-    @apply min-w-0 rounded-3xl border border-line bg-surface shadow-soft;
+    @apply min-w-0 rounded-[28px] border border-line/80 bg-surface shadow-soft;
   }
 
   .field-label {
@@ -80,7 +93,7 @@
   }
 
   .section-title {
-    @apply font-display text-lg font-semibold text-ink;
+    @apply font-display text-lg font-extrabold tracking-tight text-ink;
   }
 
   .scrollbar-soft {

@@ -7,7 +7,8 @@
 -- =============================================================================
 
 -- Uma linha por entidade (matéria, tópico, erro, histórico, revisão, baralho, flashcard,
--- resposta de estudo, questão própria e resposta de questão) de cada usuária.
+-- resposta de estudo, questão própria, resposta de questão, anotação, simulado e sessão de foco)
+-- de cada usuária.
 create table if not exists public.caderno_records (
   user_id           uuid        not null default auth.uid() references auth.users (id) on delete cascade,
   entity            text        not null,
@@ -20,10 +21,10 @@ create table if not exists public.caderno_records (
 );
 
 -- Entidades aceitas. Recriada a cada execução para incluir os Flashcards em projetos
--- configurados antes das versões 3 e 4 (Flashcards e Banco de Questões) (basta executar este arquivo novamente).
+-- configurados antes das versões 3, 4 e 5 (Flashcards, Banco de Questões e Mimo) (basta executar este arquivo novamente).
 alter table public.caderno_records drop constraint if exists caderno_records_entity_check;
 alter table public.caderno_records add constraint caderno_records_entity_check
-  check (entity in ('subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts'));
+  check (entity in ('subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts', 'questionNotes', 'simulados', 'focusSessions'));
 
 create index if not exists caderno_records_user_cursor_idx
   on public.caderno_records (user_id, server_updated_at);

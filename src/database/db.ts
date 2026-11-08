@@ -6,6 +6,9 @@ import type {
   Flashcard,
   Question,
   QuestionAttempt,
+  QuestionNote,
+  Simulado,
+  FocusSession,
   HistoryEntry,
   PendingChange,
   ReviewEntry,
@@ -41,6 +44,9 @@ export class CadernoDatabase extends Dexie {
   cardReviews!: EntityTable<CardReview, 'id'>;
   questions!: EntityTable<Question, 'id'>;
   questionAttempts!: EntityTable<QuestionAttempt, 'id'>;
+  questionNotes!: EntityTable<QuestionNote, 'id'>;
+  simulados!: EntityTable<Simulado, 'id'>;
+  focusSessions!: EntityTable<FocusSession, 'id'>;
 
   constructor(name = DB_NAME) {
     super(name);
@@ -115,6 +121,13 @@ export class CadernoDatabase extends Dexie {
     this.version(4).stores({
       questions: 'id, subject, banca, format, updatedAt',
       questionAttempts: 'id, questionId, answeredAt, subject',
+    });
+
+    // v5 — visual Mimo: anotações nas questões, simulados e sessões do Modo Foco. Apenas tabelas novas.
+    this.version(5).stores({
+      questionNotes: 'id, updatedAt',
+      simulados: 'id, createdAt, updatedAt',
+      focusSessions: 'id, startedAt',
     });
   }
 }

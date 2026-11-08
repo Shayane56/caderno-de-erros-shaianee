@@ -75,7 +75,7 @@ export function DeviceSection() {
             <p className="font-semibold text-ink">Instalar como aplicativo</p>
             <p className="text-xs text-ink-muted">
               {standalone
-                ? 'O Caderno de Erros já está instalado neste dispositivo.'
+                ? 'O Mimo já está instalado neste dispositivo.'
                 : installable
                   ? 'Instale para abrir direto da tela inicial, em tela cheia e sem internet.'
                   : isIos()

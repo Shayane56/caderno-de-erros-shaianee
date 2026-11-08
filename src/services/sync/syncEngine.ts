@@ -1,9 +1,10 @@
 import { db } from '@/database/db';
 import { entityKey, trackChange, trackDeletion } from '@/database/changeTracker';
 import { normalizeErrorRecord, normalizePriority } from '@/database/migrations';
-import { ENTITY_NAMES, type Question, type QuestionAttempt, type CardReview, type Deck, type EntityName, type ErrorRecord, type Flashcard, type HistoryEntry, type ReviewEntry, type Subject, type Topic } from '@/types';
+import { ENTITY_NAMES, type FocusSession, type QuestionNote, type Simulado, type Question, type QuestionAttempt, type CardReview, type Deck, type EntityName, type ErrorRecord, type Flashcard, type HistoryEntry, type ReviewEntry, type Subject, type Topic } from '@/types';
 import { normalizeCard, normalizeCardReview, normalizeDeck } from '../flashcards/cardModel';
 import { normalizeQuestion, normalizeQuestionAttempt } from '../questions/questionModel';
+import { normalizeFocusSession, normalizeQuestionNote, normalizeSimulado } from '../study/studyModel';
 import { isValidIsoDate } from '@/utils/dates';
 import { cleanName, normalizeText } from '@/utils/text';
 import { nowIso } from '@/utils/ids';
@@ -15,7 +16,7 @@ const PUSH_BATCH = 400;
 /** Margem de segurança ao puxar alterações (compensa transações concorrentes no servidor). */
 const PULL_OVERLAP_MS = 60_000;
 
-type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry | Deck | Flashcard | CardReview | Question | QuestionAttempt;
+type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry | Deck | Flashcard | CardReview | Question | QuestionAttempt | QuestionNote | Simulado | FocusSession;
 
 function table(entity: EntityName) {
   switch (entity) {
@@ -39,6 +40,12 @@ function table(entity: EntityName) {
       return db.questions;
     case 'questionAttempts':
       return db.questionAttempts;
+    case 'questionNotes':
+      return db.questionNotes;
+    case 'simulados':
+      return db.simulados;
+    case 'focusSessions':
+      return db.focusSessions;
   }
 }
 
@@ -51,6 +58,7 @@ export function recordTimestamp(entity: EntityName, record: AnyRecord): string {
   if (entity === 'reviews') return (record as ReviewEntry).reviewedAt;
   if (entity === 'cardReviews') return (record as CardReview).reviewedAt;
   if (entity === 'questionAttempts') return (record as QuestionAttempt).answeredAt;
+  if (entity === 'focusSessions') return (record as FocusSession).endedAt;
   return (record as Subject).updatedAt;
 }
 
@@ -100,6 +108,12 @@ export function sanitizeRemote(entity: EntityName, data: unknown): AnyRecord | n
     }
     case 'questionAttempts':
       return normalizeQuestionAttempt(r);
+    case 'questionNotes':
+      return normalizeQuestionNote(r);
+    case 'simulados':
+      return normalizeSimulado(r);
+    case 'focusSessions':
+      return normalizeFocusSession(r);
   }
 }
 

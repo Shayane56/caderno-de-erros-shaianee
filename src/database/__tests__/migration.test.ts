@@ -41,7 +41,7 @@ describe('migração do banco (v1 → atual)', () => {
 
     const upgraded = new CadernoDatabase(name);
     await upgraded.open();
-    expect(upgraded.verno).toBe(4);
+    expect(upgraded.verno).toBe(5);
     expect(await upgraded.cards.count()).toBe(0);
     const errors = await upgraded.errors.orderBy('createdAt').toArray();
     expect(errors).toHaveLength(2);

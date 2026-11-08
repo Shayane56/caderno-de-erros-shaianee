@@ -19,7 +19,7 @@ export interface Appearance {
 }
 
 export const DEFAULT_APPEARANCE: Appearance = {
-  theme: 'rosa',
+  theme: 'mimo',
   mode: 'claro',
   paper: 'pautado',
   paperTint: 'branco',
@@ -33,8 +33,10 @@ const listeners = new Set<() => void>();
 let current: Appearance = load();
 
 function load(): Appearance {
-  const raw = readPreference<Partial<Appearance>>(PREF_KEY, {});
-  const r = raw && typeof raw === 'object' ? raw : {};
+  const raw = readPreference<Partial<Appearance> & { v?: number }>(PREF_KEY, {});
+  const r = raw && typeof raw === 'object' ? { ...raw } : {};
+  // Versão 2 (visual Mimo): quem estava no rosa antigo passa para o Mimo uma única vez.
+  if (r.v !== 2 && r.theme === 'rosa') r.theme = 'mimo';
   return {
     theme: THEMES.some((t) => t.id === r.theme) ? (r.theme as ThemeId) : DEFAULT_APPEARANCE.theme,
     mode: COLOR_MODES.some((m) => m.id === r.mode) ? (r.mode as ColorMode) : DEFAULT_APPEARANCE.mode,
@@ -74,7 +76,7 @@ export function getAppearance(): Appearance {
 
 export function updateAppearance(patch: Partial<Appearance>): Appearance {
   current = { ...current, ...patch };
-  writePreference(PREF_KEY, current);
+  writePreference(PREF_KEY, { ...current, v: 2 });
   applyAppearance(current);
   listeners.forEach((l) => l());
   return current;
