@@ -9,6 +9,7 @@ import { useProfile } from '@/services/profile';
 import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
+import { InviteButton } from '@/components/mimo/InviteButton';
 
 export function Sidebar({ pendingReviews, dueCards = 0 }: { pendingReviews: number; dueCards?: number }) {
   const { openCreate } = useErrorForm();
@@ -56,6 +57,7 @@ export function Sidebar({ pendingReviews, dueCards = 0 }: { pendingReviews: numb
         })}
       </nav>
       <div className="space-y-2 border-t border-line p-3">
+        <InviteButton />
         <SyncIndicator className="w-full justify-start" />
         <Link to="/backup#personalizacao" className="flex items-center gap-3 rounded-2xl p-2 transition hover:bg-canvas">
           <Avatar photo={photo} size={42} className="ring-2" label={name ? `Avatar de ${name}` : 'Avatar'} />

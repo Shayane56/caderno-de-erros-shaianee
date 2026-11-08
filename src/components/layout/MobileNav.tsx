@@ -7,6 +7,7 @@ import { Modal } from '@/components/common/Modal';
 import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
+import { InviteButton } from '@/components/mimo/InviteButton';
 
 const PRIMARY = ['/', '/erros', '/questoes', '/flashcards'];
 
@@ -90,6 +91,7 @@ export function BottomNav({ pendingReviews, dueCards = 0 }: { pendingReviews: nu
         <div className="mb-4">
           <BrandTitle />
         </div>
+        <InviteButton variant="menu" className="mb-3" />
         <ul className="space-y-1.5">
           {secondary.map((item) => (
             <li key={item.to}>
