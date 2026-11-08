@@ -1,0 +1,34 @@
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { PageLoader } from '@/components/common/Spinner';
+
+const DashboardPage = lazy(() => import('@/pages/Dashboard/DashboardPage'));
+const MeusErrosPage = lazy(() => import('@/pages/MeusErros/MeusErrosPage'));
+const ErrorDetailPage = lazy(() => import('@/pages/MeusErros/ErrorDetailPage'));
+const SegundoCicloPage = lazy(() => import('@/pages/SegundoCiclo/SegundoCicloPage'));
+const ReviewPage = lazy(() => import('@/pages/SegundoCiclo/ReviewPage'));
+const MinhaEvolucaoPage = lazy(() => import('@/pages/MinhaEvolucao/MinhaEvolucaoPage'));
+const MateriasTopicosPage = lazy(() => import('@/pages/MateriasTopicos/MateriasTopicosPage'));
+const BackupConfiguracoesPage = lazy(() => import('@/pages/BackupConfiguracoes/BackupConfiguracoesPage'));
+const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFoundPage'));
+
+export function AppRoutes() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="erros" element={<MeusErrosPage />} />
+          <Route path="erros/:id" element={<ErrorDetailPage />} />
+          <Route path="segundo-ciclo" element={<SegundoCicloPage />} />
+          <Route path="segundo-ciclo/revisar/:id" element={<ReviewPage />} />
+          <Route path="evolucao" element={<MinhaEvolucaoPage />} />
+          <Route path="materias" element={<MateriasTopicosPage />} />
+          <Route path="backup" element={<BackupConfiguracoesPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
+}
