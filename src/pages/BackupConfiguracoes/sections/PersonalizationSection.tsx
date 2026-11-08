@@ -8,6 +8,7 @@ import { useAvatarPhoto } from '@/hooks/useData';
 import { deleteSetting, resizeImageFile, setSetting, SETTING_KEYS } from '@/services/settingsService';
 import { errorMessage } from '@/services/errors';
 import { NAME_MAX_LENGTH, setProfileName, useProfile } from '@/services/profile';
+import { InviteButton } from '@/components/mimo/InviteButton';
 
 export function PersonalizationSection() {
   const toast = useToast();
@@ -51,8 +52,14 @@ export function PersonalizationSection() {
             Salvar
           </Button>
         </div>
-        <p className="field-hint">Aparece no “Bom dia” do Painel, no menu e no nome dos backups.</p>
+        <p className="field-hint">Aparece na saudação do Início, no menu e no nome dos backups.</p>
       </form>
+      <div className="mb-5 flex flex-col gap-3 rounded-2xl bg-gradient-to-r from-blush to-lilac p-4 sm:flex-row sm:items-center">
+        <p className="flex-1 text-sm text-ink">
+          <strong>Estude junto!</strong> Mande o Mimo para uma amiga: ela cria o caderno dela, separado do seu.
+        </p>
+        <InviteButton variant="card" />
+      </div>
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         <Avatar photo={photo} size={84} className="shadow-soft" />
         <div className="space-y-2">
