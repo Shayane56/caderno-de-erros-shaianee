@@ -21,8 +21,8 @@ export function WelcomeDialog() {
       open={open}
       onClose={skipProfile}
       size="sm"
-      title="Boas-vindas ao seu Caderno de Erros 💗"
-      description="Este caderno é só seu: tudo fica guardado neste aparelho."
+      title="Boas-vindas ao Mimo 💗"
+      description="Seu cantinho de estudos: caderno de erros, questões e flashcards. Tudo fica guardado neste aparelho."
       icon={<BrandMark />}
       footer={
         <>

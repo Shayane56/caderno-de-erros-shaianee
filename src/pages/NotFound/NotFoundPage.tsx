@@ -8,7 +8,7 @@ export default function NotFoundPage() {
       <EmptyState
         icon={Compass}
         title="Página não encontrada"
-        description="O endereço acessado não existe no Caderno de Erros."
+        description="O endereço acessado não existe no Mimo."
         action={
           <Link to="/" className="font-semibold text-rose-pink hover:text-rose-deep">
             Voltar ao painel

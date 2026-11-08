@@ -1,36 +1,55 @@
 import { useId } from 'react';
 import { cn } from '@/utils/cn';
+import { APP_NAME, TAGLINE } from '@/constants/app';
 import { useProfile } from '@/services/profile';
 
+/** Logo do Mimo: livro aberto com um coraçãozinho. Cores fixas (é a marca). */
 export function BrandMark({ className }: { className?: string }) {
-  // ID único: o mesmo SVG aparece no menu lateral (oculto no celular) e no cabeçalho.
-  const gradientId = `brand-${useId().replace(/:/g, '')}`;
+  const id = `mimo-${useId().replace(/:/g, '')}`;
   return (
     <svg viewBox="0 0 64 64" className={cn('h-10 w-10 shrink-0', className)} aria-hidden>
       <defs>
-        <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" style={{ stopColor: 'rgb(var(--c-rose-medium))' }} />
-          <stop offset="1" style={{ stopColor: 'rgb(var(--c-rose-pink))' }} />
+        <linearGradient id={`${id}-h`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#F49BC0" />
+          <stop offset="1" stopColor="#D84A89" />
+        </linearGradient>
+        <linearGradient id={`${id}-b`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#F7B4CE" />
+          <stop offset="1" stopColor="#E9789F" />
         </linearGradient>
       </defs>
-      <rect width="64" height="64" rx="18" fill={`url(#${gradientId})`} />
-      <rect x="17" y="13" width="30" height="38" rx="5" fill="#FFFFFF" />
-      <rect x="17" y="13" width="6" height="38" rx="3" fill="rgb(var(--c-petal))" />
-      <path d="M28 25h13M28 31h13M28 37h8" stroke="rgb(var(--c-rose-antique))" strokeWidth="2.6" strokeLinecap="round" />
-      <path d="M38.5 41.5l3 3 6-7" stroke="rgb(var(--c-rose-pink))" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M32 21 C27 13 17 15 18 23 C19 28 26 31 32 36 C38 31 45 28 46 23 C47 15 37 13 32 21Z" fill={`url(#${id}-h)`} />
+      <path d="M9 41 C17 37 26 38 32 43 C38 38 47 37 55 41 L55 52 C47 48 38 49 32 54 C26 49 17 48 9 52Z" fill={`url(#${id}-b)`} />
+      <path d="M12 38 C19 35 27 36 32 40 L32 50 C27 46 19 45 12 48Z" fill="#FFF4F8" />
+      <path d="M52 38 C45 35 37 36 32 40 L32 50 C37 46 45 45 52 48Z" fill="#FFF4F8" />
+      <path d="M32 40 V50" stroke="#E9789F" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M50 12 l1.2 2.8 2.8 1.2 -2.8 1.2 -1.2 2.8 -1.2 -2.8 -2.8 -1.2 2.8 -1.2z" fill="#B9A3F0" />
+      <circle cx="14" cy="16" r="1.8" fill="#F49BC0" />
     </svg>
   );
 }
 
+/** Marca com nome e slogan (menu lateral) ou compacta com o nome de quem usa (cabeçalho do celular). */
 export function BrandTitle({ compact }: { compact?: boolean }) {
   const { name } = useProfile();
-  return (
-    <div className="flex min-w-0 items-center gap-3">
-      <BrandMark className={compact ? 'h-9 w-9' : undefined} />
-      <div className="min-w-0 leading-tight">
-        <p className="truncate font-display text-[17px] font-semibold text-ink">Caderno de Erros</p>
-        <p className="truncate text-xs font-medium tracking-wide text-rose-antique">{name || 'Meu caderno'}</p>
+  if (compact) {
+    return (
+      <div className="flex min-w-0 items-center gap-2.5">
+        <BrandMark className="h-9 w-9" />
+        <div className="min-w-0 leading-tight">
+          <p className="truncate font-display text-[20px] font-extrabold tracking-tight text-ink">{APP_NAME}</p>
+          <p className="truncate text-[11px] font-semibold text-rose-antique">{name || TAGLINE}</p>
+        </div>
       </div>
+    );
+  }
+  return (
+    <div className="flex flex-col items-center text-center">
+      <BrandMark className="h-14 w-14" />
+      <p className="mt-0.5 font-display text-[30px] font-extrabold leading-none tracking-tight text-ink">{APP_NAME}</p>
+      <p className="mt-1.5 text-[12px] font-semibold text-ink-muted">
+        {TAGLINE} <span className="text-rose-pink">♡</span>
+      </p>
     </div>
   );
 }

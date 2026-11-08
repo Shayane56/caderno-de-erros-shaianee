@@ -4,9 +4,11 @@
  */
 import type { CardReview, Deck, Flashcard } from './flashcards';
 import type { Question, QuestionAttempt } from './questions';
+import type { FocusSession, QuestionNote, Simulado } from './study';
 
 export * from './flashcards';
 export * from './questions';
+export * from './study';
 
 /** Classificação de prioridade (exatamente três). */
 export type Priority = 'alta' | 'media' | 'superado';
@@ -99,10 +101,13 @@ export type EntityName =
   | 'cards'
   | 'cardReviews'
   | 'questions'
-  | 'questionAttempts';
+  | 'questionAttempts'
+  | 'questionNotes'
+  | 'simulados'
+  | 'focusSessions';
 
 /** Todas as entidades, na ordem de dependência (pais antes dos filhos). */
-export const ENTITY_NAMES: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts'];
+export const ENTITY_NAMES: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts', 'questionNotes', 'simulados', 'focusSessions'];
 
 /** Registro de exclusão (necessário para propagar exclusões na sincronização). */
 export interface Tombstone {
@@ -160,6 +165,9 @@ export interface BackupData {
   /** Questões cadastradas pela usuária (as do banco embutido não entram no backup). */
   questions: Question[];
   questionAttempts: QuestionAttempt[];
+  questionNotes: QuestionNote[];
+  simulados: Simulado[];
+  focusSessions: FocusSession[];
 }
 
 export interface BackupFile extends BackupData {

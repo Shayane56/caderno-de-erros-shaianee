@@ -51,6 +51,10 @@ export interface QuestionAttempt {
   subject: string;
   topic: string;
   banca: string;
+  /** Tempo gasto na questão (ms), quando medido. */
+  durationMs?: number;
+  /** Simulado em que foi respondida (se houver). */
+  simuladoId?: string | null;
 }
 
 /** Formato das questões nos arquivos do banco embutido (campos de controle são completados ao carregar). */

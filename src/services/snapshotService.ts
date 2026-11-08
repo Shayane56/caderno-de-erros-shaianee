@@ -5,7 +5,7 @@ import { createId, nowIso } from '@/utils/ids';
 
 /** Lê todos os dados do caderno (matérias, tópicos, erros, históricos, revisões e flashcards). */
 export async function readAllData(): Promise<BackupData> {
-  const [subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts] = await Promise.all([
+  const [subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts, questionNotes, simulados, focusSessions] = await Promise.all([
     db.subjects.toArray(),
     db.topics.toArray(),
     db.errors.toArray(),
@@ -16,8 +16,11 @@ export async function readAllData(): Promise<BackupData> {
     db.cardReviews.toArray(),
     db.questions.toArray(),
     db.questionAttempts.toArray(),
+    db.questionNotes.toArray(),
+    db.simulados.toArray(),
+    db.focusSessions.toArray(),
   ]);
-  return { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts };
+  return { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts, questionNotes, simulados, focusSessions };
 }
 
 /** Completa dados de versões anteriores (ex.: pontos de restauração criados antes dos flashcards). */
@@ -33,6 +36,9 @@ export function completeBackupData(data: Partial<BackupData>): BackupData {
     cardReviews: data.cardReviews ?? [],
     questions: data.questions ?? [],
     questionAttempts: data.questionAttempts ?? [],
+    questionNotes: data.questionNotes ?? [],
+    simulados: data.simulados ?? [],
+    focusSessions: data.focusSessions ?? [],
   };
 }
 

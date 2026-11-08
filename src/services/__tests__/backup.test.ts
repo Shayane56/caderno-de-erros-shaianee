@@ -22,10 +22,10 @@ describe('exportação JSON', () => {
     const { record, subject, topic } = await seedError({ origin: 'esquecimento', priority: 'media' });
     await registerReview(record.id, 'superado');
     const { content, fileName, file } = await exportBackup();
-    expect(fileName).toMatch(/^caderno-de-erros-backup-\d{4}-\d{2}-\d{2}-\d{4}\.json$/);
+    expect(fileName).toMatch(/^mimo-backup-\d{4}-\d{2}-\d{2}-\d{4}\.json$/);
     const json = JSON.parse(content);
     expect(json.app).toBe('caderno-de-erros');
-    expect(json.formatVersion).toBe(4);
+    expect(json.formatVersion).toBe(5);
     expect(json.questions).toEqual([]);
     expect(json.decks).toEqual([]);
     expect(json.cards).toEqual([]);

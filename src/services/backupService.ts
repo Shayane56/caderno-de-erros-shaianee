@@ -12,6 +12,9 @@ import type {
   Flashcard,
   Question,
   QuestionAttempt,
+  QuestionNote,
+  Simulado,
+  FocusSession,
   ErrorRecord,
   HistoryEntry,
   HistoryEventType,
@@ -26,6 +29,7 @@ import { AppError, NotFoundError } from './errors';
 import { completeBackupData, createSnapshot, readAllData } from './snapshotService';
 import { normalizeCard, normalizeCardReview, normalizeDeck } from './flashcards/cardModel';
 import { normalizeQuestion, normalizeQuestionAttempt } from './questions/questionModel';
+import { normalizeFocusSession, normalizeQuestionNote, normalizeSimulado } from './study/studyModel';
 import { writePreference } from './preferences';
 
 export const LAST_BACKUP_PREF = 'last-backup-at';
@@ -49,7 +53,7 @@ export function serializeBackup(file: BackupFile): string {
 
 export function backupFileName(date = new Date()): string {
   const pad = (n: number) => String(n).padStart(2, '0');
-  return `caderno-de-erros-backup-${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-${pad(
+  return `mimo-backup-${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-${pad(
     date.getHours(),
   )}${pad(date.getMinutes())}.json`;
 }
@@ -120,7 +124,7 @@ export function parseBackupText(text: string): ParsedBackup {
   }
   if (!isObject(json)) throw new BackupParseError('A estrutura do arquivo é inválida.');
   if (json.app !== undefined && json.app !== 'caderno-de-erros') {
-    throw new BackupParseError('Este arquivo não é um backup do Caderno de Erros.');
+    throw new BackupParseError('Este arquivo não é um backup do Mimo (Caderno de Erros).');
   }
   for (const key of ['subjects', 'topics', 'errors'] as const) {
     if (!Array.isArray(json[key])) {
@@ -374,6 +378,25 @@ export function parseBackupText(text: string): ParsedBackup {
     questionAttempts.push(a);
   });
 
+  // ---- Anotações, simulados e Modo Foco (opcional: backups anteriores à versão 5)
+  const listOf = <T extends { id: string }>(key: 'questionNotes' | 'simulados' | 'focusSessions', normalize: (raw: unknown) => T | null, reason: string): T[] => {
+    const out: T[] = [];
+    const ids = new Set<string>();
+    (Array.isArray(json[key]) ? (json[key] as unknown[]) : []).forEach((item, index) => {
+      const value = normalize(item);
+      if (!value || ids.has(value.id)) {
+        invalid.push({ entity: key, index, reason });
+        return;
+      }
+      ids.add(value.id);
+      out.push(value);
+    });
+    return out;
+  };
+  const questionNotes: QuestionNote[] = listOf('questionNotes', normalizeQuestionNote, 'Anotação inválida ou repetida.');
+  const simulados: Simulado[] = listOf('simulados', normalizeSimulado, 'Simulado inválido ou repetido.');
+  const focusSessions: FocusSession[] = listOf('focusSessions', normalizeFocusSession, 'Sessão de foco inválida ou repetida.');
+
   if (unclassified > 0) {
     warnings.push(
       `${unclassified} registro(s) sem origem do erro serão mantidos como "Não classificado" (nenhuma categoria é atribuída automaticamente).`,
@@ -383,7 +406,7 @@ export function parseBackupText(text: string): ParsedBackup {
   return {
     formatVersion,
     exportedAt: isValidIsoDate(json.exportedAt) ? json.exportedAt : null,
-    data: { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts },
+    data: { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts, questionNotes, simulados, focusSessions },
     invalid,
     warnings,
     unclassified,
@@ -412,6 +435,9 @@ export interface ImportPlan {
   cardReviews: EntityPlanCounts;
   questions: EntityPlanCounts;
   questionAttempts: EntityPlanCounts;
+  questionNotes: EntityPlanCounts;
+  simulados: EntityPlanCounts;
+  focusSessions: EntityPlanCounts;
   invalid: number;
   unclassified: number;
   /** Quantidades atuais que serão removidas (apenas no modo substituir). */
@@ -448,6 +474,9 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       cardReviews: all(d.cardReviews.length),
       questions: all(d.questions.length),
       questionAttempts: all(d.questionAttempts.length),
+      questionNotes: all(d.questionNotes.length),
+      simulados: all(d.simulados.length),
+      focusSessions: all(d.focusSessions.length),
       toRemove: {
         subjects: current.subjects.length,
         topics: current.topics.length,
@@ -471,8 +500,11 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
     cardReviews: counts(),
     questions: counts(),
     questionAttempts: counts(),
+    questionNotes: counts(),
+    simulados: counts(),
+    focusSessions: counts(),
     toRemove: { subjects: 0, topics: 0, errors: 0, decks: 0, cards: 0 },
-    write: { subjects: [], topics: [], errors: [], history: [], reviews: [], decks: [], cards: [], cardReviews: [], questions: [], questionAttempts: [] },
+    write: { subjects: [], topics: [], errors: [], history: [], reviews: [], decks: [], cards: [], cardReviews: [], questions: [], questionAttempts: [], questionNotes: [], simulados: [], focusSessions: [] },
   };
 
   // Matérias: por id; senão, por nome (evita duplicar matérias).
@@ -665,6 +697,24 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       plan.write.questionAttempts.push(a);
     }
   }
+
+  // Anotações e simulados: por id, a versão mais recente vence. Sessões de foco: por id.
+  const mergeById = <T extends { id: string; updatedAt?: string }>(incoming: T[], existing: T[], target: EntityPlanCounts, out: T[]) => {
+    const byId = new Map(existing.map((x) => [x.id, x]));
+    for (const item of incoming) {
+      const cur = byId.get(item.id);
+      if (!cur) {
+        target.new++;
+        out.push(item);
+      } else if (item.updatedAt && cur.updatedAt && item.updatedAt > cur.updatedAt) {
+        target.updated++;
+        out.push(item);
+      } else target.duplicates++;
+    }
+  };
+  mergeById(parsed.data.questionNotes, current.questionNotes, plan.questionNotes, plan.write.questionNotes);
+  mergeById(parsed.data.simulados, current.simulados, plan.simulados, plan.write.simulados);
+  mergeById(parsed.data.focusSessions, current.focusSessions, plan.focusSessions, plan.write.focusSessions);
   return plan;
 }
 
@@ -686,6 +736,9 @@ const ALL_TABLES = () => [
   db.cardReviews,
   db.questions,
   db.questionAttempts,
+  db.questionNotes,
+  db.simulados,
+  db.focusSessions,
   db.tombstones,
   db.pendingChanges,
 ];
@@ -724,6 +777,12 @@ async function writeMerged(plan: ImportPlan, now: string): Promise<void> {
   await db.questionAttempts.bulkPut(write.questionAttempts);
   for (const q of write.questions) await trackChange('questions', q.id, now);
   for (const a of write.questionAttempts) await trackChange('questionAttempts', a.id, now);
+  await db.questionNotes.bulkPut(write.questionNotes);
+  await db.simulados.bulkPut(write.simulados);
+  await db.focusSessions.bulkPut(write.focusSessions);
+  for (const n of write.questionNotes) await trackChange('questionNotes', n.id, now);
+  for (const s of write.simulados) await trackChange('simulados', s.id, now);
+  for (const f of write.focusSessions) await trackChange('focusSessions', f.id, now);
   for (const d of write.decks) await trackChange('decks', d.id, now);
   for (const c of write.cards) await trackChange('cards', c.id, now);
   for (const r of write.cardReviews) await trackChange('cardReviews', r.id, now);
@@ -760,6 +819,9 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     ['cardReviews', db.cardReviews.toCollection()],
     ['questions', db.questions.toCollection()],
     ['questionAttempts', db.questionAttempts.toCollection()],
+    ['questionNotes', db.questionNotes.toCollection()],
+    ['simulados', db.simulados.toCollection()],
+    ['focusSessions', db.focusSessions.toCollection()],
   ];
   const incoming: Record<EntityName, Set<string>> = {
     subjects: new Set(data.subjects.map((s) => s.id)),
@@ -772,6 +834,9 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     cardReviews: new Set(data.cardReviews.map((r) => r.id)),
     questions: new Set(data.questions.map((q) => q.id)),
     questionAttempts: new Set(data.questionAttempts.map((a) => a.id)),
+    questionNotes: new Set(data.questionNotes.map((n) => n.id)),
+    simulados: new Set(data.simulados.map((s) => s.id)),
+    focusSessions: new Set(data.focusSessions.map((f) => f.id)),
   };
   for (const [entity, collection] of tables) {
     const ids = (await collection.primaryKeys()) as string[];
@@ -788,6 +853,9 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     db.cardReviews.clear(),
     db.questions.clear(),
     db.questionAttempts.clear(),
+    db.questionNotes.clear(),
+    db.simulados.clear(),
+    db.focusSessions.clear(),
   ]);
   await db.subjects.bulkAdd(data.subjects);
   await db.topics.bulkAdd(data.topics);
@@ -799,6 +867,9 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
   await db.cardReviews.bulkAdd(data.cardReviews);
   await db.questions.bulkAdd(data.questions);
   await db.questionAttempts.bulkAdd(data.questionAttempts);
+  await db.questionNotes.bulkAdd(data.questionNotes);
+  await db.simulados.bulkAdd(data.simulados);
+  await db.focusSessions.bulkAdd(data.focusSessions);
   for (const entity of Object.keys(incoming) as EntityName[]) {
     for (const id of incoming[entity]) {
       await db.tombstones.delete(`${entity}:${id}`);

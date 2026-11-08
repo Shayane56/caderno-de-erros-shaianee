@@ -5,8 +5,52 @@
  * data-theme no <html>; o modo escuro, pela classe "dark".
  */
 
-/* ---------------------------------------------------------------- Rosa Premium (padrão) */
+/* ---------------------------------------------------------------- Mimo (padrão): rosa + lavanda */
 :root,
+html[data-theme='mimo'] {
+  --c-blush: 252 232 242;
+  --c-petal: 246 214 230;
+  --c-rose-antique: 126 94 216;
+  --c-rose-medium: 239 141 180;
+  --c-rose-pink: 216 74 137;
+  --c-rose-deep: 201 58 122;
+  --c-rose-ink: 179 48 110;
+  --c-lilac: 238 231 253;
+  --c-lilac-deep: 126 94 216;
+  --c-canvas: 251 246 251;
+  --c-surface: 255 255 255;
+  --c-ink: 61 46 74;
+  --c-ink-muted: 120 106 134;
+  --c-ink-soft: 169 155 181;
+  --c-line: 241 230 242;
+  --c-shadow: 92 64 120;
+  --bg-glow-1: 249 208 228;
+  --bg-glow-2: 222 210 252;
+}
+
+html.dark,
+html.dark[data-theme='mimo'] {
+  --c-blush: 64 36 56;
+  --c-petal: 88 48 74;
+  --c-rose-antique: 190 168 248;
+  --c-rose-medium: 239 141 180;
+  --c-rose-pink: 216 74 137;
+  --c-rose-deep: 201 58 122;
+  --c-rose-ink: 248 170 205;
+  --c-lilac: 50 40 76;
+  --c-lilac-deep: 190 168 248;
+  --c-canvas: 24 19 28;
+  --c-surface: 35 28 41;
+  --c-ink: 244 236 248;
+  --c-ink-muted: 196 182 208;
+  --c-ink-soft: 148 134 160;
+  --c-line: 60 48 70;
+  --c-shadow: 0 0 0;
+  --bg-glow-1: 72 32 58;
+  --bg-glow-2: 46 36 84;
+}
+
+/* ---------------------------------------------------------------- Rosa clássico */
 html[data-theme='rosa'] {
   --c-blush: 252 231 243;
   --c-petal: 249 213 229;
@@ -24,7 +68,6 @@ html[data-theme='rosa'] {
   --c-shadow: 81 67 75;
 }
 
-html.dark,
 html.dark[data-theme='rosa'] {
   --c-blush: 66 34 50;
   --c-petal: 92 44 68;
@@ -172,6 +215,14 @@ html.dark[data-theme='ceu'] {
   --c-ink-muted: 178 188 202;
   --c-ink-soft: 128 138 153;
   --c-line: 46 52 63;
+}
+
+/* Lilás e brilho de fundo nos temas que não os definem. */
+html:not([data-theme='mimo']) {
+  --c-lilac: var(--c-blush);
+  --c-lilac-deep: var(--c-rose-antique);
+  --bg-glow-1: var(--c-blush);
+  --bg-glow-2: var(--c-petal);
 }
 
 /* ---------------------------------------------------------------- Ajustes do modo escuro */

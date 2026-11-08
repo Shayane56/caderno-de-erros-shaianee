@@ -22,8 +22,8 @@ export default function BackupConfiguracoesPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Backup e Configurações"
-        eyebrow="Seus dados em segurança"
+        title="Configurações"
+        eyebrow="Do seu jeitinho"
         icon={DatabaseBackup}
         subtitle="Exporte cópias, restaure informações, sincronize entre dispositivos e personalize cores, tema escuro e o visual dos flashcards."
       />
@@ -46,7 +46,9 @@ export default function BackupConfiguracoesPage() {
         <div className="min-w-0 space-y-6">
           <SyncSection />
           <DeviceSection />
-          <PersonalizationSection />
+          <div id="personalizacao" className="scroll-mt-24">
+            <PersonalizationSection />
+          </div>
         </div>
       </div>
     </div>

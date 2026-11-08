@@ -174,6 +174,8 @@ export function normalizeQuestionAttempt(raw: unknown): QuestionAttempt | null {
     subject: str(r.subject),
     topic: str(r.topic),
     banca: str(r.banca),
+    ...(typeof r.durationMs === 'number' && Number.isFinite(r.durationMs) && r.durationMs >= 0 ? { durationMs: Math.min(Math.round(r.durationMs), 3_600_000) } : {}),
+    ...(typeof r.simuladoId === 'string' && r.simuladoId ? { simuladoId: r.simuladoId } : {}),
   };
 }
 

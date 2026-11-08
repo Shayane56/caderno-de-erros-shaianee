@@ -5,6 +5,7 @@ import { DatabaseGate } from '@/components/layout/DatabaseGate';
 import { SyncProvider } from '@/hooks/useSync';
 import { AppRoutes } from '@/routes/AppRoutes';
 import { CardEditorProvider } from '@/components/flashcards/CardEditorProvider';
+import { FocusProvider } from '@/services/study/focusTimer';
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,9 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
       <DatabaseGate>
         <SyncProvider>
           <ErrorFormProvider>
-            <CardEditorProvider>{children}</CardEditorProvider>
+            <CardEditorProvider>
+              <FocusProvider>{children}</FocusProvider>
+            </CardEditorProvider>
           </ErrorFormProvider>
         </SyncProvider>
       </DatabaseGate>

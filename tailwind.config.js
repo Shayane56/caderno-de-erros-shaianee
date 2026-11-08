@@ -20,6 +20,7 @@ export default {
           deep: v('rose-deep'), // hover/pressionado das ações principais
           ink: v('rose-ink'), // texto de destaque com alto contraste
         },
+        lilac: { DEFAULT: v('lilac'), deep: v('lilac-deep') }, // lavanda (destaques secundários)
         canvas: v('canvas'), // fundo geral
         surface: v('surface'), // superfícies (cartões, menus, campos)
         ink: {
@@ -30,13 +31,13 @@ export default {
         line: v('line'), // bordas delicadas
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans Variable"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['"Playfair Display Variable"', 'Georgia', 'serif'],
+        sans: ['"Nunito Variable"', '"Plus Jakarta Sans Variable"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Nunito Variable"', 'system-ui', 'sans-serif'],
         hand: ['"Caveat Variable"', '"Patrick Hand"', 'cursive'],
       },
       boxShadow: {
-        soft: '0 1px 2px rgb(var(--c-shadow) / 0.04), 0 4px 16px rgb(var(--c-rose-pink) / 0.06)',
-        lift: '0 2px 4px rgb(var(--c-shadow) / 0.05), 0 12px 32px rgb(var(--c-rose-pink) / 0.10)',
+        soft: '0 1px 2px rgb(var(--c-shadow) / 0.04), 0 8px 24px -6px rgb(var(--c-shadow) / 0.10)',
+        lift: '0 2px 4px rgb(var(--c-shadow) / 0.05), 0 16px 36px -8px rgb(var(--c-shadow) / 0.18)',
         ring: '0 0 0 4px rgb(var(--c-rose-medium) / 0.18)',
       },
       borderRadius: {

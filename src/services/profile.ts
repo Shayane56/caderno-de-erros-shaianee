@@ -81,7 +81,7 @@ export function firstName(name: string): string {
   return cleanProfileName(name).split(' ')[0] ?? '';
 }
 
-/** "Caderno de Erros — Nome" (ou só "Caderno de Erros" sem nome). */
+/** "Mimo — Nome" (ou só "Mimo" sem nome). */
 export function notebookTitle(name = getProfile().name): string {
   return name ? `${APP_NAME} — ${name}` : APP_NAME;
 }

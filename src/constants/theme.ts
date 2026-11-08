@@ -15,7 +15,7 @@ export function tint(color: string, percent: number): string {
   return `color-mix(in srgb, ${color} ${percent}%, transparent)`;
 }
 
-export type ThemeId = 'rosa' | 'lavanda' | 'pessego' | 'menta' | 'ceu';
+export type ThemeId = 'mimo' | 'rosa' | 'lavanda' | 'pessego' | 'menta' | 'ceu';
 export type ColorMode = 'claro' | 'escuro' | 'sistema';
 
 export interface ThemeMeta {
@@ -29,7 +29,8 @@ export interface ThemeMeta {
 }
 
 export const THEMES: ThemeMeta[] = [
-  { id: 'rosa', label: 'Rosa Premium', description: 'O clássico do caderno', swatches: ['#FCE7F3', '#E879A9', '#DB2777'], browserColor: '#DB2777' },
+  { id: 'mimo', label: 'Mimo', description: 'Rosa e lavanda, bem fofinho', swatches: ['#FCE8F2', '#B9A3F0', '#D84A89'], browserColor: '#FBF6FB' },
+  { id: 'rosa', label: 'Rosa Clássico', description: 'O rosa do primeiro caderno', swatches: ['#FCE7F3', '#E879A9', '#DB2777'], browserColor: '#DB2777' },
   { id: 'lavanda', label: 'Lavanda', description: 'Calmo e delicado', swatches: ['#F3E8FF', '#A78BFA', '#7C3AED'], browserColor: '#7C3AED' },
   { id: 'pessego', label: 'Pêssego', description: 'Quentinho e acolhedor', swatches: ['#FFEDE3', '#F59E6B', '#C2410C'], browserColor: '#C2410C' },
   { id: 'menta', label: 'Menta', description: 'Fresco e focado', swatches: ['#E3F7EE', '#4FB389', '#0D7A55'], browserColor: '#0D7A55' },
