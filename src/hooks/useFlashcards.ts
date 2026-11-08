@@ -46,8 +46,8 @@ export interface FlashcardData {
 }
 
 /** Baralhos, cartões e respostas do dia (atualiza a cada minuto para liberar cartões em aprendizagem). */
-export function useFlashcardData(): FlashcardData & { now: Date } {
-  const now = useNow(30_000);
+export function useFlashcardData(refreshMs = 30_000): FlashcardData & { now: Date } {
+  const now = useNow(refreshMs);
   const dayStart = studyDayStart(now).toISOString();
   const decks = useDecks();
   const cards = useCards();

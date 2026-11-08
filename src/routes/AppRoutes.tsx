@@ -11,6 +11,9 @@ const ReviewPage = lazy(() => import('@/pages/SegundoCiclo/ReviewPage'));
 const MinhaEvolucaoPage = lazy(() => import('@/pages/MinhaEvolucao/MinhaEvolucaoPage'));
 const MateriasTopicosPage = lazy(() => import('@/pages/MateriasTopicos/MateriasTopicosPage'));
 const BackupConfiguracoesPage = lazy(() => import('@/pages/BackupConfiguracoes/BackupConfiguracoesPage'));
+const FlashcardsPage = lazy(() => import('@/pages/Flashcards/FlashcardsPage'));
+const DeckPage = lazy(() => import('@/pages/Flashcards/DeckPage'));
+const StudyPage = lazy(() => import('@/pages/Flashcards/StudyPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFoundPage'));
 
 export function AppRoutes() {
@@ -23,6 +26,9 @@ export function AppRoutes() {
           <Route path="erros/:id" element={<ErrorDetailPage />} />
           <Route path="segundo-ciclo" element={<SegundoCicloPage />} />
           <Route path="segundo-ciclo/revisar/:id" element={<ReviewPage />} />
+          <Route path="flashcards" element={<FlashcardsPage />} />
+          <Route path="flashcards/baralho/:id" element={<DeckPage />} />
+          <Route path="flashcards/estudar/:deckId" element={<StudyPage />} />
           <Route path="evolucao" element={<MinhaEvolucaoPage />} />
           <Route path="materias" element={<MateriasTopicosPage />} />
           <Route path="backup" element={<BackupConfiguracoesPage />} />

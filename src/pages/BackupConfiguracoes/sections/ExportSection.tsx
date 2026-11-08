@@ -21,6 +21,8 @@ export function ExportSection() {
     errors: await db.errors.count(),
     history: await db.history.count(),
     reviews: await db.reviews.count(),
+    decks: await db.decks.count(),
+    cards: await db.cards.count(),
   }));
 
   const handleExport = async () => {
@@ -39,7 +41,7 @@ export function ExportSection() {
 
   return (
     <SectionCard title="Exportar backup" subtitle="Gera um arquivo JSON com todos os seus dados." icon={FileJson}>
-      <dl className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+      <dl className="grid grid-cols-3 gap-2 sm:grid-cols-4">
         {(
           [
             ['Matérias', counts?.subjects],
@@ -47,6 +49,8 @@ export function ExportSection() {
             ['Erros', counts?.errors],
             ['Histórico', counts?.history],
             ['Revisões', counts?.reviews],
+            ['Baralhos', counts?.decks],
+            ['Flashcards', counts?.cards],
           ] as const
         ).map(([label, value]) => (
           <div key={label} className="rounded-2xl bg-canvas p-3">
@@ -56,7 +60,7 @@ export function ExportSection() {
         ))}
       </dl>
       <p className="mt-3 text-xs text-ink-muted">
-        Inclui matérias, tópicos, erros (com prioridades, origens e datas), histórico de alterações e revisões.
+        Inclui matérias, tópicos, erros (com prioridades, origens e datas), histórico de alterações, revisões, baralhos e flashcards (com imagens e progresso de estudo).
       </p>
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button icon={Download} onClick={() => void handleExport()} loading={loading}>

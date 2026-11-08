@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn';
 import { BrandTitle } from './BrandMark';
 import { SyncIndicator } from './SyncIndicator';
 
-const PRIMARY = ['/', '/erros', '/segundo-ciclo'];
+const PRIMARY = ['/', '/erros', '/segundo-ciclo', '/flashcards'];
 
 export function MobileHeader() {
   return (
@@ -21,7 +21,7 @@ export function MobileHeader() {
   );
 }
 
-export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
+export function BottomNav({ pendingReviews, dueCards = 0 }: { pendingReviews: number; dueCards?: number }) {
   const { openCreate } = useErrorForm();
   const [moreOpen, setMoreOpen] = useState(false);
   const location = useLocation();
@@ -57,19 +57,22 @@ export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
               <Plus className="h-7 w-7" aria-hidden />
             </button>
           </div>
-          {items.slice(2).map((item) => (
-            <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
-              <span className="relative">
-                <item.icon className="h-[22px] w-[22px]" aria-hidden />
-                {pendingReviews > 0 && (
-                  <span className="absolute -right-2.5 -top-1.5 min-w-[18px] rounded-full bg-rose-pink px-1 text-center text-[10px] font-bold leading-[18px] text-white">
-                    {pendingReviews > 99 ? '99+' : pendingReviews}
-                  </span>
-                )}
-              </span>
-              {item.shortLabel}
-            </NavLink>
-          ))}
+          {items.slice(2).map((item) => {
+            const badge = item.to === '/segundo-ciclo' ? pendingReviews : item.to === '/flashcards' ? dueCards : 0;
+            return (
+              <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
+                <span className="relative">
+                  <item.icon className="h-[22px] w-[22px]" aria-hidden />
+                  {badge > 0 && (
+                    <span className="absolute -right-2.5 -top-1.5 min-w-[18px] rounded-full bg-rose-pink px-1 text-center text-[10px] font-bold leading-[18px] text-white">
+                      {badge > 99 ? '99+' : badge}
+                    </span>
+                  )}
+                </span>
+                {item.shortLabel}
+              </NavLink>
+            );
+          })}
           <button type="button" onClick={() => setMoreOpen(true)} className={linkClass(moreActive)} aria-haspopup="dialog">
             <Ellipsis className="h-[22px] w-[22px]" aria-hidden />
             Mais

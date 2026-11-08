@@ -26,7 +26,7 @@ export function StatCard({ label, value, icon: Icon, hint, accent = THEME.pink, 
         </span>
       </div>
       <p className="mt-2 text-[28px] font-bold leading-none tracking-tight text-ink sm:text-[32px]">{value}</p>
-      {hint && <p className="mt-2 text-xs text-ink-muted">{hint}</p>}
+      {hint && <div className="mt-2 text-xs text-ink-muted">{hint}</div>}
       {children}
       <span className="absolute inset-x-5 bottom-0 h-[3px] rounded-t-full opacity-80" style={{ backgroundColor: accent }} aria-hidden />
     </>

@@ -26,6 +26,7 @@ import { ErrorListItem } from '@/components/cards/ErrorListItem';
 import { HeroCard } from '@/components/dashboard/HeroCard';
 import { MotivationCard } from '@/components/dashboard/MotivationCard';
 import { DifficultyList } from '@/components/dashboard/DifficultyList';
+import { FlashcardsTodayCard } from '@/components/dashboard/FlashcardsTodayCard';
 import { SectionCard } from '@/components/common/Card';
 import { EmptyState } from '@/components/common/EmptyState';
 import { Button } from '@/components/common/Button';
@@ -126,6 +127,8 @@ export default function DashboardPage() {
           </div>
         </StatCard>
       </section>
+
+      <FlashcardsTodayCard />
 
       {overview.total === 0 ? (
         <section className="card p-6 sm:p-10">
