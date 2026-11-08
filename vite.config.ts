@@ -21,7 +21,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         id: './',
-        name: 'Caderno de Erros — Shaiane Carvalho',
+        name: 'Caderno de Erros',
         short_name: 'Caderno de Erros',
         description: 'Transformando dificuldades em aprendizado e erros em acertos.',
         lang: 'pt-BR',

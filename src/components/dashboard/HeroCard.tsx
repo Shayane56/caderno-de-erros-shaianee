@@ -6,6 +6,7 @@ import { useErrorForm } from '@/components/modals/ErrorFormProvider';
 import { useAvatarPhoto } from '@/hooks/useData';
 import { MAIN_PHRASE, SECONDARY_PHRASE } from '@/constants/app';
 import { formatLongToday } from '@/utils/dates';
+import { firstName, useProfile } from '@/services/profile';
 
 function greeting(date = new Date()) {
   const h = date.getHours();
@@ -16,6 +17,8 @@ function greeting(date = new Date()) {
 
 export function HeroCard({ pending }: { pending: number }) {
   const photo = useAvatarPhoto();
+  const { name } = useProfile();
+  const first = firstName(name);
   const { openCreate } = useErrorForm();
   const navigate = useNavigate();
   return (
@@ -23,11 +26,12 @@ export function HeroCard({ pending }: { pending: number }) {
       <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-surface/50 blur-2xl" aria-hidden />
       <div className="pointer-events-none absolute -bottom-24 right-24 h-56 w-56 rounded-full bg-rose-medium/10 blur-2xl" aria-hidden />
       <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center">
-        <Avatar photo={photo} size={104} className="shadow-lift" />
+        <Avatar photo={photo} size={104} className="shadow-lift" label={name ? `Avatar de ${name}` : 'Avatar'} />
         <div className="min-w-0 flex-1">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-rose-antique">{formatLongToday()}</p>
           <h1 className="mt-1 font-display text-[28px] font-semibold leading-tight text-ink sm:text-[34px]">
-            {greeting()}, Shaiane <span aria-hidden>💗</span>
+            {greeting()}
+            {first ? `, ${first}` : ''} <span aria-hidden>💗</span>
           </h1>
           <p className="mt-2 text-[15px] font-semibold text-rose-ink sm:text-base">{MAIN_PHRASE}</p>
           <p className="mt-1 max-w-2xl text-sm text-ink-muted">{SECONDARY_PHRASE}</p>

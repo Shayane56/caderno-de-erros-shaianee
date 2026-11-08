@@ -5,6 +5,7 @@ import { db } from '@/database/db';
 import { Sidebar } from './Sidebar';
 import { BottomNav, MobileHeader } from './MobileNav';
 import { UpdatePrompt } from './UpdatePrompt';
+import { WelcomeDialog } from './WelcomeDialog';
 import { useFlashcardData, useStudyQueue } from '@/hooks/useFlashcards';
 import { totalDue } from '@/components/flashcards/DueCounts';
 
@@ -35,6 +36,7 @@ export function AppLayout() {
       </main>
       <BottomNav pendingReviews={pendingReviews} dueCards={dueCards} />
       <UpdatePrompt />
+      <WelcomeDialog />
     </div>
   );
 }

@@ -3,8 +3,10 @@
  * Todas as datas são armazenadas como strings ISO 8601 (UTC).
  */
 import type { CardReview, Deck, Flashcard } from './flashcards';
+import type { Question, QuestionAttempt } from './questions';
 
 export * from './flashcards';
+export * from './questions';
 
 /** Classificação de prioridade (exatamente três). */
 export type Priority = 'alta' | 'media' | 'superado';
@@ -87,10 +89,20 @@ export interface ReviewEntry {
 }
 
 /** Entidades sincronizáveis/exportáveis. */
-export type EntityName = 'subjects' | 'topics' | 'errors' | 'history' | 'reviews' | 'decks' | 'cards' | 'cardReviews';
+export type EntityName =
+  | 'subjects'
+  | 'topics'
+  | 'errors'
+  | 'history'
+  | 'reviews'
+  | 'decks'
+  | 'cards'
+  | 'cardReviews'
+  | 'questions'
+  | 'questionAttempts';
 
 /** Todas as entidades, na ordem de dependência (pais antes dos filhos). */
-export const ENTITY_NAMES: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews'];
+export const ENTITY_NAMES: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews', 'decks', 'cards', 'cardReviews', 'questions', 'questionAttempts'];
 
 /** Registro de exclusão (necessário para propagar exclusões na sincronização). */
 export interface Tombstone {
@@ -145,6 +157,9 @@ export interface BackupData {
   decks: Deck[];
   cards: Flashcard[];
   cardReviews: CardReview[];
+  /** Questões cadastradas pela usuária (as do banco embutido não entram no backup). */
+  questions: Question[];
+  questionAttempts: QuestionAttempt[];
 }
 
 export interface BackupFile extends BackupData {

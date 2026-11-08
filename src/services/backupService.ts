@@ -1,7 +1,8 @@
 import { db } from '@/database/db';
 import { trackChange, trackDeletion } from '@/database/changeTracker';
 import { normalizeErrorRecord, normalizePriority } from '@/database/migrations';
-import { APP_FULL_NAME, BACKUP_FORMAT_VERSION } from '@/constants/app';
+import { BACKUP_FORMAT_VERSION } from '@/constants/app';
+import { notebookTitle } from './profile';
 import type {
   BackupData,
   BackupFile,
@@ -9,6 +10,8 @@ import type {
   Deck,
   EntityName,
   Flashcard,
+  Question,
+  QuestionAttempt,
   ErrorRecord,
   HistoryEntry,
   HistoryEventType,
@@ -22,6 +25,7 @@ import { isValidIsoDate, formatDate } from '@/utils/dates';
 import { AppError, NotFoundError } from './errors';
 import { completeBackupData, createSnapshot, readAllData } from './snapshotService';
 import { normalizeCard, normalizeCardReview, normalizeDeck } from './flashcards/cardModel';
+import { normalizeQuestion, normalizeQuestionAttempt } from './questions/questionModel';
 import { writePreference } from './preferences';
 
 export const LAST_BACKUP_PREF = 'last-backup-at';
@@ -34,7 +38,7 @@ export async function buildBackupFile(): Promise<BackupFile> {
     app: 'caderno-de-erros',
     formatVersion: BACKUP_FORMAT_VERSION,
     exportedAt: nowIso(),
-    owner: APP_FULL_NAME,
+    owner: notebookTitle(),
     ...data,
   };
 }
@@ -345,6 +349,31 @@ export function parseBackupText(text: string): ParsedBackup {
     cardReviews.push(review);
   });
 
+  // ---- Banco de Questões (opcional: backups anteriores à versão 4)
+  const questions: Question[] = [];
+  const questionIds = new Set<string>();
+  (Array.isArray(json.questions) ? (json.questions as unknown[]) : []).forEach((item, index) => {
+    const q = normalizeQuestion(item);
+    if (!q || q.origin !== 'minha' || questionIds.has(q.id)) {
+      invalid.push({ entity: 'questions', index, reason: 'Questão incompleta, repetida ou do banco embutido.' });
+      return;
+    }
+    questionIds.add(q.id);
+    questions.push(q);
+  });
+  const questionAttempts: QuestionAttempt[] = [];
+  const attemptIds = new Set<string>();
+  (Array.isArray(json.questionAttempts) ? (json.questionAttempts as unknown[]) : []).forEach((item, index) => {
+    const a = normalizeQuestionAttempt(item);
+    // Respostas às questões do banco embutido são aceitas mesmo sem a questão no arquivo.
+    if (!a || attemptIds.has(a.id)) {
+      invalid.push({ entity: 'questionAttempts', index, reason: 'Resposta de questão inválida ou repetida.' });
+      return;
+    }
+    attemptIds.add(a.id);
+    questionAttempts.push(a);
+  });
+
   if (unclassified > 0) {
     warnings.push(
       `${unclassified} registro(s) sem origem do erro serão mantidos como "Não classificado" (nenhuma categoria é atribuída automaticamente).`,
@@ -354,7 +383,7 @@ export function parseBackupText(text: string): ParsedBackup {
   return {
     formatVersion,
     exportedAt: isValidIsoDate(json.exportedAt) ? json.exportedAt : null,
-    data: { subjects, topics, errors, history, reviews, decks, cards, cardReviews },
+    data: { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts },
     invalid,
     warnings,
     unclassified,
@@ -381,6 +410,8 @@ export interface ImportPlan {
   decks: EntityPlanCounts;
   cards: EntityPlanCounts;
   cardReviews: EntityPlanCounts;
+  questions: EntityPlanCounts;
+  questionAttempts: EntityPlanCounts;
   invalid: number;
   unclassified: number;
   /** Quantidades atuais que serão removidas (apenas no modo substituir). */
@@ -415,6 +446,8 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       decks: all(d.decks.length),
       cards: all(d.cards.length),
       cardReviews: all(d.cardReviews.length),
+      questions: all(d.questions.length),
+      questionAttempts: all(d.questionAttempts.length),
       toRemove: {
         subjects: current.subjects.length,
         topics: current.topics.length,
@@ -436,8 +469,10 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
     decks: counts(),
     cards: counts(),
     cardReviews: counts(),
+    questions: counts(),
+    questionAttempts: counts(),
     toRemove: { subjects: 0, topics: 0, errors: 0, decks: 0, cards: 0 },
-    write: { subjects: [], topics: [], errors: [], history: [], reviews: [], decks: [], cards: [], cardReviews: [] },
+    write: { subjects: [], topics: [], errors: [], history: [], reviews: [], decks: [], cards: [], cardReviews: [], questions: [], questionAttempts: [] },
   };
 
   // Matérias: por id; senão, por nome (evita duplicar matérias).
@@ -609,6 +644,27 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       plan.write.cardReviews.push({ ...r, deckId: cardDeck.get(r.cardId) ?? r.deckId });
     }
   }
+
+  // Questões próprias: por id (versão mais recente vence); respostas: por id.
+  const questionsById = new Map(current.questions.map((q) => [q.id, q]));
+  for (const q of parsed.data.questions) {
+    const existing = questionsById.get(q.id);
+    if (!existing) {
+      plan.questions.new++;
+      plan.write.questions.push(q);
+    } else if (q.updatedAt > existing.updatedAt) {
+      plan.questions.updated++;
+      plan.write.questions.push(q);
+    } else plan.questions.duplicates++;
+  }
+  const attemptIds = new Set(current.questionAttempts.map((a) => a.id));
+  for (const a of parsed.data.questionAttempts) {
+    if (attemptIds.has(a.id)) plan.questionAttempts.duplicates++;
+    else {
+      plan.questionAttempts.new++;
+      plan.write.questionAttempts.push(a);
+    }
+  }
   return plan;
 }
 
@@ -628,6 +684,8 @@ const ALL_TABLES = () => [
   db.decks,
   db.cards,
   db.cardReviews,
+  db.questions,
+  db.questionAttempts,
   db.tombstones,
   db.pendingChanges,
 ];
@@ -662,6 +720,10 @@ async function writeMerged(plan: ImportPlan, now: string): Promise<void> {
   await db.decks.bulkPut(write.decks);
   await db.cards.bulkPut(write.cards);
   await db.cardReviews.bulkPut(write.cardReviews);
+  await db.questions.bulkPut(write.questions);
+  await db.questionAttempts.bulkPut(write.questionAttempts);
+  for (const q of write.questions) await trackChange('questions', q.id, now);
+  for (const a of write.questionAttempts) await trackChange('questionAttempts', a.id, now);
   for (const d of write.decks) await trackChange('decks', d.id, now);
   for (const c of write.cards) await trackChange('cards', c.id, now);
   for (const r of write.cardReviews) await trackChange('cardReviews', r.id, now);
@@ -696,6 +758,8 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     ['decks', db.decks.toCollection()],
     ['cards', db.cards.toCollection()],
     ['cardReviews', db.cardReviews.toCollection()],
+    ['questions', db.questions.toCollection()],
+    ['questionAttempts', db.questionAttempts.toCollection()],
   ];
   const incoming: Record<EntityName, Set<string>> = {
     subjects: new Set(data.subjects.map((s) => s.id)),
@@ -706,6 +770,8 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     decks: new Set(data.decks.map((d) => d.id)),
     cards: new Set(data.cards.map((c) => c.id)),
     cardReviews: new Set(data.cardReviews.map((r) => r.id)),
+    questions: new Set(data.questions.map((q) => q.id)),
+    questionAttempts: new Set(data.questionAttempts.map((a) => a.id)),
   };
   for (const [entity, collection] of tables) {
     const ids = (await collection.primaryKeys()) as string[];
@@ -720,6 +786,8 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
     db.decks.clear(),
     db.cards.clear(),
     db.cardReviews.clear(),
+    db.questions.clear(),
+    db.questionAttempts.clear(),
   ]);
   await db.subjects.bulkAdd(data.subjects);
   await db.topics.bulkAdd(data.topics);
@@ -729,6 +797,8 @@ async function replaceAllData(input: BackupData, now: string): Promise<void> {
   await db.decks.bulkAdd(data.decks);
   await db.cards.bulkAdd(data.cards);
   await db.cardReviews.bulkAdd(data.cardReviews);
+  await db.questions.bulkAdd(data.questions);
+  await db.questionAttempts.bulkAdd(data.questionAttempts);
   for (const entity of Object.keys(incoming) as EntityName[]) {
     for (const id of incoming[entity]) {
       await db.tombstones.delete(`${entity}:${id}`);

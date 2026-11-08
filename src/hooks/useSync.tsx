@@ -45,7 +45,7 @@ export function describeSyncError(error: unknown): string {
     return 'Sem conexão com o servidor. Suas alterações continuam salvas neste dispositivo.';
   }
   if (/caderno_records_entity_check|violates check constraint/i.test(message)) {
-    return 'O banco na nuvem ainda não aceita os Flashcards. Execute novamente o script docs/supabase.sql no seu projeto Supabase (é seguro repetir).';
+    return 'O banco na nuvem ainda não aceita os Flashcards ou o Banco de Questões. Execute novamente o script docs/supabase.sql no seu projeto Supabase (é seguro repetir).';
   }
   if (/caderno_records|caderno_push|does not exist|schema cache/i.test(message)) {
     return 'A estrutura do banco na nuvem não foi encontrada. Execute o script docs/supabase.sql no seu projeto Supabase.';

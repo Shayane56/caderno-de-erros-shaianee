@@ -89,6 +89,16 @@ Cada revisão é registrada; erros superados permanecem salvos.
 **Meus Flashcards (estilo Anki)** — baralhos desenhados como cadernos de espiral (cor, estampa, adesivo,
 elástico ou foto de capa) e cartões escritos em folhas de caderno. Detalhes em [Flashcards](#flashcards).
 
+**Banco de Questões** — 153 questões inéditas, escritas no estilo das principais bancas (Cebraspe, FGV, FCC,
+Vunesp, Cesgranrio, IBFC, Instituto AOCP, Quadrix, Consulplan, IDECAN), de Língua Portuguesa, Informática,
+Raciocínio Lógico-Matemático e Saúde Pública, todas com gabarito comentado. Múltipla escolha e Certo/Errado;
+listas com filtros (matéria, assunto, banca, formato, dificuldade, situação — nunca resolvidas, que errei, que
+acertei — e pesquisa); desempenho por matéria. Ao errar, **Registrar no caderno de erros** abre o formulário já
+preenchido (matéria e tópico são criados se ainda não existirem). Você também pode cadastrar questões próprias,
+**colar uma prova inteira** (texto do PDF + gabarito, o app separa as questões) e exportar/importar suas questões
+para compartilhar. As questões do banco ficam em `src/data/questoes/` (uma matéria por arquivo); o teste
+`bank.test.ts` confere ids, gabaritos e comentários de todas.
+
 **Minha Evolução** — indicadores, evolução dos registros e dos superados (por dia, semana ou mês), distribuição
 por matéria e prioridade, comparação entre dificuldades identificadas e superadas e **análise das origens**
 (quantidade, percentual sobre os classificados, origem mais frequente e onde concentrar esforços). O aumento de
@@ -98,6 +108,11 @@ registros não é tratado como piora: ele representa dificuldades identificadas.
 duplicações (ignora maiúsculas, acentos e espaços). Ao excluir algo com registros vinculados, as consequências
 são exibidas e é preciso escolher entre **transferir** os registros ou **excluí-los** explicitamente (com ponto
 de restauração automático).
+
+**Seu nome no caderno** — na primeira abertura em cada aparelho, o app pergunta "Qual é o seu nome?" e passa a
+usá-lo no "Bom dia" do Painel, no menu, no título da página e nos backups (dá para trocar em *Backup e
+Configurações → Personalização*). Não há login: cada aparelho/navegador tem o seu próprio caderno, então outra
+pessoa pode usar o mesmo link no celular dela sem ver os seus dados.
 
 **Mensagens motivacionais** — 35 mensagens; uma por abertura do aplicativo, nunca repetindo a da abertura
 anterior (o identificador é guardado no LocalStorage).
@@ -148,7 +163,7 @@ Baralhos, cartões (com imagens e progresso) e respostas entram no **backup JSON
 continuam aceitos), nos **pontos de restauração** e na **sincronização em nuvem**.
 
 > Já usa a sincronização? Execute novamente o [docs/supabase.sql](docs/supabase.sql) no Supabase (é seguro
-> repetir) para o banco na nuvem aceitar os flashcards.
+> repetir) para o banco na nuvem aceitar os flashcards e o Banco de Questões.
 
 ## Como fazer backups
 
@@ -220,6 +235,7 @@ Passo a passo completo: **[docs/SINCRONIZACAO.md](docs/SINCRONIZACAO.md)** · Sc
 | Banco local IndexedDB com versionamento e migração | ✅ Completo |
 | Flashcards com repetição espaçada, lacunas, certo/errado, imagens e marca-texto | ✅ Completo |
 | Temas de cores, modo escuro e personalização de baralhos | ✅ Completo |
+| Banco de Questões com 153 questões inéditas, provas coladas e registro de erro preenchido | ✅ Completo |
 | Backup JSON (exportar/importar/validar/mesclar/substituir) e pontos de restauração | ✅ Completo |
 | PWA instalável e funcionamento offline | ✅ Completo (instalação requer HTTPS ou `localhost`) |
 | Publicação automática no GitHub Pages | ⚙️ Requer ativar o Pages no repositório (1 clique) |
@@ -231,7 +247,7 @@ Passo a passo completo: **[docs/SINCRONIZACAO.md](docs/SINCRONIZACAO.md)** · Sc
 npm test
 ```
 
-95 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
+112 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
 exclusão; validação de formulários (unidade e interface); matérias e tópicos (duplicação, exclusão com
 transferência ou em cascata); alteração de prioridade e de origem (serviço e interface); filtros combinados e
 pesquisa; Segundo Ciclo (fila, correção oculta, revelar, marcar como superado); cálculos estatísticos;
@@ -239,7 +255,8 @@ persistência no IndexedDB (fechar e reabrir o banco); exportação e importaç�
 banco v1 → v2 e de backups antigos sem origem; mensagens motivacionais; motor de sincronização (envio inicial,
 conflitos, exclusões, falha de conexão e unificação de duplicados); flashcards (algoritmo de repetição espaçada,
 lacunas, marca-texto, fila do dia com limites e faces irmãs, desfazer, geração a partir dos erros, backup e
-sincronização, telas de estudo e editor).
+sincronização, telas de estudo e editor); banco de questões (integridade das 153 questões, leitor de provas coladas,
+filtros, respostas, registro de erro preenchido, compartilhamento, backup e sincronização).
 
 Teste de ponta a ponta em navegador real (Chromium), incluindo persistência após recarregar, exportação e
 importação de arquivos, telas de 360 px a 1920 px, iPhone/Android e funcionamento offline com Service Worker:

@@ -1,8 +1,9 @@
 import { db } from '@/database/db';
 import { entityKey, trackChange, trackDeletion } from '@/database/changeTracker';
 import { normalizeErrorRecord, normalizePriority } from '@/database/migrations';
-import { ENTITY_NAMES, type CardReview, type Deck, type EntityName, type ErrorRecord, type Flashcard, type HistoryEntry, type ReviewEntry, type Subject, type Topic } from '@/types';
+import { ENTITY_NAMES, type Question, type QuestionAttempt, type CardReview, type Deck, type EntityName, type ErrorRecord, type Flashcard, type HistoryEntry, type ReviewEntry, type Subject, type Topic } from '@/types';
 import { normalizeCard, normalizeCardReview, normalizeDeck } from '../flashcards/cardModel';
+import { normalizeQuestion, normalizeQuestionAttempt } from '../questions/questionModel';
 import { isValidIsoDate } from '@/utils/dates';
 import { cleanName, normalizeText } from '@/utils/text';
 import { nowIso } from '@/utils/ids';
@@ -14,7 +15,7 @@ const PUSH_BATCH = 400;
 /** Margem de segurança ao puxar alterações (compensa transações concorrentes no servidor). */
 const PULL_OVERLAP_MS = 60_000;
 
-type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry | Deck | Flashcard | CardReview;
+type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry | Deck | Flashcard | CardReview | Question | QuestionAttempt;
 
 function table(entity: EntityName) {
   switch (entity) {
@@ -34,6 +35,10 @@ function table(entity: EntityName) {
       return db.cards;
     case 'cardReviews':
       return db.cardReviews;
+    case 'questions':
+      return db.questions;
+    case 'questionAttempts':
+      return db.questionAttempts;
   }
 }
 
@@ -45,6 +50,7 @@ export function recordTimestamp(entity: EntityName, record: AnyRecord): string {
   if (entity === 'history') return (record as HistoryEntry).timestamp;
   if (entity === 'reviews') return (record as ReviewEntry).reviewedAt;
   if (entity === 'cardReviews') return (record as CardReview).reviewedAt;
+  if (entity === 'questionAttempts') return (record as QuestionAttempt).answeredAt;
   return (record as Subject).updatedAt;
 }
 
@@ -88,6 +94,12 @@ export function sanitizeRemote(entity: EntityName, data: unknown): AnyRecord | n
       return isValidIsoDate(r.updatedAt) ? normalizeCard(r) : null;
     case 'cardReviews':
       return normalizeCardReview(r);
+    case 'questions': {
+      const q = isValidIsoDate(r.updatedAt) ? normalizeQuestion(r) : null;
+      return q && q.origin === 'minha' ? q : null;
+    }
+    case 'questionAttempts':
+      return normalizeQuestionAttempt(r);
   }
 }
 

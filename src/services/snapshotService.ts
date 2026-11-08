@@ -5,7 +5,7 @@ import { createId, nowIso } from '@/utils/ids';
 
 /** Lê todos os dados do caderno (matérias, tópicos, erros, históricos, revisões e flashcards). */
 export async function readAllData(): Promise<BackupData> {
-  const [subjects, topics, errors, history, reviews, decks, cards, cardReviews] = await Promise.all([
+  const [subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts] = await Promise.all([
     db.subjects.toArray(),
     db.topics.toArray(),
     db.errors.toArray(),
@@ -14,8 +14,10 @@ export async function readAllData(): Promise<BackupData> {
     db.decks.toArray(),
     db.cards.toArray(),
     db.cardReviews.toArray(),
+    db.questions.toArray(),
+    db.questionAttempts.toArray(),
   ]);
-  return { subjects, topics, errors, history, reviews, decks, cards, cardReviews };
+  return { subjects, topics, errors, history, reviews, decks, cards, cardReviews, questions, questionAttempts };
 }
 
 /** Completa dados de versões anteriores (ex.: pontos de restauração criados antes dos flashcards). */
@@ -29,6 +31,8 @@ export function completeBackupData(data: Partial<BackupData>): BackupData {
     decks: data.decks ?? [],
     cards: data.cards ?? [],
     cardReviews: data.cardReviews ?? [],
+    questions: data.questions ?? [],
+    questionAttempts: data.questionAttempts ?? [],
   };
 }
 
@@ -39,7 +43,7 @@ export function completeBackupData(data: Partial<BackupData>): BackupData {
  */
 export async function createSnapshot(reason: string): Promise<Snapshot | null> {
   const data = await readAllData();
-  if (data.subjects.length === 0 && data.topics.length === 0 && data.errors.length === 0 && data.decks.length === 0 && data.cards.length === 0) {
+  if (data.subjects.length === 0 && data.topics.length === 0 && data.errors.length === 0 && data.decks.length === 0 && data.cards.length === 0 && data.questions.length === 0) {
     return null;
   }
   const snapshot: Snapshot = {

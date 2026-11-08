@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import { cn } from '@/utils/cn';
+import { useProfile } from '@/services/profile';
 
 export function BrandMark({ className }: { className?: string }) {
   // ID único: o mesmo SVG aparece no menu lateral (oculto no celular) e no cabeçalho.
@@ -22,12 +23,13 @@ export function BrandMark({ className }: { className?: string }) {
 }
 
 export function BrandTitle({ compact }: { compact?: boolean }) {
+  const { name } = useProfile();
   return (
     <div className="flex min-w-0 items-center gap-3">
       <BrandMark className={compact ? 'h-9 w-9' : undefined} />
       <div className="min-w-0 leading-tight">
         <p className="truncate font-display text-[17px] font-semibold text-ink">Caderno de Erros</p>
-        <p className="truncate text-xs font-medium tracking-wide text-rose-antique">Shaiane Carvalho</p>
+        <p className="truncate text-xs font-medium tracking-wide text-rose-antique">{name || 'Meu caderno'}</p>
       </div>
     </div>
   );

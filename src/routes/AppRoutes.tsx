@@ -14,6 +14,8 @@ const BackupConfiguracoesPage = lazy(() => import('@/pages/BackupConfiguracoes/B
 const FlashcardsPage = lazy(() => import('@/pages/Flashcards/FlashcardsPage'));
 const DeckPage = lazy(() => import('@/pages/Flashcards/DeckPage'));
 const StudyPage = lazy(() => import('@/pages/Flashcards/StudyPage'));
+const QuestoesPage = lazy(() => import('@/pages/Questoes/QuestoesPage'));
+const ResolverPage = lazy(() => import('@/pages/Questoes/ResolverPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFoundPage'));
 
 export function AppRoutes() {
@@ -29,6 +31,8 @@ export function AppRoutes() {
           <Route path="flashcards" element={<FlashcardsPage />} />
           <Route path="flashcards/baralho/:id" element={<DeckPage />} />
           <Route path="flashcards/estudar/:deckId" element={<StudyPage />} />
+          <Route path="questoes" element={<QuestoesPage />} />
+          <Route path="questoes/resolver" element={<ResolverPage />} />
           <Route path="evolucao" element={<MinhaEvolucaoPage />} />
           <Route path="materias" element={<MateriasTopicosPage />} />
           <Route path="backup" element={<BackupConfiguracoesPage />} />

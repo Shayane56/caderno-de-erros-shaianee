@@ -9,7 +9,7 @@ interface AvatarProps {
 }
 
 /** Avatar ilustrado feminino (substituível por fotografia nas configurações). */
-export function Avatar({ photo, size = 96, className, label = 'Avatar de Shaiane Carvalho' }: AvatarProps) {
+export function Avatar({ photo, size = 96, className, label = 'Avatar' }: AvatarProps) {
   const uid = useId().replace(/:/g, '');
   if (photo) {
     return (
