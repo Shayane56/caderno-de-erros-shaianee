@@ -99,6 +99,11 @@ duplicações (ignora maiúsculas, acentos e espaços). Ao excluir algo com regi
 são exibidas e é preciso escolher entre **transferir** os registros ou **excluí-los** explicitamente (com ponto
 de restauração automático).
 
+**Seu nome no caderno** — na primeira abertura em cada aparelho, o app pergunta "Qual é o seu nome?" e passa a
+usá-lo no "Bom dia" do Painel, no menu, no título da página e nos backups (dá para trocar em *Backup e
+Configurações → Personalização*). Não há login: cada aparelho/navegador tem o seu próprio caderno, então outra
+pessoa pode usar o mesmo link no celular dela sem ver os seus dados.
+
 **Mensagens motivacionais** — 35 mensagens; uma por abertura do aplicativo, nunca repetindo a da abertura
 anterior (o identificador é guardado no LocalStorage).
 
@@ -231,7 +236,7 @@ Passo a passo completo: **[docs/SINCRONIZACAO.md](docs/SINCRONIZACAO.md)** · Sc
 npm test
 ```
 
-95 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
+98 testes automatizados (Vitest + React Testing Library + fake-indexeddb) cobrindo: cadastro, edição e
 exclusão; validação de formulários (unidade e interface); matérias e tópicos (duplicação, exclusão com
 transferência ou em cascata); alteração de prioridade e de origem (serviço e interface); filtros combinados e
 pesquisa; Segundo Ciclo (fila, correção oculta, revelar, marcar como superado); cálculos estatísticos;

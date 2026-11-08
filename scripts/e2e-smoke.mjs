@@ -46,8 +46,15 @@ function assert(condition, message) {
 
 const browser = await chromium.launch();
 
-async function newPage(options = { viewport: { width: 1440, height: 1000 } }) {
+async function newPage(options = { viewport: { width: 1440, height: 1000 } }, { named = true } = {}) {
   const context = await browser.newContext({ acceptDownloads: true, ...options });
+  // Caderno já identificado (a tela de boas-vindas é testada no primeiro cenário).
+  if (named) {
+    await context.addInitScript(() => {
+      const key = 'caderno-erros:profile';
+      if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify({ name: 'Shaiane Carvalho', skipped: false }));
+    });
+  }
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -88,9 +95,13 @@ async function registerError(page, { subject, topic, description, priority = 'Pr
 
 // ---------------------------------------------------------------------------
 await scenario('Cadastro, validação, persistência após recarregar, revisão e exportação', async () => {
-  const { page, errors, context } = await newPage();
+  const { page, errors, context } = await newPage(undefined, { named: false });
   await go(page);
-  await page.getByRole('heading', { name: /Shaiane/ }).waitFor();
+  // Primeira abertura: boas-vindas pedem o nome, que passa a aparecer na saudação.
+  const welcome = page.getByRole('dialog', { name: /Boas-vindas/ });
+  await welcome.getByLabel('Qual é o seu nome?').fill('Shaiane Carvalho');
+  await welcome.getByRole('button', { name: 'Começar' }).click();
+  await page.getByRole('heading', { name: /(Bom dia|Boa tarde|Boa noite), Shaiane/ }).waitFor();
 
   // Validação: salvar vazio exibe mensagens.
   await page.getByRole('button', { name: 'Registrar novo erro' }).first().click();

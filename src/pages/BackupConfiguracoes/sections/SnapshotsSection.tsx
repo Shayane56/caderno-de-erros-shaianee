@@ -8,7 +8,8 @@ import { useToast } from '@/components/common/Toast';
 import { deleteSnapshot, listSnapshots } from '@/services/snapshotService';
 import { restoreSnapshot, serializeBackup } from '@/services/backupService';
 import { errorMessage } from '@/services/errors';
-import { APP_FULL_NAME, BACKUP_FORMAT_VERSION, MAX_SNAPSHOTS } from '@/constants/app';
+import { BACKUP_FORMAT_VERSION, MAX_SNAPSHOTS } from '@/constants/app';
+import { notebookTitle } from '@/services/profile';
 import type { Snapshot } from '@/types';
 import { downloadText } from '@/utils/download';
 import { formatDateTime } from '@/utils/dates';
@@ -24,7 +25,7 @@ export function SnapshotsSection() {
       app: 'caderno-de-erros',
       formatVersion: BACKUP_FORMAT_VERSION,
       exportedAt: s.createdAt,
-      owner: APP_FULL_NAME,
+      owner: notebookTitle(),
       ...s.data,
     });
     downloadText(`caderno-de-erros-ponto-restauracao-${s.createdAt.slice(0, 10)}.json`, content);

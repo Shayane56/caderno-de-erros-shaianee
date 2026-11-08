@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { ImagePlus, Trash2, UserRound } from 'lucide-react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { Check, ImagePlus, Trash2, UserRound } from 'lucide-react';
 import { SectionCard } from '@/components/common/Card';
 import { Avatar } from '@/components/common/Avatar';
 import { Button } from '@/components/common/Button';
@@ -7,12 +7,22 @@ import { useToast } from '@/components/common/Toast';
 import { useAvatarPhoto } from '@/hooks/useData';
 import { deleteSetting, resizeImageFile, setSetting, SETTING_KEYS } from '@/services/settingsService';
 import { errorMessage } from '@/services/errors';
+import { NAME_MAX_LENGTH, setProfileName, useProfile } from '@/services/profile';
 
 export function PersonalizationSection() {
   const toast = useToast();
   const photo = useAvatarPhoto();
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  const profile = useProfile();
+  const [name, setName] = useState(profile.name);
+  useEffect(() => setName(profile.name), [profile.name]);
+
+  const saveName = (event: FormEvent) => {
+    event.preventDefault();
+    setProfileName(name);
+    toast.success(name.trim() ? 'Nome atualizado' : 'Nome removido', name.trim() ? `Bem-vinda(o), ${name.trim().split(' ')[0]}!` : undefined);
+  };
 
   const onFile = async (file: File | undefined) => {
     if (!file) return;
@@ -30,7 +40,19 @@ export function PersonalizationSection() {
   };
 
   return (
-    <SectionCard title="Personalização" subtitle="Troque o avatar ilustrado por uma fotografia." icon={UserRound}>
+    <SectionCard title="Personalização" subtitle="Seu nome e sua foto, guardados apenas neste aparelho." icon={UserRound}>
+      <form onSubmit={saveName} className="mb-5 border-b border-line pb-5">
+        <label htmlFor="profile-name" className="field-label">
+          Seu nome
+        </label>
+        <div className="flex gap-2">
+          <input id="profile-name" className="input" value={name} maxLength={NAME_MAX_LENGTH} placeholder="Como você quer ser chamada(o)?" onChange={(e) => setName(e.target.value)} />
+          <Button type="submit" variant="secondary" icon={Check} disabled={name.trim() === profile.name}>
+            Salvar
+          </Button>
+        </div>
+        <p className="field-hint">Aparece no “Bom dia” do Painel, no menu e no nome dos backups.</p>
+      </form>
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         <Avatar photo={photo} size={84} className="shadow-soft" />
         <div className="space-y-2">

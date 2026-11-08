@@ -1,6 +1,4 @@
 export const APP_NAME = 'Caderno de Erros';
-export const OWNER_NAME = 'Shaiane Carvalho';
-export const APP_FULL_NAME = `${APP_NAME} — ${OWNER_NAME}`;
 export const MAIN_PHRASE = 'Transformando dificuldades em aprendizado e erros em acertos.';
 export const SECONDARY_PHRASE =
   'A aprovação também é construída a partir dos erros que você aprende a não repetir.';

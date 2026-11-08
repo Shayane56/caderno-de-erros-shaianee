@@ -1,8 +1,11 @@
 import 'fake-indexeddb/auto';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach } from 'vitest';
-import { cleanup } from '@testing-library/react';
+import { cleanup, configure } from '@testing-library/react';
 import { db } from '@/database/db';
+
+// O primeiro carregamento de uma página (rotas sob demanda) pode passar de 1 s com a suíte inteira rodando em paralelo.
+configure({ asyncUtilTimeout: 4000 });
 
 // Recharts/ResponsiveContainer depende de ResizeObserver (ausente no jsdom).
 class ResizeObserverMock {
@@ -40,6 +43,8 @@ beforeEach(async () => {
   await db.open();
   try {
     localStorage.clear();
+    // Caderno já identificado: a tela de boas-vindas só aparece nos testes que a removem.
+    localStorage.setItem('caderno-erros:profile', JSON.stringify({ name: 'Shaiane Carvalho', skipped: false }));
   } catch {
     /* ignorado */
   }

@@ -1,7 +1,8 @@
 import { db } from '@/database/db';
 import { trackChange, trackDeletion } from '@/database/changeTracker';
 import { normalizeErrorRecord, normalizePriority } from '@/database/migrations';
-import { APP_FULL_NAME, BACKUP_FORMAT_VERSION } from '@/constants/app';
+import { BACKUP_FORMAT_VERSION } from '@/constants/app';
+import { notebookTitle } from './profile';
 import type {
   BackupData,
   BackupFile,
@@ -34,7 +35,7 @@ export async function buildBackupFile(): Promise<BackupFile> {
     app: 'caderno-de-erros',
     formatVersion: BACKUP_FORMAT_VERSION,
     exportedAt: nowIso(),
-    owner: APP_FULL_NAME,
+    owner: notebookTitle(),
     ...data,
   };
 }
