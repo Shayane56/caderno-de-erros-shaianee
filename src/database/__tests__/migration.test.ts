@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { CadernoDatabase } from '@/database/db';
 import { normalizeErrorRecord, normalizeOrigin } from '@/database/migrations';
 
-describe('migração do banco (v1 → v2)', () => {
+describe('migração do banco (v1 → atual)', () => {
   it('preserva registros antigos e marca os sem origem como "Não classificado"', async () => {
     const name = `legacy-test-${Math.random()}`;
     // Banco criado pela versão 1 do aplicativo (sem origem do erro).
@@ -41,7 +41,8 @@ describe('migração do banco (v1 → v2)', () => {
 
     const upgraded = new CadernoDatabase(name);
     await upgraded.open();
-    expect(upgraded.verno).toBe(2);
+    expect(upgraded.verno).toBe(3);
+    expect(await upgraded.cards.count()).toBe(0);
     const errors = await upgraded.errors.orderBy('createdAt').toArray();
     expect(errors).toHaveLength(2);
     expect(errors[0]).toMatchObject({

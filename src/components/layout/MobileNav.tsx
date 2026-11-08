@@ -12,7 +12,7 @@ const PRIMARY = ['/', '/erros', '/segundo-ciclo'];
 
 export function MobileHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-white/90 pt-[var(--safe-top)] backdrop-blur-md lg:hidden">
+    <header className="sticky top-0 z-30 border-b border-line bg-surface/90 pt-[var(--safe-top)] backdrop-blur-md lg:hidden">
       <div className="flex h-16 items-center justify-between gap-3 px-4">
         <BrandTitle compact />
         <SyncIndicator compact />
@@ -38,7 +38,7 @@ export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
     <>
       <nav
         aria-label="Navegação principal"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 pb-[var(--safe-bottom)] shadow-[0_-8px_24px_-12px_rgba(219,39,119,0.18)] backdrop-blur-md lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface/95 pb-[var(--safe-bottom)] shadow-[0_-8px_24px_-12px_rgb(var(--c-rose-pink)/0.18)] backdrop-blur-md lg:hidden"
       >
         <div className="mx-auto flex h-16 max-w-xl items-stretch px-2">
           {items.slice(0, 2).map((item) => (
@@ -52,7 +52,7 @@ export function BottomNav({ pendingReviews }: { pendingReviews: number }) {
               type="button"
               onClick={() => openCreate()}
               aria-label="Registrar novo erro"
-              className="-mt-7 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-medium to-rose-pink text-white shadow-[0_10px_24px_-8px_rgba(219,39,119,0.7)] ring-4 ring-white transition active:scale-95"
+              className="-mt-7 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-medium to-rose-pink text-white shadow-[0_10px_24px_-8px_rgb(var(--c-rose-pink)/0.7)] ring-4 ring-surface transition active:scale-95"
             >
               <Plus className="h-7 w-7" aria-hidden />
             </button>

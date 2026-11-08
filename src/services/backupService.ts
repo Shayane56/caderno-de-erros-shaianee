@@ -5,7 +5,10 @@ import { APP_FULL_NAME, BACKUP_FORMAT_VERSION } from '@/constants/app';
 import type {
   BackupData,
   BackupFile,
+  CardReview,
+  Deck,
   EntityName,
+  Flashcard,
   ErrorRecord,
   HistoryEntry,
   HistoryEventType,
@@ -17,7 +20,8 @@ import { createId, nowIso } from '@/utils/ids';
 import { cleanName, normalizeText } from '@/utils/text';
 import { isValidIsoDate, formatDate } from '@/utils/dates';
 import { AppError, NotFoundError } from './errors';
-import { createSnapshot, readAllData } from './snapshotService';
+import { completeBackupData, createSnapshot, readAllData } from './snapshotService';
+import { normalizeCard, normalizeCardReview, normalizeDeck } from './flashcards/cardModel';
 import { writePreference } from './preferences';
 
 export const LAST_BACKUP_PREF = 'last-backup-at';
@@ -288,6 +292,59 @@ export function parseBackupText(text: string): ParsedBackup {
     reviews.push({ id: str(item.id), errorId: str(item.errorId), reviewedAt: item.reviewedAt, priorityBefore: before, priorityAfter: after });
   });
 
+  // ---- Flashcards (opcional: backups anteriores à versão 3 não têm baralhos)
+  const decks: Deck[] = [];
+  const deckIds = new Set<string>();
+  for (const key of ['decks', 'cards', 'cardReviews'] as const) {
+    if (json[key] !== undefined && !Array.isArray(json[key])) warnings.push(`Lista "${key}" corrompida — ignorada.`);
+  }
+  (Array.isArray(json.decks) ? (json.decks as unknown[]) : []).forEach((item, index) => {
+    const deck = normalizeDeck(item);
+    if (!deck) {
+      invalid.push({ entity: 'decks', index, reason: 'Baralho sem identificador ou nome.' });
+      return;
+    }
+    if (deckIds.has(deck.id)) {
+      invalid.push({ entity: 'decks', index, reason: 'Identificador de baralho repetido no arquivo.' });
+      return;
+    }
+    if (deck.subjectId) deck.subjectId = subjectIdMap.get(deck.subjectId) ?? deck.subjectId;
+    deckIds.add(deck.id);
+    decks.push(deck);
+  });
+
+  const cards: Flashcard[] = [];
+  const cardIds = new Set<string>();
+  (Array.isArray(json.cards) ? (json.cards as unknown[]) : []).forEach((item, index) => {
+    const card = normalizeCard(item);
+    if (!card) {
+      invalid.push({ entity: 'cards', index, reason: 'Cartão incompleto (sem frente, tipo ou lacunas).' });
+      return;
+    }
+    if (!deckIds.has(card.deckId)) {
+      invalid.push({ entity: 'cards', index, reason: 'Cartão vinculado a um baralho inexistente.' });
+      return;
+    }
+    if (cardIds.has(card.id)) {
+      invalid.push({ entity: 'cards', index, reason: 'Identificador de cartão repetido no arquivo.' });
+      return;
+    }
+    cardIds.add(card.id);
+    cards.push(card);
+  });
+
+  const cardReviews: CardReview[] = [];
+  const cardReviewIds = new Set<string>();
+  (Array.isArray(json.cardReviews) ? (json.cardReviews as unknown[]) : []).forEach((item, index) => {
+    const review = normalizeCardReview(item);
+    if (!review || !cardIds.has(review.cardId) || cardReviewIds.has(review.id)) {
+      invalid.push({ entity: 'cardReviews', index, reason: 'Resposta de estudo inválida ou órfã.' });
+      return;
+    }
+    cardReviewIds.add(review.id);
+    cardReviews.push(review);
+  });
+
   if (unclassified > 0) {
     warnings.push(
       `${unclassified} registro(s) sem origem do erro serão mantidos como "Não classificado" (nenhuma categoria é atribuída automaticamente).`,
@@ -297,7 +354,7 @@ export function parseBackupText(text: string): ParsedBackup {
   return {
     formatVersion,
     exportedAt: isValidIsoDate(json.exportedAt) ? json.exportedAt : null,
-    data: { subjects, topics, errors, history, reviews },
+    data: { subjects, topics, errors, history, reviews, decks, cards, cardReviews },
     invalid,
     warnings,
     unclassified,
@@ -321,10 +378,13 @@ export interface ImportPlan {
   errors: EntityPlanCounts;
   history: EntityPlanCounts;
   reviews: EntityPlanCounts;
+  decks: EntityPlanCounts;
+  cards: EntityPlanCounts;
+  cardReviews: EntityPlanCounts;
   invalid: number;
   unclassified: number;
   /** Quantidades atuais que serão removidas (apenas no modo substituir). */
-  toRemove: { subjects: number; topics: number; errors: number };
+  toRemove: { subjects: number; topics: number; errors: number; decks: number; cards: number };
   /** Dados finais a gravar. */
   write: BackupData;
 }
@@ -352,7 +412,16 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       errors: all(d.errors.length),
       history: all(d.history.length),
       reviews: all(d.reviews.length),
-      toRemove: { subjects: current.subjects.length, topics: current.topics.length, errors: current.errors.length },
+      decks: all(d.decks.length),
+      cards: all(d.cards.length),
+      cardReviews: all(d.cardReviews.length),
+      toRemove: {
+        subjects: current.subjects.length,
+        topics: current.topics.length,
+        errors: current.errors.length,
+        decks: current.decks.length,
+        cards: current.cards.length,
+      },
       write: d,
     };
   }
@@ -364,8 +433,11 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
     errors: counts(),
     history: counts(),
     reviews: counts(),
-    toRemove: { subjects: 0, topics: 0, errors: 0 },
-    write: { subjects: [], topics: [], errors: [], history: [], reviews: [] },
+    decks: counts(),
+    cards: counts(),
+    cardReviews: counts(),
+    toRemove: { subjects: 0, topics: 0, errors: 0, decks: 0, cards: 0 },
+    write: { subjects: [], topics: [], errors: [], history: [], reviews: [], decks: [], cards: [], cardReviews: [] },
   };
 
   // Matérias: por id; senão, por nome (evita duplicar matérias).
@@ -473,6 +545,70 @@ export async function analyzeImport(parsed: ParsedBackup, mode: ImportMode): Pro
       plan.write.reviews.push(r);
     }
   }
+
+  // Baralhos: por id (versão mais recente vence); senão, por nome (evita duplicar baralhos).
+  const decksById = new Map(current.decks.map((d) => [d.id, d]));
+  const decksByName = new Map(current.decks.map((d) => [normalizeText(d.name), d]));
+  const deckMap = new Map<string, string>();
+  for (const d of parsed.data.decks) {
+    const deck: Deck = { ...d, subjectId: d.subjectId ? (subjectMap.get(d.subjectId) ?? d.subjectId) : null };
+    const existing = decksById.get(d.id);
+    if (existing) {
+      deckMap.set(d.id, existing.id);
+      const nameOwner = decksByName.get(normalizeText(d.name));
+      if (d.updatedAt > existing.updatedAt && (!nameOwner || nameOwner.id === existing.id)) {
+        plan.decks.updated++;
+        plan.write.decks.push(deck);
+      } else plan.decks.duplicates++;
+      continue;
+    }
+    const twin = decksByName.get(normalizeText(d.name));
+    if (twin) {
+      deckMap.set(d.id, twin.id);
+      plan.decks.duplicates++;
+      continue;
+    }
+    deckMap.set(d.id, d.id);
+    decksByName.set(normalizeText(d.name), deck);
+    plan.decks.new++;
+    plan.write.decks.push(deck);
+  }
+
+  // Cartões: por id (versão mais recente vence); senão, ignora conteúdo idêntico no mesmo baralho.
+  const cardsById = new Map(current.cards.map((c) => [c.id, c]));
+  const cardKey = (deckId: string, front: string) => `${deckId}::${normalizeText(front)}`;
+  const cardsByContent = new Set(current.cards.map((c) => cardKey(c.deckId, c.front)));
+  const acceptedCards = new Set(current.cards.map((c) => c.id));
+  for (const c of parsed.data.cards) {
+    const deckId = deckMap.get(c.deckId) ?? c.deckId;
+    const mapped: Flashcard = { ...c, deckId };
+    const existing = cardsById.get(c.id);
+    if (existing) {
+      if (c.updatedAt > existing.updatedAt) {
+        plan.cards.updated++;
+        plan.write.cards.push(mapped);
+      } else plan.cards.duplicates++;
+      continue;
+    }
+    const key = cardKey(deckId, c.front);
+    if (c.front.trim() && cardsByContent.has(key)) {
+      plan.cards.duplicates++;
+      continue;
+    }
+    cardsByContent.add(key);
+    acceptedCards.add(c.id);
+    plan.cards.new++;
+    plan.write.cards.push(mapped);
+  }
+  const cardDeck = new Map<string, string>([...current.cards, ...plan.write.cards].map((c) => [c.id, c.deckId]));
+  const cardReviewIds = new Set(current.cardReviews.map((r) => r.id));
+  for (const r of parsed.data.cardReviews) {
+    if (cardReviewIds.has(r.id)) plan.cardReviews.duplicates++;
+    else if (acceptedCards.has(r.cardId)) {
+      plan.cardReviews.new++;
+      plan.write.cardReviews.push({ ...r, deckId: cardDeck.get(r.cardId) ?? r.deckId });
+    }
+  }
   return plan;
 }
 
@@ -489,6 +625,9 @@ const ALL_TABLES = () => [
   db.errors,
   db.history,
   db.reviews,
+  db.decks,
+  db.cards,
+  db.cardReviews,
   db.tombstones,
   db.pendingChanges,
 ];
@@ -520,6 +659,12 @@ async function writeMerged(plan: ImportPlan, now: string): Promise<void> {
   await db.errors.bulkPut(write.errors);
   await db.history.bulkPut(write.history);
   await db.reviews.bulkPut(write.reviews);
+  await db.decks.bulkPut(write.decks);
+  await db.cards.bulkPut(write.cards);
+  await db.cardReviews.bulkPut(write.cardReviews);
+  for (const d of write.decks) await trackChange('decks', d.id, now);
+  for (const c of write.cards) await trackChange('cards', c.id, now);
+  for (const r of write.cardReviews) await trackChange('cardReviews', r.id, now);
   for (const s of write.subjects) await trackChange('subjects', s.id, now);
   for (const t of write.topics) await trackChange('topics', t.id, now);
   for (const e of write.errors) await trackChange('errors', e.id, now);
@@ -540,13 +685,17 @@ async function writeMerged(plan: ImportPlan, now: string): Promise<void> {
 }
 
 /** Substitui todo o conteúdo do caderno. Deve ser chamado dentro de uma transação. */
-async function replaceAllData(data: BackupData, now: string): Promise<void> {
+async function replaceAllData(input: BackupData, now: string): Promise<void> {
+  const data = completeBackupData(input);
   const tables: [EntityName, { primaryKeys(): Promise<unknown[]> }][] = [
     ['subjects', db.subjects.toCollection()],
     ['topics', db.topics.toCollection()],
     ['errors', db.errors.toCollection()],
     ['history', db.history.toCollection()],
     ['reviews', db.reviews.toCollection()],
+    ['decks', db.decks.toCollection()],
+    ['cards', db.cards.toCollection()],
+    ['cardReviews', db.cardReviews.toCollection()],
   ];
   const incoming: Record<EntityName, Set<string>> = {
     subjects: new Set(data.subjects.map((s) => s.id)),
@@ -554,17 +703,32 @@ async function replaceAllData(data: BackupData, now: string): Promise<void> {
     errors: new Set(data.errors.map((e) => e.id)),
     history: new Set(data.history.map((h) => h.id)),
     reviews: new Set(data.reviews.map((r) => r.id)),
+    decks: new Set(data.decks.map((d) => d.id)),
+    cards: new Set(data.cards.map((c) => c.id)),
+    cardReviews: new Set(data.cardReviews.map((r) => r.id)),
   };
   for (const [entity, collection] of tables) {
     const ids = (await collection.primaryKeys()) as string[];
     for (const id of ids) if (!incoming[entity].has(id)) await trackDeletion(entity, id, now);
   }
-  await Promise.all([db.subjects.clear(), db.topics.clear(), db.errors.clear(), db.history.clear(), db.reviews.clear()]);
+  await Promise.all([
+    db.subjects.clear(),
+    db.topics.clear(),
+    db.errors.clear(),
+    db.history.clear(),
+    db.reviews.clear(),
+    db.decks.clear(),
+    db.cards.clear(),
+    db.cardReviews.clear(),
+  ]);
   await db.subjects.bulkAdd(data.subjects);
   await db.topics.bulkAdd(data.topics);
   await db.errors.bulkAdd(data.errors);
   await db.history.bulkAdd(data.history);
   await db.reviews.bulkAdd(data.reviews);
+  await db.decks.bulkAdd(data.decks);
+  await db.cards.bulkAdd(data.cards);
+  await db.cardReviews.bulkAdd(data.cardReviews);
   for (const entity of Object.keys(incoming) as EntityName[]) {
     for (const id of incoming[entity]) {
       await db.tombstones.delete(`${entity}:${id}`);

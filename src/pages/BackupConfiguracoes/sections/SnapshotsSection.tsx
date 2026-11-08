@@ -60,6 +60,7 @@ export function SnapshotsSection() {
                 <p className="text-sm font-semibold text-ink">{s.reason}</p>
                 <p className="text-xs text-ink-muted">
                   {formatDateTime(s.createdAt)} · {s.counts.subjects} matéria(s), {s.counts.topics} tópico(s), {s.counts.errors} erro(s)
+                  {s.counts.cards ? `, ${s.counts.cards} flashcard(s)` : ''}
                 </p>
               </div>
               <div className="flex items-center gap-1">

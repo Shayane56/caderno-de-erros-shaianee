@@ -31,9 +31,9 @@ export function StackedSubjects({ groups, labelWidth = 128 }: { groups: GroupCou
               tick={{ fill: CHART_COLORS.text, fontSize: 12 }}
               tickFormatter={(v: string) => (v.length > maxChars ? `${v.slice(0, maxChars - 1)}…` : v)}
             />
-            <Tooltip cursor={{ fill: '#FCE7F3', opacity: 0.6 }} content={<ChartTooltip />} />
-            <Bar dataKey="pendentes" name="Pendentes" stackId="s" fill={CHART_COLORS.primary} stroke="#fff" strokeWidth={2} maxBarSize={22} isAnimationActive={false} />
-            <Bar dataKey="superados" name="Superados" stackId="s" fill={CHART_COLORS.resolved} stroke="#fff" strokeWidth={2} radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false} />
+            <Tooltip cursor={{ fill: 'rgb(var(--c-blush))', opacity: 0.6 }} content={<ChartTooltip />} />
+            <Bar dataKey="pendentes" name="Pendentes" stackId="s" fill={CHART_COLORS.primary} stroke="rgb(var(--c-surface))" strokeWidth={2} maxBarSize={22} isAnimationActive={false} />
+            <Bar dataKey="superados" name="Superados" stackId="s" fill={CHART_COLORS.resolved} stroke="rgb(var(--c-surface))" strokeWidth={2} radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false} />
           </BarChart>
         </ResponsiveContainer>
       </div>

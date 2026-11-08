@@ -1,3 +1,4 @@
+import { THEME } from '@/constants/theme';
 import { useMemo, useState } from 'react';
 import {
   ChartColumn,
@@ -72,7 +73,7 @@ export default function MinhaEvolucaoPage() {
           type="button"
           aria-pressed={granularity === g}
           onClick={() => setGranularity(g)}
-          className={cn('rounded-[10px] px-3 py-1.5 text-xs font-semibold transition', granularity === g ? 'bg-white text-rose-pink shadow-soft' : 'text-ink-muted hover:text-rose-ink')}
+          className={cn('rounded-[10px] px-3 py-1.5 text-xs font-semibold transition', granularity === g ? 'bg-surface text-rose-pink shadow-soft' : 'text-ink-muted hover:text-rose-ink')}
         >
           {g === 'auto' ? 'Automático' : GRANULARITY_LABEL[g]}
         </button>
@@ -103,7 +104,7 @@ export default function MinhaEvolucaoPage() {
         <StatCard label="Prioridade alta" value={overview.alta} icon={Flame} accent={PRIORITIES.alta.color} />
         <StatCard label="Prioridade média" value={overview.media} icon={RotateCcw} accent="#B7791F" />
         <StatCard label="Percentual superado" value={`${overview.superadoPct.toLocaleString('pt-BR')}%`} icon={Percent} />
-        <StatCard label="Revisões realizadas" value={overview.reviews} icon={Repeat} accent="#D98BAE" />
+        <StatCard label="Revisões realizadas" value={overview.reviews} icon={Repeat} accent={THEME.antique} />
       </section>
 
       {/* Análise das origens */}
@@ -127,7 +128,7 @@ export default function MinhaEvolucaoPage() {
                 {origins.stats.map((s) => {
                   const isMain = main.some((m) => m.id === s.id);
                   return (
-                    <li key={s.id} className={cn('rounded-2xl border p-4 transition', isMain ? 'border-rose-medium/50 bg-blush/30' : 'border-line bg-white')}>
+                    <li key={s.id} className={cn('rounded-2xl border p-4 transition', isMain ? 'border-rose-medium/50 bg-blush/30' : 'border-line bg-surface')}>
                       <div className="flex items-start gap-3">
                         <OriginIcon origin={s.id} />
                         <div className="min-w-0 flex-1">
@@ -161,7 +162,7 @@ export default function MinhaEvolucaoPage() {
                 </p>
                 {main.length === 1 ? (
                   <>
-                    <p className="mt-3 font-display text-lg font-semibold leading-snug text-[#7A2E52]">
+                    <p className="mt-3 font-display text-lg font-semibold leading-snug text-rose-ink">
                       Sua principal dificuldade está relacionada a{' '}
                       {main[0].id === 'desconhecimento'
                         ? 'conteúdos que você ainda não conhecia (desconhecimento)'
@@ -179,7 +180,7 @@ export default function MinhaEvolucaoPage() {
                   </>
                 ) : (
                   <>
-                    <p className="mt-3 font-display text-lg font-semibold leading-snug text-[#7A2E52]">
+                    <p className="mt-3 font-display text-lg font-semibold leading-snug text-rose-ink">
                       Empate entre {main.map((m) => m.label.toLowerCase()).join(' e ')}.
                     </p>
                     <p className="mt-1 text-sm text-rose-ink">Cada uma representa {main[0].pct.toLocaleString('pt-BR')}% dos registros classificados.</p>

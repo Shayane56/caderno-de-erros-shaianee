@@ -35,9 +35,9 @@ export function hasValidationErrors(errors: ValidationErrors): boolean {
 }
 
 /** Valida o nome de uma matéria ou tópico. Retorna a mensagem de erro ou null. */
-export function validateName(name: string, kind: 'matéria' | 'tópico'): string | null {
+export function validateName(name: string, kind: 'matéria' | 'tópico' | 'baralho'): string | null {
   const clean = cleanName(name);
-  if (!clean) return kind === 'matéria' ? 'Informe o nome da matéria.' : 'Informe o nome do tópico.';
+  if (!clean) return kind === 'matéria' ? 'Informe o nome da matéria.' : kind === 'tópico' ? 'Informe o nome do tópico.' : 'Informe o nome do baralho.';
   if (clean.length > NAME_MAX_LENGTH) return `O nome pode ter no máximo ${NAME_MAX_LENGTH} caracteres.`;
   return null;
 }

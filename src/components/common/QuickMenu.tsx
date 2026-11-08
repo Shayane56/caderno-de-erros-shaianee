@@ -114,7 +114,7 @@ export function QuickMenu<T extends string>({ label, value, options, onSelect, t
             role="menu"
             aria-label={label}
             onKeyDown={onMenuKey}
-            className="fixed z-[70] animate-scale-in rounded-2xl border border-line bg-white p-1.5 shadow-lift"
+            className="fixed z-[70] animate-scale-in rounded-2xl border border-line bg-surface p-1.5 shadow-lift"
             style={{
               width: MENU_WIDTH,
               left: pos.left,

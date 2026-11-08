@@ -15,7 +15,7 @@ interface ChartTooltipProps {
 export function ChartTooltip({ active, payload, label, title, unit = '' }: ChartTooltipProps) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="min-w-[160px] rounded-2xl border border-line bg-white px-3.5 py-2.5 text-xs shadow-lift">
+    <div className="min-w-[160px] rounded-2xl border border-line bg-surface px-3.5 py-2.5 text-xs shadow-lift">
       <p className="mb-1.5 font-semibold text-ink">{title ? title(label, payload) : label}</p>
       <ul className="space-y-1">
         {payload.map((p) => (

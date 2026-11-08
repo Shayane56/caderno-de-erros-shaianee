@@ -42,7 +42,7 @@ const HISTORY_ICONS: Record<HistoryEventType, LucideIcon> = {
 
 function Block({ icon: Icon, title, children, tone = 'default' }: { icon: LucideIcon; title: string; children: React.ReactNode; tone?: 'default' | 'pink' | 'green' }) {
   const tones = {
-    default: 'bg-white',
+    default: 'bg-surface',
     pink: 'bg-blush/50 ring-1 ring-petal',
     green: 'bg-emerald-50/60 ring-1 ring-emerald-100',
   };
@@ -201,7 +201,7 @@ export default function ErrorDetailPage() {
                   const Icon = HISTORY_ICONS[h.type] ?? History;
                   return (
                     <li key={h.id} className="relative">
-                      <span className="absolute -left-[31px] flex h-5 w-5 items-center justify-center rounded-full bg-white text-rose-pink ring-2 ring-petal">
+                      <span className="absolute -left-[31px] flex h-5 w-5 items-center justify-center rounded-full bg-surface text-rose-pink ring-2 ring-petal">
                         <Icon className="h-3 w-3" aria-hidden />
                       </span>
                       <p className="text-sm text-ink">{h.summary}</p>

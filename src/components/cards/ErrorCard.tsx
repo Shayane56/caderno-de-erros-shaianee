@@ -22,7 +22,7 @@ export function ErrorCard({ record, subjectName, topicName, showPath }: ErrorCar
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <article className="group rounded-2xl border border-line bg-white p-4 transition hover:border-petal hover:shadow-soft" aria-label={`Registro: ${record.description.slice(0, 60)}`}>
+    <article className="group rounded-2xl border border-line bg-surface p-4 transition hover:border-petal hover:shadow-soft" aria-label={`Registro: ${record.description.slice(0, 60)}`}>
       {showPath && (
         <p className="mb-1 truncate text-xs font-semibold text-rose-antique">
           {subjectName} <span className="text-ink-soft">›</span> {topicName}

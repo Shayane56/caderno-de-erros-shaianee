@@ -18,7 +18,7 @@ export function Avatar({ photo, size = 96, className, label = 'Avatar de Shaiane
         alt={label}
         width={size}
         height={size}
-        className={cn('shrink-0 rounded-full object-cover ring-4 ring-white', className)}
+        className={cn('shrink-0 rounded-full object-cover ring-4 ring-surface', className)}
         style={{ width: size, height: size }}
       />
     );
@@ -30,7 +30,7 @@ export function Avatar({ photo, size = 96, className, label = 'Avatar de Shaiane
       viewBox="0 0 120 120"
       width={size}
       height={size}
-      className={cn('shrink-0 rounded-full ring-4 ring-white', className)}
+      className={cn('shrink-0 rounded-full ring-4 ring-surface', className)}
     >
       <defs>
         <linearGradient id={`bg-${uid}`} x1="0" y1="0" x2="1" y2="1">

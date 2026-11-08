@@ -183,7 +183,7 @@ export function ImportSection() {
                     mode === value ? (value === 'replace' ? 'border-red-300 bg-red-50/50' : 'border-rose-medium bg-blush/40') : 'border-line hover:border-rose-medium/50',
                   )}
                 >
-                  <input type="radio" name="import-mode" value={value} checked={mode === value} onChange={() => void updatePlan(parsed, value)} className="mt-1 accent-[#DB2777]" />
+                  <input type="radio" name="import-mode" value={value} checked={mode === value} onChange={() => void updatePlan(parsed, value)} className="mt-1 accent-rose-pink" />
                   <span>
                     <span className="flex items-center gap-1.5 text-sm font-semibold text-ink">
                       <Icon className="h-4 w-4 text-rose-pink" aria-hidden /> {title}

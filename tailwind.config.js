@@ -1,35 +1,41 @@
+/** Cor baseada em variável CSS com suporte a opacidade (ex.: bg-blush/50). */
+const v = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Identidade Pink Premium
-        blush: '#FCE7F3', // rosa bebê — fundos suaves e destaques
-        petal: '#F9D5E5', // rosa pastel — cards e elementos secundários
+        // Identidade visual — os valores vêm de variáveis CSS (ver src/styles/themes.css),
+        // o que permite trocar o tema de cores e ativar o modo escuro sem recarregar.
+        blush: v('blush'), // fundos suaves e destaques
+        petal: v('petal'), // cards e elementos secundários
         rose: {
-          antique: '#D98BAE', // rosa antigo — identidade visual
-          medium: '#E879A9', // rosa médio — elementos interativos
-          pink: '#DB2777', // rosa pink — ações principais
-          deep: '#BE185D', // hover/pressionado das ações principais
-          ink: '#9D174D', // texto rosa com alto contraste
+          antique: v('rose-antique'), // identidade visual
+          medium: v('rose-medium'), // elementos interativos
+          pink: v('rose-pink'), // ações principais
+          deep: v('rose-deep'), // hover/pressionado das ações principais
+          ink: v('rose-ink'), // texto de destaque com alto contraste
         },
-        canvas: '#F8F5F7', // cinza rosado — fundo geral
+        canvas: v('canvas'), // fundo geral
+        surface: v('surface'), // superfícies (cartões, menus, campos)
         ink: {
-          DEFAULT: '#51434B', // textos principais
-          muted: '#7A6871', // textos secundários pequenos (contraste AA)
-          soft: '#A3949D', // textos secundários/terciários
+          DEFAULT: v('ink'), // textos principais
+          muted: v('ink-muted'), // textos secundários (contraste AA)
+          soft: v('ink-soft'), // textos terciários
         },
-        line: '#F1E4EB', // bordas delicadas
+        line: v('line'), // bordas delicadas
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans Variable"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
         display: ['"Playfair Display Variable"', 'Georgia', 'serif'],
+        hand: ['"Caveat Variable"', '"Patrick Hand"', 'cursive'],
       },
       boxShadow: {
-        soft: '0 1px 2px rgba(81, 67, 75, 0.04), 0 4px 16px rgba(219, 39, 119, 0.06)',
-        lift: '0 2px 4px rgba(81, 67, 75, 0.05), 0 12px 32px rgba(219, 39, 119, 0.10)',
-        ring: '0 0 0 4px rgba(232, 121, 169, 0.18)',
+        soft: '0 1px 2px rgb(var(--c-shadow) / 0.04), 0 4px 16px rgb(var(--c-rose-pink) / 0.06)',
+        lift: '0 2px 4px rgb(var(--c-shadow) / 0.05), 0 12px 32px rgb(var(--c-rose-pink) / 0.10)',
+        ring: '0 0 0 4px rgb(var(--c-rose-medium) / 0.18)',
       },
       borderRadius: {
         '4xl': '2rem',
@@ -57,5 +63,6 @@ export default {
       },
     },
   },
+  darkMode: 'class',
   plugins: [],
 };

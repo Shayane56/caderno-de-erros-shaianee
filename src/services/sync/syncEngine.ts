@@ -1,7 +1,8 @@
 import { db } from '@/database/db';
 import { entityKey, trackChange, trackDeletion } from '@/database/changeTracker';
 import { normalizeErrorRecord, normalizePriority } from '@/database/migrations';
-import type { EntityName, ErrorRecord, HistoryEntry, ReviewEntry, Subject, Topic } from '@/types';
+import { ENTITY_NAMES, type CardReview, type Deck, type EntityName, type ErrorRecord, type Flashcard, type HistoryEntry, type ReviewEntry, type Subject, type Topic } from '@/types';
+import { normalizeCard, normalizeCardReview, normalizeDeck } from '../flashcards/cardModel';
 import { isValidIsoDate } from '@/utils/dates';
 import { cleanName, normalizeText } from '@/utils/text';
 import { nowIso } from '@/utils/ids';
@@ -13,7 +14,7 @@ const PUSH_BATCH = 400;
 /** Margem de segurança ao puxar alterações (compensa transações concorrentes no servidor). */
 const PULL_OVERLAP_MS = 60_000;
 
-type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry;
+type AnyRecord = Subject | Topic | ErrorRecord | HistoryEntry | ReviewEntry | Deck | Flashcard | CardReview;
 
 function table(entity: EntityName) {
   switch (entity) {
@@ -27,13 +28,23 @@ function table(entity: EntityName) {
       return db.history;
     case 'reviews':
       return db.reviews;
+    case 'decks':
+      return db.decks;
+    case 'cards':
+      return db.cards;
+    case 'cardReviews':
+      return db.cardReviews;
   }
 }
+
+/** Tabelas envolvidas em cada ciclo de sincronização. */
+const SYNC_TABLES = () => [...ENTITY_NAMES.map(table), db.tombstones, db.pendingChanges];
 
 /** Data de modificação usada no controle de conflitos. */
 export function recordTimestamp(entity: EntityName, record: AnyRecord): string {
   if (entity === 'history') return (record as HistoryEntry).timestamp;
   if (entity === 'reviews') return (record as ReviewEntry).reviewedAt;
+  if (entity === 'cardReviews') return (record as CardReview).reviewedAt;
   return (record as Subject).updatedAt;
 }
 
@@ -71,6 +82,12 @@ export function sanitizeRemote(entity: EntityName, data: unknown): AnyRecord | n
       if (typeof r.errorId !== 'string' || !isValidIsoDate(r.reviewedAt) || !before || !after) return null;
       return { id, errorId: r.errorId, reviewedAt: r.reviewedAt, priorityBefore: before, priorityAfter: after };
     }
+    case 'decks':
+      return isValidIsoDate(r.updatedAt) ? normalizeDeck(r) : null;
+    case 'cards':
+      return isValidIsoDate(r.updatedAt) ? normalizeCard(r) : null;
+    case 'cardReviews':
+      return normalizeCardReview(r);
   }
 }
 
@@ -90,9 +107,8 @@ export async function clearSyncState(): Promise<void> {
 
 /** Marca todos os dados locais como pendentes (primeira sincronização de uma conta). */
 async function markEverythingPending(): Promise<void> {
-  await db.transaction('rw', [db.subjects, db.topics, db.errors, db.history, db.reviews, db.tombstones, db.pendingChanges], async () => {
-    const entities: EntityName[] = ['subjects', 'topics', 'errors', 'history', 'reviews'];
-    for (const entity of entities) {
+  await db.transaction('rw', SYNC_TABLES(), async () => {
+    for (const entity of ENTITY_NAMES) {
       const records = (await table(entity).toArray()) as AnyRecord[];
       for (const r of records) await trackChange(entity, r.id, recordTimestamp(entity, r));
     }
@@ -104,8 +120,9 @@ async function markEverythingPending(): Promise<void> {
 /** Aplica alterações remotas usando "a última alteração vence". Retorna quantas foram aplicadas. */
 export async function applyRemoteRows(rows: RemoteRow[]): Promise<number> {
   let applied = 0;
-  await db.transaction('rw', [db.subjects, db.topics, db.errors, db.history, db.reviews, db.tombstones, db.pendingChanges], async () => {
+  await db.transaction('rw', SYNC_TABLES(), async () => {
     for (const row of rows) {
+      if (!ENTITY_NAMES.includes(row.entity)) continue; // entidade desconhecida (versão mais nova do app)
       const key = entityKey(row.entity, row.id);
       const t = table(row.entity);
       const local = (await t.get(row.id)) as AnyRecord | undefined;
@@ -138,7 +155,7 @@ export async function applyRemoteRows(rows: RemoteRow[]): Promise<number> {
  */
 export async function mergeDuplicateNames(): Promise<number> {
   let merged = 0;
-  await db.transaction('rw', [db.subjects, db.topics, db.errors, db.tombstones, db.pendingChanges], async () => {
+  await db.transaction('rw', [db.subjects, db.topics, db.errors, db.decks, db.cards, db.cardReviews, db.tombstones, db.pendingChanges], async () => {
     const now = nowIso();
     const pickKeeper = <T extends { createdAt: string; id: string }>(list: T[]) =>
       [...list].sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id))[0];
@@ -160,6 +177,11 @@ export async function mergeDuplicateNames(): Promise<number> {
         for (const e of errors) {
           await db.errors.put({ ...e, subjectId: keeper.id, updatedAt: now });
           await trackChange('errors', e.id, now);
+        }
+        const decks = await db.decks.where('subjectId').equals(dup.id).toArray();
+        for (const d of decks) {
+          await db.decks.put({ ...d, subjectId: keeper.id, updatedAt: now });
+          await trackChange('decks', d.id, now);
         }
         await db.subjects.delete(dup.id);
         await trackDeletion('subjects', dup.id, now);
@@ -185,6 +207,31 @@ export async function mergeDuplicateNames(): Promise<number> {
         }
         await db.topics.delete(dup.id);
         await trackDeletion('topics', dup.id, now);
+        merged++;
+      }
+    }
+
+    // Baralhos com o mesmo nome (criados offline em dois aparelhos): os cartões vão para o mais antigo.
+    const decks = await db.decks.toArray();
+    const byDeck = new Map<string, Deck[]>();
+    for (const d of decks) byDeck.set(normalizeText(d.name), [...(byDeck.get(normalizeText(d.name)) ?? []), d]);
+    for (const group of byDeck.values()) {
+      if (group.length < 2) continue;
+      const keeper = pickKeeper(group);
+      for (const dup of group) {
+        if (dup.id === keeper.id) continue;
+        const cards = await db.cards.where('deckId').equals(dup.id).toArray();
+        for (const c of cards) {
+          await db.cards.put({ ...c, deckId: keeper.id, updatedAt: now });
+          await trackChange('cards', c.id, now);
+        }
+        const answers = await db.cardReviews.where('deckId').equals(dup.id).toArray();
+        for (const r of answers) {
+          await db.cardReviews.put({ ...r, deckId: keeper.id });
+          await trackChange('cardReviews', r.id, now);
+        }
+        await db.decks.delete(dup.id);
+        await trackDeletion('decks', dup.id, now);
         merged++;
       }
     }

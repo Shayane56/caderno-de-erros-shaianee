@@ -1,3 +1,4 @@
+import { THEME } from '@/constants/theme';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -94,7 +95,7 @@ export default function DashboardPage() {
 
       <section aria-label="Indicadores principais" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-6">
         <StatCard label="Erros registrados" value={overview.total} icon={NotebookText} to="/erros" hint={`${overview.topics} tópicos`} />
-        <StatCard label="Matérias" value={overview.subjects} icon={Library} to="/materias" accent="#D98BAE" hint="em estudo" />
+        <StatCard label="Matérias" value={overview.subjects} icon={Library} to="/materias" accent={THEME.antique} hint="em estudo" />
         <StatCard
           label="Prioridade alta"
           value={overview.alta}
@@ -119,7 +120,7 @@ export default function DashboardPage() {
           to="/erros?prioridade=superado"
           hint="dificuldades vencidas"
         />
-        <StatCard label="Superação" value={`${overview.superadoPct.toLocaleString('pt-BR')}%`} icon={Percent} accent="#DB2777" to="/evolucao">
+        <StatCard label="Superação" value={`${overview.superadoPct.toLocaleString('pt-BR')}%`} icon={Percent} accent={THEME.pink} to="/evolucao">
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-canvas" role="progressbar" aria-valuenow={overview.superadoPct} aria-valuemin={0} aria-valuemax={100} aria-label="Percentual de erros superados">
             <div className="h-full rounded-full bg-gradient-to-r from-rose-medium to-rose-pink transition-all duration-700" style={{ width: `${overview.superadoPct}%` }} />
           </div>
@@ -137,7 +138,7 @@ export default function DashboardPage() {
                 <Button onClick={() => openCreate()} icon={NotebookPen}>
                   Registrar primeiro erro
                 </Button>
-                <Link to="/materias" className="inline-flex h-11 items-center gap-2 rounded-2xl border border-line bg-white px-5 text-[15px] font-semibold text-ink transition hover:border-rose-medium">
+                <Link to="/materias" className="inline-flex h-11 items-center gap-2 rounded-2xl border border-line bg-surface px-5 text-[15px] font-semibold text-ink transition hover:border-rose-medium">
                   <Library className="h-[18px] w-[18px]" aria-hidden /> Cadastrar matérias
                 </Link>
               </div>
@@ -204,7 +205,7 @@ export default function DashboardPage() {
                   ariaLabel="Erros pendentes e superados"
                   showLegend={false}
                   segments={[
-                    { id: 'p', label: 'Pendentes', value: overview.pending, color: '#DB2777' },
+                    { id: 'p', label: 'Pendentes', value: overview.pending, color: THEME.pink },
                     { id: 's', label: 'Superados', value: overview.superado, color: '#15803D' },
                   ]}
                 />
