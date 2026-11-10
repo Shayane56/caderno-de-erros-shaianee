@@ -1,0 +1,178 @@
+/*
+ * Proposta C — Bold Minimal.
+ * Tokens de cor e fonte: tailwind.config.js (prefixo bd-). Aqui: fontes (Archivo
+ * com eixo de largura + JetBrains Mono), janelas compartilhadas e animações.
+ */
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+html[data-identity='bold'][data-identity][data-identity] {
+  color-scheme: light;
+  --font-sans: 'Archivo Variable', system-ui, sans-serif;
+  --font-display: 'Archivo Variable', system-ui, sans-serif;
+  --c-blush: 216 209 255;
+  --c-petal: 207 202 192;
+  --c-rose-antique: 74 43 255;
+  --c-rose-medium: 74 43 255;
+  --c-rose-pink: 14 14 16;
+  --c-rose-deep: 14 14 16;
+  --c-rose-ink: 74 43 255;
+  --c-lilac: 216 209 255;
+  --c-lilac-deep: 51 23 219;
+  --c-canvas: 238 235 228;
+  --c-surface: 248 246 241;
+  --c-ink: 14 14 16;
+  --c-ink-muted: 98 94 87;
+  --c-ink-soft: 139 135 126;
+  --c-line: 207 202 192;
+  --c-shadow: 14 14 16;
+}
+
+html[data-identity='bold'] body {
+  background: #eeebe4;
+  background-image: none;
+}
+
+html[data-identity='bold'] [role='dialog'],
+html[data-identity='bold'] [role='dialog'] [class*='rounded-']:not(.rounded-full),
+html[data-identity='bold'] [role='status'] {
+  border-radius: 0 !important;
+}
+html[data-identity='bold'] [role='dialog'] {
+  box-shadow: 0 0 0 2px #0e0e10, 8px 8px 0 #0e0e10;
+}
+html[data-identity='bold'] [role='dialog'] h2 {
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+[data-identity='bold'] ::selection {
+  background: #4a2bff;
+  color: #fff;
+}
+[data-identity='bold'] :focus-visible {
+  outline: 3px solid #4a2bff;
+  outline-offset: 2px;
+}
+
+/* Títulos largos e pesados. */
+.bd-wide {
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+.bd-black {
+  font-stretch: 125%;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.82;
+  font-variant-numeric: tabular-nums;
+}
+.bd-mono {
+  font-family: 'JetBrains Mono Variable', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Sombra dura de 2 px de deslocamento — o único "relevo" da proposta. */
+.bd-block {
+  border: 2px solid #0e0e10;
+  background: #f8f6f1;
+}
+.bd-hit {
+  transition:
+    transform 140ms cubic-bezier(0.3, 0, 0, 1),
+    box-shadow 140ms cubic-bezier(0.3, 0, 0, 1),
+    background-color 140ms,
+    color 140ms;
+}
+.bd-hit:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #0e0e10;
+}
+.bd-hit:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.bd-card {
+  --deck-deep: #4a2bff;
+}
+.bd-card .cloze-blank {
+  border-radius: 0;
+  border: 0;
+  background: #0e0e10;
+  color: #0e0e10;
+  min-width: 4em;
+}
+.bd-card .cloze-answer {
+  border-radius: 0;
+  border: 0;
+  background: #4a2bff;
+  color: #fff;
+  padding: 0 0.2em;
+}
+
+@keyframes bd-slide {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes bd-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes bd-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes bd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bd-slide {
+  animation: bd-slide 280ms cubic-bezier(0.2, 0.9, 0.1, 1) both;
+}
+.bd-up {
+  animation: bd-up 360ms cubic-bezier(0.2, 0.9, 0.1, 1) both;
+}
+.bd-wipe {
+  animation: bd-wipe 520ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+.bd-orbit {
+  animation: bd-spin 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-slide,
+  .bd-up,
+  .bd-wipe,
+  .bd-orbit {
+    animation: none;
+  }
+  .bd-hit:hover {
+    transform: none;
+  }
+}

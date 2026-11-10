@@ -50,6 +50,11 @@ npm run preview    # serve a versão de produção → http://localhost:4173
 
 ## Funcionalidades
 
+**Explorar identidades** — três propostas de direção de arte implementadas nas telas reais (Início, Baralhos,
+Revisão e Estatísticas), com navegação própria no computador e no celular: **A · Editorial**, **B · Soft Modern** e
+**C · Bold Minimal**. Todas usam os mesmos dados; o seletor A · B · C troca de identidade sem sair da tela.
+Abra em `#/identidades` (menu → *Explorar identidades*). Direção de arte e arquitetura: [docs/IDENTIDADES.md](docs/IDENTIDADES.md).
+
 **Visual Mimo** — identidade nova (logo do livrinho com coração, fonte arredondada Nunito, rosa + lavanda,
 cards bem arredondados) e o gatinho mascote Mimo desenhado em SVG (lendo, de fone, abraçando um coração,
 comemorando). O tema Mimo é o padrão; os temas antigos continuam em *Configurações → Aparência*, com modo escuro.

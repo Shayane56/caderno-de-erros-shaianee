@@ -1,0 +1,175 @@
+/*
+ * Proposta B — Soft Modern.
+ * Tokens de cor e fonte: tailwind.config.js (prefixo sf-). Aqui: fonte, janelas
+ * compartilhadas, elevação e microinterações.
+ */
+@import '@fontsource-variable/dm-sans/opsz.css';
+@import '@fontsource-variable/dm-sans/opsz-italic.css';
+
+html[data-identity='soft'][data-identity][data-identity] {
+  color-scheme: light;
+  --font-sans: 'DM Sans Variable', system-ui, sans-serif;
+  --font-display: 'DM Sans Variable', system-ui, sans-serif;
+  --c-blush: 236 230 252;
+  --c-petal: 222 213 249;
+  --c-rose-antique: 107 79 216;
+  --c-rose-medium: 185 166 242;
+  --c-rose-pink: 107 79 216;
+  --c-rose-deep: 78 55 174;
+  --c-rose-ink: 78 55 174;
+  --c-lilac: 245 242 254;
+  --c-lilac-deep: 107 79 216;
+  --c-canvas: 246 244 251;
+  --c-surface: 255 255 255;
+  --c-ink: 43 37 64;
+  --c-ink-muted: 108 102 131;
+  --c-ink-soft: 163 157 184;
+  --c-line: 233 228 244;
+  --c-shadow: 78 55 174;
+}
+
+html[data-identity='soft'] body {
+  background: #f6f4fb;
+  background-image: none;
+}
+
+html[data-identity='soft'] [role='dialog'] h2 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+[data-identity='soft'] ::selection {
+  background: #ece6fc;
+  color: #2b2540;
+}
+
+[data-identity='soft'] :focus-visible {
+  outline: 2px solid #6b4fd8;
+  outline-offset: 2px;
+}
+
+/* Elevação: duas camadas, a segunda com um toque violeta (luz natural sobre lavanda). */
+.sf-surface {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow:
+    0 1px 2px rgb(43 37 64 / 0.04),
+    0 10px 30px -18px rgb(78 55 174 / 0.28);
+}
+.sf-raise {
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.sf-raise:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px rgb(43 37 64 / 0.05),
+    0 18px 36px -18px rgb(78 55 174 / 0.36);
+}
+.sf-press:active {
+  transform: scale(0.98);
+}
+
+.sf-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.sf-card {
+  --deck-deep: #6b4fd8;
+}
+.sf-card .cloze-blank {
+  border-radius: 8px;
+  border-bottom: 0;
+  background: #ece6fc;
+  color: #4e37ae;
+  padding: 0 0.6em;
+  font-weight: 600;
+}
+.sf-card .cloze-answer {
+  border-radius: 8px;
+  border-bottom: 0;
+  background: #dff3ea;
+  color: #2e7a61;
+  padding: 0 0.3em;
+  font-weight: 600;
+}
+
+@keyframes sf-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sf-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.15;
+  }
+}
+@keyframes sf-flip {
+  0% {
+    transform: perspective(1200px) rotateX(6deg) translateY(6px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes sf-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes sf-sheet {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.sf-in {
+  animation: sf-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.sf-flip {
+  animation: sf-flip 460ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.sf-breathe {
+  animation: sf-breathe 5.5s ease-in-out infinite;
+}
+.sf-grow {
+  transform-origin: bottom;
+  animation: sf-grow 640ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.sf-sheet {
+  animation: sf-sheet 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-in,
+  .sf-flip,
+  .sf-breathe,
+  .sf-grow,
+  .sf-sheet {
+    animation: none;
+  }
+  .sf-raise:hover {
+    transform: none;
+  }
+}

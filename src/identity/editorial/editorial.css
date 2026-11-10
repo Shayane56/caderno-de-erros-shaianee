@@ -1,0 +1,168 @@
+/*
+ * Proposta A — Editorial.
+ * Tokens (cores e fontes) também estão em tailwind.config.js (prefixos ed-*).
+ * Aqui ficam: fontes, a adaptação das janelas compartilhadas e as animações.
+ */
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
+@import '@fontsource-variable/inter-tight';
+
+/* Janelas e avisos compartilhados (criar/editar cartão e baralho) herdam a identidade. */
+html[data-identity='editorial'][data-identity][data-identity] {
+  color-scheme: light;
+  --font-sans: 'Inter Tight Variable', system-ui, sans-serif;
+  --font-display: 'Newsreader Variable', Georgia, serif;
+  --c-blush: 238 232 223;
+  --c-petal: 220 213 202;
+  --c-rose-antique: 123 45 78;
+  --c-rose-medium: 168 110 133;
+  --c-rose-pink: 23 21 19;
+  --c-rose-deep: 0 0 0;
+  --c-rose-ink: 123 45 78;
+  --c-lilac: 238 232 223;
+  --c-lilac-deep: 91 84 76;
+  --c-canvas: 246 243 238;
+  --c-surface: 251 249 245;
+  --c-ink: 23 21 19;
+  --c-ink-muted: 91 84 76;
+  --c-ink-soft: 142 134 123;
+  --c-line: 220 213 202;
+  --c-shadow: 23 21 19;
+}
+
+html[data-identity='editorial'] body {
+  background: #f6f3ee;
+  background-image: none;
+}
+
+html[data-identity='editorial'] [role='dialog'],
+html[data-identity='editorial'] [role='dialog'] [class*='rounded-']:not(.rounded-full),
+html[data-identity='editorial'] [role='status'] {
+  border-radius: 2px !important;
+}
+
+html[data-identity='editorial'] [role='dialog'] {
+  box-shadow: 0 0 0 1px #171513, 0 24px 48px -24px rgb(23 21 19 / 0.35);
+}
+
+html[data-identity='editorial'] [role='dialog'] h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+[data-identity='editorial'] ::selection {
+  background: #f2e6ea;
+  color: #171513;
+}
+
+[data-identity='editorial'] :focus-visible {
+  outline: 1.5px solid #7b2d4e;
+  outline-offset: 3px;
+}
+
+/* Texto: serifa com tamanho óptico automático e algarismos de texto nos números. */
+.ed-serif {
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.ed-num {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.ed-kicker {
+  font-family: 'Inter Tight Variable', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Link com sublinhado que cresce (microinteração editorial). */
+.ed-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 420ms cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.ed-link:hover,
+.ed-link:focus-visible,
+.ed-link[aria-current='page'] {
+  background-size: 100% 1px;
+}
+
+/* Linha pontilhada do sumário. */
+.ed-leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted #bdb4a8;
+  transform: translateY(-0.3em);
+}
+
+/* Lacunas e destaques dentro do cartão. */
+.ed-card {
+  --deck-deep: #7b2d4e;
+}
+.ed-card .cloze-blank {
+  border-radius: 0;
+  border-bottom-width: 1.5px;
+  background: transparent;
+  font-family: 'Inter Tight Variable', system-ui, sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  vertical-align: 0.15em;
+}
+.ed-card .cloze-answer {
+  border-radius: 0;
+  background: #f2e6ea;
+  font-weight: 500;
+  font-style: italic;
+}
+
+@keyframes ed-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ed-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ed-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.ed-rise {
+  animation: ed-rise 640ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+.ed-fade {
+  animation: ed-fade 480ms ease-out both;
+}
+.ed-draw {
+  transform-origin: left;
+  animation: ed-draw 900ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-rise,
+  .ed-fade,
+  .ed-draw {
+    animation: none;
+  }
+}

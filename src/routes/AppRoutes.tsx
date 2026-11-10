@@ -19,12 +19,17 @@ const ResolverPage = lazy(() => import('@/pages/Questoes/ResolverPage'));
 const FocoPage = lazy(() => import('@/pages/Foco/FocoPage'));
 const EstatisticasPage = lazy(() => import('@/pages/Estatisticas/EstatisticasPage'));
 const SimuladoPage = lazy(() => import('@/pages/Questoes/SimuladoPage'));
+const ExploreIdentitiesPage = lazy(() => import('@/identity/ExplorePage'));
+const IdentityApp = lazy(() => import('@/identity/IdentityApp'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFoundPage'));
 
 export function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
+        {/* Propostas de identidade visual — cada uma com a sua própria navegação. */}
+        <Route path="identidades" element={<ExploreIdentitiesPage />} />
+        <Route path="identidades/:identity/*" element={<IdentityApp />} />
         <Route element={<AppLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="erros" element={<MeusErrosPage />} />
