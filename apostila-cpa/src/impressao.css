@@ -144,3 +144,8 @@ html.pdf table.fontes td { padding: 6px 9px; line-height: 1.35; }
 html.pdf table.fontes .org { font-size: 12px; }
 html.pdf .tabela-rolagem + p.pequeno { break-before: avoid; }
 html.pdf .jogo { break-inside: avoid; }
+
+/* capa dourada para os capítulos do Módulo 2 */
+.capa.ouro { background: radial-gradient(120% 80% at 85% 8%, #e7b04a 0%, #a8701c 42%, #4a2f0b 100%); }
+.capa.ouro .capa-selo { color: #fff4a8; }
+html.pdf .calc-entradas.quatro { grid-template-columns: repeat(3, minmax(0, 1fr)); }

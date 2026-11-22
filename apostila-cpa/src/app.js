@@ -21,6 +21,8 @@
   if (E.qv !== VERSAO_QUESTOES) { E.respostas = {}; E.qv = VERSAO_QUESTOES; salvar(); }
   // até a versão 1, as seções eram marcadas como lidas só de rolar a página; agora a marcação é manual
   if (E.mv !== 2) { E.vistas = {}; E.mv = 2; salvar(); }
+  // nov/2026: alternativas do capítulo 3 reordenadas; respostas antigas desse capítulo deixam de valer
+  if (E.c3v !== 2) { Object.keys(E.respostas).forEach((k) => { if (k.startsWith('c3q')) delete E.respostas[k]; }); E.c3v = 2; salvar(); }
 
   /* ---------------- catálogo de capítulos ---------------- */
   // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
@@ -30,7 +32,7 @@
     { n: 2, m: 1, pd: '1.2', p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-mar', ico: 'grafico' },
     { n: 3, m: 1, pd: '1.3', r: 'conceitos: Fisher, VPL, TIR, duration, SAC × Price', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
     { n: 4, m: 1, pd: '1.4', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-mar', ico: 'rede' },
-    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
+    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro Direto e tributação (IR e IOF)', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
     { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
     { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-ouro', ico: 'pizza' },
     { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
@@ -344,8 +346,34 @@
     el.addEventListener('input', atualizar); atualizar();
   }
 
+
+  function calcEquiv(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>LCI/LCA ou CDB?</b></div>
+      <div class="calc-entradas quatro">${campo('cdb', 'CDB (% do CDI)', 102, 'min="0" step="1"')}${campo('lci', 'LCI/LCA (% do CDI, isenta)', 90, 'min="0" step="1"')}${campo('cdi', 'CDI ao ano (%)', 13.65, 'min="0" step="0.05"')}${faixa('d', 'Prazo em dias', 1080, 30, 1800)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    const aliq = (d) => (d <= 180 ? 0.225 : d <= 360 ? 0.20 : d <= 720 ? 0.175 : 0.15);
+    function atualizar() {
+      const cdb = Math.max(0, ler('cdb')) / 100, lci = Math.max(0, ler('lci')) / 100, cdi = Math.max(0, ler('cdi')) / 100;
+      const d = Math.round(Math.min(1800, Math.max(30, ler('d'))));
+      $('[data-v="d"]', el).textContent = d + (d >= 360 ? ' (≈ ' + fmtN(d / 365, 1) + ' anos)' : '');
+      const ir = aliq(d), liq = cdb * (1 - ir), equiv = lci / (1 - ir);
+      const anos = d / 365, base = 10000;
+      const rCdb = base * (Math.pow(1 + cdi * cdb, anos) - 1), rLci = base * (Math.pow(1 + cdi * lci, anos) - 1);
+      const rCdbLiq = rCdb * (1 - ir);
+      const ganha = Math.abs(liq - lci) < 0.0005 ? 'empate' : liq > lci ? 'CDB' : 'LCI/LCA';
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+        <div><small>Alíquota de IR no prazo</small><b>${pct(ir, 1)}</b><span>tabela regressiva (${d <= 180 ? 'até 180 dias' : d <= 360 ? '181 a 360 dias' : d <= 720 ? '361 a 720 dias' : 'acima de 720 dias'})</span></div>
+        <div><small>CDB depois do IR</small><b>${fmtN(liq * 100, 1)}% do CDI</b><span>${fmtN(cdb * 100, 0)}% × (1 − ${fmtN(ir * 100, 1)}%)</span></div>
+        <div class="destaque"><small>CDB que empata com a LCI</small><b>${fmtN(equiv * 100, 1)}% do CDI</b><span>${fmtN(lci * 100, 0)}% ÷ (1 − ${fmtN(ir * 100, 1)}%)</span></div></div>
+        <p class="calc-veredito ${ganha === 'CDB' ? 'cdb' : ganha === 'empate' ? '' : 'lci'}">${ganha === 'empate' ? 'Empate técnico.' : `Rende mais: <b>${ganha}</b>.`} Em R$ 10.000 (CDI constante, valores aproximados): CDB rende <b>${brl(rCdbLiq)}</b> líquido; LCI/LCA rende <b>${brl(rLci)}</b>.</p>
+        ${d < 180 ? '<p class="calc-nota">Atenção: LCI e LCA sem correção por índice de preços têm prazo mínimo de <b>6 meses</b> (Res. CMN 5.215/2025).</p>' : ''}`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

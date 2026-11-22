@@ -808,3 +808,11 @@ html.pdf .pdf-only { display: block; }
 .selo-conf.pend { white-space: normal; display: inline; line-height: 1.6; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 table.fontes th:nth-child(3) { width: 28%; }
 .jogo-gab { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 26px; text-align: left; font-size: 14.5px; margin: 8px 0 0; padding-left: 18px; }
+
+/* simulador LCI × CDB */
+.calc-entradas.quatro { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.calc-entradas.quatro .calc-faixa { grid-column: 1 / -1; }
+.calc-veredito { margin: 12px 0 0; padding: 10px 14px; border-radius: 12px; background: var(--fundo); border: 2px dashed var(--linha); font-size: 15.5px; }
+.calc-veredito.lci { border-color: var(--verde); background: var(--verde-claro); }
+.calc-veredito.cdb { border-color: var(--azul); background: var(--azul-claro); }
+@media (max-width: 640px) { .calc-entradas.quatro { grid-template-columns: minmax(0, 1fr); } }

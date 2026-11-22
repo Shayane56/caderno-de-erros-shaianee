@@ -814,6 +814,14 @@ html.pdf .pdf-only { display: block; }
 .selo-conf.pend { white-space: normal; display: inline; line-height: 1.6; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 table.fontes th:nth-child(3) { width: 28%; }
 .jogo-gab { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 26px; text-align: left; font-size: 14.5px; margin: 8px 0 0; padding-left: 18px; }
+
+/* simulador LCI × CDB */
+.calc-entradas.quatro { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.calc-entradas.quatro .calc-faixa { grid-column: 1 / -1; }
+.calc-veredito { margin: 12px 0 0; padding: 10px 14px; border-radius: 12px; background: var(--fundo); border: 2px dashed var(--linha); font-size: 15.5px; }
+.calc-veredito.lci { border-color: var(--verde); background: var(--verde-claro); }
+.calc-veredito.cdb { border-color: var(--azul); background: var(--azul-claro); }
+@media (max-width: 640px) { .calc-entradas.quatro { grid-template-columns: minmax(0, 1fr); } }
 </style>
 <!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
 <svg class="defs-globais" aria-hidden="true" width="0" height="0">
@@ -3539,6 +3547,820 @@ table.fontes th:nth-child(3) { width: 28%; }
   </div>
 </div>
 
+<div class="view folha" id="view-cap-5" hidden>
+  <div class="cap-layout">
+    <article class="capitulo tema-ouro" id="cap-5" data-cap="5" data-titulo="Renda fixa">
+
+<header class="cap-hero">
+  <div class="hero-foto">
+    <div class="hero-arte">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Um cofre com títulos de renda fixa saindo: Tesouro, CDB, LCI e debênture">
+        <ellipse cx="150" cy="272" rx="118" ry="12" fill="#2b1a06" opacity=".4"/>
+        <g transform="rotate(-8 90 120)"><rect x="40" y="70" width="110" height="64" rx="8" fill="#fff5e0" stroke="#4a2f0b" stroke-width="4"/><text x="95" y="98" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#a96300">TESOURO</text><text x="95" y="120" text-anchor="middle" font-family="Kalam, cursive" font-size="14" fill="#4a2f0b">IPCA+ 2035</text></g>
+        <g transform="rotate(7 210 100)"><rect x="160" y="62" width="100" height="58" rx="8" fill="#fff" stroke="#4a2f0b" stroke-width="4"/><text x="210" y="90" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="19" fill="#0b4f5c">CDB</text><text x="210" y="110" text-anchor="middle" font-family="Kalam, cursive" font-size="13" fill="#4a2f0b">100% do CDI</text></g>
+        <rect x="70" y="150" width="160" height="110" rx="16" fill="#ffd38a" stroke="#4a2f0b" stroke-width="5"/>
+        <circle cx="150" cy="205" r="28" fill="#fff5e0" stroke="#4a2f0b" stroke-width="5"/>
+        <path d="M150 182v46M127 205h46" stroke="#4a2f0b" stroke-width="5" stroke-linecap="round"/>
+        <rect x="84" y="164" width="22" height="10" rx="4" fill="#4a2f0b"/>
+        <text x="150" y="40" text-anchor="middle" font-family="Kaushan Script, cursive" font-size="28" fill="#fff">você empresta</text>
+      </svg>
+    </div>
+    <span class="hero-num">5</span>
+  </div>
+  <div>
+    <span class="hero-sobre">Capítulo 5 · Módulo 2 (40% da prova) · 🔥 caiu nas 3 provas</span>
+    <h1 class="hero-titulo">Renda fixa</h1>
+    <p class="hero-sub">Tesouro, CDB, LCI, debênture, poupança… parece sopa de letrinhas, mas tudo segue a mesma lógica: <strong>você empresta dinheiro para alguém</strong> e recebe juros por isso. A prova quer saber <strong>para quem</strong> você está emprestando, <strong>quanto</strong> rende, <strong>quem garante</strong> e <strong>quanto de imposto</strong> você paga.</p>
+    <div class="hero-acoes"><a class="btn-mao principal pequeno" href="#resumo-5">Ver o resumo em 2 páginas</a><a class="btn-mao pequeno" href="#c5-s16">Ir direto às questões</a></div>
+    <div class="hero-chips" style="margin-top:14px"><span>Tesouro Direto</span><span>NTN-B</span><span>CDB</span><span>LCI e LCA</span><span>LCD</span><span>debêntures</span><span>CRI e CRA</span><span>poupança</span><span>IR e IOF</span></div>
+  </div>
+  <div class="hero-aprender">
+    <h2>Perguntas que você vai saber responder</h2>
+    <ul class="check">
+      <li>Renda fixa é sempre sem risco?</li>
+      <li>LTN, LFT, NTN-B: qual é qual no Tesouro Direto?</li>
+      <li>Tesouro Direto é um título ou uma plataforma?</li>
+      <li>CDB, RDB e RDC: o que muda?</li>
+      <li>Quem tem FGC e quem não tem?</li>
+      <li>Toda debênture é isenta de IR?</li>
+      <li>Como funciona a data de aniversário da poupança?</li>
+      <li>Quanto de IR e de IOF eu pago num resgate?</li>
+    </ul>
+  </div>
+</header>
+
+<!-- 5.1 -->
+<section class="bloco" id="c5-s1" data-titulo="O que é renda fixa">
+  <span class="sobretitulo">5.1 · A lógica de tudo</span>
+  <h2 class="titulo-secao">O que é renda fixa (e por que não é “risco zero”)</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Renda fixa é aquela que sempre rende a mesma coisa?</p>
+  <p>Não exatamente! Renda fixa é quando você <strong>empresta dinheiro</strong> a alguém (governo, banco ou empresa) e as <strong>regras de remuneração são combinadas na hora</strong> da aplicação: uma taxa fixa, um indexador ou os dois. “Fixa” é a <strong>regra</strong>, não necessariamente o resultado. E quem pega o seu dinheiro emprestado é o <span class="mt">emissor</span>.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 300" role="img" aria-label="Quem pega seu dinheiro emprestado: governo (títulos públicos), bancos (CDB, LCI, LCA, LCD, poupança), empresas (debêntures) e securitizadoras (CRI e CRA)">
+      <rect width="760" height="300" fill="#fff"/>
+      <defs><marker id="f5a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#a96300"/></marker></defs>
+      <g transform="translate(300 112)"><rect width="160" height="76" rx="38" fill="#a96300"/><text x="80" y="36" text-anchor="middle" class="mao" font-size="22" fill="#fff">Você</text><text x="80" y="58" text-anchor="middle" font-size="13" fill="#fff2dc">empresta o dinheiro</text></g>
+      <g font-size="13" fill="#5b6970">
+        <g transform="translate(20 20)"><rect width="230" height="104" rx="14" fill="#fff2dc" stroke="#a96300" stroke-width="2.5"/><text x="16" y="30" class="mao" font-size="20" fill="#7a4b00">Governo federal</text><text x="16" y="54">títulos públicos (Tesouro Direto)</text><text x="16" y="76">risco soberano (o menor do país)</text><text x="16" y="96" fill="#b3311d" font-weight="800">sem FGC</text></g>
+        <g transform="translate(510 20)"><rect width="230" height="104" rx="14" fill="#e3f2f1" stroke="#13858a" stroke-width="2.5"/><text x="16" y="30" class="mao" font-size="20" fill="#0b4f5c">Bancos</text><text x="16" y="54">CDB, RDB, LCI, LCA, LCD e poupança</text><text x="16" y="76">risco: do banco emissor</text><text x="16" y="96" fill="#1b7049" font-weight="800">com FGC (até o limite)</text></g>
+        <g transform="translate(20 176)"><rect width="230" height="104" rx="14" fill="#eeebfc" stroke="#6550d0" stroke-width="2.5"/><text x="16" y="30" class="mao" font-size="20" fill="#6550d0">Empresas (S.A.)</text><text x="16" y="54">debêntures</text><text x="16" y="76">risco: da empresa</text><text x="16" y="96" fill="#b3311d" font-weight="800">sem FGC</text></g>
+        <g transform="translate(510 176)"><rect width="230" height="104" rx="14" fill="#fdebe6" stroke="#d9472f" stroke-width="2.5"/><text x="16" y="30" class="mao" font-size="20" fill="#b3311d">Securitizadoras</text><text x="16" y="54">CRI e CRA</text><text x="16" y="76">risco: dos devedores do lastro</text><text x="16" y="96" fill="#b3311d" font-weight="800">sem FGC</text></g>
+      </g>
+      <g stroke="#a96300" stroke-width="3" fill="none" marker-end="url(#f5a)"><path d="M300 130 C 280 110, 270 90, 256 80"/><path d="M460 130 C 480 110, 490 90, 504 80"/><path d="M300 172 C 280 190, 270 210, 256 222"/><path d="M460 172 C 480 190, 490 210, 504 222"/></g>
+    </svg>
+    <figcaption class="legenda">Antes de olhar a taxa, pergunte: <strong>para quem</strong> estou emprestando? A resposta diz qual é o risco de crédito e se existe garantia do FGC.</figcaption>
+  </figure>
+
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao"><h4>Prefixado</h4><p>Taxa conhecida na aplicação: “<strong>13% ao ano</strong>”.</p></div>
+    <div class="cartao ambar"><h4>Pós-fixado</h4><p>Segue um indexador: “<strong>100% do CDI</strong>”, “Selic + 0,05%”.</p></div>
+    <div class="cartao verde"><h4>Híbrido</h4><p>Inflação + taxa fixa: “<strong>IPCA + 6%</strong>”.</p></div>
+  </div>
+
+  <h3>Na curva × a mercado</h3>
+  <p>Se você leva o título <strong>até o vencimento</strong>, recebe exatamente o que foi combinado: é o rendimento <span class="mt">“na curva”</span>. Mas se precisar <strong>vender antes</strong>, vende pelo <strong>preço de mercado do dia</strong>, que depende dos juros naquele momento: é a <span class="mt">marcação a mercado</span>. Lembra do capítulo 2? <strong>Juros sobem → prefixado e IPCA+ caem de preço</strong>. Por isso dá para perder dinheiro em renda fixa vendendo antes da hora.</p>
+
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+    <p>“Renda fixa não tem risco.” <strong>Errado!</strong> Toda renda fixa tem <strong>risco de crédito</strong> (o emissor não pagar), <strong>risco de mercado</strong> (o preço cair se vender antes) e <strong>risco de liquidez</strong> (não conseguir vender rápido sem desconto). O que muda é o <strong>tamanho</strong> de cada risco.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">Nos <b>investimentos de renda fixa</b>, a forma de remuneração é definida no momento da aplicação, podendo ser <b>prefixada</b>, <b>pós-fixada</b> (atrelada a um indexador) ou <b>híbrida</b>. O investidor empresta recursos ao <b>emissor</b> e está exposto aos riscos de <b>crédito</b>, de <b>mercado</b> (em caso de venda antes do vencimento, pela <b>marcação a mercado</b>) e de <b>liquidez</b>.</p>
+    <dl class="termos">
+      <dt>Emissor</dt><dd>quem pega o dinheiro emprestado e emite o título</dd>
+      <dt>Na curva</dt><dd>o rendimento combinado, se levar até o vencimento</dd>
+      <dt>Marcação a mercado</dt><dd>o preço do título hoje, se vender antes</dd>
+      <dt>Risco soberano</dt><dd>o risco de o governo não pagar (o menor do país)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.2 -->
+<section class="bloco quebra" id="c5-s2" data-titulo="Títulos públicos federais">
+  <span class="sobretitulo">5.2 · 🔥 Emprestando para o governo</span>
+  <h2 class="titulo-secao">Títulos públicos federais: LTN, NTN-F, LFT, NTN-B</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que o mesmo título tem dois nomes?</p>
+  <p>Porque cada título público tem um <strong>nome técnico</strong> (a sigla, que é o que a prova adora) e um <strong>nome comercial</strong> (o que aparece no app do Tesouro Direto). Todos são emitidos pelo <strong>Tesouro Nacional</strong> para financiar a dívida pública, e todos têm <strong>valor de face de R$ 1.000</strong> no vencimento (no caso dos indexados, R$ 1.000 corrigidos). Decore a tabela:</p>
+
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Sigla (técnico)</th><th>Nome no Tesouro Direto</th><th>Rende</th><th>Paga juros no caminho?</th></tr></thead>
+    <tbody>
+      <tr><td>LTN</td><td>Tesouro <strong>Prefixado</strong></td><td>Taxa fixa</td><td>Não: tudo no vencimento</td></tr>
+      <tr><td>NTN-F</td><td>Tesouro <strong>Prefixado com Juros Semestrais</strong></td><td>Taxa fixa</td><td>Sim: cupom de <strong>10% a.a.</strong>, pago a cada semestre</td></tr>
+      <tr><td>LFT</td><td>Tesouro <strong>Selic</strong></td><td>Taxa Selic (+ ágio ou deságio)</td><td>Não: tudo no vencimento</td></tr>
+      <tr><td>NTN-B Principal</td><td>Tesouro <strong>IPCA+</strong></td><td>IPCA + taxa fixa</td><td>Não: tudo no vencimento</td></tr>
+      <tr><td>NTN-B</td><td>Tesouro <strong>IPCA+ com Juros Semestrais</strong></td><td>IPCA + taxa fixa</td><td>Sim: cupom de <strong>6% a.a.</strong> (sobre o valor corrigido pelo IPCA), a cada semestre</td></tr>
+      <tr><td>NTN-B1</td><td>Tesouro <strong>Renda+</strong> e Tesouro <strong>Educa+</strong></td><td>IPCA + taxa fixa</td><td>Paga em <strong>parcelas mensais</strong> na fase de recebimento</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grade-2">
+    <div class="cartao"><h4>Truque das letras</h4><p><strong>L</strong> = <strong>L</strong>etra: paga tudo no fim (LTN, LFT). <strong>N</strong> = <strong>N</strong>ota: tem versões com cupom (NTN-F, NTN-B). <strong>F</strong> de <strong>F</strong>ixo, <strong>B</strong> de IPCA (o “B” de inflação), <strong>LFT</strong> = <strong>L</strong>etra <strong>F</strong>inanceira do <strong>T</strong>esouro, a da Selic.</p></div>
+    <div class="cartao verde"><h4>Qual sofre mais com os juros?</h4><p>O <strong>Tesouro Selic</strong> quase não oscila (acompanha a própria Selic): é o indicado para <strong>reserva de emergência</strong>. <strong>Prefixados e IPCA+ longos</strong> oscilam muito na marcação a mercado: quanto mais longo, mais sensível (lembra da duration?).</p></div>
+  </div>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>Títulos públicos <strong>não têm FGC</strong>: a garantia é o próprio <strong>Tesouro Nacional</strong> (risco soberano, o menor risco de crédito do país). Pagam <strong>IR pela tabela regressiva</strong> e <strong>IOF</strong> se resgatados em menos de 30 dias.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>LTN</b> (Tesouro Prefixado) tem rentabilidade definida no momento da compra e paga o valor de face no vencimento. A <b>LFT</b> (Tesouro Selic) tem rentabilidade atrelada à <b>taxa Selic</b> e baixa volatilidade. A <b>NTN-B Principal</b> (Tesouro IPCA+) e a <b>NTN-B</b> (Tesouro IPCA+ com Juros Semestrais) remuneram pela variação do <b>IPCA</b> acrescida de taxa prefixada; a NTN-B paga <b>cupons semestrais</b>. A <b>NTN-F</b> é prefixada com cupons semestrais.</p>
+    <dl class="termos">
+      <dt>Valor de face</dt><dd>R$ 1.000 pagos no vencimento</dd>
+      <dt>Cupom</dt><dd>juros pagos durante a vida do título</dd>
+      <dt>Ágio / deságio</dt><dd>pagar mais / menos que o valor “justo” do título</dd>
+      <dt>Tesouro Nacional</dt><dd>o emissor dos títulos públicos federais</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.3 -->
+<section class="bloco" id="c5-s3" data-titulo="Plataforma Tesouro Direto, Renda+, Educa+ e Reserva">
+  <span class="sobretitulo">5.3 · 🔥 A plataforma</span>
+  <h2 class="titulo-secao">Tesouro Direto, Renda+, Educa+ e o novo Tesouro Reserva</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">“Investi no Tesouro Direto.” Mas em qual título?</p>
+  <p>Essa é a primeira pegadinha: o <span class="mt">Tesouro Direto é a plataforma</span>, o programa do Tesouro Nacional em parceria com a <strong>B3</strong> que permite à <strong>pessoa física</strong> comprar títulos públicos pela internet. O que você compra são os títulos (Selic, Prefixado, IPCA+…).</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao"><h4>Quem é quem</h4><p><strong>Tesouro Nacional</strong>: emite e recompra os títulos. <strong>B3</strong>: guarda (custódia). <strong>Corretora/banco</strong>: o agente de custódia que dá o acesso.</p></div>
+    <div class="cartao ambar"><h4>Custos</h4><p><strong>Taxa de custódia da B3: 0,20% ao ano</strong>. No <strong>Tesouro Selic</strong>, isenção até <strong>R$ 10 mil</strong> por CPF. A maioria das corretoras não cobra taxa própria.</p></div>
+    <div class="cartao verde"><h4>Liquidez</h4><p>O Tesouro <strong>recompra os títulos diariamente</strong>, a preço de mercado. Dá para investir comprando <strong>frações</strong> de um título (o valor mínimo varia conforme o título).</p></div>
+  </div>
+
+  <h3>Os títulos com “propósito”</h3>
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 270" role="img" aria-label="Renda+ e Educa+: fase de acumulação, em que você investe, e fase de recebimento, com 240 parcelas mensais (20 anos) no Renda+ e 60 parcelas mensais (5 anos) no Educa+">
+      <rect width="760" height="270" fill="#fff"/>
+      <g transform="translate(20 20)">
+        <text x="0" y="24" class="mao" font-size="21" fill="#7a4b00">Tesouro Renda+ (aposentadoria extra)</text>
+        <rect x="0" y="40" width="380" height="46" rx="10" fill="#fff2dc" stroke="#a96300" stroke-width="2"/><text x="190" y="69" text-anchor="middle" font-size="14" fill="#1d2a31"><tspan font-weight="800">Acumulação</tspan>: você investe até a data escolhida</text>
+        <rect x="390" y="40" width="330" height="46" rx="10" fill="#e4f4ec" stroke="#23905f" stroke-width="2"/><text x="555" y="69" text-anchor="middle" font-size="14" fill="#1d2a31"><tspan font-weight="800">240 parcelas mensais</tspan> (20 anos)</text>
+      </g>
+      <g transform="translate(20 140)">
+        <text x="0" y="24" class="mao" font-size="21" fill="#7a4b00">Tesouro Educa+ (faculdade)</text>
+        <rect x="0" y="40" width="500" height="46" rx="10" fill="#fff2dc" stroke="#a96300" stroke-width="2"/><text x="250" y="69" text-anchor="middle" font-size="14" fill="#1d2a31"><tspan font-weight="800">Acumulação</tspan>: enquanto a criança cresce</text>
+        <rect x="510" y="40" width="210" height="46" rx="10" fill="#e4f4ec" stroke="#23905f" stroke-width="2"/><text x="615" y="69" text-anchor="middle" font-size="14" fill="#1d2a31"><tspan font-weight="800">60 parcelas</tspan> (5 anos)</text>
+        <text x="0" y="112" font-size="13" fill="#5b6970">Nos dois, as parcelas são corrigidas pelo IPCA: protegem o poder de compra da renda futura.</text>
+      </g>
+    </svg>
+    <figcaption class="legenda">Renda+ e Educa+ (NTN-B1) transformam o que você acumulou em uma “mesada” mensal corrigida pela inflação.</figcaption>
+  </figure>
+
+  <div class="caixa atualizacao"><span class="rotulo">Novidade de 2026</span>
+    <p><strong>Tesouro Reserva</strong>: lançado em <strong>maio de 2026</strong> pelo Tesouro Nacional, B3 e Banco do Brasil. Rende pela <strong>Selic</strong>, funciona <strong>24 horas, 7 dias por semana</strong> (aplicação e resgate via Pix), aceita a partir de <strong>R$ 1</strong> e <strong>não tem marcação a mercado</strong>: você resgata o aplicado mais os rendimentos, sem oscilação. Foi criado para a <strong>reserva de emergência</strong>. IR e IOF seguem as regras da renda fixa.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>Tesouro Direto</b> é um programa do Tesouro Nacional, em parceria com a <b>B3</b>, para a venda de títulos públicos federais a <b>pessoas físicas</b> pela internet. Incide <b>taxa de custódia da B3</b>, e o Tesouro Nacional garante a <b>recompra diária</b> dos títulos, a preço de mercado. O <b>Tesouro Renda+</b> foi criado para complementar a aposentadoria, com pagamento em <b>240 parcelas mensais</b>; o <b>Tesouro Educa+</b>, para custear a educação, em <b>60 parcelas mensais</b>.</p>
+    <dl class="termos">
+      <dt>Agente de custódia</dt><dd>a corretora ou banco pelo qual você acessa o Tesouro Direto</dd>
+      <dt>Taxa de custódia</dt><dd>a taxa da B3 por guardar os títulos (0,20% a.a.)</dd>
+      <dt>Recompra</dt><dd>o Tesouro compra o título de volta antes do vencimento</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.4 -->
+<section class="bloco" id="c5-s4" data-titulo="CDB, RDB e RDC">
+  <span class="sobretitulo">5.4 · Emprestando para o banco</span>
+  <h2 class="titulo-secao">CDB, RDB e RDC</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que o banco me paga para guardar meu dinheiro?</p>
+  <p>Porque ele usa o seu dinheiro para <strong>emprestar a outras pessoas</strong> cobrando juros maiores. O CDB é o jeito mais comum de o banco <strong>captar</strong> esse dinheiro: é um <span class="mt">depósito a prazo</span>, e você recebe juros por ele.</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Título</th><th>Quem emite</th><th>Pode ser negociado antes?</th><th>Garantia</th></tr></thead>
+    <tbody>
+      <tr><td>CDB<br><small>Certificado de Depósito Bancário</small></td><td><strong>Bancos</strong> (comerciais, múltiplos, de investimento) e caixas econômicas</td><td><strong>Sim</strong>: é transferível; muitos têm <strong>liquidez diária</strong></td><td><strong>FGC</strong></td></tr>
+      <tr><td>RDB<br><small>Recibo de Depósito Bancário</small></td><td>Bancos e <strong>financeiras</strong> (SCFI)</td><td><strong>Não</strong>: é <strong>intransferível</strong> (resgate antecipado só se o emissor permitir)</td><td><strong>FGC</strong></td></tr>
+      <tr><td>RDC<br><small>Recibo de Depósito Cooperativo</small></td><td><strong>Cooperativas de crédito</strong></td><td>Conforme as regras da cooperativa</td><td><strong>FGCoop</strong> (o fundo das cooperativas)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa cotidiano"><span class="rotulo">No dia a dia</span>
+    <p>“CDB a <strong>100% do CDI</strong> com liquidez diária” é o pós-fixado clássico: rende quase a Selic e dá para resgatar a qualquer momento. Já um CDB que paga “<strong>120% do CDI</strong>” de um banco pequeno paga mais porque o <strong>risco de crédito é maior</strong>, e muitas vezes só deixa resgatar no vencimento.</p></div>
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>FGC: até <strong>R$ 250 mil por CPF por instituição (conglomerado)</strong>, com teto de <strong>R$ 1 milhão a cada 4 anos</strong> (você viu no capítulo 1). CDB, RDB, LCI, LCA, LCD, poupança e conta-corrente estão cobertos. O CDB paga <strong>IR pela tabela regressiva</strong>.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>CDB</b> é um título de renda fixa emitido por bancos para <b>captação de recursos</b>, podendo ser prefixado, pós-fixado ou híbrido; é <b>transferível</b> e conta com a garantia do <b>FGC</b>, observados os limites. O <b>RDB</b> é semelhante, porém <b>inegociável e intransferível</b>. O <b>RDC</b> é o instrumento de captação das <b>cooperativas de crédito</b>, garantido pelo <b>FGCoop</b>.</p>
+    <dl class="termos">
+      <dt>Captação</dt><dd>o banco pegando dinheiro emprestado do investidor</dd>
+      <dt>Depósito a prazo</dt><dd>dinheiro aplicado por um prazo, com juros</dd>
+      <dt>Liquidez diária</dt><dd>pode resgatar em qualquer dia útil</dd>
+      <dt>Intransferível</dt><dd>não pode ser vendido a outra pessoa</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.5 -->
+<section class="bloco quebra" id="c5-s5" data-titulo="LCI, LCA e LCD">
+  <span class="sobretitulo">5.5 · As “letras” isentas</span>
+  <h2 class="titulo-secao">LCI, LCA e LCD</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que a LCI rende “menos” e mesmo assim pode ser melhor que o CDB?</p>
+  <p>Porque ela é <strong>isenta de Imposto de Renda para pessoa física</strong>! O governo dá essa isenção para incentivar setores: o dinheiro da LCI vai para o <strong>crédito imobiliário</strong>, o da LCA para o <strong>agronegócio</strong> e o da LCD para projetos de <strong>desenvolvimento</strong> (infraestrutura, indústria, inovação).</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th></th><th>LCI</th><th>LCA</th><th>LCD</th></tr></thead>
+    <tbody>
+      <tr><td>Financia</td><td>Setor <strong>imobiliário</strong></td><td><strong>Agronegócio</strong></td><td>Projetos de <strong>desenvolvimento</strong></td></tr>
+      <tr><td>Quem emite</td><td>Instituições financeiras (bancos)</td><td>Instituições financeiras (bancos)</td><td>Só <strong>BNDES e bancos de desenvolvimento</strong></td></tr>
+      <tr><td>Prazo mínimo</td><td><strong>6 meses</strong> (36 meses se corrigida mensalmente por índice de preços)</td><td><strong>6 meses</strong> (12 meses se corrigida por índice de preços)</td><td><strong>12 meses</strong></td></tr>
+      <tr><td>IR (pessoa física)</td><td colspan="3"><strong>Isento</strong></td></tr>
+      <tr><td>FGC</td><td colspan="3"><strong>Sim</strong>, até o limite (a LCD entrou na garantia em novembro de 2024)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Corrigindo material antigo</span>
+    <p><strong>Prazos:</strong> em fevereiro de 2024 o CMN endureceu as regras (LCI 12 meses, LCA 9 meses); em <strong>maio de 2025</strong> (Res. CMN 5.215) o prazo mínimo caiu para <strong>6 meses</strong> nos dois casos sem correção por índice de preços.<br>
+    <strong>LCD:</strong> algumas apostilas dizem que ela “não tem FGC” ou que “só o BNDES emite”. A Lei 14.937/2024 permite a emissão pelo <strong>BNDES e pelos bancos de desenvolvimento</strong>, e a <strong>Res. CMN 5.184/2024</strong> incluiu a LCD na garantia do <strong>FGC</strong>.</p></div>
+
+  <h3>Como comparar LCI com CDB: a taxa equivalente</h3>
+  <p>Para comparar, transforme a taxa isenta na taxa “bruta” equivalente: <strong>CDB equivalente = LCI ÷ (1 − alíquota de IR)</strong>.</p>
+  <div class="faixa-chave"><span class="big">÷0,85</span><p>LCI a <strong>90% do CDI</strong> por mais de 2 anos (IR de 15%) equivale a um CDB de 90 ÷ 0,85 = <strong>105,9% do CDI</strong>. Se o CDB pagar menos que isso, a LCI ganha.</p></div>
+  <h3>Simulador · LCI ou CDB?</h3>
+  <p>Coloque as taxas e o prazo e veja qual rende mais para você, já descontado o IR.</p>
+  <div class="calc" data-calc="equiv"></div>
+
+  <div class="caixa pegadinha"><span class="rotulo">Atenção: discussão em curso</span>
+    <p>A <strong>MP 1.303/2025</strong>, que previa cobrar IR sobre LCI, LCA, CRI e CRA, <strong>perdeu a eficácia</strong> sem virar lei. Em <strong>novembro de 2026</strong> foi apresentado o <strong>PL 5.853/2026</strong>, que volta ao tema da tributação desses títulos. <strong>Até a data desta apostila, a isenção para pessoa física continua valendo.</strong></p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>LCI</b> e a <b>LCA</b> são títulos emitidos por instituições financeiras, lastreados respectivamente em <b>créditos imobiliários</b> e em <b>direitos creditórios do agronegócio</b>. A <b>LCD</b> é emitida pelo <b>BNDES</b> e por <b>bancos de desenvolvimento</b> para financiar projetos de desenvolvimento. Os rendimentos dos três são <b>isentos de IR para pessoa física</b>, e os títulos contam com a garantia do <b>FGC</b>, observados os limites.</p>
+    <dl class="termos">
+      <dt>Lastro</dt><dd>os créditos que “estão por trás” do título</dd>
+      <dt>Isenção de IR (PF)</dt><dd>pessoa física não paga imposto sobre o rendimento</dd>
+      <dt>Taxa equivalente</dt><dd>a taxa isenta convertida para comparar com uma tributada</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.6 -->
+<section class="bloco" id="c5-s6" data-titulo="Debêntures">
+  <span class="sobretitulo">5.6 · 🔥 Emprestando para empresas</span>
+  <h2 class="titulo-secao">Debêntures: comuns, incentivadas, de infraestrutura, conversíveis e permutáveis</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Dá para emprestar dinheiro direto para uma empresa?</p>
+  <p>Dá! A <span class="mt">debênture</span> é um título de dívida emitido por uma <strong>sociedade anônima (S.A.)</strong>: a empresa pega dinheiro emprestado com investidores para financiar seus projetos, sem passar por um banco. Ao comprar, você vira <strong>credor</strong> da empresa (e não sócio, como numa ação). As regras ficam na <strong>escritura de emissão</strong>, e um <strong>agente fiduciário</strong> defende os interesses dos debenturistas.</p>
+
+  <div class="grade-2">
+    <div class="cartao coral"><h4>Riscos</h4><p><strong>Crédito</strong>: a empresa pode não pagar. <strong>Liquidez</strong>: muitas são pouco negociadas. <strong>Mercado</strong>: o preço oscila. E atenção: <strong>debênture não tem FGC</strong>. Por isso o <strong>rating</strong> da emissão importa tanto.</p></div>
+    <div class="cartao"><h4>Garantias (da mais forte à mais fraca)</h4><p><strong>Real</strong> (um bem específico, como imóvel) → <strong>flutuante</strong> (preferência sobre o ativo da empresa) → <strong>quirografária</strong> (sem garantia, credor comum) → <strong>subordinada</strong> (só recebe depois dos demais credores).</p></div>
+  </div>
+
+  <h3>Os tipos que a prova cobra</h3>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tipo</th><th>O que é</th><th>IR para pessoa física</th></tr></thead>
+    <tbody>
+      <tr><td>Comum (simples)</td><td>Dívida da empresa, paga em dinheiro</td><td>Tabela regressiva (22,5% a 15%)</td></tr>
+      <tr><td>Incentivada (Lei 12.431/2011)</td><td>Financia projetos de <strong>infraestrutura considerados prioritários</strong></td><td><strong>Isenta</strong> (alíquota zero)</td></tr>
+      <tr><td>De infraestrutura (Lei 14.801/2024)</td><td>Também financia infraestrutura, mas o benefício fiscal vai para a <strong>empresa emissora</strong> (deduz os juros pagos)</td><td><strong>Tributada</strong> normalmente (tabela regressiva)</td></tr>
+      <tr><td>Conversível</td><td>Pode ser trocada por <strong>ações da própria empresa emissora</strong></td><td>Conforme o tipo da emissão</td></tr>
+      <tr><td>Permutável</td><td>Pode ser trocada por <strong>ações de outra empresa</strong> (em geral, do mesmo grupo)</td><td>Conforme o tipo da emissão</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Corrigindo material antigo</span>
+    <p>Não confunda: <strong>incentivada</strong> (Lei 12.431) = <strong>investidor PF isento</strong>. <strong>De infraestrutura</strong> (Lei 14.801/2024) = <strong>emissor</strong> ganha o benefício; o <strong>investidor paga IR</strong> normalmente (art. 3º da lei). Algumas apostilas chamam as duas de “isentas”.</p></div>
+
+  <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+    <p class="balao mb-0">Conversível: “con” de <b>com a própria</b> empresa. Permutável: <b>permuta</b> = troca com <b>outra</b>. E nos dois casos, se virar ação, você deixa de ser credor e vira <b>sócio</b>.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial"><b>Debêntures</b> são valores mobiliários representativos de <b>dívida</b>, emitidos por <b>sociedades por ações</b>, que asseguram a seus titulares direito de crédito contra a companhia, nas condições da <b>escritura de emissão</b>. Não contam com a garantia do FGC. As <b>debêntures incentivadas</b> (Lei 12.431/2011) têm rendimentos isentos de IR para pessoas físicas. As <b>conversíveis</b> podem ser convertidas em ações da emissora; as <b>permutáveis</b>, em ações de outra companhia.</p>
+    <dl class="termos">
+      <dt>Debenturista</dt><dd>o investidor que comprou a debênture (credor)</dd>
+      <dt>Escritura de emissão</dt><dd>o “contrato” com todas as regras da debênture</dd>
+      <dt>Agente fiduciário</dt><dd>quem fiscaliza a empresa em nome dos debenturistas</dd>
+      <dt>Quirografária</dt><dd>sem garantia: credor comum</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.7 -->
+<section class="bloco" id="c5-s7" data-titulo="CRI e CRA">
+  <span class="sobretitulo">5.7 · O “pacote” de dívidas</span>
+  <h2 class="titulo-secao">CRI e CRA: securitização</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">O que é securitizar?</p>
+  <p>Imagina uma construtora que vendeu 200 apartamentos parcelados. Ela tem muito dinheiro <strong>a receber</strong> nos próximos anos, mas precisa de dinheiro <strong>agora</strong>. Ela vende esses recebíveis para uma <strong>companhia securitizadora</strong>, que “empacota” tudo em um título e vende aos investidores. Isso é <span class="mt">securitização</span>.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 230" role="img" aria-label="Securitização: devedores pagam parcelas; a empresa cede os recebíveis à securitizadora; a securitizadora emite CRI ou CRA aos investidores, que recebem as parcelas">
+      <rect width="760" height="230" fill="#fff"/>
+      <defs><marker id="f5b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#a96300"/></marker></defs>
+      <g font-size="13" fill="#5b6970" text-anchor="middle">
+        <g transform="translate(20 70)"><rect width="150" height="86" rx="14" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/><text x="75" y="34" class="mao" font-size="18" fill="#1d2a31">Devedores</text><text x="75" y="58">compradores dos imóveis</text><text x="75" y="74">ou produtores rurais</text></g>
+        <g transform="translate(210 70)"><rect width="150" height="86" rx="14" fill="#eeebfc" stroke="#6550d0" stroke-width="2"/><text x="75" y="34" class="mao" font-size="18" fill="#6550d0">Empresa</text><text x="75" y="58">construtora ou</text><text x="75" y="74">empresa do agro</text></g>
+        <g transform="translate(400 70)"><rect width="160" height="86" rx="14" fill="#fff2dc" stroke="#a96300" stroke-width="2"/><text x="80" y="34" class="mao" font-size="18" fill="#7a4b00">Securitizadora</text><text x="80" y="58">“empacota” os recebíveis</text><text x="80" y="74">em patrimônio separado</text></g>
+        <g transform="translate(600 70)"><rect width="140" height="86" rx="14" fill="#e4f4ec" stroke="#23905f" stroke-width="2"/><text x="70" y="34" class="mao" font-size="18" fill="#1b7049">Investidores</text><text x="70" y="58">compram CRI</text><text x="70" y="74">ou CRA</text></g>
+      </g>
+      <g stroke="#a96300" stroke-width="3" fill="none" marker-end="url(#f5b)"><path d="M172 100H206"/><path d="M362 100H396"/><path d="M562 100H596"/></g>
+      <g class="mao" font-size="14" fill="#a96300" text-anchor="middle"><text x="189" y="56">parcelas</text><text x="379" y="40">vende os</text><text x="379" y="58">recebíveis</text><text x="579" y="40">emite</text><text x="579" y="58">o título</text></g>
+      <text x="380" y="200" text-anchor="middle" class="mao" font-size="16" fill="#1d2a31">O dinheiro dos investidores volta para a empresa; as parcelas dos devedores pagam os investidores.</text>
+    </svg>
+    <figcaption class="legenda">CRI = lastro <strong>imobiliário</strong>. CRA = lastro no <strong>agronegócio</strong>. O risco é de os <strong>devedores do lastro</strong> não pagarem.</figcaption>
+  </figure>
+
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao verde"><h4>IR</h4><p><strong>Isentos</strong> para pessoa física.</p></div>
+    <div class="cartao coral"><h4>FGC</h4><p><strong>Não têm.</strong> O risco é do lastro (e das garantias da operação).</p></div>
+    <div class="cartao"><h4>Regras do lastro</h4><p>Desde 2024 (Res. CMN 5.118) o CMN <strong>restringiu o lastro</strong>: ele precisa ter relação real com o setor imobiliário ou do agro.</p></div>
+  </div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>CRI</b> e o <b>CRA</b> são títulos de renda fixa emitidos por <b>companhias securitizadoras</b>, lastreados em <b>recebíveis</b> do setor imobiliário e do agronegócio, respectivamente. São <b>isentos de IR para pessoas físicas</b>, não contam com a garantia do FGC e expõem o investidor ao risco de crédito dos devedores dos recebíveis.</p>
+    <dl class="termos">
+      <dt>Securitização</dt><dd>transformar recebíveis em títulos vendidos a investidores</dd>
+      <dt>Recebíveis</dt><dd>dinheiro que a empresa tem a receber no futuro</dd>
+      <dt>Patrimônio separado</dt><dd>os recebíveis ficam separados dos bens da securitizadora</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.8 -->
+<section class="bloco" id="c5-s8" data-titulo="Rating">
+  <span class="sobretitulo">5.8 · A nota do risco</span>
+  <h2 class="titulo-secao">Rating: a nota de crédito</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Como saber se a empresa vai me pagar?</p>
+  <p>Ninguém sabe com certeza, mas existem empresas especializadas em dar uma <strong>nota</strong> para isso: as <span class="mt">agências de classificação de risco</span> (como S&amp;P, Moody’s e Fitch, reguladas pela CVM no Brasil). O <strong>rating</strong> é uma opinião sobre a <strong>capacidade de o emissor pagar</strong> suas dívidas.</p>
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 200" role="img" aria-label="Escala de rating: AAA, AA, A e BBB são grau de investimento; BB, B, CCC e D são grau especulativo">
+      <rect width="760" height="200" fill="#fff"/>
+      <g font-family="Kalam, cursive" font-weight="700" font-size="22" text-anchor="middle">
+        <rect x="20" y="60" width="86" height="56" rx="10" fill="#1b7049"/><text x="63" y="96" fill="#fff">AAA</text>
+        <rect x="112" y="60" width="86" height="56" rx="10" fill="#23905f"/><text x="155" y="96" fill="#fff">AA</text>
+        <rect x="204" y="60" width="86" height="56" rx="10" fill="#4fae7c"/><text x="247" y="96" fill="#fff">A</text>
+        <rect x="296" y="60" width="86" height="56" rx="10" fill="#8cc79f"/><text x="339" y="96" fill="#1d2a31">BBB</text>
+        <rect x="388" y="60" width="86" height="56" rx="10" fill="#f5c542"/><text x="431" y="96" fill="#1d2a31">BB</text>
+        <rect x="480" y="60" width="86" height="56" rx="10" fill="#f0a12f"/><text x="523" y="96" fill="#1d2a31">B</text>
+        <rect x="572" y="60" width="86" height="56" rx="10" fill="#e0590c"/><text x="615" y="96" fill="#fff">CCC</text>
+        <rect x="664" y="60" width="76" height="56" rx="10" fill="#b3311d"/><text x="702" y="96" fill="#fff">D</text>
+      </g>
+      <path d="M20 40H382" stroke="#1b7049" stroke-width="3"/><text x="200" y="30" text-anchor="middle" class="mao" font-size="17" fill="#1b7049">grau de investimento (risco menor)</text>
+      <path d="M388 40H740" stroke="#b3311d" stroke-width="3"/><text x="564" y="30" text-anchor="middle" class="mao" font-size="17" fill="#b3311d">grau especulativo (risco maior)</text>
+      <text x="380" y="150" text-anchor="middle" font-size="14" fill="#5b6970">Escala simplificada (estilo S&amp;P e Fitch). D = default (calote). Nota menor → risco maior → juros maiores.</text>
+      <text x="380" y="172" text-anchor="middle" font-size="14" fill="#5b6970">Pode haver escala global ou nacional (ex.: “brAAA”), e sinais de + e − dentro de cada nota.</text>
+    </svg>
+    <figcaption class="legenda">Quanto pior a nota, mais juros o emissor precisa pagar para atrair investidores. Rating <strong>não é garantia</strong>: é uma opinião, e pode mudar.</figcaption>
+  </figure>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>rating</b> é a avaliação, realizada por <b>agências de classificação de risco</b>, da capacidade de um emissor ou de uma emissão honrar seus compromissos financeiros. Emissores com rating mais baixo tendem a pagar <b>taxas maiores</b> para compensar o maior risco de crédito. A classificação não constitui garantia de pagamento.</p>
+    <dl class="termos">
+      <dt>Grau de investimento</dt><dd>nota boa (até BBB−): risco de crédito menor</dd>
+      <dt>Grau especulativo</dt><dd>nota abaixo de BBB−: risco maior</dd>
+      <dt>Default</dt><dd>o calote</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.9 -->
+<section class="bloco quebra" id="c5-s9" data-titulo="Poupança">
+  <span class="sobretitulo">5.9 · A velha conhecida</span>
+  <h2 class="titulo-secao">Poupança: regras, aniversário e SFH</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Quanto a poupança rende, afinal?</p>
+  <p>A regra é da lei (Lei 8.177/1991, com a redação de 2012) e tem duas partes: a <strong>TR</strong> mais um <strong>adicional</strong> que depende da meta Selic:</p>
+  <div class="grade-2">
+    <div class="cartao ambar"><h4>Selic acima de 8,5% a.a.</h4><p class="manuscrito" style="font-size:24px">0,5% ao mês + TR</p><p>É o caso atual (meta Selic de 13,75%): em novembro de 2026, a poupança rende cerca de <strong>0,67% ao mês</strong> (0,5% + TR de ~0,17%).</p></div>
+    <div class="cartao"><h4>Selic igual ou abaixo de 8,5% a.a.</h4><p class="manuscrito" style="font-size:24px">70% da Selic + TR</p><p>A Selic é mensalizada. Com juros baixos, a poupança “acompanha” 70% da Selic.</p></div>
+  </div>
+
+  <h3>A data de aniversário</h3>
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 230" role="img" aria-label="Data de aniversário: depósito no dia 10 rende no dia 10 do mês seguinte; depósitos nos dias 29, 30 e 31 fazem aniversário no dia 1º do mês seguinte; resgate antes do aniversário perde o rendimento do período">
+      <rect width="760" height="230" fill="#fff"/>
+      <g transform="translate(20 20)"><rect width="340" height="190" rx="16" fill="#fff2dc" stroke="#a96300" stroke-width="2"/>
+        <text x="20" y="34" class="mao" font-size="19" fill="#7a4b00">Depositou no dia 10</text>
+        <rect x="20" y="52" width="70" height="70" rx="10" fill="#fff" stroke="#1d2a31" stroke-width="2.5"/><text x="55" y="100" text-anchor="middle" class="mao" font-size="30" fill="#1d2a31">10</text>
+        <path d="M100 87h120" stroke="#23905f" stroke-width="3" stroke-dasharray="6 4"/><text x="160" y="78" text-anchor="middle" font-size="12" fill="#5b6970">1 mês</text>
+        <rect x="230" y="52" width="70" height="70" rx="10" fill="#e4f4ec" stroke="#23905f" stroke-width="2.5"/><text x="265" y="100" text-anchor="middle" class="mao" font-size="30" fill="#1b7049">10</text>
+        <text x="20" y="152" font-size="13" fill="#1d2a31">Rende no dia 10 de cada mês. Sacou no dia 9?</text>
+        <text x="20" y="172" font-size="13" fill="#b3311d" font-weight="800">Perde o rendimento daquele mês.</text></g>
+      <g transform="translate(400 20)"><rect width="340" height="190" rx="16" fill="#eeebfc" stroke="#6550d0" stroke-width="2"/>
+        <text x="20" y="34" class="mao" font-size="19" fill="#6550d0">Depositou no dia 29, 30 ou 31</text>
+        <g font-size="22" class="mao" text-anchor="middle"><rect x="20" y="52" width="56" height="56" rx="10" fill="#fff" stroke="#1d2a31" stroke-width="2"/><text x="48" y="88">29</text><rect x="84" y="52" width="56" height="56" rx="10" fill="#fff" stroke="#1d2a31" stroke-width="2"/><text x="112" y="88">30</text><rect x="148" y="52" width="56" height="56" rx="10" fill="#fff" stroke="#1d2a31" stroke-width="2"/><text x="176" y="88">31</text></g>
+        <path d="M212 80h30" stroke="#6550d0" stroke-width="3"/><path d="M236 72l10 8-10 8" fill="none" stroke="#6550d0" stroke-width="3"/>
+        <rect x="256" y="52" width="64" height="56" rx="10" fill="#fff4a8" stroke="#a96300" stroke-width="2.5"/><text x="288" y="88" text-anchor="middle" class="mao" font-size="22" fill="#7a4b00">dia 1</text>
+        <text x="20" y="146" font-size="13" fill="#1d2a31">O aniversário passa para o <tspan font-weight="800">dia 1º do mês seguinte</tspan></text>
+        <text x="20" y="166" font-size="13" fill="#1d2a31">(nem todo mês tem esses dias).</text></g>
+    </svg>
+    <figcaption class="legenda">O rendimento é calculado sobre o <strong>menor saldo</strong> de cada período e creditado no aniversário (mensal, para pessoa física).</figcaption>
+  </figure>
+
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao verde"><h4>Custos e tributação</h4><p><strong>Isenta de IR</strong> para pessoa física e <strong>sem IOF</strong>. Sem taxas.</p></div>
+    <div class="cartao"><h4>Garantia</h4><p><strong>FGC</strong>, até R$ 250 mil por CPF por instituição.</p></div>
+    <div class="cartao coral"><h4>Riscos</h4><p>Rende pouco: pode <strong>perder para a inflação</strong> e para outros investimentos conservadores. Saque fora do aniversário perde o rendimento do mês.</p></div>
+  </div>
+  <div class="caixa cotidiano"><span class="rotulo">Importância no SFH</span>
+    <p>O dinheiro da poupança é a base do <strong>Sistema Financeiro da Habitação (SFH)</strong>: os bancos do <strong>SBPE</strong> são obrigados a <strong>direcionar a maior parte</strong> dos depósitos de poupança para o <strong>financiamento imobiliário</strong>. É por isso que poupança e crédito para a casa própria andam juntos. (As regras de direcionamento estão em transição para um novo modelo, pela Res. CMN 5.255/2025.)</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A remuneração da <b>caderneta de poupança</b> é composta pela <b>TR</b> mais <b>0,5% ao mês</b>, enquanto a meta da taxa Selic for superior a 8,5% ao ano, ou <b>70% da meta Selic</b>, mensalizada, quando ela for igual ou inferior a 8,5%. É calculada sobre o <b>menor saldo</b> do período e creditada na <b>data de aniversário</b>; contas abertas nos dias 29, 30 e 31 têm aniversário no dia 1º do mês seguinte. É <b>isenta de IR</b> para pessoa física e garantida pelo <b>FGC</b>.</p>
+    <dl class="termos">
+      <dt>Data de aniversário</dt><dd>o dia do mês em que o rendimento é creditado</dd>
+      <dt>Menor saldo</dt><dd>a base do rendimento é o menor valor do período</dd>
+      <dt>SFH / SBPE</dt><dd>o sistema da casa própria / os bancos que captam poupança para ele</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.10 -->
+<section class="bloco" id="c5-s10" data-titulo="TR e TLP">
+  <span class="sobretitulo">5.10 · Duas taxas de referência</span>
+  <h2 class="titulo-secao">TR e TLP</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">TR e TLP: para que servem?</p>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>TR (Taxa Referencial)</h4><p>Calculada pelo <strong>BC</strong> a partir das taxas das <strong>LTN</strong> (Res. CMN 4.624/2018). Corrige a <strong>poupança</strong>, o <strong>FGTS</strong> e muitos financiamentos imobiliários. Hoje é pequena: cerca de <strong>0,17% ao mês</strong> (nov/2026). Com juros baixos, pode chegar a zero.</p></div>
+    <div class="cartao azul"><h4>TLP (Taxa de Longo Prazo)</h4><p>Criada pela <strong>Lei 13.483/2017</strong> (substituiu a TJLP nos novos contratos). É a taxa dos <strong>financiamentos do BNDES</strong> com recursos do FAT: <strong>IPCA + uma taxa real prefixada</strong> baseada nas <strong>NTN-B de 5 anos</strong>. A parte prefixada fica travada na contratação.</p></div>
+  </div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>TR</b> é calculada pelo Banco Central com base nas taxas das <b>LTN</b> e é utilizada na remuneração da <b>poupança</b> e do <b>FGTS</b>. A <b>TLP</b>, instituída pela Lei 13.483/2017, é composta pela variação do <b>IPCA</b> e por taxa de juros prefixada baseada na estrutura a termo das <b>NTN-B de 5 anos</b>, e remunera os financiamentos do <b>BNDES</b> com recursos do FAT.</p>
+    <dl class="termos">
+      <dt>FAT</dt><dd>Fundo de Amparo ao Trabalhador, que financia o BNDES</dd>
+      <dt>TJLP</dt><dd>a taxa antiga do BNDES, substituída pela TLP nos novos contratos</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.11 -->
+<section class="bloco quebra" id="c5-s11" data-titulo="Tributação: IR e IOF">
+  <span class="sobretitulo">5.11 · 🔥 O leão</span>
+  <h2 class="titulo-secao">Tributação da renda fixa: IR e IOF</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Quanto de imposto eu pago no resgate?</p>
+  <p>Depende de <strong>quanto tempo</strong> o dinheiro ficou aplicado. O <strong>IR</strong> incide sobre o <strong>rendimento</strong> (nunca sobre o valor aplicado), é <strong>retido na fonte</strong> no resgate, vencimento ou pagamento de cupom, e segue a <span class="mt">tabela regressiva</span> (Lei 11.033/2004):</p>
+  <div class="grade-4 numeros">
+    <div class="cartao"><span class="valor">22,5%</span><span class="rotulo-n">até <strong>180 dias</strong></span></div>
+    <div class="cartao"><span class="valor">20%</span><span class="rotulo-n">de <strong>181 a 360</strong> dias</span></div>
+    <div class="cartao"><span class="valor">17,5%</span><span class="rotulo-n">de <strong>361 a 720</strong> dias</span></div>
+    <div class="cartao"><span class="valor">15%</span><span class="rotulo-n">acima de <strong>720 dias</strong></span></div>
+  </div>
+  <p class="pequeno">Vale para Tesouro Direto, CDB, RDB, debêntures comuns e de infraestrutura e outros títulos tributados. Nos títulos com cupom, cada pagamento de juros é tributado pelo prazo desde a compra.</p>
+
+  <div class="tabela-rolagem"><table class="tabela lado">
+    <thead><tr><th>Para pessoa física…</th><th>Isentos de IR</th><th>Pagam IR (tabela regressiva)</th></tr></thead>
+    <tbody>
+      <tr><td>Títulos</td><td><strong>Poupança, LCI, LCA, LCD, CRI, CRA</strong>, debêntures <strong>incentivadas</strong> (Lei 12.431), LH e LIG</td><td><strong>Tesouro Direto, CDB, RDB</strong>, debêntures comuns e de infraestrutura (Lei 14.801), letras financeiras</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>IOF: o imposto da pressa</h3>
+  <p>Resgatou em <strong>menos de 30 dias</strong>? Além do IR, paga <strong>IOF</strong>, que leva uma parte do <strong>rendimento</strong> conforme os dias (Decreto 6.306/2007): <strong>96% no 1º dia</strong>, caindo até <strong>zero no 30º dia</strong>.</p>
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 320" role="img" aria-label="IOF regressivo: no 1º dia o IOF leva 96% do rendimento; cai dia a dia até zero no 30º dia">
+      <rect width="760" height="320" fill="#fff"/>
+      <path d="M58 250H730" stroke="#1d2a31" stroke-width="2.5"/>
+      <path d="M58 202.5H730" stroke="#dfe9f2" stroke-width="1.5"/><text x="52" y="206.5" text-anchor="end" font-size="12" fill="#5b6970">25%</text>
+      <path d="M58 155.0H730" stroke="#dfe9f2" stroke-width="1.5"/><text x="52" y="159.0" text-anchor="end" font-size="12" fill="#5b6970">50%</text>
+      <path d="M58 107.5H730" stroke="#dfe9f2" stroke-width="1.5"/><text x="52" y="111.5" text-anchor="end" font-size="12" fill="#5b6970">75%</text>
+      <path d="M58 60.0H730" stroke="#dfe9f2" stroke-width="1.5"/><text x="52" y="64.0" text-anchor="end" font-size="12" fill="#5b6970">100%</text>
+      <rect x="70" y="67.6" width="17" height="182.4" rx="2" fill="#d9472f"/>
+      <text x="78.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1</text>
+      <rect x="92" y="73.3" width="17" height="176.7" rx="2" fill="#d9472f"/>
+      <rect x="114" y="79.0" width="17" height="171.0" rx="2" fill="#d9472f"/>
+      <rect x="136" y="86.6" width="17" height="163.4" rx="2" fill="#d9472f"/>
+      <rect x="158" y="92.3" width="17" height="157.7" rx="2" fill="#d9472f"/>
+      <text x="166.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">5</text>
+      <rect x="180" y="98.0" width="17" height="152.0" rx="2" fill="#d9472f"/>
+      <rect x="202" y="105.6" width="17" height="144.4" rx="2" fill="#d9472f"/>
+      <rect x="224" y="111.3" width="17" height="138.7" rx="2" fill="#d9472f"/>
+      <rect x="246" y="117.0" width="17" height="133.0" rx="2" fill="#d9472f"/>
+      <rect x="268" y="124.6" width="17" height="125.4" rx="2" fill="#d9472f"/>
+      <text x="276.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">10</text>
+      <rect x="290" y="130.3" width="17" height="119.7" rx="2" fill="#f0a12f"/>
+      <rect x="312" y="136.0" width="17" height="114.0" rx="2" fill="#f0a12f"/>
+      <rect x="334" y="143.6" width="17" height="106.4" rx="2" fill="#f0a12f"/>
+      <rect x="356" y="149.3" width="17" height="100.7" rx="2" fill="#f0a12f"/>
+      <rect x="378" y="155.0" width="17" height="95.0" rx="2" fill="#f0a12f"/>
+      <text x="386.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">15</text>
+      <rect x="400" y="162.6" width="17" height="87.4" rx="2" fill="#f0a12f"/>
+      <rect x="422" y="168.3" width="17" height="81.7" rx="2" fill="#f0a12f"/>
+      <rect x="444" y="174.0" width="17" height="76.0" rx="2" fill="#f0a12f"/>
+      <rect x="466" y="181.6" width="17" height="68.4" rx="2" fill="#f0a12f"/>
+      <rect x="488" y="187.3" width="17" height="62.7" rx="2" fill="#f0a12f"/>
+      <text x="496.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">20</text>
+      <rect x="510" y="193.0" width="17" height="57.0" rx="2" fill="#23905f"/>
+      <rect x="532" y="200.6" width="17" height="49.4" rx="2" fill="#23905f"/>
+      <rect x="554" y="206.3" width="17" height="43.7" rx="2" fill="#23905f"/>
+      <rect x="576" y="212.0" width="17" height="38.0" rx="2" fill="#23905f"/>
+      <rect x="598" y="219.6" width="17" height="30.4" rx="2" fill="#23905f"/>
+      <text x="606.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">25</text>
+      <rect x="620" y="225.3" width="17" height="24.7" rx="2" fill="#23905f"/>
+      <rect x="642" y="231.0" width="17" height="19.0" rx="2" fill="#23905f"/>
+      <rect x="664" y="238.6" width="17" height="11.4" rx="2" fill="#23905f"/>
+      <rect x="686" y="244.3" width="17" height="5.7" rx="2" fill="#23905f"/>
+      <text x="716.5" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">30</text>
+      <text x="400" y="290" text-anchor="middle" font-size="13" fill="#5b6970">dias corridos desde a aplicação</text>
+      <text x="72" y="57.6" class="mao" font-size="16" fill="#b3311d">1º dia: 96% do rendimento</text>
+      <g transform="translate(436 50)"><rect width="290" height="80" rx="12" fill="#fff4a8" stroke="#a96300" stroke-width="2"/><text x="14" y="28" class="mao" font-size="17" fill="#1d2a31">IOF incide sobre o rendimento,</text><text x="14" y="52" class="mao" font-size="17" fill="#1d2a31">nunca sobre o valor aplicado.</text><text x="14" y="70" font-size="12" fill="#5b6970">A partir do 30º dia: zero.</text></g>
+      </svg>
+    <figcaption class="legenda">Exemplo: rendeu R$ 100 e resgatou no 10º dia → IOF de 66% = R$ 66. O IR (22,5%) incide sobre o que sobrou: 22,5% × R$ 34 = R$ 7,65. Você fica com R$ 26,35 de rendimento.</figcaption>
+  </figure>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>1) O <strong>IOF é cobrado antes</strong> e o <strong>IR incide sobre o rendimento já descontado o IOF</strong>. 2) Os dois incidem só sobre o <strong>rendimento</strong>. 3) IOF regressivo some a partir do <strong>30º dia</strong>. 4) Quem retém e recolhe é a <strong>instituição</strong> (retenção na fonte): o investidor não precisa gerar guia.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">Os rendimentos de aplicações de renda fixa sujeitam-se ao <b>imposto de renda retido na fonte</b> pelas alíquotas regressivas de <b>22,5%</b> (até 180 dias), <b>20%</b> (181 a 360 dias), <b>17,5%</b> (361 a 720 dias) e <b>15%</b> (acima de 720 dias). O <b>IOF</b> incide sobre os rendimentos de resgates realizados em prazo <b>inferior a 30 dias</b>, segundo tabela regressiva. A base de cálculo do IR é o rendimento, deduzido o IOF.</p>
+    <dl class="termos">
+      <dt>Retido na fonte</dt><dd>a instituição desconta o imposto antes de pagar você</dd>
+      <dt>Tabela regressiva</dt><dd>alíquota cai conforme o prazo</dd>
+      <dt>Fato gerador</dt><dd>o evento que faz o imposto ser devido (resgate, vencimento, cupom)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 5.12 -->
+<section class="bloco quebra" id="c5-s12" data-titulo="Mapa mental">
+  <span class="sobretitulo">5.12 · Visão do todo</span>
+  <h2 class="titulo-secao">Mapa mental da renda fixa</h2>
+  <div class="linha-fina"></div>
+  <p>Para cada ramo, responda: <strong>quem emite, como rende, tem FGC, paga IR?</strong></p>
+  <div class="mapa-caderno" data-mapa="rendafixa"></div>
+</section>
+
+<!-- 5.13 -->
+<section class="bloco" id="c5-s13" data-titulo="Pegadinhas de prova">
+  <span class="sobretitulo">5.13 · Não caia nessa</span>
+  <h2 class="titulo-secao">Pegadinhas de prova</h2>
+  <div class="linha-fina"></div>
+  <p>Leia a frase errada, tente lembrar a certa e só depois toque no cartão.</p>
+  <div class="ce fechado"><div class="errado">O Tesouro Direto é um título público que rende a Selic.</div><div class="certo"><span class="toque">toque para ver</span>O Tesouro Direto é a <strong>plataforma</strong>. O título que rende a Selic é o <strong>Tesouro Selic (LFT)</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">A NTN-B é o título prefixado com juros semestrais.</div><div class="certo"><span class="toque">toque para ver</span>A NTN-B é <strong>IPCA + taxa</strong> com juros semestrais. O prefixado com juros semestrais é a <strong>NTN-F</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">Títulos públicos têm a garantia do FGC.</div><div class="certo"><span class="toque">toque para ver</span>Não têm FGC: a garantia é o próprio <strong>Tesouro Nacional</strong> (risco soberano).</div></div>
+  <div class="ce fechado"><div class="errado">Quem leva o prefixado até o vencimento perde se os juros subirem.</div><div class="certo"><span class="toque">toque para ver</span>No vencimento recebe a <strong>taxa contratada</strong>. A perda pela marcação a mercado só acontece se <strong>vender antes</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O RDB pode ser vendido a outro investidor antes do vencimento.</div><div class="certo"><span class="toque">toque para ver</span>O RDB é <strong>intransferível</strong>. O CDB é que pode ser negociado.</div></div>
+  <div class="ce fechado"><div class="errado">A LCD não tem garantia do FGC e só pode ser emitida pelo BNDES.</div><div class="certo"><span class="toque">toque para ver</span>Pode ser emitida pelo <strong>BNDES e por bancos de desenvolvimento</strong> e tem <strong>FGC</strong> desde a Res. CMN 5.184/2024.</div></div>
+  <div class="ce fechado"><div class="errado">Toda debênture de infraestrutura é isenta de IR para pessoa física.</div><div class="certo"><span class="toque">toque para ver</span>Isenta é a <strong>incentivada</strong> (Lei 12.431). Na <strong>de infraestrutura</strong> (Lei 14.801), o benefício é do <strong>emissor</strong> e o investidor paga IR.</div></div>
+  <div class="ce fechado"><div class="errado">A debênture conversível pode ser trocada por ações de outra empresa.</div><div class="certo"><span class="toque">toque para ver</span>Ações de <strong>outra</strong> empresa: <strong>permutável</strong>. Conversível: ações da <strong>própria emissora</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">CRI e CRA são emitidos por bancos e têm FGC.</div><div class="certo"><span class="toque">toque para ver</span>São emitidos por <strong>securitizadoras</strong> e <strong>não têm FGC</strong>. São isentos de IR para pessoa física.</div></div>
+  <div class="ce fechado"><div class="errado">Com a Selic acima de 8,5%, a poupança rende 70% da Selic + TR.</div><div class="certo"><span class="toque">toque para ver</span>Acima de 8,5%: <strong>0,5% ao mês + TR</strong>. Os 70% da Selic valem quando ela está em <strong>8,5% ou menos</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O IOF incide sobre o valor total resgatado.</div><div class="certo"><span class="toque">toque para ver</span>O IOF (e o IR) incidem só sobre o <strong>rendimento</strong>. O IOF zera a partir do <strong>30º dia</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">Na renda fixa, quanto mais tempo aplicado, maior a alíquota de IR.</div><div class="certo"><span class="toque">toque para ver</span>É o contrário: a tabela é <strong>regressiva</strong>, de 22,5% (até 180 dias) a 15% (acima de 720 dias).</div></div>
+</section>
+
+<!-- 5.14 -->
+<section class="bloco extra" id="c5-s14" data-titulo="Desafio: tem FGC?">
+  <span class="sobretitulo">5.14 · Jogo</span>
+  <h2 class="titulo-secao">Desafio relâmpago: tem FGC?</h2>
+  <div class="linha-fina"></div>
+  <p>Aparece um investimento. Em <strong>8 segundos</strong>, diga se ele tem a garantia do <strong>FGC</strong>. São 10 rodadas: é a pergunta que mais aparece disfarçada nas questões.</p>
+  <div class="jogo" data-jogo="fgc"></div>
+</section>
+
+<!-- 5.15 -->
+<section class="bloco" id="c5-s15" data-titulo="Itens do programa">
+  <span class="sobretitulo">5.15 · Confira o programa</span>
+  <h2 class="titulo-secao">O que o programa pede (item 2.1.1.1)</h2>
+  <div class="linha-fina"></div>
+  <p>Todos os itens do programa oficial deste assunto estão no capítulo. Toque para ir direto a cada um:</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Item do programa</th><th>Onde está</th></tr></thead>
+    <tbody>
+      <tr><td>2.1.1.1.1 Títulos públicos federais: NTN-B, NTN-B Principal, LFT, LTN e plataforma do Tesouro Direto</td><td><a href="#c5-s2">5.2</a> e <a href="#c5-s3">5.3</a></td></tr>
+      <tr><td>2.1.1.1.2 Tesouro Prefixado, Selic, IPCA+, Educa+ e Renda+</td><td><a href="#c5-s2">5.2</a> e <a href="#c5-s3">5.3</a></td></tr>
+      <tr><td>2.1.1.1.3 Títulos bancários: CDB, RDB, RDC, LCI, LCA e LCD</td><td><a href="#c5-s4">5.4</a> e <a href="#c5-s5">5.5</a></td></tr>
+      <tr><td>2.1.1.1.4 Debêntures: de infraestrutura, conversíveis e permutáveis</td><td><a href="#c5-s6">5.6 Debêntures</a></td></tr>
+      <tr><td>2.1.1.1.5 e 2.1.1.1.6 CRI e CRA</td><td><a href="#c5-s7">5.7 CRI e CRA</a></td></tr>
+      <tr><td>2.1.1.1.7 Rating</td><td><a href="#c5-s8">5.8 Rating</a></td></tr>
+      <tr><td>2.1.1.1.8 Poupança: SFH e garantias, custos e tributação, rentabilidade e riscos, data de aniversário</td><td><a href="#c5-s9">5.9 Poupança</a></td></tr>
+      <tr><td>2.1.1.1.9 e 2.1.1.1.10 TR e TLP</td><td><a href="#c5-s10">5.10 TR e TLP</a></td></tr>
+      <tr><td>2.1.1.1.11 e 2.1.1.1.12 Tributação e IOF</td><td><a href="#c5-s11">5.11 Tributação</a></td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa dica"><span class="rotulo">Como este tema aparece</span>
+    <p>Nas 3 provas de julho/2026 analisadas, <strong>debêntures</strong> e <strong>Tesouro Direto/Selic</strong> apareceram nas <strong>três</strong>, e <strong>tributação da renda fixa</strong> em duas. A prova mistura produto com imposto: “qual investimento é isento?”, “qual tem FGC?”, “o que acontece se vender antes?”.</p></div>
+</section>
+
+<!-- 5.16 -->
+<section class="bloco quebra" id="c5-s16" data-titulo="Questões com correção na hora">
+  <span class="sobretitulo">5.16 · Treino</span>
+  <h2 class="titulo-secao">Questões com correção na hora</h2>
+  <div class="linha-fina"></div>
+  <p>Questões <strong>inéditas</strong> no <strong>formato oficial da nova CPA</strong>: um caso (contexto), um enunciado e 4 alternativas, com o código do item do programa (PD), o tipo de raciocínio e a dificuldade. Como é tema 🔥, a maior parte é de <strong>aplicação</strong>. Cada erro vai para o seu <a href="#painel">caderno de erros</a>.</p>
+  <div class="lista-questoes" data-questoes="5"></div>
+</section>
+
+<!-- 5.17 -->
+<section class="bloco" id="c5-s17" data-titulo="Revisão e dicionário da prova">
+  <span class="sobretitulo">5.17 · Revisão</span>
+  <h2 class="titulo-secao">Revisão e dicionário da prova</h2>
+  <div class="linha-fina"></div>
+  <h3>A tabela que resolve metade das questões</h3>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Produto</th><th>Emissor</th><th>FGC</th><th>IR (PF)</th></tr></thead>
+    <tbody>
+      <tr><td>Tesouro (LTN, LFT, NTN-B…)</td><td>Tesouro Nacional</td><td>Não (risco soberano)</td><td>Regressiva</td></tr>
+      <tr><td>CDB / RDB</td><td>Bancos / bancos e financeiras</td><td>Sim</td><td>Regressiva</td></tr>
+      <tr><td>RDC</td><td>Cooperativas</td><td>FGCoop</td><td>Regressiva</td></tr>
+      <tr><td>LCI / LCA</td><td>Bancos</td><td>Sim</td><td>Isento</td></tr>
+      <tr><td>LCD</td><td>BNDES e bancos de desenvolvimento</td><td>Sim</td><td>Isento</td></tr>
+      <tr><td>Poupança</td><td>Bancos (SBPE)</td><td>Sim</td><td>Isento</td></tr>
+      <tr><td>Debênture comum / de infraestrutura</td><td>S.A.</td><td>Não</td><td>Regressiva</td></tr>
+      <tr><td>Debênture incentivada</td><td>S.A. (infraestrutura prioritária)</td><td>Não</td><td>Isento</td></tr>
+      <tr><td>CRI / CRA</td><td>Securitizadoras</td><td>Não</td><td>Isento</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Dicionário da prova</h3>
+  <p>Com o <strong>Modo treino</strong> ligado, a tradução some: tente lembrar e toque para conferir.</p>
+  <div class="tabela-rolagem"><table class="tabela dicionario">
+    <thead><tr><th>Quando a prova diz…</th><th>…quer dizer</th></tr></thead>
+    <tbody>
+      <tr><td>Emissor</td><td><span class="trad">quem pega o dinheiro emprestado</span></td></tr>
+      <tr><td>Marcação a mercado</td><td><span class="trad">o preço de hoje, se vender antes do vencimento</span></td></tr>
+      <tr><td>LTN</td><td><span class="trad">Tesouro Prefixado (sem cupom)</span></td></tr>
+      <tr><td>NTN-F</td><td><span class="trad">Tesouro Prefixado com Juros Semestrais</span></td></tr>
+      <tr><td>LFT</td><td><span class="trad">Tesouro Selic</span></td></tr>
+      <tr><td>NTN-B Principal</td><td><span class="trad">Tesouro IPCA+ (sem cupom)</span></td></tr>
+      <tr><td>NTN-B</td><td><span class="trad">Tesouro IPCA+ com Juros Semestrais</span></td></tr>
+      <tr><td>Tesouro Direto</td><td><span class="trad">a plataforma de venda de títulos públicos a pessoas físicas</span></td></tr>
+      <tr><td>Taxa de custódia</td><td><span class="trad">a taxa da B3 por guardar os títulos (0,20% a.a.)</span></td></tr>
+      <tr><td>Depósito a prazo</td><td><span class="trad">CDB/RDB: dinheiro aplicado no banco por um prazo</span></td></tr>
+      <tr><td>Intransferível</td><td><span class="trad">não pode ser vendido a outra pessoa (RDB)</span></td></tr>
+      <tr><td>Lastro</td><td><span class="trad">os créditos que estão por trás do título</span></td></tr>
+      <tr><td>Escritura de emissão</td><td><span class="trad">o contrato com as regras da debênture</span></td></tr>
+      <tr><td>Agente fiduciário</td><td><span class="trad">quem defende os debenturistas</span></td></tr>
+      <tr><td>Garantia quirografária</td><td><span class="trad">sem garantia específica: credor comum</span></td></tr>
+      <tr><td>Debênture permutável</td><td><span class="trad">troca por ações de outra empresa</span></td></tr>
+      <tr><td>Securitização</td><td><span class="trad">transformar recebíveis em títulos</span></td></tr>
+      <tr><td>Rating</td><td><span class="trad">a nota de risco de crédito</span></td></tr>
+      <tr><td>Grau de investimento</td><td><span class="trad">nota boa, até BBB−</span></td></tr>
+      <tr><td>Data de aniversário</td><td><span class="trad">o dia em que a poupança credita o rendimento</span></td></tr>
+      <tr><td>TLP</td><td><span class="trad">IPCA + juro real das NTN-B de 5 anos (BNDES)</span></td></tr>
+      <tr><td>IOF regressivo</td><td><span class="trad">imposto sobre o rendimento em resgates antes de 30 dias</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Revisão de 1 minuto</h3>
+  <ol class="frases-resumo">
+    <li><b>Renda fixa</b><span class="manuscrito">você empresta; regra combinada na aplicação</span></li>
+    <li><b>Vender antes</b><span class="manuscrito">marcação a mercado: pode perder</span></li>
+    <li><b>LFT</b><span class="manuscrito">Selic, quase não oscila: reserva</span></li>
+    <li><b>NTN-B / NTN-F</b><span class="manuscrito">cupons semestrais (IPCA+ 6% / pré 10%)</span></li>
+    <li><b>Tesouro Direto</b><span class="manuscrito">plataforma; custódia B3 0,20% a.a.</span></li>
+    <li><b>Renda+ / Educa+</b><span class="manuscrito">240 / 60 parcelas mensais</span></li>
+    <li><b>RDB</b><span class="manuscrito">intransferível; CDB negociável</span></li>
+    <li><b>LCI/LCA/LCD</b><span class="manuscrito">isentas PF, com FGC; prazo mín. 6/6/12 meses</span></li>
+    <li><b>Debênture</b><span class="manuscrito">sem FGC; incentivada isenta</span></li>
+    <li><b>CRI/CRA</b><span class="manuscrito">securitizadora, isentos, sem FGC</span></li>
+    <li><b>Poupança</b><span class="manuscrito">Selic &gt; 8,5%: 0,5% a.m. + TR; dias 29-31 → dia 1</span></li>
+    <li><b>IR / IOF</b><span class="manuscrito">22,5 → 15%; IOF zera no 30º dia</span></li>
+  </ol>
+  <div class="frase-final"><span class="manuscrito">Para quem eu empresto, quem garante e quanto o leão leva?</span>Faça essas três perguntas para qualquer produto de renda fixa e a questão se resolve.</div>
+</section>
+
+<!-- 5.18 -->
+<section class="bloco" id="c5-s18" data-titulo="Fontes e links para verificação">
+  <span class="sobretitulo">5.18 · Confira você mesma</span>
+  <h2 class="titulo-secao">Fontes e links para verificação</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">Conteúdo conferido em novembro de 2026 nas fontes abaixo.</p>
+  <div class="tabela-rolagem"><table class="tabela fontes">
+    <thead><tr><th>Assunto</th><th>Fonte oficial</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>IR regressivo; isenção de LCI, LCA, CRI e CRA (PF)</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2004/lei-11033-21-dezembro-2004-535177-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 11.033/2004, arts. 1º e 3º</a><span class="org">Câmara · texto atualizado</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>IOF regressivo (tabela de 30 dias)</td><td><a href="https://www2.camara.leg.br/legin/fed/decret/2007/decreto-6306-14-dezembro-2007-566561-normaatualizada-pe.html" target="_blank" rel="noopener">Decreto 6.306/2007, art. 32 e Anexo</a><span class="org">Câmara · texto atualizado</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Prazos mínimos de LCI e LCA</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5215" target="_blank" rel="noopener">Res. CMN 5.215/2025</a><span class="org">Banco Central · altera Res. 4.410 e 5.006</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>LCD: emissores, prazo, IR</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2024/lei-14937-26-julho-2024-796000-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 14.937/2024</a><span class="org">Câmara · texto atualizado</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>LCD na garantia do FGC</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5184" target="_blank" rel="noopener">Res. CMN 5.184/2024</a><span class="org">Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Debêntures incentivadas (isenção PF)</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2011/lei-12431-24-junho-2011-610836-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 12.431/2011, art. 2º</a><span class="org">Câmara · texto atualizado</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Debêntures de infraestrutura (IR do investidor e benefício do emissor)</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2024/lei-14801-9-janeiro-2024-795227-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 14.801/2024, arts. 2º, 3º e 6º</a><span class="org">Câmara · texto atualizado</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Lastro de CRI e CRA</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5118" target="_blank" rel="noopener">Res. CMN 5.118/2024</a><span class="org">Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Poupança: remuneração, aniversário, menor saldo</td><td><a href="https://www.bcb.gov.br/pec/poupanca/poupanca.asp?frame=1" target="_blank" rel="noopener">Remuneração dos depósitos de poupança</a><span class="org">Banco Central · Lei 8.177/1991, art. 12</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>TR e rendimento da poupança (nov/2026)</td><td><a href="https://www3.bcb.gov.br/sgspub/" target="_blank" rel="noopener">SGS</a><span class="org">Banco Central · séries 226 e 195</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>TLP</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2024/lei-14937-26-julho-2024-796000-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 13.483/2017, art. 2º</a><span class="org">redação dada pela Lei 14.937/2024</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Tesouro Reserva</td><td><a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/maio/tesouro-nacional-b3-e-bb-lancam-tesouro-reserva-com-operacao-24h-nos-7-dias-da-semana" target="_blank" rel="noopener">Lançamento do Tesouro Reserva</a><span class="org">Ministério da Fazenda · 11/05/2026</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Taxa de custódia da B3 e isenção do Tesouro Selic</td><td><a href="https://www.b3.com.br/pt_br/produtos-e-servicos/tarifas/tarifas-de-tesouro-direto/" target="_blank" rel="noopener">Tarifas do Tesouro Direto</a><span class="org">B3</span></td><td><span class="selo-conf pend">conferido via busca; o site do Tesouro Direto bloqueia acesso automático</span></td></tr>
+      <tr><td>Títulos, cupons, Renda+ (240 parcelas) e Educa+ (60 parcelas)</td><td><a href="https://www.tesourodireto.com.br/" target="_blank" rel="noopener">Tesouro Direto</a><span class="org">Tesouro Nacional · <a href="https://www.gov.br/investidor/pt-br/investir/tipos-de-investimentos/titulos-publicos" target="_blank" rel="noopener">Portal do Investidor</a></span></td><td><span class="selo-conf pend">conferir no site do Tesouro Direto (bloqueia acesso automático)</span></td></tr>
+      <tr><td>MP 1.303/2025 (perdeu a eficácia) e PL 5.853/2026</td><td><a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653945" target="_blank" rel="noopener">PL 5.853/2026</a><span class="org">Câmara dos Deputados · dados abertos</span></td><td><span class="selo-conf ok">conferido (situação em 22/11/2026)</span></td></tr>
+      <tr><td>Direcionamento da poupança ao crédito imobiliário</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5255" target="_blank" rel="noopener">Res. CMN 5.255/2025</a><span class="org">Banco Central · altera a Res. 4.676</span></td><td><span class="selo-conf pend">regra em transição para 2027; percentuais não detalhados aqui</span></td></tr>
+      <tr><td>Programa oficial (item 2.1.1.1)</td><td>Programa detalhado CPA, versão 1.2<span class="org">ANBIMA</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno">Material de estudo independente. Não é produzido nem endossado pela ANBIMA, pelo Tesouro Nacional, pelo Banco Central ou pelos demais órgãos citados.</p>
+
+  <nav class="navega" aria-label="Navegação entre capítulos">
+    <a href="#cap-3"><small>← anterior pronto</small><b>3 · Matemática financeira</b></a>
+    <a class="prox" href="#resumo-5"><small>para revisar</small><b>Resumo do capítulo 5 →</b></a>
+  </nav>
+</section>
+</article>
+
+    <aside class="indice-lateral" aria-label="Seções do capítulo"></aside>
+  </div>
+</div>
+
+<div class="view folha" id="view-resumo-5" hidden>
+  <article class="resumo tema-ouro" id="resumo-5" data-cap="5">
+  <header class="rs-topo">
+    <div>
+      <span class="sobretitulo">Capítulo 5 · Resumo · programa 2.1.1.1</span>
+      <h1 class="rs-titulo">Renda fixa <span>em 2 páginas</span></h1>
+      <p class="rs-sub">Só o que mais cai. Os termos em <b class="rs-termo">destaque</b> são os nomes que a prova usa. 🔥 = caiu nas 3 provas analisadas (debêntures e Tesouro).</p>
+    </div>
+    <div class="juca rs-juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+      <p class="balao mb-0"><b>Para quem eu empresto, quem garante e quanto o leão leva?</b></p></div>
+  </header>
+
+  <div class="rs-grade">
+    <div class="rs-linha">
+    <section class="rs-card c-ambar">
+      <h2><i>1</i>A lógica</h2>
+      <ul>
+        <li>Você empresta ao <b class="rs-termo">emissor</b>; a regra é combinada na aplicação: <strong>pré</strong>, <strong>pós</strong> (indexador) ou <strong>híbrida</strong> (IPCA + x%).</li>
+        <li>Até o vencimento: rende <b class="rs-termo">na curva</b>. Vendeu antes: <b class="rs-termo">marcação a mercado</b> (juros ▲ → pré e IPCA+ ▼).</li>
+        <li>Riscos: <strong>crédito, mercado e liquidez</strong>. Renda fixa não é risco zero.</li>
+      </ul>
+    </section>
+    <section class="rs-card c-teal">
+      <h2><i>2</i>Títulos públicos 🔥</h2>
+      <ul>
+        <li><b class="rs-termo">LTN</b> = Prefixado · <b class="rs-termo">NTN-F</b> = Prefixado com cupom (10% a.a.)</li>
+        <li><b class="rs-termo">LFT</b> = Selic (quase não oscila: <strong>reserva</strong>)</li>
+        <li><b class="rs-termo">NTN-B Principal</b> = IPCA+ · <b class="rs-termo">NTN-B</b> = IPCA+ com cupom (6% a.a.)</li>
+        <li>Emissor: <strong>Tesouro Nacional</strong>. <span class="rs-alerta">Sem FGC</span> (risco soberano).</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="rs-linha">
+    <section class="rs-card c-azul">
+      <h2><i>3</i>Tesouro Direto 🔥</h2>
+      <ul>
+        <li>É a <strong>plataforma</strong> (Tesouro Nacional + B3) para <strong>pessoa física</strong>. Recompra diária a preço de mercado.</li>
+        <li><b class="rs-termo">Custódia B3</b>: <strong>0,20% a.a.</strong>; Tesouro Selic isento até R$ 10 mil por CPF.</li>
+        <li><strong>Renda+</strong>: 240 parcelas mensais · <strong>Educa+</strong>: 60 parcelas (IPCA).</li>
+        <li><strong>Tesouro Reserva</strong> (2026): Selic, 24x7, R$ 1, sem marcação a mercado.</li>
+      </ul>
+    </section>
+    <section class="rs-card c-verde">
+      <h2><i>4</i>Bancários e letras isentas</h2>
+      <ul>
+        <li><b class="rs-termo">CDB</b>: transferível, FGC · <b class="rs-termo">RDB</b>: <strong>intransferível</strong>, FGC · <b class="rs-termo">RDC</b>: cooperativas, <strong>FGCoop</strong>.</li>
+        <li><b class="rs-termo">LCI</b> (imobiliário), <b class="rs-termo">LCA</b> (agro), <b class="rs-termo">LCD</b> (BNDES e bancos de desenvolvimento): <strong>isentas para PF</strong> e <strong>com FGC</strong>.</li>
+        <li>Prazo mínimo: LCI e LCA <strong>6 meses</strong> (sem índice de preços); LCD <strong>12 meses</strong>.</li>
+        <li>Comparar: <strong>CDB equivalente = LCI ÷ (1 − IR)</strong>. 90% ÷ 0,85 = 105,9% do CDI.</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="rs-linha rs-uma">
+    <section class="rs-card c-roxo rs-largo">
+      <h2><i>5</i>Debêntures, CRI, CRA e rating 🔥</h2>
+      <div class="rs-cola-grade rs-tres-col">
+        <div><b>Debênture</b><span>Dívida de <strong>S.A.</strong>, sem FGC. Escritura + agente fiduciário. Garantias: real → flutuante → quirografária → subordinada.</span></div>
+        <div><b>Incentivada × infraestrutura</b><span><strong>Lei 12.431</strong>: isenta para PF. <strong>Lei 14.801</strong>: benefício do emissor; investidor <strong>paga IR</strong>. Conversível (própria) × permutável (outra).</span></div>
+        <div><b>CRI / CRA</b><span><strong>Securitizadora</strong>; lastro imobiliário / agro; <strong>isentos</strong> para PF; <strong>sem FGC</strong>. Rating: AAA … D; nota ▼ = juros ▲.</span></div>
+      </div>
+    </section>
+    </div>
+
+    <div class="rs-linha rs-quebra">
+    <section class="rs-card c-coral">
+      <h2><i>6</i>Poupança, TR e TLP</h2>
+      <ul>
+        <li>Selic &gt; 8,5%: <strong>0,5% a.m. + TR</strong>; Selic ≤ 8,5%: <strong>70% da Selic + TR</strong>.</li>
+        <li><b class="rs-termo">Data de aniversário</b>: dia do depósito; dias 29, 30, 31 → <strong>dia 1º</strong>. Rende sobre o <strong>menor saldo</strong>.</li>
+        <li>Isenta de IR, sem IOF, com FGC; recursos direcionados ao <strong>SFH</strong>.</li>
+        <li><b class="rs-termo">TR</b>: calculada pelas LTN. <b class="rs-termo">TLP</b>: IPCA + juro das NTN-B de 5 anos (BNDES).</li>
+      </ul>
+    </section>
+    <section class="rs-card c-ambar">
+      <h2><i>7</i>IR e IOF 🔥</h2>
+      <div class="rs-numeros rs-tres"><span><b>22,5%</b>até 180 dias</span><span><b>20 · 17,5%</b>181–360 · 361–720</span><span><b>15%</b>acima de 720 dias</span></div>
+      <ul>
+        <li>IR <strong>retido na fonte</strong>, só sobre o <strong>rendimento</strong>.</li>
+        <li><b class="rs-termo">IOF</b> regressivo: <strong>96%</strong> do rendimento no 1º dia → <strong>zero no 30º</strong>. IR incide depois do IOF.</li>
+        <li>Isentos PF: poupança, LCI, LCA, LCD, CRI, CRA, debênture incentivada.</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="rs-linha rs-uma">
+    <section class="rs-card rs-pegadinhas rs-largo">
+      <h2><i>!</i>As 6 pegadinhas que mais derrubam</h2>
+      <ol>
+        <li>Tesouro Direto é a <strong>plataforma</strong>, não o título.</li>
+        <li>Título público <strong>não tem FGC</strong> (nem debênture, CRI, CRA).</li>
+        <li>Na venda antes do vencimento, pode haver <strong>perda</strong>.</li>
+        <li>LCD <strong>tem FGC</strong> e não é só do BNDES.</li>
+        <li>Debênture de <strong>infraestrutura</strong> (14.801) não é isenta para o investidor.</li>
+        <li>Poupança: dias 29–31 → aniversário no <strong>dia 1º</strong>.</li>
+      </ol>
+    </section>
+    </div>
+  </div>
+
+  <nav class="navega rs-navega" aria-label="Navegação do resumo">
+    <a href="#cap-5"><small>quer os detalhes?</small><b>← Capítulo completo</b></a>
+    <a class="prox" href="#c5-s16"><small>hora de testar</small><b>Fazer as questões →</b></a>
+  </nav>
+</article>
+
+</div>
+
 <div class="view folha" id="view-resumo-3" hidden>
   <article class="resumo tema-mar" id="resumo-3" data-cap="3">
   <header class="rs-topo">
@@ -4449,57 +5271,57 @@ APOSTILA.capitulos[3] = {
     { id: 'c3q1', tema: 'Juros simples e compostos', pd: '1.3.4.3', nv: 'Aplicação', n: 'facil',
       ctx: 'Uma cliente pretende aplicar R$ 5.000 por 6 meses a uma taxa de 2% ao mês e pergunta à profissional CPA Tânia por que um simulador mostrou juros de R$ 600 em uma modalidade e de R$ 630,81 em outra, com a mesma taxa e o mesmo prazo.',
       q: 'Tânia explica corretamente que a diferença ocorre porque:',
-      o: ['a modalidade de R$ 600 usa juros compostos, que rendem menos no curto prazo.', 'na capitalização composta, os juros de cada mês são incorporados ao saldo e passam a render juros, o que não ocorre na capitalização simples.', 'a modalidade de R$ 630,81 cobra IOF, que aumenta o valor dos juros.', 'os juros simples são calculados sobre o montante acumulado, e os compostos, sobre o capital inicial.'], c: 1,
+      o: ['os juros simples são calculados sobre o montante acumulado, e os compostos, sobre o capital inicial.', 'a modalidade de R$ 600 usa juros compostos, que rendem menos no curto prazo.', 'a modalidade de R$ 630,81 cobra IOF, que aumenta o valor dos juros.', 'na capitalização composta, os juros de cada mês são incorporados ao saldo e passam a render juros, o que não ocorre na capitalização simples.'], c: 3,
       e: 'Simples: 5.000 × 0,02 × 6 = R$ 600 (sempre sobre o capital inicial). Compostos: 5.000 × 1,02⁶ − 5.000 = R$ 630,81. Os R$ 30,81 a mais são juros sobre juros.',
-      a: ['É o contrário: R$ 600 são juros simples.', 'Correta.', 'IOF é imposto, não aumenta os juros da aplicação.', 'Inverteu: simples incidem só sobre o capital inicial; compostos, sobre o saldo acumulado.'] },
+      a: ['Inverteu: simples incidem só sobre o capital inicial; compostos, sobre o saldo acumulado.', 'É o contrário: R$ 600 são juros simples.', 'IOF é imposto, não aumenta os juros da aplicação.', 'Correta.'] },
     { id: 'c3q2', tema: 'Taxas equivalentes', pd: '1.3.2', nv: 'Compreensão', n: 'medio',
       ctx: 'Um cliente compara duas aplicações em regime de juros compostos: uma paga 1% ao mês e a outra, 12% ao ano. Ele acredita que são equivalentes, porque 1% vezes 12 meses dá 12%, e pede a opinião do profissional CPA Rafael.',
       q: 'Rafael explica que, no regime de juros compostos:',
-      o: ['as duas taxas são equivalentes, pois a taxa anual é sempre a mensal multiplicada por 12.', 'a taxa de 12% ao ano rende mais, porque é aplicada de uma só vez.', 'não é possível comparar taxas com períodos diferentes.', '1% ao mês equivale a cerca de 12,68% ao ano; 12% ao ano é a taxa proporcional, válida para juros simples.'], c: 3,
+      o: ['as duas taxas são equivalentes, pois a taxa anual é sempre a mensal multiplicada por 12.', '1% ao mês equivale a cerca de 12,68% ao ano; 12% ao ano é a taxa proporcional, válida para juros simples.', 'a taxa de 12% ao ano rende mais, porque é aplicada de uma só vez.', 'não é possível comparar taxas com períodos diferentes.'], c: 1,
       e: 'Nos compostos, a taxa equivalente se obtém por potência: (1,01)¹² − 1 = 12,68% a.a. Multiplicar por 12 dá a taxa proporcional, que só vale nos juros simples. Logo, 1% a.m. rende mais.',
-      a: ['Multiplicar por 12 é a regra da proporcionalidade (juros simples).', '12% a.a. rende menos que 1% a.m. composto.', 'É possível comparar convertendo para taxas equivalentes.', 'Correta.'] },
+      a: ['Multiplicar por 12 é a regra da proporcionalidade (juros simples).', 'Correta.', '12% a.a. rende menos que 1% a.m. composto.', 'É possível comparar convertendo para taxas equivalentes.'] },
     { id: 'c3q3', tema: 'Taxas proporcionais', pd: '1.3.2', nv: 'Compreensão', n: 'facil',
       ctx: 'Em um treinamento sobre operações com juros simples, a instrutora pede que os participantes informem qual taxa mensal é proporcional à taxa de 18% ao ano.',
       q: 'A resposta correta é:',
-      o: ['1,5% ao mês, pois nos juros simples a taxa proporcional se obtém dividindo a taxa anual pelo número de meses.', '1,39% ao mês, pois a taxa proporcional exige o cálculo da raiz 12 da taxa anual.', '18% ao mês, pois a taxa não depende do período.', '0,18% ao mês, pois basta dividir a taxa anual por 100.'], c: 0,
+      o: ['0,18% ao mês, pois basta dividir a taxa anual por 100.', '1,39% ao mês, pois a taxa proporcional exige o cálculo da raiz 12 da taxa anual.', '18% ao mês, pois a taxa não depende do período.', '1,5% ao mês, pois nos juros simples a taxa proporcional se obtém dividindo a taxa anual pelo número de meses.'], c: 3,
       e: 'Nos juros simples, taxas proporcionais se obtêm por divisão ou multiplicação: 18% ÷ 12 = 1,5% a.m. A raiz 12 seria usada para achar a taxa equivalente nos compostos (≈ 1,39% a.m.).',
-      a: ['Correta.', 'A raiz é usada para a taxa equivalente, nos compostos, não para a proporcional.', 'Toda taxa precisa da unidade de tempo.', 'Não faz sentido dividir por 100 para mudar de período.'] },
+      a: ['Não faz sentido dividir por 100 para mudar de período.', 'A raiz é usada para a taxa equivalente, nos compostos, não para a proporcional.', 'Toda taxa precisa da unidade de tempo.', 'Correta.'] },
     { id: 'c3q4', tema: 'Nominal e efetiva', pd: '1.3.4.1', nv: 'Análise', n: 'medio',
       ctx: 'Um cliente recebeu a proposta de um empréstimo com “taxa de 24% ao ano, capitalizada mensalmente”. Ele entende que pagará exatamente 24% de juros em um ano e pede ao profissional CPA Gustavo que confirme.',
       q: 'Gustavo explica que:',
-      o: ['a taxa efetiva anual será exatamente 24%, pois a capitalização mensal não altera o custo.', 'a taxa efetiva anual será menor que 24%, pois os juros são divididos em 12 meses.', 'trata-se de uma taxa nominal: os juros de 2% ao mês são capitalizados mensalmente, e a taxa efetiva anual será maior que 24%, cerca de 26,8%.', 'a capitalização mensal é proibida em contratos bancários, devendo ser cobrados juros simples.'], c: 2,
+      o: ['trata-se de uma taxa nominal: os juros de 2% ao mês são capitalizados mensalmente, e a taxa efetiva anual será maior que 24%, cerca de 26,8%.', 'a taxa efetiva anual será menor que 24%, pois os juros são divididos em 12 meses.', 'a capitalização mensal é proibida em contratos bancários, devendo ser cobrados juros simples.', 'a taxa efetiva anual será exatamente 24%, pois a capitalização mensal não altera o custo.'], c: 0,
       e: 'Taxa nominal: 24% ÷ 12 = 2% a.m., capitalizados mês a mês. Efetiva: (1,02)¹² − 1 ≈ 26,82% a.a. Com capitalização mais frequente, a efetiva é maior que a nominal.',
-      a: ['A capitalização mensal eleva o custo efetivo.', 'É o contrário: a efetiva é maior.', 'Correta.', 'A capitalização mensal é permitida quando expressamente pactuada (STJ, Súmula 539).'] },
+      a: ['Correta.', 'É o contrário: a efetiva é maior.', 'A capitalização mensal é permitida quando expressamente pactuada (STJ, Súmula 539).', 'A capitalização mensal eleva o custo efetivo.'] },
     { id: 'c3q5', tema: 'Taxa real (Fisher)', pd: '1.3.1', nv: 'Aplicação', n: 'medio',
       ctx: 'Ao fim de um ano, um cliente comemora com a profissional CPA Denise que seu CDB rendeu 12%, enquanto a inflação medida pelo IPCA foi de 5%. Ele afirma ter tido um ganho real de 7%.',
       q: 'Denise corrige o cliente, explicando que, pela fórmula de Fisher, o ganho real foi de aproximadamente:',
-      o: ['7%, pois a taxa real é sempre a diferença entre a taxa nominal e a inflação.', '6,67%, pois a taxa real é obtida por (1,12 ÷ 1,05) − 1.', '17,6%, pois a taxa real é obtida por (1,12 × 1,05) − 1.', '2,4%, pois a taxa real é obtida dividindo 12 por 5.'], c: 1,
+      o: ['6,67%, pois a taxa real é obtida por (1,12 ÷ 1,05) − 1.', '7%, pois a taxa real é sempre a diferença entre a taxa nominal e a inflação.', '17,6%, pois a taxa real é obtida por (1,12 × 1,05) − 1.', '2,4%, pois a taxa real é obtida dividindo 12 por 5.'], c: 0,
       e: 'Fisher: (1 + nominal) = (1 + real) × (1 + inflação). Real = 1,12 ÷ 1,05 − 1 ≈ 6,67%. A subtração (12 − 5 = 7%) é só uma aproximação.',
-      a: ['A subtração é apenas uma aproximação.', 'Correta.', 'Multiplicar soma os efeitos, em vez de descontar a inflação.', 'Dividir as taxas diretamente não tem significado financeiro.'] },
+      a: ['Correta.', 'A subtração é apenas uma aproximação.', 'Multiplicar soma os efeitos, em vez de descontar a inflação.', 'Dividir as taxas diretamente não tem significado financeiro.'] },
     { id: 'c3q6', tema: 'Taxa real (Fisher)', pd: '1.3.4.1', nv: 'Análise', n: 'medio',
       ctx: 'Um aposentado mostra ao profissional CPA Lucas que sua aplicação rendeu 6% em 12 meses, exatamente o mesmo percentual da inflação do período. Ele quer saber se ficou mais rico.',
       q: 'Lucas explica que, nesse caso, a taxa real de juros foi:',
-      o: ['de 6%, pois a inflação não interfere no rendimento.', 'de 12%, pois rendimento e inflação se somam.', 'negativa, pois toda aplicação perde para a inflação.', 'igual a zero: o cliente preservou o poder de compra, sem ganho real.'], c: 3,
+      o: ['negativa, pois toda aplicação perde para a inflação.', 'de 12%, pois rendimento e inflação se somam.', 'igual a zero: o cliente preservou o poder de compra, sem ganho real.', 'de 6%, pois a inflação não interfere no rendimento.'], c: 2,
       e: 'Real = 1,06 ÷ 1,06 − 1 = 0. O dinheiro compra exatamente o mesmo que antes: preservou o poder de compra, mas não ficou mais rico.',
-      a: ['A inflação reduz o poder de compra do rendimento.', 'Inflação não se soma ao rendimento.', 'Só seria negativa se a inflação superasse o rendimento.', 'Correta.'] },
+      a: ['Só seria negativa se a inflação superasse o rendimento.', 'Inflação não se soma ao rendimento.', 'Correta.', 'A inflação reduz o poder de compra do rendimento.'] },
     { id: 'c3q7', tema: 'Taxa real (Fisher)', pd: '1.3.1', nv: 'Aplicação', n: 'medio',
       ctx: 'Um cliente manteve seus recursos em uma aplicação que rendeu 7% no ano. No mesmo período, a inflação foi de 8%. Ele pergunta à profissional CPA Paula o que aconteceu com o seu poder de compra.',
       q: 'Paula responde corretamente que:',
-      o: ['a taxa real foi negativa, de aproximadamente −0,93%, ou seja, o cliente perdeu poder de compra.', 'a taxa real foi positiva, de 7%, pois a aplicação teve rendimento.', 'a taxa real foi de 15%, somando rendimento e inflação.', 'não houve efeito no poder de compra, pois a diferença é de apenas 1 ponto.'], c: 0,
+      o: ['não houve efeito no poder de compra, pois a diferença é de apenas 1 ponto.', 'a taxa real foi positiva, de 7%, pois a aplicação teve rendimento.', 'a taxa real foi negativa, de aproximadamente −0,93%, ou seja, o cliente perdeu poder de compra.', 'a taxa real foi de 15%, somando rendimento e inflação.'], c: 2,
       e: 'Real = 1,07 ÷ 1,08 − 1 ≈ −0,93%. Quando a inflação supera o rendimento nominal, a taxa real é negativa: o dinheiro compra menos.',
-      a: ['Correta.', 'Rendimento nominal positivo não garante ganho real.', 'Inflação não se soma ao rendimento.', 'Qualquer diferença negativa reduz o poder de compra.'] },
+      a: ['Qualquer diferença negativa reduz o poder de compra.', 'Rendimento nominal positivo não garante ganho real.', 'Correta.', 'Inflação não se soma ao rendimento.'] },
     { id: 'c3q8', tema: 'Indexadores', pd: '1.3.4.2', nv: 'Compreensão', n: 'facil',
       ctx: 'Uma cliente que quer proteger seu patrimônio da inflação no longo prazo recebe a sugestão de um título que paga “IPCA + 6% ao ano”. Ela pergunta à profissional CPA como classificar essa remuneração.',
       q: 'A profissional explica corretamente que se trata de uma remuneração:',
-      o: ['prefixada, pois a taxa de 6% é conhecida no momento da aplicação.', 'pós-fixada pura, pois acompanha 100% do CDI.', 'híbrida, combinando a variação de um indexador de inflação (IPCA) com uma taxa fixa de juros reais.', 'isenta de risco, pois a inflação é garantida pelo governo.'], c: 2,
+      o: ['prefixada, pois a taxa de 6% é conhecida no momento da aplicação.', 'híbrida, combinando a variação de um indexador de inflação (IPCA) com uma taxa fixa de juros reais.', 'isenta de risco, pois a inflação é garantida pelo governo.', 'pós-fixada pura, pois acompanha 100% do CDI.'], c: 1,
       e: 'IPCA + 6% é híbrido: uma parte acompanha o indexador (IPCA, inflação) e a outra é fixa (6% de juro real). Protege o poder de compra e garante um ganho real contratado.',
-      a: ['Só a parte de 6% é conhecida; a inflação não.', 'O indexador aqui é o IPCA, não o CDI.', 'Correta.', 'Todo título tem algum risco, e a inflação não é “garantida”.'] },
+      a: ['Só a parte de 6% é conhecida; a inflação não.', 'Correta.', 'Todo título tem algum risco, e a inflação não é “garantida”.', 'O indexador aqui é o IPCA, não o CDI.'] },
     { id: 'c3q9', tema: 'Pré e pós-fixado', pd: '1.3.4.2', nv: 'Análise', n: 'medio',
       ctx: 'Um cliente conservador vai aplicar por 2 anos e acredita, com base nas projeções do mercado, que a taxa Selic vai subir nos próximos meses. Ele está em dúvida entre um CDB prefixado a 13% ao ano e um CDB a 100% do CDI.',
       q: 'Considerando apenas a expectativa do cliente, o profissional CPA explica que:',
-      o: ['o prefixado é mais vantajoso, pois sua taxa acompanha a alta da Selic.', 'o pós-fixado tende a ser mais vantajoso, pois sua remuneração acompanha o CDI e subiria junto com os juros.', 'as duas alternativas reagem igualmente à alta da Selic.', 'o pós-fixado garante a mesma rentabilidade do início ao fim da aplicação.'], c: 1,
+      o: ['o prefixado é mais vantajoso, pois sua taxa acompanha a alta da Selic.', 'o pós-fixado garante a mesma rentabilidade do início ao fim da aplicação.', 'as duas alternativas reagem igualmente à alta da Selic.', 'o pós-fixado tende a ser mais vantajoso, pois sua remuneração acompanha o CDI e subiria junto com os juros.'], c: 3,
       e: 'Se os juros subirem, o pós-fixado (100% do CDI) passa a render mais automaticamente, enquanto o prefixado fica travado em 13%. O prefixado brilha quando os juros caem.',
-      a: ['O prefixado tem taxa travada: não acompanha a Selic.', 'Correta.', 'Reagem de forma oposta.', 'O pós-fixado só tem o resultado conhecido no fim.'] },
+      a: ['O prefixado tem taxa travada: não acompanha a Selic.', 'O pós-fixado só tem o resultado conhecido no fim.', 'Reagem de forma oposta.', 'Correta.'] },
     { id: 'c3q10', tema: 'Capitalização em empréstimos', pd: '1.3.3.2', nv: 'Compreensão', n: 'medio',
       ctx: 'Um cliente que contratou um empréstimo pessoal em um banco reclama ao profissional CPA Fábio que a instituição cobra “juros sobre juros” mensalmente, o que, segundo ele, seria proibido por lei.',
       q: 'Fábio esclarece que, conforme o entendimento do STJ (Súmula 539), a capitalização de juros com periodicidade inferior à anual em contratos com instituições do Sistema Financeiro Nacional:',
@@ -4515,27 +5337,27 @@ APOSTILA.capitulos[3] = {
     { id: 'c3q12', tema: 'Valor presente', pd: '1.3.3.3', nv: 'Análise', n: 'medio',
       ctx: 'Uma empresa tem a receber R$ 11.000 daqui a 1 ano. Usando uma taxa de desconto de 10% ao ano, o profissional CPA calculou que esse valor equivale a R$ 10.000 hoje. O diretor financeiro pergunta o que aconteceria com esse valor presente se a taxa de desconto subisse para 12%.',
       q: 'O profissional responde corretamente que o valor presente:',
-      o: ['aumentaria, pois uma taxa maior valoriza os recebimentos futuros.', 'permaneceria em R$ 10.000, pois o valor a receber não mudou.', 'diminuiria, pois, quanto maior a taxa de desconto, menor o valor presente de um fluxo futuro.', 'passaria a ser igual ao valor futuro, de R$ 11.000.'], c: 2,
+      o: ['aumentaria, pois uma taxa maior valoriza os recebimentos futuros.', 'diminuiria, pois, quanto maior a taxa de desconto, menor o valor presente de um fluxo futuro.', 'permaneceria em R$ 10.000, pois o valor a receber não mudou.', 'passaria a ser igual ao valor futuro, de R$ 11.000.'], c: 1,
       e: 'VP = VF ÷ (1 + i). Com 12%: 11.000 ÷ 1,12 ≈ R$ 9.821. Taxa de desconto maior → valor presente menor. É a mesma lógica do prefixado que cai quando os juros sobem.',
-      a: ['É o contrário.', 'O valor presente depende da taxa de desconto.', 'Correta.', 'VP só seria igual ao VF com taxa zero.'] },
+      a: ['É o contrário.', 'Correta.', 'O valor presente depende da taxa de desconto.', 'VP só seria igual ao VF com taxa zero.'] },
     { id: 'c3q13', tema: 'Fluxo de caixa e cupom', pd: '1.3.3.2.2', nv: 'Compreensão', n: 'medio',
       ctx: 'Um cliente investiu em uma debênture de R$ 1.000 com prazo de 3 anos, que paga juros (cupom) de 10% ao ano e devolve todo o principal no vencimento. Ele pergunta ao profissional CPA como será o seu fluxo de recebimentos.',
       q: 'O profissional explica corretamente que o cliente receberá:',
-      o: ['R$ 1.300 apenas no vencimento, pois não há pagamentos intermediários.', 'R$ 100 de juros ao fim de cada um dos dois primeiros anos e, no terceiro ano, R$ 1.100, correspondentes ao último cupom mais a amortização do principal.', 'R$ 433,33 por ano, com amortizações iguais do principal.', 'apenas os juros, pois o principal de uma debênture nunca é devolvido.'], c: 1,
+      o: ['R$ 1.300 apenas no vencimento, pois não há pagamentos intermediários.', 'R$ 433,33 por ano, com amortizações iguais do principal.', 'R$ 100 de juros ao fim de cada um dos dois primeiros anos e, no terceiro ano, R$ 1.100, correspondentes ao último cupom mais a amortização do principal.', 'apenas os juros, pois o principal de uma debênture nunca é devolvido.'], c: 2,
       e: 'Cupom anual de 10% sobre R$ 1.000 = R$ 100 por ano. Como o principal é devolvido no vencimento (bullet), o 3º ano tem 100 + 1.000 = R$ 1.100.',
-      a: ['Há cupons anuais, e o total seria 1.300 só se nada fosse pago antes.', 'Correta.', 'Esse seria o fluxo com amortizações anuais, que não é o caso.', 'O principal é devolvido no vencimento ou em amortizações.'] },
+      a: ['Há cupons anuais, e o total seria 1.300 só se nada fosse pago antes.', 'Esse seria o fluxo com amortizações anuais, que não é o caso.', 'Correta.', 'O principal é devolvido no vencimento ou em amortizações.'] },
     { id: 'c3q14', tema: 'Taxa bruta e líquida', pd: '1.3.3.4', nv: 'Análise', n: 'dificil',
       ctx: 'Um cliente pessoa física vai aplicar por 3 anos e compara um CDB que paga 12% ao ano (bruto) com uma LCI isenta de IR que paga 10,5% ao ano. Considere que, para esse prazo, a alíquota de IR do CDB é de 15% e que as duas instituições têm o mesmo risco.',
       q: 'O profissional CPA conclui corretamente que:',
-      o: ['o CDB é mais vantajoso, pois sua taxa bruta é maior.', 'as duas aplicações são equivalentes, pois a diferença de taxa compensa exatamente o IR.', 'a comparação só pode ser feita com taxas brutas.', 'a LCI é mais vantajosa, pois a taxa líquida do CDB é de 10,2% ao ano (12% × 0,85), inferior aos 10,5% da LCI.'], c: 3,
+      o: ['o CDB é mais vantajoso, pois sua taxa bruta é maior.', 'a LCI é mais vantajosa, pois a taxa líquida do CDB é de 10,2% ao ano (12% × 0,85), inferior aos 10,5% da LCI.', 'as duas aplicações são equivalentes, pois a diferença de taxa compensa exatamente o IR.', 'a comparação só pode ser feita com taxas brutas.'], c: 1,
       e: 'Taxa líquida = bruta × (1 − alíquota) = 12% × 0,85 = 10,2%. Como a LCI é isenta, rende 10,5% líquido. Compare sempre líquido com líquido.',
-      a: ['Comparar taxa bruta com taxa isenta leva ao erro.', '10,2% e 10,5% não são iguais.', 'A comparação correta é entre taxas líquidas.', 'Correta.'] },
+      a: ['Comparar taxa bruta com taxa isenta leva ao erro.', 'Correta.', '10,2% e 10,5% não são iguais.', 'A comparação correta é entre taxas líquidas.'] },
     { id: 'c3q15', tema: 'Custo de oportunidade', pd: '1.3.3.5.3', nv: 'Aplicação', n: 'facil',
       ctx: 'Uma cliente mantém R$ 20.000 parados na conta-corrente há um ano “para emergências”, sem nenhuma remuneração. A profissional CPA Mirela mostra que um investimento de liquidez diária a 100% do CDI teria rendido cerca de R$ 2.600 no período.',
       q: 'Esses R$ 2.600 representam, para a cliente, o:',
-      o: ['custo de oportunidade, ou seja, o retorno que ela deixou de obter ao escolher manter o dinheiro parado.', 'risco de crédito da conta-corrente.', 'valor presente líquido da conta-corrente.', 'imposto que deixou de pagar por não investir.'], c: 0,
+      o: ['valor presente líquido da conta-corrente.', 'custo de oportunidade, ou seja, o retorno que ela deixou de obter ao escolher manter o dinheiro parado.', 'risco de crédito da conta-corrente.', 'imposto que deixou de pagar por não investir.'], c: 1,
       e: 'Custo de oportunidade é o que se deixa de ganhar ao escolher uma alternativa em vez de outra. Deixar o dinheiro parado “custou” o rendimento que ele teria aplicado.',
-      a: ['Correta.', 'Risco de crédito é risco de calote, e não é o caso.', 'VPL é uma medida de viabilidade de projetos.', 'Imposto não é o conceito tratado.'] },
+      a: ['VPL é uma medida de viabilidade de projetos.', 'Correta.', 'Risco de crédito é risco de calote, e não é o caso.', 'Imposto não é o conceito tratado.'] },
     { id: 'c3q16', tema: 'Taxa livre de risco', pd: '1.3.3.5.4', nv: 'Compreensão', n: 'facil',
       ctx: 'Em um curso de finanças para clientes, o profissional CPA Vinícius explica que todo investimento com risco deveria oferecer um retorno acima de uma referência mínima, chamada de taxa livre de risco.',
       q: 'No Brasil, a referência usualmente adotada como taxa livre de risco é:',
@@ -4545,51 +5367,51 @@ APOSTILA.capitulos[3] = {
     { id: 'c3q17', tema: 'VPL', pd: '1.3.3.2.3', nv: 'Análise', n: 'medio',
       ctx: 'A dona de uma padaria avalia comprar um forno de R$ 1.000 que gerará R$ 600 a mais por ano durante 2 anos. Ela exige retorno mínimo de 10% ao ano. O profissional CPA calculou: 600 ÷ 1,10 + 600 ÷ 1,21 = R$ 1.041,32.',
       q: 'Com base nesse cálculo, o profissional conclui que:',
-      o: ['o VPL é negativo, de −R$ 41,32, e o investimento deve ser rejeitado.', 'o VPL é positivo, de R$ 41,32; o investimento é viável e sua TIR é superior a 10% ao ano.', 'o VPL é de R$ 200, pois o forno gera R$ 1.200 e custa R$ 1.000.', 'não é possível concluir, pois o VPL só considera fluxos de um único ano.'], c: 1,
+      o: ['o VPL é negativo, de −R$ 41,32, e o investimento deve ser rejeitado.', 'o VPL é de R$ 200, pois o forno gera R$ 1.200 e custa R$ 1.000.', 'o VPL é positivo, de R$ 41,32; o investimento é viável e sua TIR é superior a 10% ao ano.', 'não é possível concluir, pois o VPL só considera fluxos de um único ano.'], c: 2,
       e: 'VPL = 1.041,32 − 1.000 = +41,32. VPL positivo indica que o projeto rende mais que a taxa exigida, logo a TIR (cerca de 13%) é maior que 10%.',
-      a: ['O sinal está trocado.', 'Correta.', 'Somar fluxos sem descontar ignora o valor do dinheiro no tempo.', 'O VPL considera todos os fluxos, em qualquer prazo.'] },
+      a: ['O sinal está trocado.', 'Somar fluxos sem descontar ignora o valor do dinheiro no tempo.', 'Correta.', 'O VPL considera todos os fluxos, em qualquer prazo.'] },
     { id: 'c3q18', tema: 'TIR', pd: '1.3.3.5.2', nv: 'Análise', n: 'medio',
       ctx: 'Uma empresa avalia um projeto cuja Taxa Interna de Retorno (TIR) foi calculada em 13% ao ano. O custo de capital da empresa, que é a taxa mínima exigida para seus projetos, é de 15% ao ano.',
       q: 'O profissional CPA explica que, nesse caso:',
-      o: ['o projeto deve ser aceito, pois toda TIR positiva indica viabilidade.', 'o VPL do projeto, descontado a 15%, é positivo.', 'a TIR é a taxa que torna o VPL máximo, por isso o projeto é ótimo.', 'o projeto deve ser rejeitado, pois a TIR, que é a taxa que zera o VPL, é inferior à taxa mínima exigida, e o VPL a 15% seria negativo.'], c: 3,
+      o: ['o projeto deve ser aceito, pois toda TIR positiva indica viabilidade.', 'o projeto deve ser rejeitado, pois a TIR, que é a taxa que zera o VPL, é inferior à taxa mínima exigida, e o VPL a 15% seria negativo.', 'a TIR é a taxa que torna o VPL máximo, por isso o projeto é ótimo.', 'o VPL do projeto, descontado a 15%, é positivo.'], c: 1,
       e: 'A TIR é a taxa que zera o VPL. Se a TIR (13%) é menor que a taxa exigida (15%), descontando a 15% o VPL fica negativo: o projeto não cria valor.',
-      a: ['A TIR precisa superar a taxa exigida, e não apenas ser positiva.', 'Com taxa acima da TIR, o VPL é negativo.', 'A TIR zera o VPL; não o maximiza.', 'Correta.'] },
+      a: ['A TIR precisa superar a taxa exigida, e não apenas ser positiva.', 'Correta.', 'A TIR zera o VPL; não o maximiza.', 'Com taxa acima da TIR, o VPL é negativo.'] },
     { id: 'c3q19', tema: 'VPL', pd: '1.3.3.3', nv: 'Compreensão', n: 'facil',
       ctx: 'Um analista apresentou o VPL positivo de um projeto calculado com taxa de desconto de 10% ao ano. A diretoria pede ao profissional CPA que explique o efeito de usar uma taxa de desconto maior, refletindo um risco mais alto.',
       q: 'O profissional explica corretamente que, mantidos os fluxos, uma taxa de desconto maior:',
-      o: ['reduz o VPL do projeto, podendo torná-lo negativo.', 'aumenta o VPL, pois os fluxos futuros valem mais.', 'não altera o VPL, apenas a TIR.', 'altera apenas o investimento inicial.'], c: 0,
+      o: ['não altera o VPL, apenas a TIR.', 'aumenta o VPL, pois os fluxos futuros valem mais.', 'reduz o VPL do projeto, podendo torná-lo negativo.', 'altera apenas o investimento inicial.'], c: 2,
       e: 'Taxa de desconto maior → cada fluxo futuro vale menos hoje → VPL menor. Se a taxa ultrapassar a TIR, o VPL fica negativo.',
-      a: ['Correta.', 'É o contrário.', 'A TIR é uma característica do fluxo; o VPL depende da taxa usada.', 'O investimento inicial já está em valor presente e não muda.'] },
+      a: ['A TIR é uma característica do fluxo; o VPL depende da taxa usada.', 'É o contrário.', 'Correta.', 'O investimento inicial já está em valor presente e não muda.'] },
     { id: 'c3q20', tema: 'Payback', pd: '1.3.6', nv: 'Análise', n: 'medio',
       ctx: 'Um investimento de R$ 1.000 gera entradas de R$ 600 por ano. O gestor calculou o payback simples em cerca de 1,67 ano e quer usá-lo como único critério para escolher entre vários projetos.',
       q: 'O profissional CPA alerta corretamente que o payback simples:',
-      o: ['é o melhor critério, pois considera todos os fluxos e o valor do dinheiro no tempo.', 'é igual à TIR do projeto, expressa em anos.', 'mede o tempo de recuperação do capital, mas ignora o valor do dinheiro no tempo e os fluxos posteriores à recuperação.', 'só pode ser usado em projetos com VPL negativo.'], c: 2,
+      o: ['mede o tempo de recuperação do capital, mas ignora o valor do dinheiro no tempo e os fluxos posteriores à recuperação.', 'é o melhor critério, pois considera todos os fluxos e o valor do dinheiro no tempo.', 'é igual à TIR do projeto, expressa em anos.', 'só pode ser usado em projetos com VPL negativo.'], c: 0,
       e: 'Payback simples = 1.000 ÷ 600 ≈ 1,67 ano. Ele mostra quanto tempo o capital fica exposto, mas ignora o valor do dinheiro no tempo (o descontado corrige isso) e tudo o que acontece depois da recuperação.',
-      a: ['O payback simples não considera nem uma coisa nem outra.', 'TIR é taxa, payback é prazo.', 'Correta.', 'Não existe essa restrição.'] },
+      a: ['Correta.', 'O payback simples não considera nem uma coisa nem outra.', 'TIR é taxa, payback é prazo.', 'Não existe essa restrição.'] },
     { id: 'c3q21', tema: 'Duration', pd: '1.3.3.5.6', nv: 'Compreensão', n: 'medio',
       ctx: 'Um cliente tem dois títulos prefixados de 3 anos: um sem pagamentos intermediários (zero cupom) e outro que paga juros semestrais. Ele pergunta ao profissional CPA qual a duration de cada um.',
       q: 'O profissional explica corretamente que:',
-      o: ['os dois têm duration de 3 anos, pois a duration é sempre igual ao prazo de vencimento.', 'a duration do título zero cupom é igual ao prazo (3 anos), e a do título com cupons é menor que 3 anos.', 'a duration do título com cupons é maior que 3 anos, pois ele paga mais vezes.', 'a duration só pode ser calculada para ações.'], c: 1,
+      o: ['os dois têm duration de 3 anos, pois a duration é sempre igual ao prazo de vencimento.', 'a duration só pode ser calculada para ações.', 'a duration do título com cupons é maior que 3 anos, pois ele paga mais vezes.', 'a duration do título zero cupom é igual ao prazo (3 anos), e a do título com cupons é menor que 3 anos.'], c: 3,
       e: 'Sem pagamentos intermediários, todo o dinheiro volta no vencimento: duration = prazo. Com cupons, parte volta antes, e a duration (prazo médio dos fluxos em valor presente) fica menor que o prazo.',
-      a: ['Só o zero cupom tem duration igual ao prazo.', 'Correta.', 'Pagamentos antecipados reduzem a duration.', 'Duration é medida típica de renda fixa.'] },
+      a: ['Só o zero cupom tem duration igual ao prazo.', 'Duration é medida típica de renda fixa.', 'Pagamentos antecipados reduzem a duration.', 'Correta.'] },
     { id: 'c3q22', tema: 'Duration', pd: '1.3.3.5.6', nv: 'Análise', n: 'dificil',
       ctx: 'Uma cliente tem recursos em dois fundos de renda fixa prefixada: o Fundo A, com duration de 5 anos, e o Fundo B, com duration de 6 meses. O mercado passa a esperar alta relevante das taxas de juros.',
       q: 'O profissional CPA explica que, se os juros subirem:',
-      o: ['os dois fundos se valorizam, pois juros maiores aumentam a rentabilidade imediata.', 'o Fundo B tende a perder mais, por ter prazo mais curto.', 'nenhum dos fundos é afetado, pois a duration só importa no vencimento.', 'o Fundo A tende a sofrer queda maior no valor das cotas, pois maior duration significa maior sensibilidade do preço à variação dos juros.'], c: 3,
+      o: ['o Fundo A tende a sofrer queda maior no valor das cotas, pois maior duration significa maior sensibilidade do preço à variação dos juros.', 'o Fundo B tende a perder mais, por ter prazo mais curto.', 'nenhum dos fundos é afetado, pois a duration só importa no vencimento.', 'os dois fundos se valorizam, pois juros maiores aumentam a rentabilidade imediata.'], c: 0,
       e: 'Duration mede a sensibilidade do preço aos juros: quanto maior, mais o preço cai quando os juros sobem. O fundo de 5 anos sofre bem mais que o de 6 meses (marcação a mercado).',
-      a: ['Com juros em alta, prefixados já na carteira perdem valor.', 'É o contrário: prazo curto sofre menos.', 'A marcação a mercado reflete o efeito no dia a dia.', 'Correta.'] },
+      a: ['Correta.', 'É o contrário: prazo curto sofre menos.', 'A marcação a mercado reflete o efeito no dia a dia.', 'Com juros em alta, prefixados já na carteira perdem valor.'] },
     { id: 'c3q23', tema: 'Prazo médio', pd: '1.3.3.5.1', nv: 'Compreensão', n: 'medio',
       ctx: 'Duas debêntures vencem em 3 anos. A primeira devolve todo o principal no vencimento; a segunda amortiza um terço do principal ao fim de cada ano. Um cliente pergunta se as duas têm o mesmo prazo médio.',
       q: 'O profissional CPA explica corretamente que:',
-      o: ['a debênture com amortizações anuais tem prazo médio menor (2 anos) que a de pagamento único (3 anos), embora ambas vençam em 3 anos.', 'as duas têm prazo médio de 3 anos, pois o vencimento é o mesmo.', 'a debênture com amortizações tem prazo médio maior, pois faz mais pagamentos.', 'o prazo médio considera apenas os juros, e não a amortização.'], c: 0,
+      o: ['a debênture com amortizações tem prazo médio maior, pois faz mais pagamentos.', 'as duas têm prazo médio de 3 anos, pois o vencimento é o mesmo.', 'a debênture com amortizações anuais tem prazo médio menor (2 anos) que a de pagamento único (3 anos), embora ambas vençam em 3 anos.', 'o prazo médio considera apenas os juros, e não a amortização.'], c: 2,
       e: 'Prazo médio pondera o tempo de devolução do principal: (1 + 2 + 3) ÷ 3 = 2 anos com amortizações anuais, contra 3 anos no pagamento único (bullet). O vencimento é o mesmo.',
-      a: ['Correta.', 'Vencimento e prazo médio são conceitos diferentes.', 'Devolver antes reduz o prazo médio.', 'O prazo médio considera a devolução do principal.'] },
+      a: ['Devolver antes reduz o prazo médio.', 'Vencimento e prazo médio são conceitos diferentes.', 'Correta.', 'O prazo médio considera a devolução do principal.'] },
     { id: 'c3q24', tema: 'CMPC', pd: '1.3.3.5.5', nv: 'Aplicação', n: 'medio',
       ctx: 'Uma empresa financia 60% de seus ativos com capital próprio, cujo custo é de 15% ao ano, e 40% com dívidas, que custam 10% ao ano. A diretoria quer saber qual retorno mínimo um novo projeto deve oferecer, considerando o Custo Médio Ponderado de Capital (CMPC), sem efeitos de impostos.',
       q: 'O profissional CPA calcula que o CMPC é de:',
-      o: ['12,5% ao ano, a média simples entre 15% e 10%.', '25% ao ano, a soma dos dois custos.', '13% ao ano, pois 0,60 × 15% + 0,40 × 10% = 13%.', '10% ao ano, pois o custo mais baixo é o que importa.'], c: 2,
+      o: ['10% ao ano, pois o custo mais baixo é o que importa.', '25% ao ano, a soma dos dois custos.', '12,5% ao ano, a média simples entre 15% e 10%.', '13% ao ano, pois 0,60 × 15% + 0,40 × 10% = 13%.'], c: 3,
       e: 'CMPC é a média ponderada pelos pesos de cada fonte: 0,6 × 15% + 0,4 × 10% = 9% + 4% = 13% a.a. O projeto precisa render mais que isso para criar valor.',
-      a: ['A média deve ser ponderada pelos pesos, não simples.', 'Custos não se somam.', 'Correta.', 'O custo do capital considera todas as fontes.'] },
+      a: ['O custo do capital considera todas as fontes.', 'Custos não se somam.', 'A média deve ser ponderada pelos pesos, não simples.', 'Correta.'] },
     { id: 'c3q25', tema: 'Alavancagem', pd: '1.3.3.5.6.1', nv: 'Análise', n: 'dificil',
       ctx: 'Uma empresa pretende financiar metade de um projeto com dívida a 10% ao ano e a outra metade com capital dos sócios. Em um cenário otimista, o projeto renderá 15% ao ano; em um pessimista, 5% ao ano.',
       q: 'O profissional CPA explica corretamente que a alavancagem financeira:',
@@ -4599,21 +5421,21 @@ APOSTILA.capitulos[3] = {
     { id: 'c3q26', tema: 'Retorno de carteira', pd: '1.3.3.6.2', nv: 'Aplicação', n: 'facil',
       ctx: 'Um cliente tem 60% da carteira em um fundo de renda fixa com retorno esperado de 12% ao ano e 40% em um fundo de ações com retorno esperado de 8% ao ano. Ele pergunta qual é o retorno esperado da carteira.',
       q: 'O profissional CPA calcula corretamente que o retorno esperado da carteira é de:',
-      o: ['10% ao ano, a média simples dos dois retornos.', '20% ao ano, a soma dos dois retornos.', '12% ao ano, o maior dos retornos.', '10,4% ao ano, pois 0,60 × 12% + 0,40 × 8% = 10,4%.'], c: 3,
+      o: ['10,4% ao ano, pois 0,60 × 12% + 0,40 × 8% = 10,4%.', '10% ao ano, a média simples dos dois retornos.', '12% ao ano, o maior dos retornos.', '20% ao ano, a soma dos dois retornos.'], c: 0,
       e: 'O retorno esperado de uma carteira é a média ponderada pelos pesos: 7,2% + 3,2% = 10,4% a.a.',
-      a: ['A média deve ser ponderada pela participação de cada ativo.', 'Retornos não se somam.', 'A carteira não rende o retorno do melhor ativo.', 'Correta.'] },
+      a: ['Correta.', 'A média deve ser ponderada pela participação de cada ativo.', 'A carteira não rende o retorno do melhor ativo.', 'Retornos não se somam.'] },
     { id: 'c3q27', tema: 'Desconto bancário', pd: '1.3.8.1', nv: 'Aplicação', n: 'medio',
       ctx: 'Uma loja precisa de capital de giro e leva ao banco uma duplicata de R$ 10.000 que vence em 2 meses. O banco aplica desconto comercial simples de 3% ao mês e cobra tarifa administrativa de 1% sobre o valor do título.',
       q: 'O profissional CPA informa que o valor líquido creditado à loja será de:',
-      o: ['R$ 9.300, pois o desconto comercial é de R$ 600 (10.000 × 3% × 2) e a tarifa, de R$ 100.', 'R$ 9.400, pois tarifas não fazem parte do desconto bancário.', 'R$ 9.409, pois o desconto é calculado com juros compostos.', 'R$ 10.000, pois o desconto só é cobrado no vencimento.'], c: 0,
+      o: ['R$ 9.409, pois o desconto é calculado com juros compostos.', 'R$ 9.400, pois tarifas não fazem parte do desconto bancário.', 'R$ 10.000, pois o desconto só é cobrado no vencimento.', 'R$ 9.300, pois o desconto comercial é de R$ 600 (10.000 × 3% × 2) e a tarifa, de R$ 100.'], c: 3,
       e: 'Desconto comercial: 10.000 × 0,03 × 2 = 600. Desconto bancário = comercial + tarifas: 600 + 100 = 700. A loja recebe R$ 9.300.',
-      a: ['Correta.', 'O desconto bancário inclui as despesas cobradas pelo banco.', 'O desconto comercial simples usa juros simples.', 'Na antecipação, o desconto é retido na hora.'] },
+      a: ['O desconto comercial simples usa juros simples.', 'O desconto bancário inclui as despesas cobradas pelo banco.', 'Na antecipação, o desconto é retido na hora.', 'Correta.'] },
     { id: 'c3q28', tema: 'SAC e Price', pd: '1.3.7', nv: 'Análise', n: 'medio',
       ctx: 'Um cliente vai financiar R$ 6.000 em 6 parcelas mensais, a 2% ao mês. Pelo SAC, a primeira parcela seria de R$ 1.120 e a última de R$ 1.020; pela Tabela Price, todas as parcelas seriam de R$ 1.071,15.',
       q: 'O profissional CPA explica corretamente que:',
-      o: ['na Price a amortização é constante, e por isso o total de juros é menor.', 'no SAC as parcelas são fixas e os juros crescem ao longo do tempo.', 'no SAC a amortização é constante e as parcelas decrescem, resultando em menos juros no total; na Price as parcelas são fixas e a amortização cresce ao longo do tempo.', 'os dois sistemas resultam exatamente no mesmo total de juros.'], c: 2,
+      o: ['no SAC a amortização é constante e as parcelas decrescem, resultando em menos juros no total; na Price as parcelas são fixas e a amortização cresce ao longo do tempo.', 'no SAC as parcelas são fixas e os juros crescem ao longo do tempo.', 'na Price a amortização é constante, e por isso o total de juros é menor.', 'os dois sistemas resultam exatamente no mesmo total de juros.'], c: 0,
       e: 'SAC: amortização fixa de R$ 1.000, juros sobre o saldo que cai → parcelas decrescentes e total de juros de R$ 420. Price: parcela fixa, amortização crescente → total de juros de R$ 426,93.',
-      a: ['Amortização constante é característica do SAC; a Price paga mais juros.', 'No SAC as parcelas caem, e os juros diminuem em ambos.', 'Correta.', 'A Price paga mais juros, pois amortiza mais devagar.'] }
+      a: ['Correta.', 'No SAC as parcelas caem, e os juros diminuem em ambos.', 'Amortização constante é característica do SAC; a Price paga mais juros.', 'A Price paga mais juros, pois amortiza mais devagar.'] }
   ],
   revisaoTemas: ['Juros simples e compostos', 'Taxas equivalentes', 'Taxa real (Fisher)', 'Valor presente', 'VPL', 'Duration', 'Desconto bancário', 'SAC e Price']
 };
@@ -4651,6 +5473,222 @@ APOSTILA.jogos.matematica = {
     ['Mais dívida barata, projeto rendendo acima do custo → retorno do sócio', 'Sobe ▲', 'É o efeito positivo da alavancagem (com mais risco).']
   ]
 };
+
+/* Dados do Capítulo 5 · Renda fixa (programa CPA, item 2.1.1.1)
+   Questões inéditas no formato oficial: múltipla escolha contextualizada (contexto + enunciado + 4 alternativas),
+   com o código do programa detalhado (pd), o nível cognitivo (nv) e a dificuldade (n). `c` = índice da correta (0 = A).
+   Regras conferidas em nov/2026 (Lei 11.033, Decreto 6.306, Res. CMN 5.215, 5.184, Leis 12.431, 14.801 e 14.937). */
+window.APOSTILA = window.APOSTILA || { capitulos: {}, mapas: {}, jogos: {} };
+
+APOSTILA.capitulos[5] = {
+  titulo: 'Renda fixa',
+  questoes: [
+    { id: 'c5q1', tema: 'Marcação a mercado', pd: '2.1.1.1', nv: 'Análise', n: 'medio',
+      ctx: 'Um cliente comprou Tesouro Prefixado com vencimento em 2031 a uma taxa de 12% ao ano. Meses depois, os juros de mercado subiram e ele viu no extrato que o valor do título caiu. Preocupado, pergunta ao profissional CPA Rodrigo se perdeu dinheiro.',
+      q: 'Rodrigo explica corretamente que:',
+      o: ['a queda reflete a marcação a mercado; se o cliente mantiver o título até o vencimento, receberá a rentabilidade contratada de 12% ao ano, e a perda só se realiza se vender antes.', 'o cliente já perdeu definitivamente o valor que aparece no extrato, mesmo que leve o título até o vencimento.', 'títulos públicos não oscilam de preço, por isso o extrato deve estar errado.', 'a queda ocorreu porque o FGC deixou de garantir o título.'], c: 0,
+      e: 'Juros sobem, o preço do prefixado cai (marcação a mercado). Mas quem leva até o vencimento recebe a taxa contratada. A perda só se concretiza na venda antecipada.',
+      a: ['Correta.', 'No vencimento, o título paga o valor de face combinado.', 'Títulos públicos oscilam, sim, pela marcação a mercado.', 'Títulos públicos não têm FGC; a garantia é o Tesouro Nacional.'] },
+    { id: 'c5q2', tema: 'Títulos públicos', pd: '2.1.1.1.1.3', nv: 'Aplicação', n: 'facil',
+      ctx: 'Uma cliente quer travar uma taxa prefixada em títulos públicos, mas deseja receber parte dos juros a cada seis meses para complementar a renda, em vez de receber tudo apenas no vencimento.',
+      q: 'O profissional CPA indica o título:',
+      o: ['LTN (Tesouro Prefixado), que paga juros semestrais.', 'NTN-B Principal (Tesouro IPCA+), que paga juros semestrais.', 'NTN-F (Tesouro Prefixado com Juros Semestrais), que paga cupons semestrais.', 'LFT (Tesouro Selic), que tem taxa prefixada.'], c: 2,
+      e: 'Prefixado com cupons semestrais é a NTN-F (cupom de 10% a.a.). A LTN é prefixada mas paga tudo no vencimento; a NTN-B Principal também não paga cupom.',
+      a: ['A LTN não paga cupom: tudo no vencimento.', 'A NTN-B Principal não paga cupons e é atrelada ao IPCA.', 'Correta.', 'A LFT é pós-fixada, atrelada à Selic.'] },
+    { id: 'c5q3', tema: 'Títulos públicos', pd: '2.1.1.1.1.1', nv: 'Aplicação', n: 'medio',
+      ctx: 'Um aposentado quer um título público que proteja seu dinheiro da inflação e que pague juros periodicamente, para complementar a renda ao longo do ano.',
+      q: 'O título mais adequado ao objetivo do cliente é a:',
+      o: ['NTN-B (Tesouro IPCA+ com Juros Semestrais), que paga IPCA mais taxa prefixada, com cupons semestrais.', 'LFT, que paga a variação do IPCA a cada semestre.', 'LTN, que paga a taxa prefixada no vencimento.', 'NTN-B Principal, que paga cupons mensais corrigidos pela Selic.'], c: 0,
+      e: 'Proteção contra a inflação + juros periódicos = NTN-B, que remunera por IPCA + taxa e paga cupons semestrais (6% a.a. sobre o valor corrigido).',
+      a: ['Correta.', 'A LFT segue a Selic, não o IPCA, e não paga cupons.', 'A LTN é prefixada e não protege da inflação.', 'A NTN-B Principal não paga cupons, e é atrelada ao IPCA.'] },
+    { id: 'c5q4', tema: 'Títulos públicos', pd: '2.1.1.1.1.2', nv: 'Aplicação', n: 'facil',
+      ctx: 'Uma jovem profissional quer montar sua reserva de emergência em títulos públicos. Ela pode precisar do dinheiro a qualquer momento e não quer correr o risco de resgatar com perda relevante por oscilação de preço.',
+      q: 'Entre os títulos tradicionais do Tesouro Direto, o mais indicado é a:',
+      o: ['LTN de longo prazo, pois a taxa é conhecida.', 'NTN-F, pois paga cupons semestrais.', 'NTN-B Principal com vencimento longo, pois protege da inflação.', 'LFT (Tesouro Selic), que acompanha a taxa Selic e tem baixa volatilidade.'], c: 3,
+      e: 'Para reserva de emergência, o Tesouro Selic (LFT) é o clássico: acompanha a Selic e quase não oscila na marcação a mercado. Prefixados e IPCA+ longos podem ter perdas relevantes na venda antecipada.',
+      a: ['Prefixados longos oscilam muito com os juros.', 'A NTN-F é prefixada e também oscila.', 'Títulos IPCA+ longos oscilam muito antes do vencimento.', 'Correta.'] },
+    { id: 'c5q5', tema: 'Tesouro Direto', pd: '2.1.1.1.1.4', nv: 'Compreensão', n: 'facil',
+      ctx: 'Um cliente conta ao profissional CPA Bruno que “investiu no Tesouro Direto” e pergunta quem é responsável pelo quê nesse investimento.',
+      q: 'Bruno explica corretamente que o Tesouro Direto é:',
+      o: ['um título público específico, que rende sempre a taxa Selic.', 'um CDB emitido pelo Tesouro Nacional e garantido pelo FGC.', 'um fundo de investimento administrado pelo Banco Central.', 'um programa do Tesouro Nacional, em parceria com a B3, para a venda de títulos públicos federais a pessoas físicas pela internet, com custódia na B3.'], c: 3,
+      e: 'Tesouro Direto é a plataforma (programa) do Tesouro Nacional com a B3. O que se compra são os títulos: Selic, Prefixado, IPCA+ etc. A B3 faz a custódia e cobra a taxa de custódia.',
+      a: ['O título que rende a Selic é o Tesouro Selic (LFT).', 'O Tesouro não emite CDB, e títulos públicos não têm FGC.', 'Não é fundo, e o BC não administra o programa.', 'Correta.'] },
+    { id: 'c5q6', tema: 'Tesouro Direto', pd: '2.1.1.1.1.4', nv: 'Aplicação', n: 'medio',
+      ctx: 'Uma cliente pessoa física tem R$ 8.000 aplicados em Tesouro Selic, todos pela mesma corretora, que não cobra taxa própria. Ela pergunta à profissional CPA quais custos incidem sobre esse investimento.',
+      q: 'A profissional explica que, nesse caso:',
+      o: ['não há nenhum custo ou imposto, pois títulos públicos são isentos de IR.', 'incide taxa de custódia da B3 de 0,20% ao ano sobre todo o valor, sem exceções.', 'a cliente está isenta da taxa de custódia da B3, pois o Tesouro Selic tem isenção até R$ 10 mil por CPF; o IR segue a tabela regressiva.', 'a cliente paga apenas IOF, independentemente do prazo.'], c: 2,
+      e: 'A custódia da B3 é de 0,20% a.a., mas o Tesouro Selic é isento até R$ 10 mil por CPF. O IR existe e segue a tabela regressiva; o IOF só incide em resgates com menos de 30 dias.',
+      a: ['Títulos públicos pagam IR pela tabela regressiva.', 'Há a isenção do Tesouro Selic até R$ 10 mil.', 'Correta.', 'IOF só incide em resgates antes de 30 dias.'] },
+    { id: 'c5q7', tema: 'Renda+ e Educa+', pd: '2.1.1.1.2', nv: 'Aplicação', n: 'facil',
+      ctx: 'Um cliente de 40 anos quer complementar sua aposentadoria com uma renda mensal corrigida pela inflação, investindo em títulos públicos ao longo dos próximos anos.',
+      q: 'O profissional CPA apresenta o Tesouro Renda+, explicando que ele:',
+      o: ['tem uma fase de acumulação e, depois, paga 240 parcelas mensais (20 anos), corrigidas pela inflação.', 'rende a taxa Selic e pode ser resgatado em 60 parcelas.', 'paga todo o valor acumulado de uma só vez na data de aposentadoria.', 'é garantido pelo FGC até R$ 250 mil.'], c: 0,
+      e: 'O Renda+ (NTN-B1) foi criado para a aposentadoria: o investidor acumula e, na data escolhida, passa a receber 240 parcelas mensais corrigidas pelo IPCA.',
+      a: ['Correta.', '60 parcelas é o Educa+, e o Renda+ é atrelado ao IPCA.', 'Ele paga em parcelas mensais, não de uma só vez.', 'Títulos públicos não têm FGC.'] },
+    { id: 'c5q8', tema: 'Renda+ e Educa+', pd: '2.1.1.1.2', nv: 'Compreensão', n: 'facil',
+      ctx: 'Um casal quer começar a guardar dinheiro para pagar a faculdade da filha de 3 anos e pergunta se existe algum título público pensado para isso.',
+      q: 'O profissional CPA indica o Tesouro Educa+, que:',
+      o: ['paga 240 parcelas mensais a partir da aposentadoria.', 'é isento de IR por ser destinado à educação.', 'tem rentabilidade prefixada e paga tudo no vencimento.', 'acumula recursos e depois paga 60 parcelas mensais (5 anos), corrigidas pela inflação, para custear a educação.'], c: 3,
+      e: 'Educa+: acumulação enquanto a criança cresce e, depois, 60 parcelas mensais corrigidas pelo IPCA, cobrindo os anos da faculdade.',
+      a: ['240 parcelas é o Renda+.', 'Não há isenção de IR por ser para educação.', 'É atrelado ao IPCA e paga em parcelas.', 'Correta.'] },
+    { id: 'c5q9', tema: 'Tesouro Reserva', pd: '2.1.1.1.2', nv: 'Compreensão', n: 'medio',
+      ctx: 'Uma cliente ouviu falar do Tesouro Reserva, lançado em 2026, e pergunta ao profissional CPA o que o diferencia do Tesouro Selic tradicional.',
+      q: 'O profissional explica corretamente que o Tesouro Reserva:',
+      o: ['é garantido pelo FGC e emitido pelo Banco do Brasil.', 'rende pela Selic, funciona 24 horas nos 7 dias da semana, aceita aplicações a partir de R$ 1 e não tem marcação a mercado.', 'é isento de IR e de IOF por ser destinado à reserva de emergência.', 'rende IPCA mais taxa fixa e só pode ser resgatado no vencimento.'], c: 1,
+      e: 'O Tesouro Reserva (2026) é indexado à Selic, opera 24x7 com Pix, aplicação mínima de R$ 1 e sem marcação a mercado. IR e IOF seguem as regras da renda fixa. O emissor é o Tesouro Nacional; o BB foi o primeiro distribuidor.',
+      a: ['O emissor é o Tesouro Nacional, e títulos públicos não têm FGC.', 'Correta.', 'IR e IOF seguem as regras normais da renda fixa.', 'Ele é atrelado à Selic e pode ser resgatado a qualquer momento.'] },
+    { id: 'c5q10', tema: 'Títulos bancários', pd: '2.1.1.1.3.2', nv: 'Compreensão', n: 'medio',
+      ctx: 'Um cliente tem um RDB de uma financeira e um CDB de um banco. Precisando de dinheiro, ele quer vender o RDB para um amigo antes do vencimento.',
+      q: 'A profissional CPA explica que:',
+      o: ['o RDB pode ser vendido livremente, assim como o CDB.', 'o RDB é intransferível e inegociável, ao contrário do CDB, que pode ser transferido; o resgate antecipado do RDB depende do emissor.', 'nenhum dos dois pode ser resgatado ou transferido antes do vencimento.', 'o RDB é garantido pelo FGCoop, e o CDB não tem garantia.'], c: 1,
+      e: 'O RDB é intransferível: não pode ser vendido a outra pessoa. O CDB é transferível. Os dois têm FGC (o FGCoop é das cooperativas, que emitem RDC).',
+      a: ['O RDB é intransferível.', 'Correta.', 'O CDB pode ser negociado, e muitos têm liquidez diária.', 'RDB e CDB têm FGC; FGCoop é das cooperativas.'] },
+    { id: 'c5q11', tema: 'Títulos bancários', pd: '2.1.1.1.3.2', nv: 'Compreensão', n: 'facil',
+      ctx: 'Um produtor rural é associado a uma cooperativa de crédito e recebeu a oferta de aplicar em um título emitido pela própria cooperativa.',
+      q: 'O profissional CPA identifica corretamente esse título como:',
+      o: ['CDB, garantido pelo FGC.', 'LCD, garantida pelo BNDES.', 'CRA, emitido pela securitizadora da cooperativa.', 'RDC (Recibo de Depósito Cooperativo), garantido pelo FGCoop, dentro dos limites.'], c: 3,
+      e: 'O RDC é o instrumento de captação das cooperativas de crédito, com garantia do FGCoop (o fundo garantidor das cooperativas).',
+      a: ['CDB é emitido por bancos.', 'LCD é emitida pelo BNDES e por bancos de desenvolvimento.', 'CRA é emitido por securitizadoras.', 'Correta.'] },
+    { id: 'c5q12', tema: 'CDB e FGC', pd: '2.1.1.1.3.1', nv: 'Análise', n: 'medio',
+      ctx: 'Um cliente quer aplicar R$ 400 mil em CDB de um banco médio que paga 115% do CDI. Ele não tem outras aplicações nesse banco e acredita que o FGC protege todo o valor.',
+      q: 'O profissional CPA explica corretamente que:',
+      o: ['o FGC protege todo o valor, pois CDB é garantido sem limite.', 'o FGC cobre até R$ 250 mil por CPF por instituição; os R$ 150 mil restantes ficariam expostos ao risco de crédito do banco, e dividir entre instituições pode reduzir esse risco.', 'a taxa acima da média indica ausência de risco de crédito.', 'o FGC não cobre CDB de bancos médios.'], c: 1,
+      e: 'O FGC cobre até R$ 250 mil por CPF por instituição (conglomerado), com teto de R$ 1 milhão a cada 4 anos. Taxa alta costuma remunerar risco maior, e diversificar entre emissores ajuda.',
+      a: ['Há limite de R$ 250 mil.', 'Correta.', 'Taxa acima da média costuma indicar risco maior.', 'O FGC cobre CDB de qualquer banco associado.'] },
+    { id: 'c5q13', tema: 'LCI e LCA', pd: '2.1.1.1.3.3', nv: 'Análise', n: 'dificil',
+      ctx: 'Para um prazo de 3 anos, um cliente pessoa física compara uma LCI que paga 90% do CDI com um CDB que paga 102% do CDI, de bancos com risco semelhante. Ele pretende levar até o vencimento.',
+      q: 'O profissional CPA conclui que:',
+      o: ['os dois são equivalentes, pois a diferença compensa exatamente o IR.', 'o CDB é mais vantajoso, pois 102% é maior que 90%.', 'a LCI é mais vantajosa, pois o CDB, após o IR de 15%, renderia cerca de 86,7% do CDI, menos que os 90% isentos da LCI.', 'não é possível comparar produtos isentos com tributados.'], c: 2,
+      e: 'CDB líquido = 102% × (1 − 0,15) = 86,7% do CDI. A LCI isenta rende 90%. Para empatar, o CDB precisaria pagar 90 ÷ 0,85 = 105,9% do CDI.',
+      a: ['86,7% e 90% não são iguais.', 'Comparar taxa bruta com isenta leva ao erro.', 'Correta.', 'Basta comparar as taxas líquidas.'] },
+    { id: 'c5q14', tema: 'LCI e LCA', pd: '2.1.1.1.3.4', nv: 'Aplicação', n: 'medio',
+      ctx: 'Uma cliente quer aplicar sua reserva de emergência, que pode ser necessária a qualquer momento, em uma LCA prefixada por causa da isenção de IR.',
+      q: 'O profissional CPA alerta corretamente que:',
+      o: ['a LCA tem prazo mínimo de vencimento (6 meses, quando não corrigida por índice de preços), o que pode impedir o resgate imediato; para reserva de emergência, produtos com liquidez diária são mais adequados.', 'a LCA não é isenta de IR para pessoa física.', 'a LCA tem liquidez diária garantida por lei.', 'a LCA não tem garantia do FGC.'], c: 0,
+      e: 'Pela Res. CMN 5.215/2025, LCA e LCI sem correção por índice de preços têm prazo mínimo de 6 meses. Isso conflita com a necessidade de liquidez da reserva de emergência.',
+      a: ['Correta.', 'A LCA é isenta de IR para pessoa física.', 'Não há liquidez diária garantida; há prazo mínimo.', 'A LCA tem FGC, até o limite.'] },
+    { id: 'c5q15', tema: 'LCD', pd: '2.1.1.1.3.5', nv: 'Compreensão', n: 'medio',
+      ctx: 'Um cliente leu em um material antigo que a Letra de Crédito do Desenvolvimento (LCD) só pode ser emitida pelo BNDES e não tem garantia do FGC. Ele pede à profissional CPA que confirme.',
+      q: 'A profissional esclarece que, pelas regras atuais, a LCD:',
+      o: ['é emitida por qualquer banco comercial e tributada pela tabela regressiva.', 'pode ser emitida pelo BNDES e por bancos de desenvolvimento, é isenta de IR para pessoa física e conta com a garantia do FGC, dentro dos limites.', 'é emitida por securitizadoras e lastreada em recebíveis do agronegócio.', 'não tem garantia do FGC e só é emitida pelo BNDES.'], c: 1,
+      e: 'A Lei 14.937/2024 permite a emissão pelo BNDES e por bancos de desenvolvimento, com alíquota zero de IR para pessoa física. A Res. CMN 5.184/2024 incluiu a LCD na garantia do FGC.',
+      a: ['Bancos comerciais não emitem LCD, e ela é isenta para PF.', 'Correta.', 'Essa é a descrição do CRA.', 'É exatamente o ponto desatualizado do material antigo.'] },
+    { id: 'c5q16', tema: 'Debêntures', pd: '2.1.1.1.4', nv: 'Aplicação', n: 'medio',
+      ctx: 'Um cliente quer aplicar R$ 200 mil em debêntures de uma companhia aberta que pagam IPCA + 8% ao ano. Ele acredita que, por se tratar de renda fixa, o investimento é garantido pelo FGC.',
+      q: 'O profissional CPA esclarece que:',
+      o: ['debêntures têm garantia do FGC até R$ 250 mil.', 'ao comprar a debênture, o cliente se torna sócio da companhia.', 'debêntures são títulos públicos, garantidos pelo Tesouro Nacional.', 'debêntures não têm garantia do FGC; o cliente fica exposto ao risco de crédito da empresa emissora, por isso é importante avaliar o rating e as garantias da emissão.'], c: 3,
+      e: 'Debênture é dívida de empresa (S.A.), sem FGC. O investidor é credor e corre o risco de crédito da emissora. Taxa alta costuma compensar esse risco; rating e garantias ajudam a avaliá-lo.',
+      a: ['Debêntures não têm FGC.', 'O debenturista é credor, não sócio.', 'São emitidas por empresas, não pelo governo.', 'Correta.'] },
+    { id: 'c5q17', tema: 'Debêntures', pd: '2.1.1.1.4.1', nv: 'Análise', n: 'dificil',
+      ctx: 'Uma cliente pessoa física está em dúvida entre duas debêntures de projetos de energia: uma emitida com base na Lei 12.431/2011 (incentivada) e outra emitida com base na Lei 14.801/2024 (debênture de infraestrutura). Ela acredita que ambas são isentas de IR.',
+      q: 'O profissional CPA explica corretamente que:',
+      o: ['nenhuma das duas é isenta; ambas pagam 15% fixo.', 'as duas são isentas de IR para pessoa física.', 'na debênture incentivada (Lei 12.431) o rendimento é isento de IR para pessoa física; na debênture de infraestrutura (Lei 14.801) o benefício fiscal é do emissor, e o investidor pessoa física paga IR pela tabela regressiva.', 'a debênture de infraestrutura é isenta e a incentivada é tributada.'], c: 2,
+      e: 'Lei 12.431: alíquota zero para pessoa física. Lei 14.801: o emissor pode deduzir os juros pagos, e o rendimento do investidor segue as alíquotas da renda fixa (art. 3º).',
+      a: ['A incentivada é isenta para PF.', 'Só a incentivada é isenta para PF.', 'Correta.', 'Está invertido.'] },
+    { id: 'c5q18', tema: 'Debêntures', pd: '2.1.1.1.4.2', nv: 'Compreensão', n: 'facil',
+      ctx: 'Um investidor comprou uma debênture emitida pela empresa Alfa S.A. que, segundo a escritura, poderá ser trocada no futuro por ações da empresa Beta S.A., controlada pelo mesmo grupo.',
+      q: 'Essa debênture é classificada como:',
+      o: ['conversível, pois pode ser convertida em ações da própria emissora.', 'permutável, pois pode ser trocada por ações de outra companhia.', 'subordinada, pois só recebe depois dos demais credores.', 'incentivada, pois financia infraestrutura.'], c: 1,
+      e: 'Troca por ações de outra empresa (Beta) = permutável. Conversível seria a troca por ações da própria emissora (Alfa).',
+      a: ['Conversível envolve ações da própria emissora.', 'Correta.', 'Subordinação trata da ordem de pagamento, não de conversão.', 'Nada indica projeto de infraestrutura prioritário.'] },
+    { id: 'c5q19', tema: 'Debêntures', pd: '2.1.1.1.4', nv: 'Compreensão', n: 'medio',
+      ctx: 'Ao analisar escrituras de debêntures, um cliente quer entender qual tipo de garantia oferece maior proteção ao debenturista em caso de falência da empresa emissora.',
+      q: 'O profissional CPA explica que a maior proteção é oferecida pela garantia:',
+      o: ['subordinada, que tem preferência sobre os demais credores.', 'quirografária, que tem um bem específico vinculado.', 'flutuante, que dispensa qualquer preferência.', 'real, que vincula bens específicos da emissora ao pagamento da dívida.'], c: 3,
+      e: 'Ordem de proteção: real (bens específicos) → flutuante (preferência geral sobre o ativo) → quirografária (sem garantia) → subordinada (recebe por último).',
+      a: ['Subordinada recebe por último.', 'Quirografária não tem garantia específica.', 'A flutuante dá preferência geral, menor que a real.', 'Correta.'] },
+    { id: 'c5q20', tema: 'CRI e CRA', pd: '2.1.1.1.5', nv: 'Aplicação', n: 'medio',
+      ctx: 'Um cliente pessoa física recebeu a oferta de um CRI lastreado em contratos de compra de apartamentos de uma incorporadora, com taxa acima da de um CDB. Ele pergunta quem emite o título, como é tributado e qual o principal risco.',
+      q: 'O profissional CPA responde corretamente que o CRI:',
+      o: ['é emitido por banco, isento de IR e sem risco de crédito.', 'é emitido por uma companhia securitizadora, é isento de IR para pessoa física, não tem FGC e expõe o investidor ao risco de crédito dos devedores dos recebíveis.', 'é emitido pelo Tesouro Nacional e tem risco soberano.', 'é emitido pela incorporadora, tributado pela tabela regressiva e garantido pelo FGC.'], c: 1,
+      e: 'CRI: securitizadora empacota recebíveis imobiliários e emite o título. É isento de IR para PF, sem FGC, e o risco é de os devedores do lastro não pagarem.',
+      a: ['Não é emitido por banco e tem risco de crédito.', 'Correta.', 'Não é título público.', 'O emissor é a securitizadora; CRI é isento para PF e não tem FGC.'] },
+    { id: 'c5q21', tema: 'CRI e CRA', pd: '2.1.1.1.6', nv: 'Compreensão', n: 'facil',
+      ctx: 'Uma cooperativa de produtores de soja tem várias vendas a prazo a receber e quer antecipar esses recursos. Uma securitizadora propõe transformar esses recebíveis em um título para vender a investidores.',
+      q: 'O título resultante dessa operação é o:',
+      o: ['LCA (Letra de Crédito do Agronegócio).', 'CRI (Certificado de Recebíveis Imobiliários).', 'CRA (Certificado de Recebíveis do Agronegócio).', 'CDB rural.'], c: 2,
+      e: 'Recebíveis do agronegócio securitizados = CRA. A LCA também financia o agro, mas é emitida por instituição financeira, não por securitizadora.',
+      a: ['LCA é emitida por bancos.', 'CRI é lastreado em recebíveis imobiliários.', 'Correta.', 'Não existe essa categoria nessa operação.'] },
+    { id: 'c5q22', tema: 'Rating', pd: '2.1.1.1.7', nv: 'Análise', n: 'medio',
+      ctx: 'Uma agência de classificação de risco rebaixou o rating de uma empresa de AA para BB, tirando-a do grau de investimento. Um cliente que tem debêntures dessa empresa pergunta o que isso significa.',
+      q: 'O profissional CPA explica que o rebaixamento:',
+      o: ['indica percepção de maior risco de crédito; tende a elevar as taxas exigidas pelo mercado e reduzir o preço das debêntures já emitidas.', 'garante que a empresa não pagará suas dívidas.', 'não tem efeito sobre o preço das debêntures.', 'faz com que o FGC passe a garantir os títulos.'], c: 0,
+      e: 'Rating é opinião sobre a capacidade de pagamento, não garantia. Nota pior → investidores exigem mais juros → o preço dos títulos já emitidos cai.',
+      a: ['Correta.', 'Rating não é garantia nem certeza de calote.', 'O mercado reprecifica o risco.', 'Debêntures não têm FGC.'] },
+    { id: 'c5q23', tema: 'Poupança', pd: '2.1.1.1.8.3', nv: 'Aplicação', n: 'medio',
+      ctx: 'Com a meta da taxa Selic em 13,75% ao ano, uma cliente pergunta à profissional CPA como é calculado o rendimento da sua caderneta de poupança.',
+      q: 'A profissional explica corretamente que, nesse cenário, a poupança rende:',
+      o: ['70% da meta Selic mais TR, pois essa é a regra para qualquer patamar de juros.', '0,5% ao mês mais a TR, pois a meta Selic está acima de 8,5% ao ano.', 'apenas a TR, sem adicional.', '100% do CDI, como um CDB.'], c: 1,
+      e: 'Com meta Selic acima de 8,5% a.a.: 0,5% ao mês + TR. Com 8,5% ou menos: 70% da Selic (mensalizada) + TR.',
+      a: ['Os 70% da Selic valem só com a Selic em 8,5% ou menos.', 'Correta.', 'Há o adicional de 0,5% ao mês.', 'A poupança não rende CDI.'] },
+    { id: 'c5q24', tema: 'Poupança', pd: '2.1.1.1.8.4', nv: 'Aplicação', n: 'medio',
+      ctx: 'Um cliente depositou R$ 2.000 na poupança no dia 30 de abril e pretende sacar o valor no dia 29 de maio. Ele pergunta se receberá rendimento.',
+      q: 'O profissional CPA explica corretamente que:',
+      o: ['depósitos feitos nos dias 29, 30 e 31 têm aniversário no dia 1º do mês seguinte; como sacará antes de 1º de junho, não receberá rendimento.', 'receberá o rendimento proporcional aos 29 dias.', 'a poupança rende diariamente, independentemente da data de aniversário.', 'a data de aniversário do depósito é o dia 30 de cada mês, e ele receberá o rendimento em 29 de maio.'], c: 0,
+      e: 'Contas/depósitos dos dias 29, 30 e 31 fazem aniversário no dia 1º do mês seguinte. O rendimento só é creditado no aniversário; sacar antes faz perder o rendimento do período.',
+      a: ['Correta.', 'A poupança não paga proporcional antes do aniversário.', 'O crédito é mensal, no aniversário.', 'Dias 29, 30 e 31 têm aniversário no dia 1º.'] },
+    { id: 'c5q25', tema: 'Poupança', pd: '2.1.1.1.8.1', nv: 'Compreensão', n: 'facil',
+      ctx: 'Em uma palestra sobre educação financeira, um participante pergunta à profissional CPA Lívia quais são as características da poupança em relação a impostos, garantia e destino dos recursos.',
+      q: 'Lívia responde corretamente que a poupança:',
+      o: ['paga IR pela tabela regressiva e não tem garantia do FGC.', 'tem IOF em todos os resgates.', 'é isenta de IR para pessoa física, tem garantia do FGC e grande parte dos seus recursos é direcionada ao financiamento imobiliário (SFH).', 'tem seus recursos aplicados exclusivamente em títulos públicos.'], c: 2,
+      e: 'Poupança: isenta de IR para PF, sem IOF, garantida pelo FGC, e boa parte dos depósitos é obrigatoriamente direcionada ao crédito imobiliário (SFH/SBPE).',
+      a: ['É isenta de IR e tem FGC.', 'Poupança não tem IOF sobre resgates.', 'Correta.', 'O principal destino é o crédito imobiliário.'] },
+    { id: 'c5q26', tema: 'TR e TLP', pd: '2.1.1.1.10', nv: 'Compreensão', n: 'medio',
+      ctx: 'Uma empresária obteve um financiamento do BNDES remunerado pela TLP e pergunta ao profissional CPA como essa taxa é formada.',
+      q: 'O profissional explica que a TLP é composta:',
+      o: ['por 100% do CDI.', 'pela TR mais 0,5% ao mês.', 'pela variação do IPCA mais uma taxa de juros prefixada baseada nas NTN-B de 5 anos, fixada na contratação.', 'pela meta Selic definida pelo Copom.'], c: 2,
+      e: 'A TLP (Lei 13.483/2017) = IPCA + taxa prefixada baseada na estrutura a termo das NTN-B de 5 anos. A parte prefixada fica fixa durante o financiamento.',
+      a: ['A TLP não é atrelada ao CDI.', 'Essa é a regra da poupança.', 'Correta.', 'A TLP não segue a meta Selic.'] },
+    { id: 'c5q27', tema: 'Tributação', pd: '2.1.1.1.11', nv: 'Aplicação', n: 'facil',
+      ctx: 'Um cliente pessoa física resgatou um CDB após 400 dias de aplicação, com rendimento bruto de R$ 1.000. Ele pergunta qual alíquota de IR foi aplicada.',
+      q: 'O profissional CPA informa que a alíquota foi de:',
+      o: ['22,5%, por ser aplicação de renda fixa.', '20%, pois o prazo foi superior a 180 dias.', '15%, pois todo CDB tem alíquota fixa.', '17,5%, pois o prazo ficou entre 361 e 720 dias, resultando em IR de R$ 175.'], c: 3,
+      e: 'Tabela regressiva: até 180 dias 22,5%; 181 a 360, 20%; 361 a 720, 17,5%; acima de 720, 15%. Com 400 dias: 17,5% × R$ 1.000 = R$ 175.',
+      a: ['22,5% vale até 180 dias.', '20% vale de 181 a 360 dias.', 'A alíquota depende do prazo.', 'Correta.'] },
+    { id: 'c5q28', tema: 'IOF', pd: '2.1.1.1.12', nv: 'Análise', n: 'dificil',
+      ctx: 'Uma cliente aplicou em um CDB com liquidez diária e precisou resgatar no 10º dia, com rendimento bruto de R$ 100. Pela tabela regressiva do IOF, no 10º dia o imposto corresponde a 66% do rendimento.',
+      q: 'O profissional CPA explica corretamente que:',
+      o: ['o IOF será de R$ 66 e o IR de 22,5% incidirá sobre o rendimento restante (R$ 34), totalizando R$ 7,65 de IR.', 'só há IR, pois o IOF foi extinto para renda fixa.', 'o IR é calculado sobre os R$ 100 e o IOF sobre o valor aplicado.', 'o IOF incide sobre o valor total resgatado, e o IR não é cobrado.'], c: 0,
+      e: 'IOF primeiro: 66% de R$ 100 = R$ 66. O IR incide sobre o rendimento líquido do IOF: 22,5% × R$ 34 = R$ 7,65. Os dois incidem só sobre o rendimento; o IOF zera no 30º dia.',
+      a: ['Correta.', 'O IOF regressivo continua valendo para resgates antes de 30 dias.', 'O IOF incide sobre o rendimento, e o IR sobre o rendimento após o IOF.', 'IOF e IR incidem só sobre o rendimento.'] }
+  ],
+  revisaoTemas: ['Títulos públicos', 'Tesouro Direto', 'Títulos bancários', 'LCI e LCA', 'Debêntures', 'CRI e CRA', 'Poupança', 'Tributação']
+};
+
+APOSTILA.mapas.rendafixa = {
+  centro: 'Renda fixa', sub: 'você empresta, alguém paga juros', extra: 'IR 22,5% → 15% · IOF zera no 30º dia',
+  ramos: [
+    { t: 'Títulos públicos', d: 'predio', i: ['LTN: pré · NTN-F: pré + cupom', 'LFT: Selic (reserva)', 'NTN-B: IPCA + cupom', 'Sem FGC: risco soberano'] },
+    { t: 'Tesouro Direto', d: 'livro', i: ['É a plataforma (Tesouro + B3)', 'Custódia B3: 0,20% a.a.', 'Renda+ 240 · Educa+ 60 parcelas', 'Reserva: 24x7, R$ 1, sem marcação'] },
+    { t: 'Bancários', d: 'moeda', i: ['CDB: transferível, FGC', 'RDB: intransferível, FGC', 'RDC: cooperativas, FGCoop', 'Tributados (regressiva)'] },
+    { t: 'Letras isentas', d: 'chave', i: ['LCI: imobiliário · LCA: agro', 'LCD: BNDES e bancos de desenv.', 'Isentas PF + FGC', 'Prazo mínimo 6 · 6 · 12 meses'] },
+    { t: 'Empresas', d: 'escudo', i: ['Debênture: S.A., sem FGC', 'Incentivada (12.431): isenta', 'Infra (14.801): IR normal', 'CRI/CRA: securitizadora, isentos'] },
+    { t: 'Poupança e taxas', d: 'apito', i: ['Selic > 8,5%: 0,5% a.m. + TR', 'Dias 29-31 → aniversário dia 1', 'TR: LTN · TLP: IPCA + NTN-B', 'Rating: AAA … D'] }
+  ]
+};
+
+APOSTILA.jogos.fgc = {
+  pergunta: 'Tem FGC?',
+  gabarito: 'quais investimentos têm garantia do FGC',
+  opcoes: ['Tem FGC', 'Não tem'],
+  itens: [
+    ['CDB', 'Tem FGC', 'Depósito a prazo em banco: coberto até R$ 250 mil.'],
+    ['RDB', 'Tem FGC', 'Também é depósito a prazo: coberto.'],
+    ['LCI', 'Tem FGC', 'Coberta pelo FGC e isenta de IR para PF.'],
+    ['LCA', 'Tem FGC', 'Coberta pelo FGC e isenta de IR para PF.'],
+    ['LCD', 'Tem FGC', 'Incluída pela Res. CMN 5.184/2024.'],
+    ['Poupança', 'Tem FGC', 'Coberta pelo FGC até o limite.'],
+    ['Conta-corrente', 'Tem FGC', 'Depósito à vista: coberto.'],
+    ['Tesouro Selic', 'Não tem', 'Título público: a garantia é o Tesouro Nacional.'],
+    ['Tesouro IPCA+', 'Não tem', 'Risco soberano, sem FGC.'],
+    ['Debênture', 'Não tem', 'Dívida de empresa: sem FGC.'],
+    ['Debênture incentivada', 'Não tem', 'Isenta de IR, mas sem FGC.'],
+    ['CRI', 'Não tem', 'Emitido por securitizadora: sem FGC.'],
+    ['CRA', 'Não tem', 'Emitido por securitizadora: sem FGC.'],
+    ['Fundo de renda fixa', 'Não tem', 'Fundos não têm FGC.'],
+    ['Letra Financeira (LF)', 'Não tem', 'A LF não está entre os instrumentos garantidos.']
+  ]
+};
 </script>
 <script>/* Apostila CPA — caderno interativo.
    Views por hash: #inicio, #cap-N (ou o id de uma seção, ex. #c1-s3), #painel.
@@ -4675,6 +5713,8 @@ APOSTILA.jogos.matematica = {
   if (E.qv !== VERSAO_QUESTOES) { E.respostas = {}; E.qv = VERSAO_QUESTOES; salvar(); }
   // até a versão 1, as seções eram marcadas como lidas só de rolar a página; agora a marcação é manual
   if (E.mv !== 2) { E.vistas = {}; E.mv = 2; salvar(); }
+  // nov/2026: alternativas do capítulo 3 reordenadas; respostas antigas desse capítulo deixam de valer
+  if (E.c3v !== 2) { Object.keys(E.respostas).forEach((k) => { if (k.startsWith('c3q')) delete E.respostas[k]; }); E.c3v = 2; salvar(); }
 
   /* ---------------- catálogo de capítulos ---------------- */
   // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
@@ -4684,7 +5724,7 @@ APOSTILA.jogos.matematica = {
     { n: 2, m: 1, pd: '1.2', p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-mar', ico: 'grafico' },
     { n: 3, m: 1, pd: '1.3', r: 'conceitos: Fisher, VPL, TIR, duration, SAC × Price', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
     { n: 4, m: 1, pd: '1.4', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-mar', ico: 'rede' },
-    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
+    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro Direto e tributação (IR e IOF)', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
     { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
     { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-ouro', ico: 'pizza' },
     { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
@@ -4998,8 +6038,34 @@ APOSTILA.jogos.matematica = {
     el.addEventListener('input', atualizar); atualizar();
   }
 
+
+  function calcEquiv(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>LCI/LCA ou CDB?</b></div>
+      <div class="calc-entradas quatro">${campo('cdb', 'CDB (% do CDI)', 102, 'min="0" step="1"')}${campo('lci', 'LCI/LCA (% do CDI, isenta)', 90, 'min="0" step="1"')}${campo('cdi', 'CDI ao ano (%)', 13.65, 'min="0" step="0.05"')}${faixa('d', 'Prazo em dias', 1080, 30, 1800)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    const aliq = (d) => (d <= 180 ? 0.225 : d <= 360 ? 0.20 : d <= 720 ? 0.175 : 0.15);
+    function atualizar() {
+      const cdb = Math.max(0, ler('cdb')) / 100, lci = Math.max(0, ler('lci')) / 100, cdi = Math.max(0, ler('cdi')) / 100;
+      const d = Math.round(Math.min(1800, Math.max(30, ler('d'))));
+      $('[data-v="d"]', el).textContent = d + (d >= 360 ? ' (≈ ' + fmtN(d / 365, 1) + ' anos)' : '');
+      const ir = aliq(d), liq = cdb * (1 - ir), equiv = lci / (1 - ir);
+      const anos = d / 365, base = 10000;
+      const rCdb = base * (Math.pow(1 + cdi * cdb, anos) - 1), rLci = base * (Math.pow(1 + cdi * lci, anos) - 1);
+      const rCdbLiq = rCdb * (1 - ir);
+      const ganha = Math.abs(liq - lci) < 0.0005 ? 'empate' : liq > lci ? 'CDB' : 'LCI/LCA';
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+        <div><small>Alíquota de IR no prazo</small><b>${pct(ir, 1)}</b><span>tabela regressiva (${d <= 180 ? 'até 180 dias' : d <= 360 ? '181 a 360 dias' : d <= 720 ? '361 a 720 dias' : 'acima de 720 dias'})</span></div>
+        <div><small>CDB depois do IR</small><b>${fmtN(liq * 100, 1)}% do CDI</b><span>${fmtN(cdb * 100, 0)}% × (1 − ${fmtN(ir * 100, 1)}%)</span></div>
+        <div class="destaque"><small>CDB que empata com a LCI</small><b>${fmtN(equiv * 100, 1)}% do CDI</b><span>${fmtN(lci * 100, 0)}% ÷ (1 − ${fmtN(ir * 100, 1)}%)</span></div></div>
+        <p class="calc-veredito ${ganha === 'CDB' ? 'cdb' : ganha === 'empate' ? '' : 'lci'}">${ganha === 'empate' ? 'Empate técnico.' : `Rende mais: <b>${ganha}</b>.`} Em R$ 10.000 (CDI constante, valores aproximados): CDB rende <b>${brl(rCdbLiq)}</b> líquido; LCI/LCA rende <b>${brl(rLci)}</b>.</p>
+        ${d < 180 ? '<p class="calc-nota">Atenção: LCI e LCA sem correção por índice de preços têm prazo mínimo de <b>6 meses</b> (Res. CMN 5.215/2025).</p>' : ''}`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

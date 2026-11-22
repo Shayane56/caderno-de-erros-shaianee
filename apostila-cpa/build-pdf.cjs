@@ -15,7 +15,8 @@ const TMP = path.join(DIST, '.tmp');
 const CAPS = {
   1: { titulo: 'Sistema Financeiro Nacional', arquivo: 'Sistema-Financeiro-Nacional' },
   2: { titulo: 'Política econômica e indicadores', arquivo: 'Politica-Economica-e-Indicadores' },
-  3: { titulo: 'Matemática financeira', arquivo: 'Matematica-Financeira' }
+  3: { titulo: 'Matemática financeira', arquivo: 'Matematica-Financeira' },
+  5: { titulo: 'Renda fixa', arquivo: 'Renda-Fixa' }
 };
 
 const arg = (nome) => { const i = process.argv.indexOf(nome); return i >= 0 ? process.argv[i + 1] : null; };
