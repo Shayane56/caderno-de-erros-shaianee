@@ -43,7 +43,7 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 11 | 3 (30%) | Finanças pessoais e planejamento | |
 | 12 | 3 (30%) | Suitability, código ANBIMA e ética 🔥 | |
 | 13 | 3 (30%) | PLD, LGPD e crimes de mercado | |
-| 14 | 4 (10%) | ESG | |
+| 14 | 4 (10%) | ESG | pronto · itens 4.1 a 4.3 (fundos IS, CVM 175 art. 49, PRI) |
 | 15 | 4 (10%) | Inovação e meios de pagamento | |
 
 ## Como gerar
