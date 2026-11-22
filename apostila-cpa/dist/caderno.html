@@ -706,6 +706,16 @@ table.dicionario .trad { color: var(--tinta); }
 .g-seta { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--linha); background: var(--papel-2); color: var(--tinta); font: 700 18px/1 var(--f-texto); cursor: pointer; transition: transform .2s, background .2s; }
 .g-seta:hover { background: var(--mk-azul); }
 .g-cap.aberto .g-seta { transform: rotate(180deg); background: var(--mk-amarelo); border-color: var(--ambar); }
+
+/* marcar tópico como estudado (manual) */
+.marcar-estudo { display: flex; justify-content: flex-end; margin-top: 18px; }
+.btn-estudo { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px 7px 10px; font: 700 16px var(--f-mao); color: var(--tinta); background: var(--papel-2);
+  border: 2px dashed var(--suave); border-radius: var(--borda-mao); cursor: pointer; transition: transform .15s, background .15s, border-color .15s; }
+.btn-estudo:hover { transform: rotate(-1deg); border-color: var(--tinta); }
+.btn-estudo .caixinha { width: 22px; height: 22px; border: 2.5px solid var(--tinta); border-radius: 5px 7px 4px 6px; display: grid; place-items: center; background: var(--papel); flex: none; }
+.btn-estudo[aria-pressed="true"] { background: var(--verde-claro); border: 2px solid var(--verde); color: var(--verde-escuro); }
+.btn-estudo[aria-pressed="true"] .caixinha { background: var(--verde); border-color: var(--verde); }
+.btn-estudo[aria-pressed="true"] .caixinha::after { content: "✓"; color: #fff; font: 700 15px/1 var(--f-texto); }
 </style>
 <!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
 <svg class="defs-globais" aria-hidden="true" width="0" height="0">
@@ -819,7 +829,7 @@ table.dicionario .trad { color: var(--tinta); }
   </section>
 
   <section class="ini-painel" aria-label="Seu progresso">
-    <div class="stat"><b id="st-caps">0/15</b><span>capítulos lidos</span></div>
+    <div class="stat"><b id="st-caps">0/15</b><span>capítulos estudados</span></div>
     <div class="stat"><b id="st-resp">0/0</b><span>questões respondidas</span></div>
     <div class="stat"><b id="st-pct">—</b><span>de acerto</span></div>
     <div class="stat"><b id="st-erros">0</b><span>erros para revisar</span></div>
@@ -3362,6 +3372,8 @@ APOSTILA.jogos.politica = {
   // versão do banco de questões: quando as questões são reescritas, o histórico antigo deixa de valer
   const VERSAO_QUESTOES = 2;
   if (E.qv !== VERSAO_QUESTOES) { E.respostas = {}; E.qv = VERSAO_QUESTOES; salvar(); }
+  // até a versão 1, as seções eram marcadas como lidas só de rolar a página; agora a marcação é manual
+  if (E.mv !== 2) { E.vistas = {}; E.mv = 2; salvar(); }
 
   /* ---------------- catálogo de capítulos ---------------- */
   // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
@@ -3688,7 +3700,7 @@ APOSTILA.jogos.politica = {
       return `<${tag} class="ficha ${c.tema}${ok ? '' : ' em-breve'}" ${ok ? `href="#cap-${c.n}"` : 'aria-disabled="true"'} style="--rot:${[-1.2, .8, -.6, 1.1][i % 4]}deg">
         <div class="ficha-arte"><span class="ficha-num">${c.n}</span>${icone(c.ico)}${ok ? '' : '<span class="ficha-selo">em breve</span>'}</div>
         <div class="ficha-corpo"><span class="ficha-modulo">${MODULOS[c.m]} · prog. ${c.pd}${c.p ? ` <b class="prio ${c.p}">${c.p === 'alta' ? '🔥 cai muito' : '⚡ cai bastante'}</b>` : ''}</span><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>${c.r ? `<span class="ficha-cai">Mais cobrado: ${escH(c.r)}</span>` : ''}
-        ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% lido</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
+        ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% estudado</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
     }).join('');
   }
 
@@ -3749,7 +3761,23 @@ APOSTILA.jogos.politica = {
       }).join('');
     marcarVistas();
   }
-  function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} seções lidas`; }); }
+  function montarBotoesEstudo() {
+    $$('article.capitulo section.bloco').forEach((s) => {
+      const div = document.createElement('div');
+      div.className = 'marcar-estudo';
+      div.innerHTML = `<button type="button" class="btn-estudo" data-sec="${s.id}" aria-pressed="false"><span class="caixinha" aria-hidden="true"></span><span class="txt">Marcar como estudado</span></button>`;
+      s.appendChild(div);
+    });
+    atualizarBotoesEstudo();
+  }
+  function atualizarBotoesEstudo() {
+    $$('.btn-estudo').forEach((b) => {
+      const ok = !!E.vistas[b.dataset.sec];
+      b.setAttribute('aria-pressed', ok ? 'true' : 'false');
+      $('.txt', b).textContent = ok ? 'Estudado! (toque para desmarcar)' : 'Marcar como estudado';
+    });
+  }
+  function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} tópicos estudados`; }); }
   function marcarGaveta(view) { $$('.g-item').forEach((a) => a.classList.toggle('atual', a.dataset.view === view)); }
   // abre os tópicos de um capítulo (ou fecha, se já estiver aberto); com "so", fecha os demais
   function abrirTopicos(n, so) {
@@ -3774,7 +3802,6 @@ APOSTILA.jogos.politica = {
         if (!en.isIntersecting) return;
         const id = en.target.id;
         $$('.indice-lateral a').forEach((a) => a.classList.toggle('ativa', a.dataset.sec === id));
-        if (!E.vistas[id]) { E.vistas[id] = 1; salvar(); marcarVistas(); }
       });
     }, { rootMargin: '-35% 0px -55% 0px' });
     $$('article.capitulo section.bloco').forEach((s) => io.observe(s));
@@ -3850,6 +3877,7 @@ APOSTILA.jogos.politica = {
       return;
     }
     montarIndices();
+    montarBotoesEstudo();
     observarSecoes();
     aplicarTreino();
     aplicarTema();
@@ -3858,6 +3886,14 @@ APOSTILA.jogos.politica = {
     if (window.MutationObserver) new MutationObserver(() => { const ef = temaEfetivo(); if (raiz.getAttribute('data-tema-efetivo') !== ef) raiz.setAttribute('data-tema-efetivo', ef); }).observe(raiz, { attributes: true, attributeFilter: ['data-theme'] });
 
     document.addEventListener('click', (ev) => {
+      const est = ev.target.closest('.btn-estudo');
+      if (est) {
+        const id = est.dataset.sec;
+        if (E.vistas[id]) delete E.vistas[id]; else E.vistas[id] = 1;
+        salvar(); atualizarBotoesEstudo(); marcarVistas(); atualizarGeral();
+        if (E.vistas[id]) toast('Tópico marcado como estudado');
+        return;
+      }
       const ce = ev.target.closest('.ce');
       if (ce && ce.classList.contains('fechado')) { ce.classList.remove('fechado'); ce.classList.add('abriu'); return; }
       const fr = ev.target.closest('.treino .frases-resumo .manuscrito'); if (fr) { fr.classList.toggle('ver'); return; }

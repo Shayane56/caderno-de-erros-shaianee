@@ -19,6 +19,8 @@
   // versão do banco de questões: quando as questões são reescritas, o histórico antigo deixa de valer
   const VERSAO_QUESTOES = 2;
   if (E.qv !== VERSAO_QUESTOES) { E.respostas = {}; E.qv = VERSAO_QUESTOES; salvar(); }
+  // até a versão 1, as seções eram marcadas como lidas só de rolar a página; agora a marcação é manual
+  if (E.mv !== 2) { E.vistas = {}; E.mv = 2; salvar(); }
 
   /* ---------------- catálogo de capítulos ---------------- */
   // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
@@ -345,7 +347,7 @@
       return `<${tag} class="ficha ${c.tema}${ok ? '' : ' em-breve'}" ${ok ? `href="#cap-${c.n}"` : 'aria-disabled="true"'} style="--rot:${[-1.2, .8, -.6, 1.1][i % 4]}deg">
         <div class="ficha-arte"><span class="ficha-num">${c.n}</span>${icone(c.ico)}${ok ? '' : '<span class="ficha-selo">em breve</span>'}</div>
         <div class="ficha-corpo"><span class="ficha-modulo">${MODULOS[c.m]} · prog. ${c.pd}${c.p ? ` <b class="prio ${c.p}">${c.p === 'alta' ? '🔥 cai muito' : '⚡ cai bastante'}</b>` : ''}</span><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>${c.r ? `<span class="ficha-cai">Mais cobrado: ${escH(c.r)}</span>` : ''}
-        ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% lido</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
+        ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% estudado</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
     }).join('');
   }
 
@@ -406,7 +408,23 @@
       }).join('');
     marcarVistas();
   }
-  function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} seções lidas`; }); }
+  function montarBotoesEstudo() {
+    $$('article.capitulo section.bloco').forEach((s) => {
+      const div = document.createElement('div');
+      div.className = 'marcar-estudo';
+      div.innerHTML = `<button type="button" class="btn-estudo" data-sec="${s.id}" aria-pressed="false"><span class="caixinha" aria-hidden="true"></span><span class="txt">Marcar como estudado</span></button>`;
+      s.appendChild(div);
+    });
+    atualizarBotoesEstudo();
+  }
+  function atualizarBotoesEstudo() {
+    $$('.btn-estudo').forEach((b) => {
+      const ok = !!E.vistas[b.dataset.sec];
+      b.setAttribute('aria-pressed', ok ? 'true' : 'false');
+      $('.txt', b).textContent = ok ? 'Estudado! (toque para desmarcar)' : 'Marcar como estudado';
+    });
+  }
+  function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} tópicos estudados`; }); }
   function marcarGaveta(view) { $$('.g-item').forEach((a) => a.classList.toggle('atual', a.dataset.view === view)); }
   // abre os tópicos de um capítulo (ou fecha, se já estiver aberto); com "so", fecha os demais
   function abrirTopicos(n, so) {
@@ -431,7 +449,6 @@
         if (!en.isIntersecting) return;
         const id = en.target.id;
         $$('.indice-lateral a').forEach((a) => a.classList.toggle('ativa', a.dataset.sec === id));
-        if (!E.vistas[id]) { E.vistas[id] = 1; salvar(); marcarVistas(); }
       });
     }, { rootMargin: '-35% 0px -55% 0px' });
     $$('article.capitulo section.bloco').forEach((s) => io.observe(s));
@@ -507,6 +524,7 @@
       return;
     }
     montarIndices();
+    montarBotoesEstudo();
     observarSecoes();
     aplicarTreino();
     aplicarTema();
@@ -515,6 +533,14 @@
     if (window.MutationObserver) new MutationObserver(() => { const ef = temaEfetivo(); if (raiz.getAttribute('data-tema-efetivo') !== ef) raiz.setAttribute('data-tema-efetivo', ef); }).observe(raiz, { attributes: true, attributeFilter: ['data-theme'] });
 
     document.addEventListener('click', (ev) => {
+      const est = ev.target.closest('.btn-estudo');
+      if (est) {
+        const id = est.dataset.sec;
+        if (E.vistas[id]) delete E.vistas[id]; else E.vistas[id] = 1;
+        salvar(); atualizarBotoesEstudo(); marcarVistas(); atualizarGeral();
+        if (E.vistas[id]) toast('Tópico marcado como estudado');
+        return;
+      }
       const ce = ev.target.closest('.ce');
       if (ce && ce.classList.contains('fechado')) { ce.classList.remove('fechado'); ce.classList.add('abriu'); return; }
       const fr = ev.target.closest('.treino .frases-resumo .manuscrito'); if (fr) { fr.classList.toggle('ver'); return; }

@@ -128,3 +128,4 @@ html.pdf .questao .contexto { font-size: 13.5px; padding: 6px 10px; margin-botto
 html.pdf .rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 html.pdf .rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 html.pdf #c1-s20 { break-before: page; margin-top: 0; }
+html.pdf .marcar-estudo { display: none !important; }
