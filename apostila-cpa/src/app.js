@@ -16,6 +16,9 @@
   let E = { respostas: {}, vistas: {}, prova: '', recorde: 0, treino: false };
   try { const s = JSON.parse(localStorage.getItem(CHAVE) || 'null'); if (s && typeof s === 'object') E = Object.assign(E, s); } catch (e) { /* sem armazenamento */ }
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(E)); } catch (e) { /* ignora */ } };
+  // versão do banco de questões: quando as questões são reescritas, o histórico antigo deixa de valer
+  const VERSAO_QUESTOES = 2;
+  if (E.qv !== VERSAO_QUESTOES) { E.respostas = {}; E.qv = VERSAO_QUESTOES; salvar(); }
 
   /* ---------------- catálogo de capítulos ---------------- */
   // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
@@ -88,7 +91,8 @@
   function htmlQuestao(q, num) {
     const nivel = { facil: 'fácil', medio: 'médio', dificil: 'difícil' }[q.n] || '';
     return `<div class="questao" data-q="${q.id}">
-      <div class="cab"><span class="nq">${num}</span><span class="fonte">Inédita · Cap. ${q.cap} · ${escH(q.tema)}</span><span class="nivel ${q.n}">${nivel}</span></div>
+      <div class="cab"><span class="nq">${num}</span><span class="fonte">Inédita · ${q.pd ? 'PD ' + escH(q.pd) : 'Cap. ' + q.cap} · ${escH(q.tema)}</span>${q.nv ? `<span class="cog">${escH(q.nv)}</span>` : ''}<span class="nivel ${q.n}">${nivel}</span></div>
+      ${q.ctx ? `<div class="contexto"><b>Contexto</b>${escH(q.ctx)}</div>` : ''}
       <div class="enunciado">${escH(q.q)}</div>
       <ol class="alt">${q.o.map((a, i) => `<li class="alt-i" data-i="${i}" tabindex="0" role="button">${escH(a)}</li>`).join('')}</ol>
       <div class="fb-lugar" aria-live="polite"></div></div>`;
@@ -158,7 +162,8 @@
 
   /* gabarito impresso (modo PDF) */
   function montarListaImpressa(alvo, lista) {
-    alvo.innerHTML = lista.map((q, k) => `<div class="questao"><div class="cab"><span class="nq">${k + 1}</span><span class="fonte">Inédita · ${escH(q.tema)}</span></div>
+    alvo.innerHTML = lista.map((q, k) => `<div class="questao"><div class="cab"><span class="nq">${k + 1}</span><span class="fonte">Inédita · ${q.pd ? 'PD ' + escH(q.pd) + ' · ' : ''}${escH(q.tema)}</span>${q.nv ? `<span class="cog">${escH(q.nv)}</span>` : ''}</div>
+      ${q.ctx ? `<div class="contexto"><b>Contexto</b>${escH(q.ctx)}</div>` : ''}
       <div class="enunciado">${escH(q.q)}</div><ol class="alt">${q.o.map((a) => `<li>${escH(a)}</li>`).join('')}</ol></div>`).join('')
       + `<div class="gabarito-impresso"><h3 class="sem-marca">Gabarito comentado</h3>${lista.map((q, k) => `<div class="gab-item"><b>${k + 1} · ${LETRAS[q.c]}</b> ${escH(q.e)}</div>`).join('')}</div>`;
   }

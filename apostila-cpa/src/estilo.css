@@ -678,3 +678,9 @@ table.dicionario .trad { color: var(--tinta); }
 .pesos-legenda .lg { display: inline-block; width: 14px; height: 10px; border-radius: 4px; margin: 0 4px 0 10px; vertical-align: 0; }
 .pesos-legenda .lg:first-child { margin-left: 0; }
 @media (max-width: 640px) { .peso-linha { grid-template-columns: minmax(0, 1fr) 84px; } .peso-barras { grid-column: 1 / -1; grid-row: 2; } }
+
+/* questões no formato oficial: contexto + enunciado */
+.questao .contexto { margin: 0 0 10px; padding: 9px 13px; background: var(--fundo); border-left: 4px solid var(--teal-medio); border-radius: 0 10px 10px 0; font-size: 15.5px; line-height: 1.55; color: var(--tinta); }
+.questao .contexto b { display: block; font: 700 13px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+.questao .enunciado { font-weight: 700; }
+.questao .cab .cog { font: 700 13px var(--f-mao); padding: 0 8px; border-radius: 8px; background: var(--roxo-claro); color: var(--roxo); }
