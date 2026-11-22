@@ -16,6 +16,7 @@ const CAPS = {
   1: { titulo: 'Sistema Financeiro Nacional', arquivo: 'Sistema-Financeiro-Nacional' },
   2: { titulo: 'Política econômica e indicadores', arquivo: 'Politica-Economica-e-Indicadores' },
   3: { titulo: 'Matemática financeira', arquivo: 'Matematica-Financeira' },
+  4: { titulo: 'Regulação e infraestrutura de mercado', arquivo: 'Regulacao-e-Infraestrutura' },
   5: { titulo: 'Renda fixa', arquivo: 'Renda-Fixa' }
 };
 
