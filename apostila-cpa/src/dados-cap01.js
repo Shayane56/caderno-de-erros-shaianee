@@ -188,6 +188,7 @@ APOSTILA.mapas.sfn = {
 
 APOSTILA.jogos.fiscaliza = {
   pergunta: 'Quem fiscaliza?',
+  gabarito: 'quem fiscaliza cada instituição',
   opcoes: ['BC', 'CVM', 'Susep', 'Previc'],
   itens: [
     ['Banco múltiplo', 'BC', 'Bancos são supervisionados pelo Banco Central.'],

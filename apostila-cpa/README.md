@@ -32,8 +32,8 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | --- | --- | --- | --- |
 | 1 | 1 (20%) | Sistema Financeiro Nacional | pronto · cobre todo o item 1.1 do programa |
 | 2 | 1 (20%) | Política econômica e indicadores 🔥 | pronto · cobre todo o item 1.2 do programa |
-| 3 | 1 (20%) | Matemática financeira | próxima etapa |
-| 4 | 1 (20%) | Regulação e infraestrutura de mercado | |
+| 3 | 1 (20%) | Matemática financeira | pronto · cobre todo o item 1.3 do programa · 3 simuladores (juros, taxas e SAC × Price) |
+| 4 | 1 (20%) | Regulação e infraestrutura de mercado | próxima etapa |
 | 5 | 2 (40%) | Renda fixa 🔥 | |
 | 6 | 2 (40%) | Renda variável e COE 🔥 | |
 | 7 | 2 (40%) | Fundos de investimento e FII | |

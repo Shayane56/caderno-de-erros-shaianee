@@ -28,7 +28,7 @@
   const CAPS = [
     { n: 1, m: 1, pd: '1.1', t: 'Sistema Financeiro Nacional', s: 'CMN, BC, CVM, Susep, Previc, bancos, fintechs, ANBIMA, FGC e SPB', tema: 'tema-mar', ico: 'predio' },
     { n: 2, m: 1, pd: '1.2', p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-mar', ico: 'grafico' },
-    { n: 3, m: 1, pd: '1.3', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
+    { n: 3, m: 1, pd: '1.3', r: 'conceitos: Fisher, VPL, TIR, duration, SAC × Price', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
     { n: 4, m: 1, pd: '1.4', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-mar', ico: 'rede' },
     { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
     { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
@@ -243,11 +243,122 @@
     el._desenhar = desenhar;
   }
 
+
+  /* ---------------- simuladores do capítulo 3 ---------------- */
+  const fmtN = (v, d = 2) => (isFinite(v) ? v : 0).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const brl = (v) => 'R$ ' + fmtN(v);
+  const pct = (v, d = 2) => fmtN(v * 100, d) + '%';
+  const num = (inp) => { const v = parseFloat(String(inp.value).replace(',', '.')); return isFinite(v) ? v : 0; };
+  const campo = (k, rotulo, valor, extra = '') => `<label class="calc-campo"><span>${rotulo}</span><input type="number" inputmode="decimal" data-k="${k}" value="${valor}" ${extra}></label>`;
+  const faixa = (k, rotulo, valor, min, max) => `<label class="calc-campo calc-faixa"><span>${rotulo}: <b data-v="${k}">${valor}</b></span><input type="range" data-k="${k}" value="${valor}" min="${min}" max="${max}" step="1"></label>`;
+
+  function calcBola(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Juros simples × compostos</b></div>
+      <div class="calc-entradas">${campo('c', 'Capital (R$)', 1000, 'min="1" step="100"')}${campo('i', 'Taxa por período (%)', 10, 'min="0" max="50" step="0.5"')}${faixa('n', 'Períodos', 10, 1, 30)}</div>
+      <div class="calc-graf" aria-hidden="true"></div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const C = Math.max(0, ler('c')), i = Math.max(0, ler('i')) / 100, n = Math.round(Math.min(30, Math.max(1, ler('n'))));
+      $('[data-v="n"]', el).textContent = n;
+      const sim = [], com = [];
+      for (let t = 0; t <= n; t++) { sim.push(C * (1 + i * t)); com.push(C * Math.pow(1 + i, t)); }
+      const max = com[n] || 1, W = 640, H = 220, base = 190, larg = Math.min(26, (W - 40) / (n + 1) / 2 - 1);
+      let barras = '';
+      for (let t = 0; t <= n; t++) {
+        const x = 30 + (t + 0.5) * ((W - 40) / (n + 1));
+        const hs = sim[t] / max * 170, hc = com[t] / max * 170;
+        barras += `<rect x="${(x - larg).toFixed(1)}" y="${(base - hs).toFixed(1)}" width="${larg.toFixed(1)}" height="${hs.toFixed(1)}" rx="2" class="b-sim"/><rect x="${x.toFixed(1)}" y="${(base - hc).toFixed(1)}" width="${larg.toFixed(1)}" height="${hc.toFixed(1)}" rx="2" class="b-com"/>`;
+        if (n <= 15 || t % 5 === 0) barras += `<text x="${x.toFixed(1)}" y="${base + 16}" text-anchor="middle">${t}</text>`;
+      }
+      $('.calc-graf', el).innerHTML = `<svg viewBox="0 0 ${W} ${H}"><path d="M20 ${base}H${W - 6}" class="eixo"/>${barras}</svg>
+        <p class="calc-leg"><i class="b-sim"></i>simples <i class="b-com"></i>compostos <span>· eixo: períodos</span></p>`;
+      const js = sim[n] - C, jc = com[n] - C;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+        <div><small>Juros simples</small><b>${brl(sim[n])}</b><span>juros de ${brl(js)}<br>M = C × (1 + i × n)</span></div>
+        <div class="destaque"><small>Juros compostos</small><b>${brl(com[n])}</b><span>juros de ${brl(jc)}<br>M = C × (1 + i)<sup>${n}</sup></span></div>
+        <div><small>Juros sobre juros</small><b>${brl(jc - js)}</b><span>${js > 0 ? 'compostos rendem ' + pct(jc / js - 1, 1) + ' a mais de juros' : 'com 1 período, dão igual'}</span></div></div>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
+  function calcTaxas(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Conversor de taxas</b></div>
+      <div class="calc-tres">
+        <div class="calc-bloco" data-b="eq"><h4>1 · Taxa equivalente</h4>${campo('tm', 'Taxa ao mês (%)', 1, 'step="0.1"')}<div class="calc-out"></div></div>
+        <div class="calc-bloco" data-b="ne"><h4>2 · Nominal → efetiva</h4>${campo('tn', 'Taxa nominal ao ano (%)', 12, 'step="0.5"')}
+          <label class="calc-campo"><span>Capitalização</span><select data-k="k"><option value="12" selected>mensal (12×)</option><option value="4">trimestral (4×)</option><option value="2">semestral (2×)</option><option value="365">diária (365×)</option></select></label><div class="calc-out"></div></div>
+        <div class="calc-bloco" data-b="fi"><h4>3 · Fisher</h4>${campo('fn', 'Rendimento nominal (%)', 12, 'step="0.5"')}${campo('fi', 'Inflação (%)', 5, 'step="0.5"')}<div class="calc-out"></div></div>
+      </div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const tm = ler('tm') / 100, ea = Math.pow(1 + tm, 12) - 1;
+      $('[data-b="eq"] .calc-out', el).innerHTML = `<p><small>Equivalente ao ano (compostos)</small><b>${pct(ea)}</b><span>(1 + ${fmtN(tm * 100)}%)¹² − 1</span></p>
+        <p><small>Proporcional ao ano (simples)</small><b class="neutro">${pct(tm * 12)}</b><span>${fmtN(tm * 100)}% × 12</span></p>`;
+      const tn = ler('tn') / 100, k = Number($('[data-k="k"]', el).value), ip = tn / k, ef = Math.pow(1 + ip, k) - 1;
+      $('[data-b="ne"] .calc-out', el).innerHTML = `<p><small>Taxa por período</small><b class="neutro">${pct(ip, k === 365 ? 4 : 2)}</b><span>${fmtN(tn * 100)}% ÷ ${k}</span></p>
+        <p><small>Taxa efetiva ao ano</small><b>${pct(ef)}</b><span>(1 + ${pct(ip, k === 365 ? 4 : 2)})<sup>${k}</sup> − 1</span></p>`;
+      const fn = ler('fn') / 100, fi = ler('fi') / 100, re = (1 + fn) / (1 + fi) - 1;
+      $('[data-b="fi"] .calc-out', el).innerHTML = `<p><small>Taxa real (Fisher)</small><b class="${re < 0 ? 'neg' : ''}">${pct(re)}</b><span>(1 + ${fmtN(fn * 100)}%) ÷ (1 + ${fmtN(fi * 100)}%) − 1</span></p>
+        <p><small>“Conta de padaria” (aproximação)</small><b class="neutro">${pct(fn - fi)}</b><span>${re < 0 ? 'real negativa: perdeu poder de compra' : re === 0 ? 'real zero: só preservou o poder de compra' : 'a real é um pouco menor que a subtração'}</span></p>`;
+    }
+    el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
+  }
+
+  function calcAmort(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>SAC × Price</b></div>
+      <div class="calc-entradas">${campo('p', 'Valor financiado (R$)', 6000, 'min="100" step="500"')}${campo('i', 'Taxa ao mês (%)', 2, 'min="0" max="15" step="0.1"')}${faixa('n', 'Parcelas', 6, 2, 60)}</div>
+      <div class="calc-res" aria-live="polite"></div><div class="calc-graf amort" aria-hidden="true"></div>
+      <details class="calc-tabela"><summary>Ver a tabela mês a mês</summary><div class="tabela-rolagem"></div></details>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function sistemas(P, i, n) {
+      const sac = [], price = []; let s = P;
+      for (let k = 0; k < n; k++) { const j = s * i, a = P / n; sac.push([a + j, j, a]); s -= a; }
+      const pmt = i > 0 ? P * i / (1 - Math.pow(1 + i, -n)) : P / n; s = P;
+      for (let k = 0; k < n; k++) { const j = s * i, a = pmt - j; price.push([pmt, j, a]); s -= a; }
+      return { sac, price };
+    }
+    function grafico(d, nome, max) {
+      const W = 300, base = 150, n = d.length, lw = (W - 20) / n, bw = Math.max(2, lw * 0.7);
+      let r = '';
+      d.forEach((x, k) => {
+        const ha = x[2] / max * 130, hj = x[1] / max * 130, xx = 10 + k * lw + (lw - bw) / 2;
+        r += `<rect x="${xx.toFixed(1)}" y="${(base - ha).toFixed(1)}" width="${bw.toFixed(1)}" height="${ha.toFixed(1)}" class="b-amo"/><rect x="${xx.toFixed(1)}" y="${(base - ha - hj).toFixed(1)}" width="${bw.toFixed(1)}" height="${hj.toFixed(1)}" class="b-jur"/>`;
+      });
+      return `<figure><figcaption>${nome}</figcaption><svg viewBox="0 0 ${W} 160"><path d="M6 ${base}H${W - 4}" class="eixo"/>${r}</svg></figure>`;
+    }
+    function atualizar() {
+      const P = Math.max(0, ler('p')), i = Math.max(0, ler('i')) / 100, n = Math.round(Math.min(60, Math.max(2, ler('n'))));
+      $('[data-v="n"]', el).textContent = n;
+      const { sac, price } = sistemas(P, i, n);
+      const soma = (d, c) => d.reduce((t, x) => t + x[c], 0);
+      const js = soma(sac, 1), jp = soma(price, 1);
+      $('.calc-res', el).innerHTML = `<div class="calc-cards dois">
+        <div><small>SAC · amortização fixa de ${brl(P / n)}</small><b>${brl(sac[0][0])} → ${brl(sac[n - 1][0])}</b><span>1ª e última parcela · juros totais: <strong>${brl(js)}</strong></span></div>
+        <div class="destaque"><small>Price · parcela fixa</small><b>${brl(price[0][0])}</b><span>todas as parcelas · juros totais: <strong>${brl(jp)}</strong></span></div></div>
+        <p class="calc-nota">${jp - js > 0.005 ? `A Price paga <b>${brl(jp - js)}</b> a mais de juros, mas começa com parcela <b>${brl(sac[0][0] - price[0][0])}</b> menor.` : 'Com taxa zero, os dois sistemas ficam iguais.'}</p>`;
+      const max = Math.max(sac[0][0], price[0][0]) || 1;
+      $('.calc-graf', el).innerHTML = grafico(sac, 'SAC', max) + grafico(price, 'Price', max) + '<p class="calc-leg"><i class="b-jur"></i>juros <i class="b-amo"></i>amortização</p>';
+      $('.calc-tabela .tabela-rolagem', el).innerHTML = `<table class="tabela amort"><thead><tr><th>Mês</th><th>SAC parcela</th><th>juros</th><th>amortiz.</th><th>Price parcela</th><th>juros</th><th>amortiz.</th></tr></thead><tbody>${sac.map((s, k) => `<tr><td>${k + 1}º</td><td>${fmtN(s[0])}</td><td>${fmtN(s[1])}</td><td>${fmtN(s[2])}</td><td>${fmtN(price[k][0])}</td><td>${fmtN(price[k][1])}</td><td>${fmtN(price[k][2])}</td></tr>`).join('')}<tr class="total"><td>Total</td><td>${fmtN(soma(sac, 0))}</td><td>${fmtN(js)}</td><td>${fmtN(soma(sac, 2))}</td><td>${fmtN(soma(price, 0))}</td><td>${fmtN(jp)}</td><td>${fmtN(soma(price, 2))}</td></tr></tbody></table>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
+  function montarCalc(el) {
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort }[el.dataset.calc]; if (!f) return;
+    f(el);
+    if (MODO_PDF) {
+      $$('input, select', el).forEach((x) => { x.disabled = true; });
+      const d = $('details', el); if (d) d.remove();
+      el.insertAdjacentHTML('beforeend', '<p class="calc-nota pdf-only">No caderno digital, este simulador é interativo: mude os valores e veja o resultado na hora.</p>');
+    }
+  }
+
   /* ---------------- jogo relâmpago ---------------- */
   function montarJogo(el) {
     const J = D.jogos[el.dataset.jogo]; if (!J) return;
     if (MODO_PDF) {
-      el.innerHTML = `<p class="jogo-pergunta">Gabarito do desafio: quem fiscaliza cada instituição</p><ul style="text-align:left;columns:2;column-gap:28px;font-size:15px">${J.itens.map((x) => `<li><b>${escH(x[0])}</b>: ${escH(x[1])}</li>`).join('')}</ul>`;
+      el.innerHTML = `<p class="jogo-pergunta">Gabarito do desafio: ${escH(J.gabarito || J.pergunta)}</p><ul class="jogo-gab">${J.itens.map((x) => `<li><b>${escH(x[0])}</b>: ${escH(x[1])}</li>`).join('')}</ul>`;
       return;
     }
     let rodadas = [], k = 0, pontos = 0, timer = null, inicio = 0, erros = [];
@@ -528,6 +639,7 @@
   function iniciar() {
     $$('.mapa-caderno').forEach(montarMapa);
     $$('.jogo[data-jogo]').forEach(montarJogo);
+    $$('.calc[data-calc]').forEach(montarCalc);
     $$('.lista-questoes[data-questoes]').forEach((el) => {
       const n = Number(el.dataset.questoes); const lista = TODAS.filter((q) => q.cap === n);
       if (MODO_PDF) montarListaImpressa(el, lista); else montarLista(el, lista);

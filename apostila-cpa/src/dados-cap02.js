@@ -192,6 +192,7 @@ APOSTILA.mapas.politica = {
 
 APOSTILA.jogos.politica = {
   pergunta: 'Acelerador ou freio?',
+  gabarito: 'acelerador (expansionista) ou freio (contracionista)?',
   opcoes: ['Expansionista', 'Contracionista'],
   itens: [
     ['Copom corta a Selic', 'Expansionista', 'Juros menores estimulam crédito e consumo.'],

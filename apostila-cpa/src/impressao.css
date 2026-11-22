@@ -129,3 +129,18 @@ html.pdf .rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr));
 html.pdf .rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 html.pdf #c1-s20 { break-before: page; margin-top: 0; }
 html.pdf .marcar-estudo { display: none !important; }
+
+/* simuladores no PDF: mostram o exemplo padrão */
+html.pdf .calc { box-shadow: none; break-inside: avoid; }
+html.pdf .calc-entradas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.pdf .calc-tres, html.pdf .calc-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.pdf .calc-cards.dois, html.pdf .calc-graf.amort { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html.pdf .calc input[type=range] { display: none; }
+html.pdf .calc-campo input, html.pdf .calc-campo select { -webkit-appearance: none; appearance: none; opacity: 1; color: var(--tinta); }
+html.pdf .grade-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* tabela de fontes mais compacta no papel (evita a última página só com o aviso) */
+html.pdf table.fontes { font-size: 13.5px; }
+html.pdf table.fontes td { padding: 6px 9px; line-height: 1.35; }
+html.pdf table.fontes .org { font-size: 12px; }
+html.pdf .tabela-rolagem + p.pequeno { break-before: avoid; }
+html.pdf .jogo { break-inside: avoid; }

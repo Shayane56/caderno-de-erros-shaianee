@@ -1,0 +1,863 @@
+<article class="capitulo tema-mar" id="cap-3" data-cap="3" data-titulo="Matemática financeira">
+
+<header class="cap-hero">
+  <div class="hero-foto">
+    <div class="hero-arte">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Bolas de neve crescendo ladeira abaixo, ao lado de uma calculadora">
+        <ellipse cx="150" cy="270" rx="122" ry="12" fill="#06303a" opacity=".35"/>
+        <path d="M18 92 C 90 120, 170 200, 290 236" fill="none" stroke="#e3f2f1" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+        <circle cx="46" cy="96" r="13" fill="#fff" stroke="#0b3f4b" stroke-width="4"/>
+        <circle cx="112" cy="140" r="22" fill="#fff" stroke="#0b3f4b" stroke-width="4"/>
+        <circle cx="200" cy="196" r="36" fill="#fff" stroke="#0b3f4b" stroke-width="5"/>
+        <text x="46" y="101" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="12" fill="#0b4f5c">R$</text>
+        <text x="112" y="147" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="19" fill="#0b4f5c">R$</text>
+        <text x="200" y="207" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="30" fill="#d9472f">R$</text>
+        <g transform="translate(206 34) rotate(8)">
+          <rect width="74" height="104" rx="12" fill="#ffd38a" stroke="#4a2f0b" stroke-width="5"/>
+          <rect x="11" y="12" width="52" height="24" rx="4" fill="#0b3f4b"/>
+          <text x="58" y="30" text-anchor="end" font-family="Kalam, cursive" font-weight="700" font-size="15" fill="#9df0e8">1,1ⁿ</text>
+          <g fill="#4a2f0b"><circle cx="20" cy="54" r="5"/><circle cx="37" cy="54" r="5"/><circle cx="54" cy="54" r="5"/><circle cx="20" cy="71" r="5"/><circle cx="37" cy="71" r="5"/><circle cx="54" cy="71" r="5"/><circle cx="20" cy="88" r="5"/><rect x="32" y="83" width="27" height="10" rx="5"/></g>
+        </g>
+        <text x="40" y="262" font-family="Kaushan Script, cursive" font-size="26" fill="#fff">juros sobre juros</text>
+      </svg>
+    </div>
+    <span class="hero-num">3</span>
+  </div>
+  <div>
+    <span class="hero-sobre">Capítulo 3 · Módulo 1 (20% da prova) · fecha o módulo</span>
+    <h1 class="hero-titulo">Matemática financeira</h1>
+    <p class="hero-sub">Calma: aqui ninguém vai te pedir para decorar fórmula gigante. A prova quer saber se você <strong>entende a lógica</strong>: por que o dinheiro de hoje vale mais que o de amanhã, por que a parcela da Price não muda, por que “12% ao ano” nem sempre é 12%. E, para ver isso acontecendo, o capítulo tem <strong>3 simuladores</strong>.</p>
+    <div class="hero-acoes"><a class="btn-mao principal pequeno" href="#resumo-3">Ver o resumo em 2 páginas</a><a class="btn-mao pequeno" href="#c3-s16">Ir direto às questões</a></div>
+    <div class="hero-chips" style="margin-top:14px"><span>juros compostos</span><span>Fisher</span><span>taxa efetiva</span><span>VP e VPL</span><span>TIR</span><span>payback</span><span>duration</span><span>SAC × Price</span><span>desconto</span></div>
+  </div>
+  <div class="hero-aprender">
+    <h2>Perguntas que você vai saber responder</h2>
+    <ul class="check">
+      <li>Por que juros compostos crescem como bola de neve?</li>
+      <li>1% ao mês é o mesmo que 12% ao ano?</li>
+      <li>Meu CDB rendeu 12% e a inflação foi 5%. Ganhei 7%?</li>
+      <li>Quanto vale hoje um dinheiro que só vou receber daqui a 2 anos?</li>
+      <li>Como saber se um projeto vale a pena (VPL, TIR e payback)?</li>
+      <li>O que é duration e por que ela mede o risco de juros?</li>
+      <li>Como funciona o desconto quando a empresa antecipa uma duplicata?</li>
+      <li>SAC ou Price: qual parcela cai e qual fica fixa?</li>
+    </ul>
+  </div>
+</header>
+
+<!-- 3.1 -->
+<section class="bloco" id="c3-s1" data-titulo="Juros simples e compostos">
+  <span class="sobretitulo">3.1 · O aluguel do dinheiro</span>
+  <h2 class="titulo-secao">Juros simples e juros compostos</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Afinal, o que são juros?</p>
+  <p>Juros são o <strong>aluguel do dinheiro</strong>. Se você empresta, recebe aluguel; se pega emprestado, paga. E, como todo aluguel, ele depende de <strong>quanto</strong> (o capital), de <strong>quanto custa por período</strong> (a taxa) e de <strong>por quanto tempo</strong> (o prazo). Guarde os nomes que a prova usa:</p>
+  <div class="grade-4 cartoes-compactos">
+    <div class="cartao"><h4>Capital (C ou VP)</h4><p>O valor de <strong>hoje</strong>: o que você aplica ou pega emprestado. Também chamado de <strong>principal</strong>.</p></div>
+    <div class="cartao ambar"><h4>Taxa (i)</h4><p>O “preço” por período: <strong>2% ao mês</strong>, <strong>12% ao ano</strong>. Sempre com a unidade de tempo!</p></div>
+    <div class="cartao verde"><h4>Prazo (n)</h4><p>Quantos períodos o dinheiro fica aplicado, na <strong>mesma unidade da taxa</strong>.</p></div>
+    <div class="cartao coral"><h4>Montante (M ou VF)</h4><p>O valor do <strong>final</strong>: capital + juros.</p></div>
+  </div>
+
+  <h3>A diferença que muda tudo</h3>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Juros simples</h4><p>O juro é calculado <strong>sempre sobre o capital inicial</strong>. Todo período rende a mesma coisa. Cresce em <strong>linha reta</strong>.</p>
+      <p class="manuscrito" style="font-size:21px">J = C × i × n &nbsp;·&nbsp; M = C × (1 + i × n)</p></div>
+    <div class="cartao coral"><h4>Juros compostos</h4><p>O juro de cada período <strong>entra no saldo</strong> e passa a render juros também: são os <span class="mt">juros sobre juros</span>. Cresce em <strong>curva</strong>, como bola de neve.</p>
+      <p class="manuscrito" style="font-size:21px">M = C × (1 + i)ⁿ</p></div>
+  </div>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 340" role="img" aria-label="Bola de neve: R$ 1.000 a 10% ao ano por 10 anos. Juros simples chegam a R$ 2.000; juros compostos chegam a R$ 2.593,74">
+      <rect width="760" height="340" fill="#fff"/>
+      <path d="M60 280h680" stroke="#1d2a31" stroke-width="2.5"/>
+      <path d="M60 241.5h680" stroke="#dfe9f2" stroke-width="1.5"/><text x="54" y="245.5" text-anchor="end" font-size="12" fill="#5b6970">500</text>
+      <path d="M60 203.1h680" stroke="#dfe9f2" stroke-width="1.5"/><text x="54" y="207.1" text-anchor="end" font-size="12" fill="#5b6970">1.000</text>
+      <path d="M60 164.6h680" stroke="#dfe9f2" stroke-width="1.5"/><text x="54" y="168.6" text-anchor="end" font-size="12" fill="#5b6970">1.500</text>
+      <path d="M60 126.2h680" stroke="#dfe9f2" stroke-width="1.5"/><text x="54" y="130.2" text-anchor="end" font-size="12" fill="#5b6970">2.000</text>
+      <path d="M60 87.7h680" stroke="#dfe9f2" stroke-width="1.5"/><text x="54" y="91.7" text-anchor="end" font-size="12" fill="#5b6970">2.500</text>
+      <rect x="55" y="203.1" width="22" height="76.9" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="79" y="203.1" width="22" height="76.9" rx="3" fill="#d9472f"/>
+      <text x="78" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">0</text>
+      <rect x="117" y="195.4" width="22" height="84.6" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="141" y="195.4" width="22" height="84.6" rx="3" fill="#d9472f"/>
+      <text x="140" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">1</text>
+      <rect x="179" y="187.7" width="22" height="92.3" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="203" y="186.9" width="22" height="93.1" rx="3" fill="#d9472f"/>
+      <text x="202" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">2</text>
+      <rect x="241" y="180.0" width="22" height="100.0" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="265" y="177.6" width="22" height="102.4" rx="3" fill="#d9472f"/>
+      <text x="264" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">3</text>
+      <rect x="303" y="172.3" width="22" height="107.7" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="327" y="167.4" width="22" height="112.6" rx="3" fill="#d9472f"/>
+      <text x="326" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">4</text>
+      <rect x="365" y="164.6" width="22" height="115.4" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="389" y="156.1" width="22" height="123.9" rx="3" fill="#d9472f"/>
+      <text x="388" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">5</text>
+      <rect x="427" y="156.9" width="22" height="123.1" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="451" y="143.7" width="22" height="136.3" rx="3" fill="#d9472f"/>
+      <text x="450" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">6</text>
+      <rect x="489" y="149.2" width="22" height="130.8" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="513" y="130.1" width="22" height="149.9" rx="3" fill="#d9472f"/>
+      <text x="512" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">7</text>
+      <rect x="551" y="141.5" width="22" height="138.5" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="575" y="115.1" width="22" height="164.9" rx="3" fill="#d9472f"/>
+      <text x="574" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">8</text>
+      <rect x="613" y="133.8" width="22" height="146.2" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="637" y="98.6" width="22" height="181.4" rx="3" fill="#d9472f"/>
+      <text x="636" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">9</text>
+      <rect x="675" y="126.2" width="22" height="153.8" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/>
+      <rect x="699" y="80.5" width="22" height="199.5" rx="3" fill="#d9472f"/>
+      <text x="698" y="300" text-anchor="middle" font-size="13" fill="#1d2a31" font-weight="800">10</text>
+      <text x="400" y="322" text-anchor="middle" font-size="13" fill="#5b6970">anos</text>
+      <g transform="translate(92 66)"><rect width="300" height="74" rx="12" fill="#fff4a8" stroke="#a96300" stroke-width="2"/><text x="16" y="28" class="mao" font-size="17" fill="#0b4f5c">no ano 10, simples: R$ 2.000</text><text x="16" y="56" class="mao" font-size="17" fill="#b3311d">compostos: R$ 2.593,74</text></g>
+      <g transform="translate(78 22)" font-size="14" fill="#1d2a31"><rect width="16" height="16" rx="3" fill="#b9dfdc" stroke="#13858a" stroke-width="1.5"/><text x="24" y="13">juros simples: +R$ 100 todo ano (reta)</text><rect x="300" width="16" height="16" rx="3" fill="#d9472f"/><text x="324" y="13">juros compostos: juros sobre juros (curva)</text></g>
+      </svg>
+    <figcaption class="legenda">R$ 1.000 a 10% ao ano. No 1º ano, os dois dão R$ 1.100. Depois, os compostos disparam: no 10º ano, a diferença já é de quase R$ 600, só de “juros sobre juros”.</figcaption>
+  </figure>
+
+  <div class="caixa cotidiano"><span class="rotulo">Faz a conta comigo</span>
+    <p>Você aplica <strong>R$ 5.000 a 2% ao mês por 6 meses</strong>.</p>
+    <p><strong>Simples:</strong> 5.000 × 0,02 × 6 = <strong>R$ 600</strong> de juros (R$ 100 todo mês).<br>
+    <strong>Compostos:</strong> 5.000 × 1,02⁶ = 5.630,81 → <strong>R$ 630,81</strong> de juros. Os R$ 30,81 a mais são juros que renderam juros.</p></div>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>Com <strong>1 período só</strong>, simples e compostos dão o mesmo resultado. Com <strong>mais de 1 período</strong>, compostos rendem mais. E quanto <strong>maior a taxa</strong> ou <strong>mais longo o prazo</strong>, maior a distância entre os dois. É isso que o programa chama de “efeito dos juros <strong>versus tempo</strong> de alocação”.</p></div>
+
+  <p>No mercado financeiro brasileiro, quase tudo usa <strong>juros compostos</strong>: CDB, Tesouro Direto, poupança, fundos, financiamentos. Juros simples aparecem em situações pontuais, como no <strong>desconto de títulos</strong> (seção 3.10) e em algumas multas e encargos.</p>
+
+  <h3>Simulador 1 · A bola de neve</h3>
+  <p>Mexa no capital, na taxa e no prazo e veja a distância entre as duas curvas crescer.</p>
+  <div class="calc" data-calc="bola"></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">No <b>regime de capitalização simples</b>, os juros incidem apenas sobre o <b>capital inicial (principal)</b>, gerando crescimento <b>linear</b>. No <b>regime de capitalização composta</b>, os juros de cada período são <b>incorporados ao capital</b> e passam a render juros (<b>juros sobre juros</b>), gerando crescimento <b>exponencial</b>. Quanto maiores a taxa e o prazo de alocação, maior o efeito da capitalização composta.</p>
+    <dl class="termos">
+      <dt>Capitalização</dt><dd>o jeito como os juros entram no saldo</dd>
+      <dt>Principal</dt><dd>o capital inicial, sem juros</dd>
+      <dt>Montante</dt><dd>principal + juros, no final</dd>
+      <dt>Crescimento linear</dt><dd>sobe sempre o mesmo valor (juros simples)</dd>
+      <dt>Crescimento exponencial</dt><dd>sobe cada vez mais rápido (juros compostos)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.2 -->
+<section class="bloco" id="c3-s2" data-titulo="Taxas proporcionais, equivalentes, nominais e efetivas">
+  <span class="sobretitulo">3.2 · Conversa de taxas</span>
+  <h2 class="titulo-secao">Taxa proporcional, equivalente, nominal e efetiva</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">1% ao mês é o mesmo que 12% ao ano?</p>
+  <p>Depende de qual regime de juros você está usando! E é exatamente essa pegadinha que a prova adora.</p>
+
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Taxa proporcional (juros simples)</h4><p>É só <strong>multiplicar ou dividir</strong> pelo número de períodos.</p>
+      <p class="manuscrito" style="font-size:21px">1% a.m. × 12 = 12% a.a.</p>
+      <p>Faz sentido nos juros simples, em que cada mês rende igual.</p></div>
+    <div class="cartao coral"><h4>Taxa equivalente (juros compostos)</h4><p>É a taxa que, num prazo diferente, leva <strong>ao mesmo montante</strong>. Aqui não se multiplica: <strong>se eleva à potência</strong>.</p>
+      <p class="manuscrito" style="font-size:21px">(1,01)¹² − 1 = 12,68% a.a.</p>
+      <p>E o caminho de volta: 12% a.a. ≈ <strong>0,95% a.m.</strong>, não 1%.</p></div>
+  </div>
+
+  <div class="faixa-chave"><span class="big">ieq</span><p>(1 + i<sub>ano</sub>) = (1 + i<sub>mês</sub>)¹² &nbsp;→&nbsp; para ir do mês ao ano, <strong>eleva a 12</strong>; do ano ao mês, tira a <strong>raiz 12</strong>.</p></div>
+
+  <h3>Nominal × efetiva: o “12% ao ano capitalizados mensalmente”</h3>
+  <p>Às vezes o contrato diz assim: <strong>“taxa de 12% ao ano, capitalizada mensalmente”</strong>. Repara: a unidade da taxa (ano) é diferente da unidade da capitalização (mês). Essa é a <span class="mt">taxa nominal</span>: é só um jeito de escrever. Para usar, você divide proporcionalmente (12% ÷ 12 = 1% a.m.) e capitaliza mês a mês. O que você paga de verdade no ano é a <span class="mt">taxa efetiva</span>: (1,01)¹² − 1 = <strong>12,68% a.a.</strong></p>
+  <div class="grade-3 numeros">
+    <div class="cartao"><span class="valor">12%</span><span class="rotulo-n"><strong>Taxa nominal</strong> ao ano, capitalizada mensalmente (só o “anúncio”)</span></div>
+    <div class="cartao"><span class="valor">1% a.m.</span><span class="rotulo-n"><strong>Taxa do período</strong> de capitalização: 12% ÷ 12</span></div>
+    <div class="cartao"><span class="valor">12,68%</span><span class="rotulo-n"><strong>Taxa efetiva</strong> ao ano: o que realmente rende ou se paga</span></div>
+  </div>
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>Com capitalização em períodos menores que o da taxa, a <strong>taxa efetiva é maior que a nominal</strong>. E quanto mais frequente a capitalização (mensal, diária…), maior a efetiva.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial"><b>Taxas proporcionais</b> são aquelas que, aplicadas sobre o mesmo capital e pelo mesmo prazo no <b>regime de juros simples</b>, produzem o mesmo montante; obtêm-se por divisão ou multiplicação. <b>Taxas equivalentes</b> produzem o mesmo montante no <b>regime de juros compostos</b>. A <b>taxa nominal</b> tem período de capitalização diferente do período a que se refere; a <b>taxa efetiva</b> é aquela em que o período de formação dos juros coincide com o período da taxa.</p>
+    <dl class="termos">
+      <dt>a.m. / a.a.</dt><dd>ao mês / ao ano</dd>
+      <dt>Capitalizada mensalmente</dt><dd>os juros entram no saldo todo mês</dd>
+      <dt>Taxa equivalente</dt><dd>a “mesma” taxa em outra unidade de tempo, nos compostos</dd>
+      <dt>Taxa efetiva</dt><dd>o custo ou rendimento real no período, já com juros sobre juros</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.3 -->
+<section class="bloco" id="c3-s3" data-titulo="Taxa nominal, taxa real e indexadores">
+  <span class="sobretitulo">3.3 · E a inflação?</span>
+  <h2 class="titulo-secao">Taxa nominal × taxa real (Fisher), pré e pós-fixado</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Meu CDB rendeu 12% e a inflação foi 5%. Ganhei 7%?</p>
+  <p>Quase, mas não. A taxa que aparece no extrato (12%) é a <strong>taxa nominal</strong> (atenção: aqui “nominal” quer dizer <strong>“sem descontar a inflação”</strong>, outro sentido do que você viu na seção 3.2). O ganho de <strong>poder de compra</strong> é a <span class="mt">taxa real</span>. E ela não se calcula subtraindo: se calcula <strong>dividindo</strong>. É a <strong>fórmula de Fisher</strong>:</p>
+  <div class="faixa-chave"><span class="big">Fisher</span><p>(1 + nominal) = (1 + real) × (1 + inflação) &nbsp;→&nbsp; <strong>real = (1 + nominal) ÷ (1 + inflação) − 1</strong></p></div>
+  <div class="fluxo-horizontal">
+    <div class="passo-h"><b>Rendeu 12%</b><span>R$ 100 viraram <strong>R$ 112</strong> (taxa nominal).</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Preços subiram 5%</b><span>O que custava R$ 100 agora custa <strong>R$ 105</strong>.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h destaque"><b>Ganho real: 6,67%</b><span>112 ÷ 105 = 1,0667. Você compra 6,67% a mais, e <strong>não 7%</strong>.</span></div>
+  </div>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao verde"><h4>Real positiva</h4><p>Nominal maior que a inflação: o dinheiro <strong>ganhou</strong> poder de compra.</p></div>
+    <div class="cartao"><h4>Real zero</h4><p>Nominal igual à inflação (ex.: 6% e 6%): você <strong>só preservou</strong> o poder de compra.</p></div>
+    <div class="cartao coral"><h4>Real negativa</h4><p>Nominal menor que a inflação (ex.: 7% e 8%): real ≈ <strong>−0,93%</strong>. O dinheiro <strong>perdeu</strong> poder de compra.</p></div>
+  </div>
+  <div class="caixa dica"><span class="rotulo">Dica de prova</span>
+    <p>“Nominal menos inflação” é só uma <strong>aproximação</strong> (12 − 5 = 7%). Se as alternativas tiverem 7% e 6,67%, a resposta certa pela fórmula de Fisher é <strong>6,67%</strong>. A taxa real é sempre um pouco <strong>menor</strong> que a subtração simples quando a inflação é positiva.</p></div>
+
+  <h3>Indexador, pré, pós e híbrido</h3>
+  <p>O <span class="mt">indexador</span> é o índice que corrige um investimento ou um contrato: <strong>CDI, Selic, IPCA, IGP-M, TR</strong>. Com ele, a prova separa três jeitos de remunerar:</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tipo</th><th>Como funciona</th><th>Exemplo</th><th>Quando brilha</th></tr></thead>
+    <tbody>
+      <tr><td>Prefixado</td><td>A taxa é <strong>conhecida no dia da aplicação</strong>. Você sabe quanto vai ter no vencimento.</td><td>CDB a 13% a.a.; Tesouro Prefixado</td><td>Quando os juros <strong>caem</strong> depois que você aplicou</td></tr>
+      <tr><td>Pós-fixado</td><td>A taxa <strong>acompanha um indexador</strong>; você só sabe o resultado no fim.</td><td>CDB a 100% do CDI; Tesouro Selic</td><td>Quando os juros <strong>sobem</strong>: o rendimento sobe junto</td></tr>
+      <tr><td>Híbrido</td><td><strong>Inflação + taxa fixa</strong>: protege da inflação e garante um ganho real.</td><td>Tesouro IPCA+ 6%; debênture IPCA + 7%</td><td>Para <strong>proteger o poder de compra</strong> no longo prazo</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Simulador 2 · Conversor de taxas</h3>
+  <p>Teste as três conversões deste capítulo: equivalente, nominal → efetiva e Fisher.</p>
+  <div class="calc" data-calc="taxas"></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>taxa de juros nominal</b> é a taxa contratada ou divulgada, sem considerar a inflação; a <b>taxa de juros real</b> desconta o efeito da inflação e mostra o ganho efetivo de poder de compra. Pela <b>fórmula de Fisher</b>: (1 + taxa nominal) = (1 + taxa real) × (1 + inflação). <b>Indexador</b> é o índice de referência usado para corrigir valores. Nas taxas <b>prefixadas</b>, a remuneração é conhecida na aplicação; nas <b>pós-fixadas</b>, depende do comportamento do indexador.</p>
+    <dl class="termos">
+      <dt>Taxa nominal (com inflação)</dt><dd>o que aparece no extrato</dd>
+      <dt>Taxa real</dt><dd>o ganho de poder de compra, já sem a inflação</dd>
+      <dt>Indexador</dt><dd>o índice que corrige o valor (CDI, IPCA, IGP-M…)</dd>
+      <dt>Híbrido</dt><dd>parte fixa + parte atrelada à inflação (IPCA + x%)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.4 -->
+<section class="bloco quebra" id="c3-s4" data-titulo="Juros compostos nos empréstimos">
+  <span class="sobretitulo">3.4 · O lado de quem deve</span>
+  <h2 class="titulo-secao">Capitalização em empréstimos e no mútuo</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">O banco pode cobrar juros sobre juros no meu empréstimo?</p>
+  <p>Pode, desde que <strong>esteja escrito no contrato</strong>. Essa discussão foi parar no STJ, e o resultado são duas súmulas que todo profissional de banco deveria conhecer:</p>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Súmula 539 do STJ</h4><p>É <strong>permitida a capitalização de juros com periodicidade inferior à anual</strong> (mensal, por exemplo) em contratos com <strong>instituições do SFN</strong> celebrados <strong>a partir de 31/3/2000</strong> (MP 1.963-17/2000, reeditada como <strong>MP 2.170-36/2001</strong>), <strong>desde que expressamente pactuada</strong>.</p></div>
+    <div class="cartao azul"><h4>Súmula 541 do STJ</h4><p>Se o contrato traz uma <strong>taxa anual maior que 12 vezes a taxa mensal</strong> (o “duodécuplo”), isso já basta para mostrar que há capitalização e permitir a cobrança da <strong>taxa efetiva anual</strong> contratada. Ex.: 2% a.m. e <strong>26,82% a.a.</strong> no contrato.</p></div>
+  </div>
+  <div class="grade-2 cartoes-compactos">
+    <div class="cartao"><h4>Mútuo: o que é?</h4><p>É o nome jurídico do <strong>empréstimo de dinheiro</strong> (coisa que se consome e se devolve em igual quantidade). Entre <strong>particulares</strong>, quando tem fim econômico, o Código Civil (art. 591) presume juros e permite a <strong>capitalização anual</strong>.</p></div>
+    <div class="cartao ambar"><h4>Na prática</h4><p>Empréstimos e financiamentos bancários usam <strong>juros compostos</strong>, normalmente com capitalização <strong>mensal</strong>, e informam a taxa mensal e a <strong>anual efetiva</strong>, além do <strong>CET</strong> (Custo Efetivo Total), que você vai ver no capítulo de crédito.</p></div>
+  </div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">Nos contratos celebrados com instituições integrantes do Sistema Financeiro Nacional, admite-se a <b>capitalização de juros em periodicidade inferior à anual</b>, desde que <b>expressamente pactuada</b> (STJ, Súmula 539). A previsão de <b>taxa anual superior ao duodécuplo da mensal</b> é suficiente para permitir a cobrança da taxa efetiva anual contratada (Súmula 541).</p>
+    <dl class="termos">
+      <dt>Capitalização mensal</dt><dd>juros entram no saldo todo mês (juros sobre juros)</dd>
+      <dt>Expressamente pactuada</dt><dd>escrita de forma clara no contrato</dd>
+      <dt>Duodécuplo</dt><dd>12 vezes</dd>
+      <dt>Mútuo</dt><dd>empréstimo de dinheiro</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.5 -->
+<section class="bloco quebra" id="c3-s5" data-titulo="Valor presente, valor futuro e fluxo de caixa">
+  <span class="sobretitulo">3.5 · O dinheiro tem relógio</span>
+  <h2 class="titulo-secao">Valor presente, valor futuro e fluxo de caixa</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">R$ 1.000 hoje ou R$ 1.000 daqui a um ano: tanto faz?</p>
+  <p>Não! O dinheiro de hoje vale mais, porque você pode aplicá-lo e ter mais no futuro. Essa ideia é o <span class="mt">valor do dinheiro no tempo</span>, e é a base de tudo o que vem a seguir.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 270" role="img" aria-label="Linha do tempo: R$ 10.000 hoje viram R$ 12.100 em 2 anos a 10% ao ano (capitalizar); R$ 12.100 daqui a 2 anos valem R$ 10.000 hoje (descontar)">
+      <rect width="760" height="270" fill="#fff"/>
+      <defs><marker id="f3a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#23905f"/></marker>
+      <marker id="f3b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#6550d0"/></marker></defs>
+      <path d="M90 140H680" stroke="#1d2a31" stroke-width="3"/>
+      <g font-size="14" fill="#5b6970" text-anchor="middle"><path d="M110 130v20M385 130v20M660 130v20" stroke="#1d2a31" stroke-width="3"/><text x="110" y="172">hoje (ano 0)</text><text x="385" y="172">ano 1</text><text x="660" y="172">ano 2</text></g>
+      <rect x="40" y="88" width="140" height="34" rx="10" fill="#e3f2f1" stroke="#13858a" stroke-width="2.5"/><text x="110" y="111" text-anchor="middle" class="mao" font-size="20" fill="#0b4f5c">VP = 10.000</text>
+      <rect x="315" y="88" width="140" height="34" rx="10" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/><text x="385" y="111" text-anchor="middle" class="mao" font-size="19" fill="#5b6970">11.000</text>
+      <rect x="590" y="88" width="140" height="34" rx="10" fill="#fdebe6" stroke="#d9472f" stroke-width="2.5"/><text x="660" y="111" text-anchor="middle" class="mao" font-size="20" fill="#b3311d">VF = 12.100</text>
+      <path d="M130 76 C 250 44, 520 44, 640 76" fill="none" stroke="#23905f" stroke-width="3.5" marker-end="url(#f3a)"/>
+      <text x="385" y="30" text-anchor="middle" class="mao" font-size="17" fill="#1b7049">capitalizar: × 1,10 × 1,10 (vai para o futuro)</text>
+      <path d="M640 196 C 520 250, 250 250, 130 196" fill="none" stroke="#6550d0" stroke-width="3.5" marker-end="url(#f3b)"/>
+      <text x="385" y="262" text-anchor="middle" class="mao" font-size="17" fill="#6550d0">descontar: ÷ 1,10 ÷ 1,10 (traz para hoje)</text>
+    </svg>
+    <figcaption class="legenda">Ir para o futuro é <strong>capitalizar</strong> (multiplicar). Trazer para hoje é <strong>descontar</strong> (dividir). A taxa usada para trazer para hoje é a <strong>taxa de desconto</strong>.</figcaption>
+  </figure>
+
+  <div class="grade-2">
+    <div class="cartao verde"><h4>Valor futuro (VF)</h4><p>Quanto um valor de hoje <strong>vai valer no futuro</strong>, com os juros.</p><p class="manuscrito" style="font-size:21px">VF = VP × (1 + i)ⁿ</p></div>
+    <div class="cartao roxo"><h4>Valor presente (VP)</h4><p>Quanto um valor futuro <strong>vale hoje</strong>, tirando os juros do caminho.</p><p class="manuscrito" style="font-size:21px">VP = VF ÷ (1 + i)ⁿ</p></div>
+  </div>
+
+  <h3>Taxa de desconto: a régua do valor presente</h3>
+  <p>A <span class="mt">taxa de desconto</span> é a taxa usada para trazer valores futuros para hoje. Ela representa o retorno que você exige, considerando o <strong>custo de oportunidade</strong> e o <strong>risco</strong>. E a regra de ouro: <strong>taxa de desconto maior → valor presente menor</strong>. É por isso que, quando os juros do mercado sobem, o preço dos títulos prefixados cai (lembra do capítulo 2?).</p>
+
+  <h3>Fluxo de caixa: cupom e amortização</h3>
+  <p>Um título de crédito privado (uma debênture, por exemplo) é um <span class="mt">fluxo de caixa</span>: você paga hoje e recebe parcelas no futuro. Essas parcelas têm duas partes:</p>
+  <div class="grade-2 cartoes-compactos">
+    <div class="cartao"><h4>Cupom (juros)</h4><p>O pagamento <strong>periódico de juros</strong>: mensal, semestral, anual. É o “aluguel” do dinheiro que você emprestou à empresa.</p></div>
+    <div class="cartao ambar"><h4>Amortização</h4><p>A <strong>devolução do principal</strong>. Pode vir <strong>toda no vencimento</strong> (“bullet”) ou <strong>em parcelas</strong> ao longo do prazo.</p></div>
+  </div>
+  <figure class="figura par" data-zoom>
+    <svg viewBox="0 0 760 360" role="img" aria-label="Fluxo de caixa de uma debênture de R$ 1.000 por 3 anos com cupom de 10% ao ano: à esquerda, pagamento do principal só no vencimento (bullet); à direita, com amortizações anuais">
+      <rect width="760" height="360" fill="#fff"/>
+      <defs><marker id="f3s" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#13858a"/></marker><marker id="f3t" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#a96300"/></marker><marker id="f3d" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#d9472f"/></marker></defs>
+      <g transform="translate(20 0)">
+      <rect x="0" y="10" width="345" height="310" rx="16" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/>
+      <text x="172" y="40" text-anchor="middle" class="mao" font-size="19" fill="#0b4f5c">Bullet: principal no fim</text>
+      <path d="M30 250H325" stroke="#1d2a31" stroke-width="2.5"/>
+      <path d="M50 245v10" stroke="#1d2a31" stroke-width="2"/><text x="50" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 0</text>
+      <path d="M135 245v10" stroke="#1d2a31" stroke-width="2"/><text x="135" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 1</text>
+      <path d="M220 245v10" stroke="#1d2a31" stroke-width="2"/><text x="220" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 2</text>
+      <path d="M305 245v10" stroke="#1d2a31" stroke-width="2"/><text x="305" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 3</text>
+      <text x="172" y="298" text-anchor="middle" font-size="13" font-weight="800" fill="#b3311d">no ano 0, você investe R$ 1.000</text>
+      <rect x="121" y="236.4" width="28" height="13.6" fill="#13858a"/>
+      <text x="135" y="228.4" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">100</text>
+      <rect x="206" y="236.4" width="28" height="13.6" fill="#13858a"/>
+      <text x="220" y="228.4" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">100</text>
+      <rect x="291" y="100.0" width="28" height="136.4" fill="#fff2dc" stroke="#a96300" stroke-width="1.5"/>
+      <rect x="291" y="236.4" width="28" height="13.6" fill="#13858a"/>
+      <text x="305" y="92.0" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">1.100</text>
+      <text x="172" y="312" text-anchor="start" font-size="12.5" fill="#5b6970" transform="translate(-2 0)"> </text>
+      <text x="172" y="66" text-anchor="middle" font-size="13" fill="#5b6970">prazo médio = 3 anos · duration ≈ 2,74 anos</text>
+      </g>
+      <g transform="translate(395 0)">
+      <rect x="0" y="10" width="345" height="310" rx="16" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/>
+      <text x="172" y="40" text-anchor="middle" class="mao" font-size="19" fill="#0b4f5c">Com amortizações anuais</text>
+      <path d="M30 250H325" stroke="#1d2a31" stroke-width="2.5"/>
+      <path d="M50 245v10" stroke="#1d2a31" stroke-width="2"/><text x="50" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 0</text>
+      <path d="M135 245v10" stroke="#1d2a31" stroke-width="2"/><text x="135" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 1</text>
+      <path d="M220 245v10" stroke="#1d2a31" stroke-width="2"/><text x="220" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 2</text>
+      <path d="M305 245v10" stroke="#1d2a31" stroke-width="2"/><text x="305" y="272" text-anchor="middle" font-size="13" fill="#5b6970">ano 3</text>
+      <text x="172" y="298" text-anchor="middle" font-size="13" font-weight="800" fill="#b3311d">no ano 0, você investe R$ 1.000</text>
+      <rect x="121" y="190.9" width="28" height="45.5" fill="#fff2dc" stroke="#a96300" stroke-width="1.5"/>
+      <rect x="121" y="236.4" width="28" height="13.6" fill="#13858a"/>
+      <text x="135" y="182.9" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">433,33</text>
+      <rect x="206" y="195.5" width="28" height="45.5" fill="#fff2dc" stroke="#a96300" stroke-width="1.5"/>
+      <rect x="206" y="240.9" width="28" height="9.1" fill="#13858a"/>
+      <text x="220" y="187.5" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">400,00</text>
+      <rect x="291" y="200.0" width="28" height="45.5" fill="#fff2dc" stroke="#a96300" stroke-width="1.5"/>
+      <rect x="291" y="245.5" width="28" height="4.5" fill="#13858a"/>
+      <text x="305" y="192.0" text-anchor="middle" font-size="14" font-weight="800" fill="#1d2a31">366,67</text>
+      <text x="172" y="312" text-anchor="start" font-size="12.5" fill="#5b6970" transform="translate(-2 0)"> </text>
+      <text x="172" y="66" text-anchor="middle" font-size="13" fill="#5b6970">prazo médio = 2 anos · duration ≈ 1,88 ano</text>
+      </g>
+      <g transform="translate(240 350)" font-size="13" fill="#1d2a31"><rect y="-11" width="14" height="14" fill="#13858a"/><text x="20">juros (cupom)</text><rect x="140" y="-11" width="14" height="14" fill="#fff2dc" stroke="#a96300" stroke-width="1.5"/><text x="160">amortização (devolve o principal)</text></g>
+      </svg>
+    <figcaption class="legenda">Mesma debênture (R$ 1.000, 3 anos, cupom de 10% a.a.), dois fluxos. Com amortizações, você recebe o dinheiro de volta antes, por isso o prazo médio e a duration ficam menores (seção 3.8).</figcaption>
+  </figure>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>valor presente (VP)</b> é o valor atual de um montante futuro, descontado a uma taxa de juros; o <b>valor futuro (VF)</b> é o valor que um capital atinge após a incidência de juros por determinado prazo. A <b>taxa de desconto</b> é a taxa utilizada para trazer fluxos futuros a valor presente, refletindo o custo de oportunidade e o risco. Em um título de crédito privado, o <b>fluxo de caixa</b> é composto pelo pagamento de <b>juros (cupons)</b> e pela <b>amortização do principal</b>.</p>
+    <dl class="termos">
+      <dt>Trazer a valor presente</dt><dd>descontar: calcular quanto vale hoje</dd>
+      <dt>Fluxo de caixa</dt><dd>as entradas e saídas de dinheiro ao longo do tempo</dd>
+      <dt>Cupom</dt><dd>o pagamento periódico de juros de um título</dd>
+      <dt>Amortização</dt><dd>a devolução do principal</dd>
+      <dt>Bullet</dt><dd>principal pago de uma vez, no vencimento</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.6 -->
+<section class="bloco" id="c3-s6" data-titulo="Taxa bruta, líquida, custo de oportunidade e taxa livre de risco">
+  <span class="sobretitulo">3.6 · O que sobra para você</span>
+  <h2 class="titulo-secao">Taxa bruta × líquida, custo de oportunidade e taxa livre de risco</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">O CDB paga 12%. Vai entrar 12% no meu bolso?</p>
+  <p>Não. Os 12% são a <span class="mt">taxa bruta</span>: antes do imposto. O que sobra depois do Imposto de Renda (e de taxas, quando houver) é a <span class="mt">taxa líquida</span>. Na renda fixa tributada, o IR segue a <strong>tabela regressiva</strong>: quanto mais tempo aplicado, menor a alíquota (detalhes no capítulo 5).</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Prazo da aplicação</th><th>Alíquota de IR</th><th>CDB de 12% bruto vira…</th></tr></thead>
+    <tbody>
+      <tr><td>Até 180 dias</td><td>22,5%</td><td>12 × (1 − 0,225) = <strong>9,3%</strong> líquido</td></tr>
+      <tr><td>181 a 360 dias</td><td>20%</td><td>12 × 0,80 = <strong>9,6%</strong></td></tr>
+      <tr><td>361 a 720 dias</td><td>17,5%</td><td>12 × 0,825 = <strong>9,9%</strong></td></tr>
+      <tr><td>Acima de 720 dias</td><td>15%</td><td>12 × 0,85 = <strong>10,2%</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno">Fórmula prática: <strong>taxa líquida = taxa bruta × (1 − alíquota)</strong>. Simplificação didática: o IR incide sobre o rendimento no resgate.</p>
+  <div class="caixa cotidiano"><span class="rotulo">Comparando direito</span>
+    <p>Uma <strong>LCI isenta</strong> paga 10,5% e um <strong>CDB</strong> paga 12% bruto, ambos por mais de 2 anos. O CDB rende 12 × 0,85 = <strong>10,2% líquido</strong>, menos que os 10,5% da LCI. Moral: <strong>compare sempre líquido com líquido</strong>.</p></div>
+
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Custo de oportunidade</h4><p>É o <strong>retorno que você deixa de ganhar</strong> ao escolher uma alternativa em vez de outra. Deixou R$ 10 mil parados na conta-corrente? O custo de oportunidade é o quanto eles renderiam aplicados, por exemplo, a 100% do CDI.</p></div>
+    <div class="cartao verde"><h4>Taxa livre de risco</h4><p>O retorno de um investimento considerado <strong>sem risco de calote</strong>. No Brasil, a referência são os <strong>títulos públicos federais</strong> e a <strong>Selic</strong>. Qualquer investimento com risco deveria pagar <strong>mais</strong> que ela: essa diferença é o <strong>prêmio de risco</strong>.</p></div>
+  </div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>taxa bruta</b> não considera impostos e custos; a <b>taxa líquida</b> já desconta tributos, taxas e encargos. O <b>custo de oportunidade</b> é o retorno que se deixa de obter ao escolher uma alternativa em detrimento de outra. A <b>taxa livre de risco</b> é o retorno de um ativo sem risco de inadimplência, geralmente referenciado pelos <b>títulos públicos federais</b>.</p>
+    <dl class="termos">
+      <dt>Tabela regressiva</dt><dd>IR que cai com o prazo: 22,5% → 15%</dd>
+      <dt>Isento</dt><dd>sem IR para pessoa física (LCI, LCA, poupança…)</dd>
+      <dt>Prêmio de risco</dt><dd>o que se paga a mais que a taxa livre de risco</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.7 -->
+<section class="bloco quebra" id="c3-s7" data-titulo="VPL, TIR e payback">
+  <span class="sobretitulo">3.7 · Vale a pena?</span>
+  <h2 class="titulo-secao">VPL, TIR e payback: decidindo investimentos</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Como saber se um projeto vale a pena?</p>
+  <p>Imagina que a dona de uma padaria pode comprar um forno novo de <strong>R$ 1.000</strong> que vai gerar <strong>R$ 600 a mais por ano, durante 2 anos</strong>. Ela exige pelo menos <strong>10% ao ano</strong> (é o que ganharia aplicando o dinheiro com risco parecido). Vale a pena? Três ferramentas respondem.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 310" role="img" aria-label="Fluxo do projeto: sai R$ 1.000 hoje, entram R$ 600 no ano 1 e R$ 600 no ano 2. Trazidos a valor presente a 10%, valem R$ 545,45 e R$ 495,87. VPL igual a mais R$ 41,32">
+      <rect width="760" height="310" fill="#fff"/>
+      <defs><marker id="f3u" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#23905f"/></marker>
+      <marker id="f3v" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#d9472f"/></marker>
+      <marker id="f3w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#6550d0"/></marker></defs>
+      <path d="M60 150H470" stroke="#1d2a31" stroke-width="3"/>
+      <g font-size="13" fill="#5b6970" text-anchor="middle"><text x="100" y="296">ano 0</text><text x="260" y="296">ano 1</text><text x="420" y="296">ano 2</text></g>
+      <path d="M100 150V250" stroke="#d9472f" stroke-width="6" marker-end="url(#f3v)"/><text x="112" y="272" font-size="15" font-weight="800" fill="#b3311d">−1.000</text>
+      <path d="M260 150V70" stroke="#23905f" stroke-width="6" marker-end="url(#f3u)"/><text x="260" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#1b7049">+600</text>
+      <path d="M420 150V70" stroke="#23905f" stroke-width="6" marker-end="url(#f3u)"/><text x="420" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#1b7049">+600</text>
+      <path d="M248 112 C 200 120, 160 128, 132 132" fill="none" stroke="#6550d0" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#f3w)"/>
+      <text x="192" y="102" text-anchor="middle" class="mao" font-size="14" fill="#6550d0">÷ 1,10</text>
+      <path d="M408 96 C 300 20, 180 40, 132 120" fill="none" stroke="#6550d0" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#f3w)"/>
+      <text x="300" y="30" text-anchor="middle" class="mao" font-size="14" fill="#6550d0">÷ 1,10²</text>
+      <g transform="translate(500 30)">
+        <rect width="240" height="248" rx="16" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/>
+        <text x="20" y="34" class="mao" font-size="19" fill="#0b4f5c">Trazendo para hoje (10%)</text>
+        <g font-size="15" fill="#1d2a31"><text x="20" y="68">600 ÷ 1,10 = <tspan font-weight="800">545,45</tspan></text>
+        <text x="20" y="96">600 ÷ 1,21 = <tspan font-weight="800">495,87</tspan></text>
+        <text x="20" y="124">soma = <tspan font-weight="800">1.041,32</tspan></text>
+        <text x="20" y="152">− investimento = <tspan font-weight="800" fill="#b3311d">1.000,00</tspan></text></g>
+        <path d="M20 168h200" stroke="#1d2a31" stroke-width="2"/>
+        <text x="20" y="200" class="mao" font-size="25" fill="#1b7049">VPL = +41,32</text>
+        <text x="20" y="226" font-size="13" fill="#5b6970">positivo: o projeto cria valor</text>
+      </g>
+    </svg>
+    <figcaption class="legenda">O VPL pega cada entrada futura, traz para hoje pela taxa exigida e subtrai o investimento. Seta para cima = dinheiro entrando; para baixo = saindo.</figcaption>
+  </figure>
+
+  <div class="grade-3">
+    <div class="cartao verde"><h4>VPL (valor presente líquido)</h4><p>Soma de todos os fluxos <strong>trazidos a valor presente</strong>, menos o investimento inicial.</p>
+      <p><strong>VPL &gt; 0</strong>: aceita (cria valor).<br><strong>VPL &lt; 0</strong>: rejeita.<br><strong>VPL = 0</strong>: empata com a taxa exigida.</p></div>
+    <div class="cartao azul"><h4>TIR (taxa interna de retorno)</h4><p>A taxa que <strong>zera o VPL</strong>: o retorno “próprio” do projeto. Aqui, a TIR é cerca de <strong>13,07% a.a.</strong></p>
+      <p><strong>TIR &gt; taxa exigida</strong>: aceita.<br><strong>TIR &lt; taxa exigida</strong>: rejeita.</p></div>
+    <div class="cartao ambar"><h4>Payback (prazo de retorno)</h4><p>Em <strong>quanto tempo</strong> o dinheiro investido volta.</p>
+      <p><strong>Simples</strong>: 1.000 ÷ 600 ≈ <strong>1,67 ano</strong>.<br><strong>Descontado</strong> (com os valores trazidos a 10%): ≈ <strong>1,92 ano</strong>.</p></div>
+  </div>
+
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+    <p>O <strong>payback simples</strong> é fácil, mas tem dois defeitos: <strong>ignora o valor do dinheiro no tempo</strong> e <strong>ignora o que acontece depois</strong> que o investimento é recuperado. Por isso ele mede mais <strong>liquidez/risco</strong> (quanto tempo o dinheiro fica exposto) do que rentabilidade. O payback <strong>descontado</strong> corrige o primeiro defeito, mas não o segundo.</p></div>
+
+  <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+    <p class="balao mb-0">Repara como tudo se conecta: se a taxa exigida <b>sobe</b>, o VPL <b>cai</b>. Se chegar a 13,07% (a TIR), o VPL vira <b>zero</b>. Acima disso, o forno deixa de valer a pena.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>Valor Presente Líquido (VPL)</b> é a soma dos fluxos de caixa futuros descontados a uma taxa mínima de atratividade, subtraído o investimento inicial; <b>VPL positivo</b> indica que o investimento é viável. A <b>Taxa Interna de Retorno (TIR)</b> é a taxa de desconto que <b>torna o VPL igual a zero</b>. O <b>payback</b> é o prazo necessário para recuperar o capital investido.</p>
+    <dl class="termos">
+      <dt>Taxa mínima de atratividade (TMA)</dt><dd>o retorno mínimo que o investidor exige</dd>
+      <dt>Viável</dt><dd>vale a pena: cria valor</dd>
+      <dt>Payback descontado</dt><dd>payback usando os valores trazidos a valor presente</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.8 -->
+<section class="bloco" id="c3-s8" data-titulo="Prazo médio, duration, alavancagem e CMPC">
+  <span class="sobretitulo">3.8 · Prazo e custo do dinheiro</span>
+  <h2 class="titulo-secao">Prazo médio, duration, alavancagem e CMPC</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Um título de 3 anos “dura” mesmo 3 anos?</p>
+  <p>Só se ele pagar tudo no final. Se ele paga juros e amortizações pelo caminho, parte do dinheiro volta antes. Por isso existem três medidas de tempo diferentes:</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao"><h4>Vencimento</h4><p>A data do <strong>último pagamento</strong>. Na debênture do exemplo: <strong>3 anos</strong>.</p></div>
+    <div class="cartao ambar"><h4>Prazo médio</h4><p>A média dos prazos de devolução do <strong>principal</strong>, ponderada pelas amortizações. Bullet: <strong>3 anos</strong>; com amortizações anuais: <strong>2 anos</strong>.</p></div>
+    <div class="cartao coral"><h4>Duration</h4><p>O prazo médio de <strong>todos os fluxos (juros + principal) em valor presente</strong>. Bullet com cupom: <strong>≈ 2,74 anos</strong>; com amortizações: <strong>≈ 1,88 ano</strong>.</p></div>
+  </div>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 250" role="img" aria-label="Gangorra: de um lado os juros sobem, do outro o preço do título cai. Quanto maior a duration, mais longo o braço e maior a queda de preço">
+      <rect width="760" height="250" fill="#fff"/>
+      <path d="M380 200 L350 240 H410 Z" fill="#a96300" stroke="#1d2a31" stroke-width="3"/>
+      <g transform="rotate(-12 380 196)">
+        <rect x="90" y="186" width="580" height="16" rx="8" fill="#ffd38a" stroke="#1d2a31" stroke-width="3"/>
+        <rect x="104" y="128" width="120" height="58" rx="10" fill="#d9472f"/><text x="164" y="164" text-anchor="middle" class="mao" font-size="21" fill="#fff">juros ▲</text>
+        <rect x="560" y="128" width="96" height="58" rx="10" fill="#13858a"/><text x="608" y="155" text-anchor="middle" class="mao" font-size="18" fill="#fff">preço</text><text x="608" y="177" text-anchor="middle" class="mao" font-size="18" fill="#fff">▼</text>
+      </g>
+      <text x="40" y="40" class="mao" font-size="19" fill="#1d2a31">Duration = sensibilidade do preço aos juros</text>
+      <text x="40" y="66" font-size="14" fill="#5b6970">Quanto <tspan font-weight="800" fill="#1d2a31">maior a duration</tspan>, mais longo o braço da gangorra:</text>
+      <text x="40" y="86" font-size="14" fill="#5b6970">a mesma alta de juros derruba <tspan font-weight="800" fill="#1d2a31">mais</tspan> o preço do título.</text>
+    </svg>
+    <figcaption class="legenda">Por isso um fundo de renda fixa com duration de 5 anos sofre muito mais numa alta de juros do que um com duration de 6 meses.</figcaption>
+  </figure>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p><strong>Título sem cupom</strong> (zero cupom, como o Tesouro Prefixado sem juros semestrais): <strong>duration = prazo</strong>. <strong>Com cupons ou amortizações</strong>: <strong>duration &lt; prazo</strong>. E quanto <strong>maior a duration, maior o risco de mercado</strong> (sensibilidade à variação dos juros).</p></div>
+
+  <h3>Alavancagem financeira e custo de captação</h3>
+  <p>Toda empresa se financia de dois jeitos: com <strong>dinheiro dos sócios</strong> (capital próprio) ou com <strong>dívida</strong> (capital de terceiros: empréstimos, debêntures). Cada um tem um custo, o chamado <span class="mt">custo de captação</span>. Usar dívida para aumentar o retorno dos sócios é a <span class="mt">alavancagem financeira</span>. Veja como ela funciona nos dois sentidos:</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Projeto de R$ 100</th><th>Só capital próprio</th><th>R$ 50 próprio + R$ 50 de dívida a 10%</th></tr></thead>
+    <tbody>
+      <tr><td>Ano bom: rende 15%</td><td>15 ÷ 100 = <strong>15%</strong> para o sócio</td><td>(15 − 5 de juros) ÷ 50 = <strong>20%</strong> 🚀</td></tr>
+      <tr><td>Ano ruim: rende 5%</td><td>5 ÷ 100 = <strong>5%</strong></td><td>(5 − 5 de juros) ÷ 50 = <strong>0%</strong> 😬</td></tr>
+    </tbody>
+  </table></div>
+  <p>Ou seja: a alavancagem <strong>amplia o retorno quando o projeto rende mais que o custo da dívida</strong>, e <strong>amplia a perda</strong> quando rende menos. Mais dívida = <strong>mais risco</strong>.</p>
+
+  <h3>CMPC: o custo médio do dinheiro da empresa</h3>
+  <p>O <span class="mt">CMPC (Custo Médio Ponderado de Capital)</span>, ou WACC em inglês, é a <strong>média dos custos</strong> do capital próprio e de terceiros, <strong>ponderada pelo peso</strong> de cada um:</p>
+  <div class="faixa-chave"><span class="big">CMPC</span><p>= 60% (capital próprio) × 15% + 40% (dívida) × 10% = 9% + 4% = <strong>13% a.a.</strong> Um projeto dessa empresa precisa render <strong>mais de 13%</strong> para criar valor.</p></div>
+  <p class="pequeno">Em análises completas, o custo da dívida entra já descontado o benefício fiscal do IR (os juros reduzem o imposto da empresa). Para a prova, o conceito de média ponderada é o que importa.</p>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>duration</b> corresponde ao prazo médio ponderado dos fluxos de caixa de um título, trazidos a valor presente, e mede a <b>sensibilidade do preço às variações da taxa de juros</b>; em títulos sem pagamentos intermediários, a duration é igual ao prazo. A <b>alavancagem financeira</b> é o uso de capital de terceiros para ampliar o retorno sobre o capital próprio, elevando também o risco. O <b>Custo Médio Ponderado de Capital (CMPC)</b> é a média ponderada dos custos do capital próprio e de terceiros.</p>
+    <dl class="termos">
+      <dt>Capital próprio</dt><dd>dinheiro dos sócios/acionistas</dd>
+      <dt>Capital de terceiros</dt><dd>dívida: empréstimos, debêntures</dd>
+      <dt>Custo de captação</dt><dd>quanto custa conseguir o dinheiro</dd>
+      <dt>WACC</dt><dd>o nome em inglês do CMPC</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.9 -->
+<section class="bloco" id="c3-s9" data-titulo="Retorno histórico e retorno esperado">
+  <span class="sobretitulo">3.9 · Passado × futuro</span>
+  <h2 class="titulo-secao">Retorno histórico e retorno esperado</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Se o fundo rendeu 18% nos últimos 3 anos, vai render 18% de novo?</p>
+  <p>Não necessariamente! E é por isso que todo material de fundo avisa: <em>“rentabilidade passada não é garantia de rentabilidade futura”</em>. São dois conceitos diferentes:</p>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Retorno histórico</h4><p>O que <strong>já aconteceu</strong>: calculado com os preços do passado.</p>
+      <p>Ex.: +12%, −4% e +10% em 3 anos. Média simples: <strong>6% ao ano</strong>. Acumulado (compostos): 1,12 × 0,96 × 1,10 = <strong>+18,27%</strong> no período.</p></div>
+    <div class="cartao verde"><h4>Retorno esperado</h4><p>Uma <strong>estimativa do futuro</strong>: a média dos cenários possíveis, ponderada pela probabilidade de cada um.</p>
+      <p>Ex.: 30% de chance de +20%, 50% de +10%, 20% de −5% → 6 + 5 − 1 = <strong>10% esperado</strong>.</p></div>
+  </div>
+  <h3>E de uma carteira?</h3>
+  <p>É a <strong>média ponderada</strong> dos retornos de cada ativo pelo <strong>peso</strong> que ele tem na carteira:</p>
+  <div class="faixa-chave"><span class="big">Rc</span><p>= 60% × 12% (renda fixa) + 40% × 8% (ações) = 7,2% + 3,2% = <strong>10,4%</strong></p></div>
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+    <p>O <strong>retorno</strong> de uma carteira é a média ponderada dos retornos. Já o <strong>risco</strong> da carteira <strong>não</strong> é simplesmente a média dos riscos: ao juntar ativos que não sobem e descem juntos, o risco total pode ficar <strong>menor</strong>. É a mágica da <strong>diversificação</strong> (mais no capítulo de finanças pessoais).</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>retorno histórico</b> é calculado com base no desempenho passado do ativo; o <b>retorno esperado</b> é a média ponderada dos retornos possíveis pelas respectivas probabilidades. O retorno esperado de uma <b>carteira</b> é a <b>média ponderada</b> dos retornos esperados dos ativos que a compõem, pela participação de cada um.</p>
+    <dl class="termos">
+      <dt>Ponderada</dt><dd>cada item pesa conforme sua participação</dd>
+      <dt>Cenário</dt><dd>uma possibilidade de futuro (otimista, base, pessimista)</dd>
+      <dt>Rentabilidade passada</dt><dd>não garante rentabilidade futura</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.10 -->
+<section class="bloco quebra" id="c3-s10" data-titulo="Desconto comercial e desconto bancário">
+  <span class="sobretitulo">3.10 · Dinheiro antes da hora</span>
+  <h2 class="titulo-secao">Desconto comercial e desconto bancário</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">A loja vendeu a prazo, mas precisa do dinheiro agora. E aí?</p>
+  <p>Ela pode <strong>antecipar o recebível</strong>: leva a duplicata (ou as vendas no cartão) ao banco, que adianta o dinheiro <strong>cobrando um desconto</strong>. Isso é a <span class="mt">antecipação de recebíveis</span> ou <strong>desconto de títulos</strong>. E aqui entra o <strong>juro simples</strong>.</p>
+
+  <div class="grade-2">
+    <div class="cartao coral"><h4>Desconto comercial (“por fora”)</h4><p>O desconto é calculado sobre o <strong>valor de face</strong> (o valor futuro, N), com juros simples:</p>
+      <p class="manuscrito" style="font-size:21px">D = N × d × n &nbsp;·&nbsp; recebe = N − D</p></div>
+    <div class="cartao ambar"><h4>Desconto bancário</h4><p>É o <strong>desconto comercial + as despesas</strong> que o banco cobra: <strong>tarifa administrativa</strong> (e, na vida real, também o IOF). Por isso o valor líquido é ainda menor.</p></div>
+  </div>
+
+  <div class="fluxo-horizontal">
+    <div class="passo-h"><b>Duplicata: R$ 10.000</b><span>Vence em <strong>2 meses</strong>. Taxa de desconto: <strong>3% a.m.</strong></span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Desconto comercial</b><span>10.000 × 0,03 × 2 = <strong>R$ 600</strong> → sobraria R$ 9.400.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Tarifa de 1%</b><span>1% × 10.000 = <strong>R$ 100</strong> a mais.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h destaque"><b>Entra na conta: R$ 9.300</b><span>Esse é o <strong>desconto bancário</strong>: R$ 700 no total.</span></div>
+  </div>
+
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+    <p>“A taxa da operação foi de 3% ao mês.” Para quem antecipou, <strong>o custo efetivo é maior</strong>: ela recebeu R$ 9.300 e “devolve” R$ 10.000, ou seja, pagou 700 sobre 9.300 = <strong>7,53% em 2 meses</strong> (mais que os 6% da taxa × prazo). No desconto “por fora”, os juros são calculados sobre o valor futuro, e não sobre o valor que a empresa recebeu.</p></div>
+
+  <div class="caixa cotidiano"><span class="rotulo">No dia a dia</span>
+    <p>Pequenos lojistas antecipam as <strong>vendas parceladas no cartão</strong> para ter capital de giro. Antecipar sai caro, por isso vale planejar o fluxo de caixa. Outros “direitos creditórios” (aluguéis, contratos, duplicatas) também podem ser antecipados ou vendidos, inclusive para fundos (os FIDCs, que você verá no capítulo de fundos).</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">No <b>desconto comercial simples (por fora)</b>, o desconto é calculado sobre o <b>valor nominal (de face)</b> do título: D = N × d × n. O <b>desconto bancário</b> corresponde ao desconto comercial acrescido de <b>taxas administrativas</b> cobradas pela instituição, sendo aplicado na <b>antecipação de recebíveis</b> (duplicatas, cheques, vendas a prazo) ou de <b>direitos creditórios</b>.</p>
+    <dl class="termos">
+      <dt>Valor nominal / de face</dt><dd>o valor escrito no título, que vence no futuro</dd>
+      <dt>Valor atual / líquido</dt><dd>o que a empresa recebe hoje</dd>
+      <dt>Recebível</dt><dd>dinheiro que a empresa tem a receber</dd>
+      <dt>Direitos creditórios</dt><dd>direitos de receber valores (duplicatas, contratos, aluguéis)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.11 -->
+<section class="bloco" id="c3-s11" data-titulo="SAC e Price">
+  <span class="sobretitulo">3.11 · Pagando a dívida</span>
+  <h2 class="titulo-secao">Sistemas de amortização: SAC × Price</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que no financiamento da casa a parcela vai caindo, e no do carro ela é sempre igual?</p>
+  <p>Porque são <strong>sistemas de amortização</strong> diferentes. Toda parcela de uma dívida tem duas partes: <strong>juros</strong> (calculados sobre o saldo devedor) e <strong>amortização</strong> (o pedaço da dívida que você abate). O que muda entre os sistemas é <strong>como essas partes se dividem</strong>.</p>
+
+  <div class="grade-2">
+    <div class="cartao azul"><h4>SAC · Sistema de Amortização Constante</h4>
+      <p>A <strong>amortização é igual</strong> todo mês (dívida ÷ nº de parcelas). Como o saldo cai, os juros caem, e a <strong>parcela vai diminuindo</strong>.</p>
+      <p><span class="etq">1ª parcela maior</span><span class="etq">parcelas decrescentes</span><span class="etq verde">menos juros no total</span></p></div>
+    <div class="cartao coral"><h4>Price · Sistema Francês</h4>
+      <p>A <strong>parcela é igual</strong> todo mês. No começo, quase tudo é juros; com o tempo, a <strong>amortização cresce</strong> e os juros diminuem.</p>
+      <p><span class="etq coral">parcelas fixas</span><span class="etq coral">1ª parcela menor</span><span class="etq ambar">mais juros no total</span></p></div>
+  </div>
+
+  <figure class="figura par" data-zoom>
+    <svg viewBox="0 0 760 352" role="img" aria-label="SAC e Price para R$ 6.000 a 2% ao mês em 6 parcelas. No SAC as parcelas caem de R$ 1.120 para R$ 1.020; na Price ficam fixas em R$ 1.071,15">
+      <rect width="760" height="352" fill="#fff"/>
+      <g transform="translate(20 0)"><rect x="0" y="8" width="345" height="314" rx="16" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/>
+      <text x="20" y="44" class="mao" font-size="26" fill="#0b4f5c">SAC</text><text x="20" y="66" font-size="13" fill="#5b6970">amortização constante · parcela cai</text>
+      <path d="M18 270H330" stroke="#1d2a31" stroke-width="2"/>
+      <rect x="29" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="29" y="114.2" width="30" height="16.7" fill="#d9472f"/>
+      <text x="44" y="107.2" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.120</text>
+      <text x="44" y="287" text-anchor="middle" font-size="12" fill="#5b6970">1º</text>
+      <rect x="79" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="79" y="117.0" width="30" height="13.9" fill="#d9472f"/>
+      <text x="94" y="110.0" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.100</text>
+      <text x="94" y="287" text-anchor="middle" font-size="12" fill="#5b6970">2º</text>
+      <rect x="129" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="129" y="119.7" width="30" height="11.1" fill="#d9472f"/>
+      <text x="144" y="112.7" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.080</text>
+      <text x="144" y="287" text-anchor="middle" font-size="12" fill="#5b6970">3º</text>
+      <rect x="179" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="179" y="122.5" width="30" height="8.3" fill="#d9472f"/>
+      <text x="194" y="115.5" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.060</text>
+      <text x="194" y="287" text-anchor="middle" font-size="12" fill="#5b6970">4º</text>
+      <rect x="229" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="229" y="125.3" width="30" height="5.6" fill="#d9472f"/>
+      <text x="244" y="118.3" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.040</text>
+      <text x="244" y="287" text-anchor="middle" font-size="12" fill="#5b6970">5º</text>
+      <rect x="279" y="130.9" width="30" height="139.1" fill="#13858a"/>
+      <rect x="279" y="128.1" width="30" height="2.8" fill="#d9472f"/>
+      <text x="294" y="121.1" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a31">1.020</text>
+      <text x="294" y="287" text-anchor="middle" font-size="12" fill="#5b6970">6º</text>
+      <text x="172" y="310" text-anchor="middle" class="mao" font-size="16" fill="#b3311d">juros totais: R$ 420,00</text></g>
+      <g transform="translate(395 0)"><rect x="0" y="8" width="345" height="314" rx="16" fill="#f3f7f7" stroke="#d9e2e5" stroke-width="2"/>
+      <text x="20" y="44" class="mao" font-size="26" fill="#0b4f5c">Price</text><text x="20" y="66" font-size="13" fill="#5b6970">parcela constante · amortização cresce</text>
+      <path d="M18 270H330" stroke="#1d2a31" stroke-width="2"/>
+      <rect x="29" y="137.7" width="30" height="132.3" fill="#13858a"/>
+      <rect x="29" y="121.0" width="30" height="16.7" fill="#d9472f"/>
+      <text x="44" y="287" text-anchor="middle" font-size="12" fill="#5b6970">1º</text>
+      <rect x="79" y="135.0" width="30" height="135.0" fill="#13858a"/>
+      <rect x="79" y="121.0" width="30" height="14.0" fill="#d9472f"/>
+      <text x="94" y="287" text-anchor="middle" font-size="12" fill="#5b6970">2º</text>
+      <rect x="129" y="132.3" width="30" height="137.7" fill="#13858a"/>
+      <rect x="129" y="121.0" width="30" height="11.3" fill="#d9472f"/>
+      <text x="144" y="287" text-anchor="middle" font-size="12" fill="#5b6970">3º</text>
+      <rect x="179" y="129.6" width="30" height="140.4" fill="#13858a"/>
+      <rect x="179" y="121.0" width="30" height="8.6" fill="#d9472f"/>
+      <text x="194" y="287" text-anchor="middle" font-size="12" fill="#5b6970">4º</text>
+      <rect x="229" y="126.8" width="30" height="143.2" fill="#13858a"/>
+      <rect x="229" y="121.0" width="30" height="5.8" fill="#d9472f"/>
+      <text x="244" y="287" text-anchor="middle" font-size="12" fill="#5b6970">5º</text>
+      <rect x="279" y="123.9" width="30" height="146.1" fill="#13858a"/>
+      <rect x="279" y="121.0" width="30" height="2.9" fill="#d9472f"/>
+      <text x="294" y="287" text-anchor="middle" font-size="12" fill="#5b6970">6º</text>
+      <path d="M26 113.0h290" stroke="#1d2a31" stroke-width="1.5" stroke-dasharray="5 4"/><text x="172" y="105.0" text-anchor="middle" font-size="13" font-weight="800" fill="#1d2a31">todas as parcelas: R$ 1.071,15</text>
+      <text x="172" y="310" text-anchor="middle" class="mao" font-size="16" fill="#b3311d">juros totais: R$ 426,93</text></g>
+      <g transform="translate(300 344)" font-size="13" fill="#1d2a31"><rect y="-11" width="14" height="14" fill="#d9472f"/><text x="20">juros</text><rect x="80" y="-11" width="14" height="14" fill="#13858a"/><text x="100">amortização</text></g>
+      </svg>
+    <figcaption class="legenda">R$ 6.000 a 2% ao mês em 6 parcelas. No SAC a amortização é sempre R$ 1.000; na Price a parcela é sempre R$ 1.071,15. A Price paga mais juros porque devolve o principal mais devagar.</figcaption>
+  </figure>
+
+  <div class="tabela-rolagem"><table class="tabela amort">
+    <thead><tr><th rowspan="2">Mês</th><th colspan="3">SAC</th><th colspan="3">Price</th></tr>
+      <tr><th>Parcela</th><th>Juros</th><th>Amortização</th><th>Parcela</th><th>Juros</th><th>Amortização</th></tr></thead>
+    <tbody>
+        <tr><td>1º</td><td>1.120,00</td><td>120,00</td><td>1.000,00</td><td>1.071,15</td><td>120,00</td><td>951,15</td></tr>
+        <tr><td>2º</td><td>1.100,00</td><td>100,00</td><td>1.000,00</td><td>1.071,15</td><td>100,98</td><td>970,18</td></tr>
+        <tr><td>3º</td><td>1.080,00</td><td>80,00</td><td>1.000,00</td><td>1.071,15</td><td>81,57</td><td>989,58</td></tr>
+        <tr><td>4º</td><td>1.060,00</td><td>60,00</td><td>1.000,00</td><td>1.071,15</td><td>61,78</td><td>1.009,37</td></tr>
+        <tr><td>5º</td><td>1.040,00</td><td>40,00</td><td>1.000,00</td><td>1.071,15</td><td>41,59</td><td>1.029,56</td></tr>
+        <tr><td>6º</td><td>1.020,00</td><td>20,00</td><td>1.000,00</td><td>1.071,15</td><td>21,00</td><td>1.050,15</td></tr>
+        <tr class="total"><td>Total</td><td>6.420,00</td><td>420,00</td><td>6.000,00</td><td>6.426,93</td><td>426,93</td><td>6.000,00</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize</span>
+    <p>Nos <strong>dois</strong> sistemas, os <strong>juros caem</strong> com o tempo (o saldo diminui) e a <strong>1ª parcela tem os mesmos juros</strong> (2% de 6.000 = R$ 120). A diferença: no <strong>SAC</strong>, fixa a <strong>amortização</strong>; na <strong>Price</strong>, fixa a <strong>parcela</strong>. Financiamento imobiliário costuma usar SAC; crédito pessoal e de veículos, Price.</p></div>
+
+  <h3>Simulador 3 · SAC × Price</h3>
+  <p>Mude o valor, a taxa e o número de parcelas e compare as duas tabelas.</p>
+  <div class="calc" data-calc="amort"></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">No <b>Sistema de Amortização Constante (SAC)</b>, as amortizações são iguais ao longo do prazo e os juros, calculados sobre o saldo devedor, decrescem, resultando em <b>prestações decrescentes</b>. No <b>Sistema Francês (Tabela Price)</b>, as <b>prestações são iguais e periódicas</b>: a parcela de juros decresce e a de amortização cresce ao longo do tempo. Para o mesmo valor, prazo e taxa, o total de juros pagos no SAC é <b>menor</b> que na Price.</p>
+    <dl class="termos">
+      <dt>Saldo devedor</dt><dd>quanto ainda falta pagar da dívida</dd>
+      <dt>Prestação</dt><dd>a parcela: juros + amortização</dd>
+      <dt>Tabela Price</dt><dd>o sistema francês, de parcelas fixas</dd>
+      <dt>Prestações decrescentes</dt><dd>parcelas que diminuem (SAC)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 3.12 -->
+<section class="bloco quebra" id="c3-s12" data-titulo="Mapa mental">
+  <span class="sobretitulo">3.12 · Visão do todo</span>
+  <h2 class="titulo-secao">Mapa mental da matemática financeira</h2>
+  <div class="linha-fina"></div>
+  <p>Matemática financeira numa folha. Tente explicar cada ramo com um exemplo de dinheiro de verdade.</p>
+  <div class="mapa-caderno" data-mapa="matematica"></div>
+</section>
+
+<!-- 3.13 -->
+<section class="bloco" id="c3-s13" data-titulo="Pegadinhas de prova">
+  <span class="sobretitulo">3.13 · Não caia nessa</span>
+  <h2 class="titulo-secao">Pegadinhas de prova</h2>
+  <div class="linha-fina"></div>
+  <p>Leia a frase errada, tente lembrar a certa e só depois toque no cartão.</p>
+  <div class="ce fechado"><div class="errado">Nos juros compostos, 1% ao mês equivale a exatamente 12% ao ano.</div><div class="certo"><span class="toque">toque para ver</span>12% é a taxa <strong>proporcional</strong> (juros simples). A <strong>equivalente</strong> nos compostos é (1,01)¹² − 1 = <strong>12,68% a.a.</strong></div></div>
+  <div class="ce fechado"><div class="errado">Se o investimento rendeu 12% e a inflação foi 5%, o ganho real foi de 7%.</div><div class="certo"><span class="toque">toque para ver</span>Pela fórmula de Fisher: 1,12 ÷ 1,05 − 1 = <strong>6,67%</strong>. A subtração é só uma aproximação.</div></div>
+  <div class="ce fechado"><div class="errado">Uma taxa nominal de 12% ao ano capitalizada mensalmente rende exatamente 12% no ano.</div><div class="certo"><span class="toque">toque para ver</span>Rende a <strong>taxa efetiva</strong>: 1% ao mês capitalizado = <strong>12,68% a.a.</strong> A efetiva é maior que a nominal.</div></div>
+  <div class="ce fechado"><div class="errado">Quanto maior a taxa de desconto, maior o valor presente de um fluxo futuro.</div><div class="certo"><span class="toque">toque para ver</span>É o contrário: taxa de desconto <strong>maior</strong> → valor presente <strong>menor</strong> (e VPL menor).</div></div>
+  <div class="ce fechado"><div class="errado">VPL negativo significa que o projeto dá prejuízo contábil.</div><div class="certo"><span class="toque">toque para ver</span>VPL negativo significa que o projeto rende <strong>menos que a taxa exigida</strong> (o custo de oportunidade). Pode até ter lucro, mas <strong>não cria valor</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">A TIR é a taxa que torna o VPL máximo.</div><div class="certo"><span class="toque">toque para ver</span>A TIR é a taxa que torna o VPL <strong>igual a zero</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O payback simples considera o valor do dinheiro no tempo.</div><div class="certo"><span class="toque">toque para ver</span>O payback <strong>simples ignora</strong> o valor do dinheiro no tempo e os fluxos após a recuperação. Quem considera é o payback <strong>descontado</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">A duration de um título com cupons é igual ao seu prazo de vencimento.</div><div class="certo"><span class="toque">toque para ver</span>Com cupons, a duration é <strong>menor</strong> que o prazo. Só no título <strong>sem pagamentos intermediários</strong> (zero cupom) ela é igual ao prazo.</div></div>
+  <div class="ce fechado"><div class="errado">Na Tabela Price, a amortização é constante e as parcelas diminuem.</div><div class="certo"><span class="toque">toque para ver</span>Isso é o <strong>SAC</strong>. Na Price, a <strong>parcela é constante</strong> e a amortização cresce.</div></div>
+  <div class="ce fechado"><div class="errado">No desconto comercial, os juros são calculados sobre o valor que a empresa recebe.</div><div class="certo"><span class="toque">toque para ver</span>No desconto comercial (“por fora”), os juros são calculados sobre o <strong>valor nominal (de face)</strong> do título. Por isso o custo efetivo é maior que a taxa anunciada.</div></div>
+  <div class="ce fechado"><div class="errado">Alavancagem financeira sempre aumenta o retorno do acionista.</div><div class="certo"><span class="toque">toque para ver</span>Só aumenta se o projeto render <strong>mais que o custo da dívida</strong>. Se render menos, a alavancagem <strong>amplia a perda</strong>.</div></div>
+</section>
+
+<!-- 3.14 -->
+<section class="bloco extra" id="c3-s14" data-titulo="Desafio: sobe ou desce?">
+  <span class="sobretitulo">3.14 · Jogo</span>
+  <h2 class="titulo-secao">Desafio relâmpago: sobe ou desce?</h2>
+  <div class="linha-fina"></div>
+  <p>Aparece uma situação. Em <strong>8 segundos</strong>, diga se o valor pedido <strong>sobe</strong> ou <strong>desce</strong>. São 10 rodadas: é o jeito mais rápido de treinar a lógica do capítulo.</p>
+  <div class="jogo" data-jogo="matematica"></div>
+</section>
+
+<!-- 3.15 -->
+<section class="bloco" id="c3-s15" data-titulo="Itens do programa">
+  <span class="sobretitulo">3.15 · Confira o programa</span>
+  <h2 class="titulo-secao">O que o programa pede (item 1.3)</h2>
+  <div class="linha-fina"></div>
+  <p>Todos os itens do programa oficial deste assunto estão no capítulo. Toque para ir direto a cada um:</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Item do programa</th><th>Onde está</th></tr></thead>
+    <tbody>
+      <tr><td>1.3.1 Taxa nominal × real e indexador</td><td><a href="#c3-s3">3.3 Nominal × real (Fisher)</a></td></tr>
+      <tr><td>1.3.2 Capitalização simples × composta, desconto, equivalência e proporcionalidade</td><td><a href="#c3-s1">3.1</a>, <a href="#c3-s2">3.2</a> e <a href="#c3-s10">3.10</a></td></tr>
+      <tr><td>1.3.3 Juros × tempo de alocação; amortização e juros do crédito privado</td><td><a href="#c3-s1">3.1</a> e <a href="#c3-s5">3.5</a></td></tr>
+      <tr><td>1.3.3.2 Capitalização em empréstimos e mútuo; fluxo de pagamentos; cupom; VP, VF e VPL</td><td><a href="#c3-s4">3.4</a>, <a href="#c3-s5">3.5</a> e <a href="#c3-s7">3.7</a></td></tr>
+      <tr><td>1.3.3.3 e 1.3.3.4 Taxa de desconto; taxa bruta × líquida</td><td><a href="#c3-s5">3.5</a> e <a href="#c3-s6">3.6</a></td></tr>
+      <tr><td>1.3.3.5 Amortização: prazo médio, TIR, custo de oportunidade, taxa livre de risco, CMPC, duration, alavancagem e custo de captação</td><td><a href="#c3-s6">3.6</a>, <a href="#c3-s7">3.7</a> e <a href="#c3-s8">3.8</a></td></tr>
+      <tr><td>1.3.3.6 Retorno histórico e esperado (ativo e carteira)</td><td><a href="#c3-s9">3.9 Retorno</a></td></tr>
+      <tr><td>1.3.4 Taxas nominal, efetiva e real; pré e pós; simples e compostos</td><td><a href="#c3-s2">3.2</a> e <a href="#c3-s3">3.3</a></td></tr>
+      <tr><td>1.3.5 Taxa de desconto comercial</td><td><a href="#c3-s10">3.10 Desconto</a></td></tr>
+      <tr><td>1.3.6 Prazo de retorno (payback)</td><td><a href="#c3-s7">3.7 VPL, TIR e payback</a></td></tr>
+      <tr><td>1.3.7 Sistemas de amortização (SAC e Price)</td><td><a href="#c3-s11">3.11 SAC × Price</a></td></tr>
+      <tr><td>1.3.8 Desconto bancário na antecipação de recebíveis e direitos creditórios</td><td><a href="#c3-s10">3.10 Desconto</a></td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa dica"><span class="rotulo">Como este tema aparece</span>
+    <p>Nas 3 provas de julho/2026 analisadas, matemática financeira não apareceu entre os temas mais repetidos, e o caderno de questões de exemplo não traz contas pesadas. A tendência é cobrar o <strong>conceito</strong> (Fisher, efetiva × nominal, VPL/TIR, SAC × Price, duration) com, no máximo, contas simples. Entenda a lógica e você acerta sem calculadora.</p></div>
+</section>
+
+<!-- 3.16 -->
+<section class="bloco quebra" id="c3-s16" data-titulo="Questões com correção na hora">
+  <span class="sobretitulo">3.16 · Treino</span>
+  <h2 class="titulo-secao">Questões com correção na hora</h2>
+  <div class="linha-fina"></div>
+  <p>Questões <strong>inéditas</strong> no <strong>formato oficial da nova CPA</strong>: um caso (contexto), um enunciado e 4 alternativas, com o código do item do programa (PD), o tipo de raciocínio e a dificuldade. As contas foram pensadas para fazer de cabeça ou com uma continha no papel. Cada erro vai para o seu <a href="#painel">caderno de erros</a>.</p>
+  <div class="lista-questoes" data-questoes="3"></div>
+</section>
+
+<!-- 3.17 -->
+<section class="bloco" id="c3-s17" data-titulo="Revisão, fórmulas e dicionário">
+  <span class="sobretitulo">3.17 · Revisão</span>
+  <h2 class="titulo-secao">Revisão, cola de fórmulas e dicionário</h2>
+  <div class="linha-fina"></div>
+  <h3>Cola de fórmulas</h3>
+  <div class="grade-2 cartoes-compactos formulas">
+    <div class="cartao"><h4>Juros simples</h4><p>J = C × i × n · M = C × (1 + i × n)</p></div>
+    <div class="cartao"><h4>Juros compostos</h4><p>M = C × (1 + i)ⁿ</p></div>
+    <div class="cartao"><h4>Taxa equivalente</h4><p>(1 + i<sub>a</sub>) = (1 + i<sub>m</sub>)¹²</p></div>
+    <div class="cartao"><h4>Fisher</h4><p>(1 + nominal) = (1 + real) × (1 + inflação)</p></div>
+    <div class="cartao"><h4>VF e VP</h4><p>VF = VP × (1 + i)ⁿ · VP = VF ÷ (1 + i)ⁿ</p></div>
+    <div class="cartao"><h4>VPL e TIR</h4><p>VPL = Σ VP dos fluxos − investimento · TIR: VPL = 0</p></div>
+    <div class="cartao"><h4>Taxa líquida</h4><p>bruta × (1 − alíquota de IR)</p></div>
+    <div class="cartao"><h4>Desconto comercial</h4><p>D = N × d × n · recebe N − D (bancário: − tarifas)</p></div>
+    <div class="cartao"><h4>Carteira e CMPC</h4><p>média ponderada pelos pesos</p></div>
+    <div class="cartao"><h4>SAC</h4><p>amortização = dívida ÷ nº de parcelas</p></div>
+  </div>
+
+  <h3>Dicionário da prova</h3>
+  <p>Com o <strong>Modo treino</strong> ligado, a tradução some: tente lembrar e toque para conferir.</p>
+  <div class="tabela-rolagem"><table class="tabela dicionario">
+    <thead><tr><th>Quando a prova diz…</th><th>…quer dizer</th></tr></thead>
+    <tbody>
+      <tr><td>Capitalização composta</td><td><span class="trad">juros sobre juros: o juro entra no saldo e rende também</span></td></tr>
+      <tr><td>Principal</td><td><span class="trad">o capital inicial, sem juros</span></td></tr>
+      <tr><td>Taxas proporcionais</td><td><span class="trad">mesma taxa em outro prazo nos juros simples (multiplica/divide)</span></td></tr>
+      <tr><td>Taxas equivalentes</td><td><span class="trad">mesma taxa em outro prazo nos compostos (potência/raiz)</span></td></tr>
+      <tr><td>Taxa nominal (capitalização)</td><td><span class="trad">taxa “anunciada”, com período diferente do da capitalização</span></td></tr>
+      <tr><td>Taxa efetiva</td><td><span class="trad">o que realmente rende ou se paga no período</span></td></tr>
+      <tr><td>Taxa real</td><td><span class="trad">o ganho de poder de compra, sem a inflação (Fisher)</span></td></tr>
+      <tr><td>Indexador</td><td><span class="trad">o índice que corrige o valor: CDI, IPCA, IGP-M, TR</span></td></tr>
+      <tr><td>Pós-fixado</td><td><span class="trad">rende conforme um indexador; resultado conhecido no fim</span></td></tr>
+      <tr><td>Valor presente</td><td><span class="trad">quanto um valor futuro vale hoje</span></td></tr>
+      <tr><td>Taxa de desconto</td><td><span class="trad">taxa usada para trazer valores futuros para hoje</span></td></tr>
+      <tr><td>Cupom</td><td><span class="trad">pagamento periódico de juros de um título</span></td></tr>
+      <tr><td>Amortização</td><td><span class="trad">devolução do principal da dívida</span></td></tr>
+      <tr><td>VPL positivo</td><td><span class="trad">projeto rende mais que a taxa exigida: cria valor</span></td></tr>
+      <tr><td>TIR</td><td><span class="trad">a taxa que zera o VPL</span></td></tr>
+      <tr><td>Payback</td><td><span class="trad">tempo para recuperar o investimento</span></td></tr>
+      <tr><td>Custo de oportunidade</td><td><span class="trad">o que você deixou de ganhar na outra alternativa</span></td></tr>
+      <tr><td>Taxa livre de risco</td><td><span class="trad">retorno sem risco de calote: títulos públicos/Selic</span></td></tr>
+      <tr><td>Duration</td><td><span class="trad">prazo médio dos fluxos em valor presente; mede a sensibilidade aos juros</span></td></tr>
+      <tr><td>Alavancagem financeira</td><td><span class="trad">usar dívida para ampliar o retorno (e o risco) do sócio</span></td></tr>
+      <tr><td>CMPC (WACC)</td><td><span class="trad">custo médio ponderado do capital próprio e de terceiros</span></td></tr>
+      <tr><td>Desconto comercial (por fora)</td><td><span class="trad">desconto calculado sobre o valor de face do título</span></td></tr>
+      <tr><td>Desconto bancário</td><td><span class="trad">desconto comercial + tarifas do banco</span></td></tr>
+      <tr><td>Sistema francês</td><td><span class="trad">Tabela Price: parcelas iguais</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Revisão de 1 minuto</h3>
+  <ol class="frases-resumo">
+    <li><b>Compostos</b><span class="manuscrito">juros sobre juros; 1 período = simples</span></li>
+    <li><b>1% a.m.</b><span class="manuscrito">proporcional 12% a.a.; equivalente 12,68% a.a.</span></li>
+    <li><b>Nominal × efetiva</b><span class="manuscrito">capitalizou mais vezes → efetiva maior</span></li>
+    <li><b>Fisher</b><span class="manuscrito">1,12 ÷ 1,05 = 6,67% real (não 7%)</span></li>
+    <li><b>Pré × pós</b><span class="manuscrito">pré: taxa conhecida; pós: segue o indexador</span></li>
+    <li><b>VP</b><span class="manuscrito">taxa de desconto ▲ → VP ▼</span></li>
+    <li><b>VPL</b><span class="manuscrito">&gt; 0 aceita; TIR zera o VPL</span></li>
+    <li><b>Payback</b><span class="manuscrito">simples ignora o dinheiro no tempo</span></li>
+    <li><b>Duration</b><span class="manuscrito">zero cupom = prazo; maior = mais risco de juros</span></li>
+    <li><b>Alavancagem</b><span class="manuscrito">amplia ganho e perda</span></li>
+    <li><b>Desconto bancário</b><span class="manuscrito">comercial (sobre o valor de face) + tarifas</span></li>
+    <li><b>SAC × Price</b><span class="manuscrito">SAC: amortização fixa, parcela cai; Price: parcela fixa</span></li>
+  </ol>
+  <div class="frase-final"><span class="manuscrito">Dinheiro hoje vale mais que dinheiro amanhã.</span>Se lembrar de uma frase só deste capítulo, que seja esta: dela saem o VP, o VPL, a TIR, a duration e o desconto.</div>
+</section>
+
+<!-- 3.18 -->
+<section class="bloco" id="c3-s18" data-titulo="Fontes e links para verificação">
+  <span class="sobretitulo">3.18 · Confira você mesma</span>
+  <h2 class="titulo-secao">Fontes e links para verificação</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">Conteúdo conferido em novembro de 2026. Os exemplos numéricos foram calculados para esta apostila e conferidos por programa.</p>
+  <div class="tabela-rolagem"><table class="tabela fontes">
+    <thead><tr><th>Assunto</th><th>Fonte oficial</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Capitalização de juros em periodicidade inferior à anual (SFN)</td><td><a href="https://scon.stj.jus.br/SCON/sumstj/toc.jsp?livre=%27539%27.num.&amp;O=JT" target="_blank" rel="noopener">Súmula 539 do STJ</a><span class="org">Superior Tribunal de Justiça</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Taxa anual superior ao duodécuplo da mensal</td><td><a href="https://scon.stj.jus.br/SCON/sumstj/toc.jsp?livre=%27541%27.num.&amp;O=JT" target="_blank" rel="noopener">Súmula 541 do STJ</a><span class="org">Superior Tribunal de Justiça</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Capitalização nas instituições do SFN</td><td><a href="https://www.planalto.gov.br/ccivil_03/mpv/2170-36.htm" target="_blank" rel="noopener">MP 2.170-36/2001, art. 5º</a><span class="org">Planalto</span></td><td><span class="selo-conf ok">conferido via Súmula 539</span></td></tr>
+      <tr><td>Mútuo com fins econômicos: juros presumidos e capitalização anual</td><td><a href="https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm" target="_blank" rel="noopener">Código Civil, art. 591</a><span class="org">Planalto</span></td><td><span class="selo-conf pend">o Planalto bloqueou o acesso automático; conferir a redação após a Lei 14.905/2024</span></td></tr>
+      <tr><td>Tabela regressiva do IR na renda fixa (22,5% a 15%)</td><td><a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l11033.htm" target="_blank" rel="noopener">Lei 11.033/2004, art. 1º</a><span class="org">Planalto</span></td><td><span class="selo-conf pend">conferir no texto consolidado (detalhado no capítulo 5)</span></td></tr>
+      <tr><td>Fórmulas e exemplos (juros, Fisher, VPL, TIR, duration, SAC, Price, desconto)</td><td>Cálculos próprios desta apostila<span class="org">conferidos por programa</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Calculadora do cidadão (correção de valores, aplicações e financiamentos)</td><td><a href="https://www3.bcb.gov.br/CALCIDADAO/publico/exibirFormCorrecaoValores.do?method=exibirFormCorrecaoValores" target="_blank" rel="noopener">Calculadora do Cidadão</a><span class="org">Banco Central do Brasil</span></td><td><span class="selo-conf ok">ferramenta oficial</span></td></tr>
+      <tr><td>Programa oficial (item 1.3)</td><td>Programa detalhado CPA, versão 1.2<span class="org">ANBIMA</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno">Material de estudo independente. Não é produzido nem endossado pela ANBIMA, pelo Banco Central ou pelos demais órgãos citados.</p>
+
+  <nav class="navega" aria-label="Navegação entre capítulos">
+    <a href="#cap-2"><small>← anterior</small><b>2 · Política econômica</b></a>
+    <a class="prox" href="#resumo-3"><small>para revisar</small><b>Resumo do capítulo 3 →</b></a>
+  </nav>
+</section>
+</article>

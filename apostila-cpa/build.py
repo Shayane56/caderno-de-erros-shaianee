@@ -19,6 +19,7 @@ DIST = RAIZ / "dist"
 CAPITULOS = {
     1: "Sistema Financeiro Nacional",
     2: "Política econômica e indicadores",
+    3: "Matemática financeira",
 }
 
 

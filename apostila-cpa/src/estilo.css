@@ -749,3 +749,62 @@ table.dicionario .trad { color: var(--tinta); }
   .modulo-acao { grid-column: 2; grid-row: 3; }
   .modulo-mini i { width: 40px; height: 34px; }
 }
+
+/* ---------------- simuladores (capítulo 3) ---------------- */
+.calc { margin: 18px 0 22px; padding: 18px 18px 14px; background: var(--papel-2); border: 2.5px solid var(--tinta); border-radius: 18px 8px 20px 10px; box-shadow: 5px 5px 0 var(--teal-medio); }
+.calc-topo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font: 700 22px var(--f-mao); }
+.calc-selo { font: 700 13px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; padding: 2px 10px; border-radius: 8px; background: var(--mk-amarelo); }
+.calc-entradas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.calc-campo { display: grid; gap: 4px; font-size: 14px; color: var(--suave); font-weight: 700; min-width: 0; }
+.calc-campo b { color: var(--tinta); font: 700 17px var(--f-mao); }
+.calc-campo input[type=number], .calc-campo select { width: 100%; font: 700 18px var(--f-texto); color: var(--tinta); background: var(--papel); border: 2px solid var(--linha); border-radius: 10px; padding: 7px 10px; }
+.calc-campo input:focus-visible, .calc-campo select:focus-visible { outline: 2.5px dashed var(--laranja); outline-offset: 2px; }
+.calc-faixa input[type=range] { width: 100%; accent-color: var(--coral); margin-top: 8px; }
+.calc-graf { margin-top: 14px; }
+.calc-graf svg { width: 100%; height: auto; display: block; }
+.calc-graf text { font: 600 11px var(--f-texto); fill: var(--suave); }
+.calc-graf .eixo { stroke: var(--tinta); stroke-width: 2; }
+.b-sim { fill: var(--teal-medio); stroke: var(--teal); stroke-width: 1; }
+.b-com { fill: var(--coral); }
+.b-jur { fill: var(--coral); }
+.b-amo { fill: var(--teal); }
+.calc-leg { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 6px 0 0; font-size: 13.5px; color: var(--suave); }
+.calc-leg i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: -8px; vertical-align: -2px; }
+.calc-leg i.b-sim { background: var(--teal-medio); border: 1px solid var(--teal); } .calc-leg i.b-com, .calc-leg i.b-jur { background: var(--coral); } .calc-leg i.b-amo { background: var(--teal); }
+.calc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.calc-cards.dois { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.calc-cards > div { border: 2px solid var(--linha); border-radius: 12px; padding: 10px 12px; background: var(--fundo); min-width: 0; }
+.calc-cards > div.destaque { border-color: var(--coral); background: var(--coral-claro); }
+.calc-cards small, .calc-out small { display: block; font-size: 13px; font-weight: 800; color: var(--suave); }
+.calc-cards b { display: block; font: 700 23px/1.2 var(--f-mao); color: var(--tinta); margin: 2px 0; overflow-wrap: anywhere; }
+.calc-cards span, .calc-out span { display: block; font-size: 13.5px; color: var(--suave); line-height: 1.4; }
+.calc-nota { font-size: 14.5px; margin: 10px 0 0; }
+.calc-tres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.calc-bloco { border: 2px solid var(--linha); border-radius: 14px; padding: 10px 12px; background: var(--fundo); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.calc-bloco h4 { margin: 0; font: 700 18px var(--f-mao); color: var(--petroleo); }
+.calc-out p { margin: 4px 0 0; padding-top: 6px; border-top: 1.5px dashed var(--linha); }
+.calc-out b { display: block; font: 700 25px/1.15 var(--f-mao); color: var(--coral-escuro); }
+.calc-out b.neutro { color: var(--tinta); font-size: 21px; }
+.calc-out b.neg { color: var(--coral); }
+.calc-graf.amort { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.calc-graf.amort figure { margin: 0; border: 2px solid var(--linha); border-radius: 12px; padding: 6px 8px 2px; background: var(--fundo); }
+.calc-graf.amort figcaption { font: 700 18px var(--f-mao); color: var(--petroleo); }
+.calc-graf.amort .calc-leg { grid-column: 1 / -1; }
+.calc-tabela { margin-top: 12px; }
+.calc-tabela summary { cursor: pointer; font: 700 17px var(--f-mao); color: var(--azul); }
+table.tabela.amort { min-width: 560px; font-size: 14px; }
+table.tabela.amort td, table.tabela.amort th { text-align: right; padding: 6px 9px; }
+table.tabela.amort td:first-child, table.tabela.amort th:first-child { text-align: left; }
+table.tabela.amort th[colspan] { text-align: center; }
+table.tabela.amort tr.total td { font-weight: 800; background: var(--mk-amarelo); }
+.pdf-only { display: none; }
+html.pdf .pdf-only { display: block; }
+.formulas .cartao p { font: 700 18px/1.35 var(--f-mao); color: var(--tinta); }
+@media (max-width: 640px) {
+  .calc { padding: 14px 12px 12px; }
+  .calc-entradas, .calc-tres, .calc-cards, .calc-cards.dois, .calc-graf.amort { grid-template-columns: minmax(0, 1fr); }
+}
+/* selos longos de "conferir" quebram linha, sem esmagar as outras colunas */
+.selo-conf.pend { white-space: normal; display: inline; line-height: 1.6; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+table.fontes th:nth-child(3) { width: 28%; }
+.jogo-gab { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 26px; text-align: left; font-size: 14.5px; margin: 8px 0 0; padding-left: 18px; }
