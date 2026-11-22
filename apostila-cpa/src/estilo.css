@@ -694,3 +694,9 @@ table.dicionario .trad { color: var(--tinta); }
 .rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 760px) { .rs-numeros.rs-tres, .rs-cola-grade.rs-tres-col { grid-template-columns: minmax(0, 1fr); } }
+
+/* índice: tópicos recolhíveis */
+.g-linha { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 4px; }
+.g-seta { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--linha); background: var(--papel-2); color: var(--tinta); font: 700 18px/1 var(--f-texto); cursor: pointer; transition: transform .2s, background .2s; }
+.g-seta:hover { background: var(--mk-azul); }
+.g-cap.aberto .g-seta { transform: rotate(180deg); background: var(--mk-amarelo); border-color: var(--ambar); }

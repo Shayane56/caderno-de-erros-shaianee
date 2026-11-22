@@ -700,6 +700,12 @@ table.dicionario .trad { color: var(--tinta); }
 .rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 760px) { .rs-numeros.rs-tres, .rs-cola-grade.rs-tres-col { grid-template-columns: minmax(0, 1fr); } }
+
+/* índice: tópicos recolhíveis */
+.g-linha { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 4px; }
+.g-seta { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--linha); background: var(--papel-2); color: var(--tinta); font: 700 18px/1 var(--f-texto); cursor: pointer; transition: transform .2s, background .2s; }
+.g-seta:hover { background: var(--mk-azul); }
+.g-cap.aberto .g-seta { transform: rotate(180deg); background: var(--mk-amarelo); border-color: var(--ambar); }
 </style>
 <!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
 <svg class="defs-globais" aria-hidden="true" width="0" height="0">
@@ -3736,13 +3742,26 @@ APOSTILA.jogos.politica = {
         const ok = !!D.capitulos[c.n];
         const secs = ok ? $$(`#cap-${c.n} section.bloco`) : [];
         const cab = (i === 0 || CAPS[i - 1].m !== c.m) ? `<div class="g-modulo"><b>Módulo ${c.m}</b> ${escH(NOMES_MODULOS[c.m])} <span>${MODULOS[c.m].split('· ')[1]} da prova</span></div>` : '';
-        return cab + `<a class="g-item ${c.tema}${ok ? '' : ' bloqueado'}" href="#cap-${c.n}" data-view="cap-${c.n}"><span class="g-num">${c.n}</span><span class="g-nome">${escH(c.t)}<small>programa ${escH(c.pd)}${ok ? '' : ' · em breve'}</small></span></a>`
-          + (ok ? `<ul class="g-secoes">${document.getElementById('resumo-' + c.n) ? `<li><a href="#resumo-${c.n}"><b>★ Resumo em 2 páginas</b></a></li>` : ''}${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
+        const item = `<a class="g-item ${c.tema}${ok ? '' : ' bloqueado'}" href="#cap-${c.n}" data-view="cap-${c.n}"><span class="g-num">${c.n}</span><span class="g-nome">${escH(c.t)}<small>programa ${escH(c.pd)}${ok ? '' : ' · em breve'}</small></span></a>`;
+        if (!ok) return cab + item;
+        return cab + `<div class="g-cap" data-cap="${c.n}"><div class="g-linha">${item}<button class="g-seta" type="button" aria-expanded="false" aria-controls="g-sec-${c.n}" aria-label="Mostrar os tópicos do capítulo ${c.n}">▾</button></div>`
+          + `<ul class="g-secoes" id="g-sec-${c.n}" hidden>${document.getElementById('resumo-' + c.n) ? `<li><a href="#resumo-${c.n}"><b>★ Resumo em 2 páginas</b></a></li>` : ''}${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul></div>`;
       }).join('');
     marcarVistas();
   }
   function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} seções lidas`; }); }
   function marcarGaveta(view) { $$('.g-item').forEach((a) => a.classList.toggle('atual', a.dataset.view === view)); }
+  // abre os tópicos de um capítulo (ou fecha, se já estiver aberto); com "so", fecha os demais
+  function abrirTopicos(n, so) {
+    $$('.g-cap').forEach((g) => {
+      const alvo = g.dataset.cap === String(n);
+      const abrir = alvo ? (so ? true : !g.classList.contains('aberto')) : (so ? false : g.classList.contains('aberto'));
+      g.classList.toggle('aberto', abrir);
+      $('.g-secoes', g).hidden = !abrir;
+      $('.g-seta', g).setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      $('.g-seta', g).setAttribute('aria-label', (abrir ? 'Esconder' : 'Mostrar') + ' os tópicos do capítulo ' + g.dataset.cap);
+    });
+  }
   function progressoLeitura() {
     const bar = $('#b-prog'); if (!bar) return;
     const h = document.documentElement; const max = h.scrollHeight - h.clientHeight;
@@ -3847,7 +3866,15 @@ APOSTILA.jogos.politica = {
       const link = ev.target.closest('#gaveta a, #busca-resultados a'); if (link) { fecharGaveta(); $('#busca').hidden = true; }
     });
     const gav = $('#gaveta');
-    const abrirGaveta = () => { gav.hidden = false; $('#b-menu').setAttribute('aria-expanded', 'true'); $('#gaveta-fechar').focus(); };
+    const abrirGaveta = () => {
+      const atual = (viewAtual.match(/^(?:cap|resumo)-(\d+)$/) || [])[1];
+      abrirTopicos(atual || 0, true);
+      gav.hidden = false; $('#b-menu').setAttribute('aria-expanded', 'true'); $('#gaveta-fechar').focus();
+    };
+    $('#gaveta-lista').addEventListener('click', (ev) => {
+      const seta = ev.target.closest('.g-seta');
+      if (seta) { ev.preventDefault(); abrirTopicos(seta.closest('.g-cap').dataset.cap, false); }
+    });
     function fecharGaveta() { gav.hidden = true; $('#b-menu').setAttribute('aria-expanded', 'false'); }
     $('#b-menu').addEventListener('click', abrirGaveta);
     $('#gaveta-fechar').addEventListener('click', fecharGaveta);
