@@ -117,3 +117,10 @@ html.pdf .rs-card { font-size: 13px; line-height: 1.42; }
 html.pdf .rs-grade, html.pdf .rs-linha { gap: 8px; }
 html.pdf .rs-cola-grade { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 html.pdf .rs-cola-grade span { font-size: 12.3px; }
+html.pdf .sumario li { padding: 3px 0; font-size: 13.5px; }
+html.pdf .sumario li b { font-size: 15px; }
+html.pdf .sumario h3 { margin-top: 14px; }
+html.pdf .legenda-caixas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+html.pdf .legenda-caixas .caixa { font-size: 12.5px; padding: 8px 10px 6px; }
+html.pdf .legenda-caixas .juca { grid-column: 1 / -1; }
+html.pdf .sumario .caixa.destaque { font-size: 13.5px; }

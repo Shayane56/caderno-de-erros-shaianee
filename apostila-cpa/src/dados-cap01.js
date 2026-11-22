@@ -105,9 +105,29 @@ APOSTILA.capitulos[1] = {
       q: 'Qual destes investimentos NÃO conta com a garantia do FGC?',
       o: ['Letra de Crédito do Agronegócio (LCA)', 'Caderneta de poupança', 'Debênture', 'Letra de câmbio'], c: 2,
       e: 'O FGC protege dívida do banco com você (depósitos e letras). Debênture é dívida de uma empresa comum, não de banco, então não tem FGC. LCA, poupança e letra de câmbio têm.',
-      a: ['LCA é garantida.', 'Poupança é garantida.', 'Correta.', 'Letra de câmbio é garantida.'] }
+      a: ['LCA é garantida.', 'Poupança é garantida.', 'Correta.', 'Letra de câmbio é garantida.'] },
+    { id: 'c1q21', tema: 'Autorreguladores', n: 'facil',
+      q: 'Sobre a ANBIMA, é correto afirmar que se trata de:',
+      o: ['Autarquia federal vinculada ao Ministério da Fazenda, que fiscaliza os bancos', 'Órgão normativo do SFN, ao lado do CMN', 'Entidade privada que representa as instituições do mercado e exerce autorregulação por meio de códigos', 'Departamento do Banco Central responsável pelas certificações profissionais'], c: 2,
+      e: 'A ANBIMA é uma associação privada. Ela representa, autorregula, informa e educa, e os códigos dela valem para associados e aderentes. Não é órgão público e não é normativa nem supervisora do SFN.',
+      a: ['Não é autarquia nem fiscaliza bancos (isso é o BC).', 'Os normativos são CMN, CNSP e CNPC.', 'Correta.', 'A ANBIMA não faz parte do Banco Central.'] },
+    { id: 'c1q22', tema: 'Autorreguladores', n: 'medio',
+      q: 'Um profissional deseja obter a certificação internacional CFP® para atuar como planejador financeiro. A associação brasileira ligada a essa certificação é a:',
+      o: ['Apimec', 'Planejar', 'Ancord', 'Previc'], c: 1,
+      e: 'Truque das iniciais: Planejar = Planejador (CFP®). Apimec = Analista (CNPI). Ancord = Assessor de investimento. A Previc nem é associação: é a supervisora dos fundos de pensão.',
+      a: ['A Apimec cuida dos analistas (CNPI).', 'Correta.', 'A Ancord cuida das corretoras e dos assessores de investimento.', 'A Previc é a supervisora da previdência fechada.'] },
+    { id: 'c1q23', tema: 'Seguros e previdência', n: 'medio',
+      q: 'Sobre o corretor de seguros, é correto afirmar:',
+      o: ['Assume o risco do segurado e paga a indenização em caso de sinistro', 'É o intermediário entre o cliente e a seguradora, remunerado por comissão, e depende de registro na Susep', 'Precisa de registro na CVM, pois seguro é valor mobiliário', 'É fiscalizado pela Previc'], c: 1,
+      e: 'Quem assume o risco é a seguradora. O corretor só faz a ponte, ganha a comissão de corretagem e precisa estar registrado na Susep.',
+      a: ['Isso é papel da seguradora.', 'Correta.', 'Seguro não é valor mobiliário, e o registro é na Susep.', 'Previc é dos fundos de pensão.'] },
+    { id: 'c1q24', tema: 'SPB', n: 'medio',
+      q: 'Sobre o Sistema de Pagamentos Brasileiro (SPB), é correto afirmar que:',
+      o: ['É apenas outro nome para o Sistema Financeiro Nacional', 'É composto pelas infraestruturas do mercado financeiro (IMF) e pelos arranjos de pagamento, envolvendo a transferência de fundos e a liquidação de operações', 'É administrado pela ANBIMA', 'Inclui somente o Pix e os cartões de crédito'], c: 1,
+      e: 'O SPB são as “estradas” do dinheiro, com dois segmentos: as IMF (que liquidam, guardam e registram operações, como o STR e o Selic) e os arranjos de pagamento (como Pix e cartões). SFN e SPB são diferentes, mas se cruzam.',
+      a: ['SFN e SPB têm escopos diferentes.', 'Correta.', 'Quem regula é CMN, BC e CVM, não a ANBIMA.', 'Os arranjos são só um dos segmentos; também há as IMF.'] }
   ],
-  revisaoTemas: ['Estrutura do SFN', 'CMN', 'Banco Central', 'CVM', 'Seguros e previdência', 'Bancos', 'Não bancárias', 'Fintechs e IP', 'FGC']
+  revisaoTemas: ['Estrutura do SFN', 'CMN', 'Banco Central', 'CVM', 'Seguros e previdência', 'Bancos', 'Não bancárias', 'Fintechs e IP', 'Autorreguladores', 'FGC', 'SPB']
 };
 
 APOSTILA.mapas.sfn = {
@@ -118,7 +138,7 @@ APOSTILA.mapas.sfn = {
     { t: 'CMN e BC', d: 'predio', i: ['CMN: Fazenda, Planejamento, BC', 'BC: estabilidade de preços', 'BC: 9 dirigentes, 4 anos', 'Sem vínculo a Ministério'] },
     { t: 'Bancos', d: 'moeda', i: ['Comercial: depósito à vista', 'Múltiplo: 2 carteiras', 'Comercial ou investimento', 'Caixa: empresa pública'] },
     { t: 'Não bancárias', d: 'chave', i: ['Financeira: LC e RDB', 'SCD e SEP (fintechs)', 'IP: não empresta', 'Corretoras: BC + CVM'] },
-    { t: 'Proteção', d: 'escudo', i: ['FGC: R$ 250 mil', 'por conglomerado', 'R$ 1 mi a cada 4 anos', 'FGCoop nas cooperativas'] }
+    { t: 'Proteção e apoio', d: 'escudo', i: ['FGC: R$ 250 mil por grupo', 'R$ 1 mi a cada 4 anos', 'ANBIMA: autorregulação', 'SPB: IMFs + arranjos'] }
   ]
 };
 
@@ -144,6 +164,7 @@ APOSTILA.jogos.fiscaliza = {
     ['Resseguradora', 'Susep', 'Resseguro também é com a Susep.'],
     ['Cooperativa de seguros', 'Susep', 'Novidade da LC 213/2025: Susep.'],
     ['Fundo de pensão de estatal', 'Previc', 'Previdência fechada: Previc.'],
-    ['Fundo de pensão de servidores', 'Previc', 'Entidade fechada de previdência: Previc.']
+    ['Fundo de pensão de servidores', 'Previc', 'Entidade fechada de previdência: Previc.'],
+    ['Corretor de seguros', 'Susep', 'O corretor de seguros precisa de registro na Susep.']
   ]
 };
