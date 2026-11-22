@@ -74,3 +74,6 @@ html.pdf .questao ol.alt { gap: 4px; }
 html.pdf .questao ol.alt li { font-size: 14px; padding: 4px 10px 4px 40px; }
 html.pdf .questao ol.alt li::before { width: 23px; height: 23px; top: 3px; font-size: 13px; }
 html.pdf .ce > div { font-size: 14.5px; padding: 8px 12px; }
+
+html.pdf .caixa.prova { break-inside: avoid; box-shadow: none; }
+html.pdf .gancho { break-after: avoid; }

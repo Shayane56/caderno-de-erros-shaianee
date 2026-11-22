@@ -457,7 +457,7 @@
   function aplicarTreino() {
     document.body.classList.toggle('treino', !!E.treino);
     $('#b-treino').setAttribute('aria-pressed', E.treino ? 'true' : 'false');
-    $$('.treino-oculto .ver, .mc-ramo li.ver, .frases-resumo .manuscrito.ver').forEach((x) => x.classList.remove('ver'));
+    $$('.mc-ramo li.ver, .frases-resumo .manuscrito.ver, dl.termos dd.ver, table.dicionario .trad.ver').forEach((x) => x.classList.remove('ver'));
   }
 
   function atualizarGeral() { if (viewAtual === 'inicio') montarInicio(); }
@@ -487,6 +487,7 @@
       const ce = ev.target.closest('.ce');
       if (ce && ce.classList.contains('fechado')) { ce.classList.remove('fechado'); ce.classList.add('abriu'); return; }
       const fr = ev.target.closest('.treino .frases-resumo .manuscrito'); if (fr) { fr.classList.toggle('ver'); return; }
+      const tr = ev.target.closest('.treino dl.termos dd, .treino table.dicionario .trad'); if (tr) { tr.classList.toggle('ver'); return; }
       const fig = ev.target.closest('.figura[data-zoom]'); if (fig && !ev.target.closest('a')) { abrirLupa(fig); return; }
       const link = ev.target.closest('#gaveta a, #busca-resultados a'); if (link) { fecharGaveta(); $('#busca').hidden = true; }
     });

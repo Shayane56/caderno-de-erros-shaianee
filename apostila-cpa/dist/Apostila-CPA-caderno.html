@@ -603,6 +603,30 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   .barra-tema .bt-trilho { grid-column: 1 / -1; grid-row: 2; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+
+/* ---------------- linguagem de conversa + linguagem de prova ---------------- */
+/* pergunta-gancho que abre cada assunto */
+.gancho { position: relative; margin: 6px 0 12px; padding-left: 34px; font: 700 clamp(25px, 3.6vw, 31px)/1.15 var(--f-manuscrito); color: var(--coral); text-wrap: balance; }
+.gancho::before { content: "?"; position: absolute; left: 0; top: .05em; width: 26px; height: 26px; border-radius: 50%; background: var(--coral); color: #fff; font: 700 18px/26px var(--f-mao); text-align: center; transform: rotate(-8deg); }
+/* quadro "Na prova, cai assim": a linguagem oficial, como a banca escreve */
+.caixa.prova { background: var(--papel-2); border: 2px solid var(--petroleo); border-left-width: 8px; border-radius: 6px 14px 14px 6px; box-shadow: 0 4px 0 color-mix(in oklab, var(--petroleo) 25%, transparent); }
+.caixa.prova > .rotulo { background: var(--petroleo-fundo); color: #fff; }
+.caixa.prova .oficial { position: relative; margin: 2px 0 12px; padding: 10px 14px 10px 30px; background: var(--fundo); border-radius: 10px; font-size: 16px; line-height: 1.55; font-style: italic; }
+.caixa.prova .oficial::before { content: "\201C"; position: absolute; left: 8px; top: -2px; font: 400 40px/1 var(--f-titulo); color: var(--teal); }
+.caixa.prova .oficial b { font-style: normal; font-weight: 800; color: var(--petroleo); }
+dl.termos { display: grid; grid-template-columns: minmax(150px, max-content) minmax(0, 1fr); gap: 6px 14px; margin: 0; font-size: 15px; }
+dl.termos dt { font: 700 16px/1.3 var(--f-mao); color: var(--petroleo); }
+dl.termos dt::before { content: "\25B8  "; color: var(--ambar-escuro); }
+dl.termos dd { margin: 0; color: var(--suave); line-height: 1.4; }
+.treino dl.termos dd { color: transparent; background: repeating-linear-gradient(90deg, var(--linha) 0 12px, transparent 12px 16px) 0 70% / 100% 3px no-repeat; cursor: pointer; }
+.treino dl.termos dd.ver { color: var(--suave); background: none; }
+/* dicionário da prova */
+table.dicionario td:first-child { width: 42%; }
+table.dicionario .trad { color: var(--tinta); }
+.treino table.dicionario .trad { color: transparent; background: repeating-linear-gradient(90deg, var(--linha) 0 12px, transparent 12px 16px) 0 70% / 100% 3px no-repeat; cursor: pointer; }
+.treino table.dicionario .trad.ver { color: var(--tinta); background: none; }
+@media (max-width: 640px) { dl.termos { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.termos dd { margin-bottom: 6px; } }
 </style>
 <!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
 <svg class="defs-globais" aria-hidden="true" width="0" height="0">
@@ -773,20 +797,20 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <div>
     <span class="hero-sobre">Capítulo 1 · A base de toda a prova</span>
     <h1 class="hero-titulo">Sistema Financeiro Nacional</h1>
-    <p class="hero-sub">Quem cria as regras, quem fiscaliza e quem coloca o dinheiro para girar. Entenda o SFN como um campeonato e nunca mais confunda CMN, BC, CVM, Susep e Previc.</p>
+    <p class="hero-sub">Já parou para pensar em como o dinheiro que você guarda no banco vira o empréstimo de outra pessoa? E quem vigia tudo isso? É disso que este capítulo fala. E, sendo bem sincera, ele é a base da prova inteira.</p>
     <div class="hero-chips"><span>CMN</span><span>Banco Central</span><span>CVM</span><span>Susep</span><span>Previc</span><span>banco múltiplo</span><span>fintechs</span><span>FGC</span></div>
   </div>
   <div class="hero-aprender">
-    <h2>Neste capítulo você vai aprender</h2>
+    <h2>Perguntas que você vai saber responder</h2>
     <ul class="check">
-      <li>O que é intermediação financeira</li>
-      <li>Os 3 andares do SFN: normativos, supervisores e operadores</li>
-      <li>Composição e papel do CMN</li>
-      <li>Banco Central: autonomia, mandatos e funções</li>
-      <li>CVM e o que é (e o que não é) valor mobiliário</li>
-      <li>Seguros e previdência: CNSP, Susep, CNPC e Previc</li>
-      <li>Bancos, financeiras, cooperativas, fintechs e IPs</li>
-      <li>FGC: quanto e o que ele garante</li>
+      <li>Como o dinheiro de quem poupa chega em quem precisa?</li>
+      <li>Quem faz as regras, quem fiscaliza e quem atende?</li>
+      <li>Quem manda no CMN e o que ele decide?</li>
+      <li>Por que o presidente do BC não troca junto com o governo?</li>
+      <li>Ação é valor mobiliário. E CDB, é?</li>
+      <li>Quem cuida do seu seguro e do fundo de pensão?</li>
+      <li>Banco, financeira, fintech e “conta digital”: qual a diferença?</li>
+      <li>Se o banco quebrar, quanto você recebe de volta?</li>
     </ul>
   </div>
 </header>
@@ -796,8 +820,9 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.1 · Visão geral</span>
   <h2 class="titulo-secao">O que é o SFN</h2>
   <div class="linha-fina"></div>
-  <p class="lead">O <strong>Sistema Financeiro Nacional (SFN)</strong> é o conjunto de entidades e instituições que fazem a <span class="mt">intermediação financeira</span>: o encontro entre quem tem dinheiro sobrando e quem precisa de dinheiro.</p>
-  <p>Na prova, esses dois lados ganham nomes técnicos. Quem gasta menos do que ganha é o <span class="termo">agente superavitário</span> (poupador, investidor). Quem precisa de mais recursos do que tem é o <span class="termo">agente deficitário</span> (tomador de crédito). O banco fica no meio, e a diferença entre os juros que ele cobra e os juros que ele paga é o <span class="mt-rosa">spread bancário</span>.</p>
+  <p class="gancho">Afinal, o que é esse tal de SFN?</p>
+  <p>Pensa comigo: a <strong>Dona Lúcia</strong> é aposentada e todo mês sobra um dinheirinho. O <strong>Seu Zé</strong>, padeiro, precisa de R$ 30 mil para comprar um forno novo. Os dois nem se conhecem. Como o dinheiro da Lúcia chega até o Zé?</p>
+  <p><strong>Pelo banco!</strong> A Lúcia aplica o dinheiro dela no banco, e o banco empresta esse dinheiro ao Zé. O Zé paga juros. A Lúcia recebe uma parte desses juros como rendimento. E o banco fica com a diferença.</p>
 
   <figure class="figura" data-zoom>
     <svg viewBox="0 0 760 330" role="img" aria-label="Dona Lúcia deposita no banco, o banco empresta ao Seu Zé; Zé paga juros maiores, Lúcia recebe juros menores e a diferença é o spread">
@@ -862,18 +887,32 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
     <figcaption class="legenda">O banco capta de quem tem sobra e empresta a quem precisa. É a intermediação financeira.</figcaption>
   </figure>
 
-  <h3>Os ramos e os mercados do SFN</h3>
-  <p>O Banco Central organiza o SFN em <strong>três ramos</strong>. O maior deles, o de moeda, crédito, capitais e câmbio, lida com <strong>quatro mercados</strong>:</p>
+  <p>Esse “meio de campo” que o banco faz tem nome: <span class="mt">intermediação financeira</span>. E o <strong>SFN</strong> é simplesmente o conjunto de todo mundo que participa disso: os bancos e as outras instituições que lidam com o público, quem cria as regras e quem fiscaliza.</p>
+  <p>E aquela diferença que fica com o banco? Ela também tem nome: <span class="mt-rosa">spread bancário</span>. Ou seja, é o juro que o banco <em>cobra</em> do Zé menos o juro que ele <em>paga</em> para a Lúcia.</p>
+
+  <h3>Tá, mas o SFN é só banco emprestando?</h3>
+  <p>Não! O dinheiro circula de vários jeitos. Por isso o Banco Central fala em <strong>quatro mercados</strong>:</p>
   <div class="grade-4 cartoes-compactos">
-    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>Monetário</h4><p>Fornece papel-moeda e <strong>moeda escritural</strong> (o dinheiro depositado em conta).</p></div>
-    <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17V9l6-4 6 4v8"/><path d="M10 17v-4h4v4"/></svg></span>Crédito</h4><p>Recursos para o <strong>consumo</strong> das pessoas e o funcionamento das empresas.</p></div>
-    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Capitais</h4><p>Empresas captam recursos de investidores e <strong>compartilham ganhos e riscos</strong> (ações, debêntures).</p></div>
-    <div class="cartao roxo"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></span>Câmbio</h4><p>Compra e venda de <strong>moeda estrangeira</strong>.</p></div>
+    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>Monetário</h4><p>É o dinheiro em si: nota, moeda e o dinheiro que existe só na conta, chamado de <strong>moeda escritural</strong>.</p></div>
+    <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17V9l6-4 6 4v8"/><path d="M10 17v-4h4v4"/></svg></span>Crédito</h4><p>É o empréstimo: dinheiro para você <strong>consumir</strong> e para a empresa funcionar no dia a dia.</p></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Capitais</h4><p>É a empresa pegando dinheiro direto com investidores, vendendo ações ou debêntures. Quem entra <strong>divide os ganhos e os riscos</strong>.</p></div>
+    <div class="cartao roxo"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></span>Câmbio</h4><p>É a <strong>troca de moeda</strong>: comprar dólar para viajar, por exemplo.</p></div>
   </div>
-  <p class="mt-4">Os outros dois ramos são o de <strong>seguros privados</strong> (seguros, capitalização e previdência complementar <em>aberta</em>) e o de <strong>previdência fechada</strong> (fundos de pensão).</p>
+  <p class="mt-4">E o SFN ainda tem mais duas “turmas”, fora o mundo dos bancos. Uma é a dos <strong>seguros</strong> (seguro, capitalização e previdência privada que qualquer pessoa pode contratar). A outra é a dos <strong>fundos de pensão</strong>, a previdência das empresas. A gente chega nelas daqui a pouco.</p>
 
   <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
-    <p class="balao mb-0">Oi, eu sou o <b>Juca</b>! Vou aparecer com os atalhos de memória. O primeiro: <strong>superávit sobra, déficit falta</strong>. Quem sobra empresta; quem falta toma emprestado.</p></div>
+    <p class="balao mb-0">Oi, eu sou o <b>Juca</b>! Primeiro truque: <strong>superávit = sobra, déficit = falta</strong>. Quem tem sobra (a Lúcia) empresta. Quem está em falta (o Zé) pega emprestado.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O Sistema Financeiro Nacional é o conjunto de órgãos e instituições que promovem a <b>intermediação financeira</b>, isto é, o encontro entre <b>agentes superavitários</b> (poupadores, credores) e <b>agentes deficitários</b> (tomadores de recursos).</p>
+    <dl class="termos">
+      <dt>Intermediação financeira</dt><dd>o banco no meio, levando o dinheiro de quem sobra para quem precisa</dd>
+      <dt>Agente superavitário</dt><dd>quem tem dinheiro sobrando (a Lúcia)</dd>
+      <dt>Agente deficitário</dt><dd>quem precisa de dinheiro (o Zé)</dd>
+      <dt>Spread bancário</dt><dd>juro cobrado menos juro pago: o “lucro” da intermediação</dd>
+      <dt>Moeda escritural</dt><dd>o dinheiro que existe só no saldo da conta</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.2 -->
@@ -881,7 +920,9 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.2 · A grande sacada</span>
   <h2 class="titulo-secao">A estrutura em 3 andares</h2>
   <div class="linha-fina"></div>
-  <p>Pense no SFN como um <span class="mt">campeonato de futebol</span>. Alguém escreve o livro de regras, alguém apita o jogo e alguém entra em campo para jogar.</p>
+  <p class="gancho">Tá, mas quem manda em quem nessa história?</p>
+  <p>Pensa num <strong>campeonato de futebol</strong>. Alguém escreve o livro de regras. Outro alguém entra em campo com o apito para fazer cumprir essas regras. E os times jogam. Repara: quem escreve a regra não apita, e quem apita não joga.</p>
+  <p>O SFN funciona igualzinho. Olha só:</p>
 
   <figure class="figura par" data-zoom>
     <svg viewBox="0 0 760 340" role="img" aria-label="Normativos escrevem as regras, supervisores apitam o jogo e operadores jogam">
@@ -942,8 +983,14 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
     <figcaption class="legenda">Normativo decide. Supervisor fiscaliza. Operador atende o público.</figcaption>
   </figure>
 
-  <h3>O quadro oficial do Banco Central</h3>
-  <p>Este é o mapa que o próprio BC usa. Leia de cima para baixo (andares) e da esquerda para a direita (ramos):</p>
+  <ul class="marcadores">
+    <li><strong>Quem escreve as regras</strong> são três conselhos. Eles não atendem ninguém e não fiscalizam. Só decidem. Na prova eles se chamam <span class="mt">órgãos normativos</span>.</li>
+    <li><strong>Quem apita</strong> são quatro entidades que vigiam se todo mundo está cumprindo as regras e punem quem não cumpre. Na prova: <span class="mt">entidades supervisoras</span>.</li>
+    <li><strong>Quem joga</strong> são as instituições que atendem você: bancos, corretoras, seguradoras… Na prova: <span class="mt">operadores</span>.</li>
+  </ul>
+
+  <h3>O mapa oficial (não se assuste!)</h3>
+  <p>Este é o quadro que o próprio Banco Central usa. Parece muita coisa, mas leia assim: <strong>de cima para baixo</strong> estão os andares (regra, fiscal, jogador); <strong>da esquerda para a direita</strong> estão as três “turmas” (bancos e investimentos, seguros, fundos de pensão).</p>
   <div class="quadro-sfn" role="table" aria-label="Estrutura do SFN segundo o Banco Central">
     <div class="q-vazio" role="presentation"></div>
     <div class="q-cab c1 k1" role="columnheader">Moeda, crédito, capitais e câmbio<small>o ramo principal</small></div>
@@ -965,73 +1012,99 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
     <div data-nivel="Operadores" class="k2 n3 q-cel"><ul><li>Seguradoras e resseguradores</li><li>Entidades abertas de previdência</li><li>Sociedades de capitalização</li></ul></div>
     <div data-nivel="Operadores" class="k3 n3 q-cel"><ul><li>Entidades fechadas de previdência complementar (fundos de pensão)</li></ul></div>
   </div>
-  <p class="quadro-nota">* Dependendo das atividades, corretoras e distribuidoras também são fiscalizadas pela CVM. ** As instituições de pagamento <strong>não compõem o SFN</strong>, mas são reguladas e fiscalizadas pelo BC, conforme diretrizes do CMN. Fonte: quadro do SFN no site do Banco Central.</p>
+  <p class="quadro-nota">* Dependendo do que fazem, corretoras e distribuidoras também respondem à CVM. ** As instituições de pagamento <strong>não fazem parte do SFN</strong>, mas quem regula e fiscaliza é o BC, seguindo as diretrizes do CMN. Fonte: quadro do SFN no site do Banco Central.</p>
 
-  <div class="caixa memorize"><span class="rotulo">Memorize em pares</span>
+  <div class="caixa memorize"><span class="rotulo">Repara nas duplas</span>
+    <p>Cada turma tem a sua dupla “quem faz a regra → quem fiscaliza”. Decorou as duplas, matou metade das questões:</p>
     <ul class="marcadores">
       <li><strong>CMN → BC e CVM</strong>: dinheiro, crédito, investimentos e câmbio.</li>
-      <li><strong>CNSP → Susep</strong>: seguros, capitalização e previdência <span class="mt">aberta</span> (PGBL, VGBL).</li>
-      <li><strong>CNPC → Previc</strong>: previdência <span class="mt">fechada</span> (fundos de pensão de empresas e servidores).</li>
+      <li><strong>CNSP → Susep</strong>: seguros, capitalização e previdência <span class="mt">aberta</span> (PGBL e VGBL).</li>
+      <li><strong>CNPC → Previc</strong>: previdência <span class="mt">fechada</span> (fundos de pensão).</li>
     </ul>
+  </div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O SFN é organizado em <b>órgãos normativos</b> (CMN, CNSP e CNPC), que determinam as regras gerais; <b>entidades supervisoras</b> (BCB, CVM, Susep e Previc), que fazem com que os integrantes do sistema sigam essas regras; e <b>operadores</b>, as instituições que lidam diretamente com o público no papel de intermediários financeiros.</p>
+    <dl class="termos">
+      <dt>Órgão normativo</dt><dd>faz as regras (não atende e não fiscaliza)</dd>
+      <dt>Entidade supervisora</dt><dd>fiscaliza e pune quem descumpre as regras</dd>
+      <dt>Operador</dt><dd>a instituição que atende o público</dd>
+      <dt>Regulação</dt><dd>o conjunto de regras que o mercado tem que seguir</dd>
+    </dl>
   </div>
 </section>
 
 <!-- 1.3 -->
 <section class="bloco" id="c1-s3" data-titulo="CMN: o órgão máximo">
-  <span class="sobretitulo">1.3 · Normativo</span>
+  <span class="sobretitulo">1.3 · Quem faz as regras</span>
   <h2 class="titulo-secao">CMN: o órgão máximo</h2>
   <div class="linha-fina"></div>
-  <p>O <strong>Conselho Monetário Nacional</strong> é o órgão superior do SFN. Ele formula a política da <span class="mt">moeda e do crédito</span> com o objetivo de manter a estabilidade da moeda e promover o desenvolvimento econômico e social. É no CMN que se decide a <strong>meta para a inflação</strong>, as diretrizes para o câmbio e as normas principais de funcionamento das instituições financeiras.</p>
+  <p class="gancho">Quem é o “chefão” que escreve as regras do dinheiro no Brasil?</p>
+  <p>É o <strong>CMN, o Conselho Monetário Nacional</strong>. E sabe o que é curioso? Ele é só uma reunião de <strong>três pessoas</strong>. Uma vez por mês elas sentam juntas e decidem coisas que mexem com o país inteiro. Por exemplo: qual é a <strong>meta de inflação</strong>, como devem funcionar os bancos e quais as regras para o câmbio.</p>
 
   <div class="grade-2">
-    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="15" r="3"/><path d="M3 21c1-3 3-4 5-4M21 21c-1-3-3-4-5-4"/></svg></span>Composição: só 3 membros</h4>
+    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="15" r="3"/><path d="M3 21c1-3 3-4 5-4M21 21c-1-3-3-4-5-4"/></svg></span>Quem são os 3</h4>
       <ul class="marcadores mb-0">
-        <li><strong>Ministro da Fazenda</strong> (presidente do Conselho)</li>
+        <li><strong>Ministro da Fazenda</strong>, que preside o Conselho</li>
         <li><strong>Ministro(a) do Planejamento e Orçamento</strong></li>
         <li><strong>Presidente do Banco Central</strong></li>
       </ul></div>
     <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>Como funciona</h4>
       <ul class="marcadores mb-0">
-        <li>Reúne-se <strong>uma vez por mês</strong> (pode haver reuniões extraordinárias).</li>
-        <li>As decisões viram <strong>Resoluções CMN</strong>, publicadas no Diário Oficial.</li>
-        <li>Não atende o público e não fiscaliza: <span class="mt">só normatiza</span>.</li>
+        <li>Reúne-se <strong>uma vez por mês</strong>; se precisar, faz reunião extra.</li>
+        <li>O que eles decidem vira uma <strong>Resolução CMN</strong>, publicada no Diário Oficial.</li>
+        <li>Não atende ninguém e não fiscaliza ninguém: <span class="mt">só faz as regras</span>.</li>
       </ul></div>
   </div>
 
-  <h3>O que compete ao CMN (Lei 4.595/1964, art. 4º)</h3>
+  <h3>O que o CMN decide, em bom português</h3>
   <div class="grade-3 cartoes-compactos">
-    <div class="cartao"><p>Definir as <strong>características gerais</strong> das cédulas e moedas e aprovar os orçamentos monetários.</p></div>
-    <div class="cartao"><p>Fixar as diretrizes e normas da <strong>política cambial</strong>.</p></div>
-    <div class="cartao"><p><strong>Disciplinar o crédito</strong> em todas as suas modalidades.</p></div>
-    <div class="cartao"><p>Regular a <strong>constituição, o funcionamento e a fiscalização</strong> das instituições financeiras.</p></div>
-    <div class="cartao"><p>Fixar normas sobre <strong>encaixes</strong> e relações patrimoniais, e normas de <strong>contabilidade</strong> das instituições.</p></div>
-    <div class="cartao"><p>Estabelecer as <strong>metas de política monetária</strong>, que o BC conduz (LC 179/2021, art. 2º).</p></div>
+    <div class="cartao"><p>Como devem ser as <strong>notas e moedas</strong> do país, de modo geral.</p></div>
+    <div class="cartao"><p>As regras do <strong>câmbio</strong>, ou seja, da troca de real por outras moedas.</p></div>
+    <div class="cartao"><p>As regras do <strong>crédito</strong>: como bancos podem emprestar, dar aval e garantias.</p></div>
+    <div class="cartao"><p>Como uma instituição financeira <strong>nasce, funciona e é fiscalizada</strong>.</p></div>
+    <div class="cartao"><p>Quanto dinheiro os bancos precisam deixar guardado (<strong>encaixes</strong>) e como fazem a <strong>contabilidade</strong>.</p></div>
+    <div class="cartao"><p>As <strong>metas de política monetária</strong>, como a de inflação. Quem corre atrás da meta é o BC.</p></div>
   </div>
 
   <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
-    <p class="balao mb-0">Atalho: o CMN tem <b>3 cadeiras</b>, como um tripé. <strong>F</strong>azenda preside, <strong>P</strong>lanejamento apoia e o <strong>B</strong>anco Central executa. Pense em <b>“FPB”</b>.</p></div>
+    <p class="balao mb-0">Truque: o CMN é um <b>tripé</b>, com 3 cadeiras. <strong>F</strong>azenda preside, <strong>P</strong>lanejamento ajuda e o <strong>B</strong>anco Central executa. Pensa em <b>“FPB”</b>. Se aparecer presidente da CVM no CMN, é pegadinha!</p></div>
 
   <div class="caixa pegadinha"><span class="rotulo">Pegadinha clássica</span>
-    <p>“O CMN executa a política monetária.” <strong>Errado.</strong> O CMN <em>define as metas</em>; quem <em>executa</em> é o Banco Central. O presidente da CVM <strong>não</strong> faz parte do CMN.</p></div>
+    <p>“O CMN executa a política monetária.” <strong>Errado!</strong> O CMN só <em>define a meta</em>. Quem <em>executa</em>, isto é, quem faz acontecer, é o Banco Central.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>Conselho Monetário Nacional</b> é o <b>órgão normativo máximo</b> (órgão superior) do SFN, responsável pela formulação da política da moeda e do crédito. Compete a ele, entre outras atribuições, fixar a <b>meta para a inflação</b> e as diretrizes da política cambial e regular a constituição e o funcionamento das instituições financeiras. É composto pelo <b>Ministro da Fazenda (presidente)</b>, pelo <b>Ministro do Planejamento e Orçamento</b> e pelo <b>Presidente do Banco Central</b>.</p>
+    <dl class="termos">
+      <dt>Órgão normativo máximo</dt><dd>o “chefão” das regras do SFN</dd>
+      <dt>Política monetária</dt><dd>controlar a quantidade de dinheiro e os juros para segurar a inflação</dd>
+      <dt>Política cambial</dt><dd>as regras para o câmbio (real × outras moedas)</dd>
+      <dt>Política creditícia</dt><dd>as regras para os empréstimos</dd>
+      <dt>Resolução CMN</dt><dd>o “papel oficial” com a decisão do Conselho</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.4 -->
 <section class="bloco" id="c1-s4" data-titulo="Banco Central do Brasil">
-  <span class="sobretitulo">1.4 · Supervisor</span>
+  <span class="sobretitulo">1.4 · Quem fiscaliza (1)</span>
   <h2 class="titulo-secao">Banco Central do Brasil</h2>
   <div class="linha-fina"></div>
-  <p>O BC garante o cumprimento das normas do CMN, <strong>fiscaliza</strong> o sistema financeiro e <strong>executa</strong> as políticas monetária, cambial e de crédito. Desde a <span class="termo">Lei Complementar 179/2021</span>, ele tem autonomia formal.</p>
+  <p class="gancho">Se o CMN escreve as regras, quem coloca em prática?</p>
+  <p>O <strong>Banco Central</strong>! Ele faz dois papéis ao mesmo tempo:</p>
+  <ul class="marcadores">
+    <li>É o <strong>braço que executa</strong>: põe em prática a política monetária, a cambial e a de crédito. Ou seja, mexe nos juros e na quantidade de dinheiro, e cuida do câmbio.</li>
+    <li>É o <strong>xerife dos bancos</strong>: autoriza a abertura de instituições, fiscaliza e pune quem sai da linha.</li>
+  </ul>
 
+  <h3>E qual é a missão número 1 dele?</h3>
+  <p>Segurar a inflação! Em outras palavras, fazer com que os seus R$ 100 de hoje continuem comprando quase a mesma coisa daqui a um ano.</p>
   <div class="faixa-chave"><span class="big">1º</span>
-    <p>Objetivo <strong>fundamental</strong>: assegurar a <strong>estabilidade de preços</strong>. Sem prejuízo dele, o BC também deve zelar pela estabilidade e eficiência do sistema financeiro, <strong>suavizar as flutuações</strong> da atividade econômica e <strong>fomentar o pleno emprego</strong>.</p></div>
+    <p>Objetivo <strong>fundamental</strong>: garantir a <strong>estabilidade de preços</strong>. Além disso, e sem atrapalhar essa missão, o BC também cuida de: manter o sistema financeiro <strong>estável e eficiente</strong>, <strong>suavizar os altos e baixos</strong> da economia e <strong>fomentar o pleno emprego</strong>.</p></div>
 
-  <h3>Autonomia em 4 pontos</h3>
-  <div class="grade-2 cartoes-compactos">
-    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7Z"/></svg></span>Natureza</h4><p>Autarquia de <strong>natureza especial</strong>, <span class="mt">sem vinculação a Ministério</span>, sem tutela nem subordinação hierárquica.</p></div>
-    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Diretoria</h4><p><strong>9 membros</strong>: o presidente e 8 diretores, indicados pelo Presidente da República e aprovados pelo <strong>Senado</strong>.</p></div>
-    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span>Mandato</h4><p><strong>4 anos</strong>, com <strong>1 recondução</strong> permitida. O mandato do presidente do BC começa em <strong>1º de janeiro do 3º ano</strong> do mandato do Presidente da República.</p></div>
-    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Exoneração</h4><p>Só nos casos da lei: a pedido, doença incapacitante, condenação por improbidade ou crime, ou desempenho insuficiente (proposta do CMN, aprovada por <strong>maioria absoluta do Senado</strong>).</p></div>
-  </div>
+  <h3>Por que o presidente do BC não troca junto com o governo?</h3>
+  <p>Imagina se cada governo novo pudesse trocar o chefe do BC no primeiro dia e mandar baixar os juros na marra, só para a economia parecer bem até a eleição seguinte. A inflação ia disparar, né?</p>
+  <p>Para evitar isso, uma lei de 2021, a <span class="termo">Lei Complementar 179</span>, deu <strong>autonomia</strong> ao BC e deixou os mandatos <strong>desencontrados</strong>. O presidente do BC só entra no <strong>3º ano</strong> do governo. Ou seja, todo Presidente da República passa metade do mandato com um presidente do BC que ele não escolheu.</p>
 
   <figure class="figura" data-zoom>
     <svg viewBox="0 0 760 250" role="img" aria-label="Linha do tempo: o mandato do presidente do BC começa no terceiro ano do mandato do Presidente da República e termina no segundo ano do mandato seguinte">
@@ -1064,133 +1137,197 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
     <figcaption class="legenda">Um governo herda o presidente do BC escolhido pelo governo anterior durante os dois primeiros anos. Essa é a ideia da autonomia.</figcaption>
   </figure>
 
-  <h3>As funções privativas do BC</h3>
-  <p>Pela Lei 4.595/1964 (art. 10), só o BC pode:</p>
-  <div class="grade-3 cartoes-compactos">
-    <div class="cartao coral"><h4>Emitir moeda</h4><p>Papel-moeda e moeda metálica, nos limites autorizados pelo CMN, e executar os serviços do <strong>meio circulante</strong>.</p></div>
-    <div class="cartao coral"><h4>Compulsório</h4><p>Determinar e receber o <strong>recolhimento compulsório</strong> dos bancos.</p></div>
-    <div class="cartao coral"><h4>Redesconto</h4><p>Fazer <strong>redesconto e empréstimos</strong> às instituições financeiras (o “banco dos bancos”).</p></div>
-    <div class="cartao coral"><h4>Fiscalizar e autorizar</h4><p><strong>Fiscalizar</strong> as instituições, aplicar penalidades e <strong>autorizar o funcionamento</strong> delas.</p></div>
-    <div class="cartao coral"><h4>Reservas</h4><p>Ser depositário das <strong>reservas internacionais</strong> e controlar o capital estrangeiro.</p></div>
-    <div class="cartao coral"><h4>Open market</h4><p>Comprar e vender <strong>títulos públicos federais</strong> como instrumento de política monetária.</p></div>
+  <div class="grade-2 cartoes-compactos">
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7Z"/></svg></span>O BC é “de quem”?</h4><p>De nenhum ministério! Ele é uma <strong>autarquia de natureza especial, sem vinculação a Ministério</strong>. Ninguém do governo manda nele.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Quem comanda</h4><p>Uma diretoria de <strong>9 pessoas</strong>: o presidente e 8 diretores. O Presidente da República indica, e o <strong>Senado aprova</strong>.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span>Quanto tempo ficam</h4><p><strong>4 anos</strong>, e podem ser <strong>reconduzidos 1 vez</strong>, ou seja, ganhar mais um mandato. A cada ano, 2 diretores começam mandato novo.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Dá para demitir?</h4><p>Só em casos específicos: se a pessoa pedir, se ficar doente a ponto de não poder trabalhar, se for condenada (improbidade ou crime) ou se tiver <strong>desempenho ruim de forma comprovada e repetida</strong>. Nesse último caso, o CMN propõe e o <strong>Senado</strong> precisa aprovar por maioria absoluta.</p></div>
   </div>
 
-  <div class="caixa atualizacao"><span class="rotulo">Atualizado pela LC 179/2021</span>
-    <p>Muito material antigo diz que o BC é “vinculado ao Ministério da Fazenda”. Isso <strong>não vale mais</strong>: desde 2021 o BC é autarquia de natureza especial <strong>sem vinculação a Ministério</strong>. Quem continua vinculada à Fazenda é a <strong>CVM</strong>.</p></div>
+  <h3>O que só o BC pode fazer</h3>
+  <p>Estas tarefas são <strong>privativas</strong> do BC, quer dizer, exclusivas dele (Lei 4.595/1964, art. 10):</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao coral"><h4>Emitir moeda</h4><p>É ele quem coloca nota e moeda em circulação, dentro do limite que o CMN autoriza, e cuida do <strong>meio circulante</strong> (o dinheiro em papel e metal que está na rua).</p></div>
+    <div class="cartao coral"><h4>Compulsório</h4><p>Uma parte do dinheiro que você deposita, o banco não pode emprestar: fica “presa” no BC. Isso é o <strong>recolhimento compulsório</strong>.</p></div>
+    <div class="cartao coral"><h4>Redesconto</h4><p>Banco ficou sem dinheiro no caixa? Pede emprestado ao BC. Por isso o BC é chamado de <strong>“banco dos bancos”</strong>.</p></div>
+    <div class="cartao coral"><h4>Autorizar e fiscalizar</h4><p>Ninguém abre uma instituição financeira sem a <strong>autorização</strong> do BC. E é ele quem <strong>fiscaliza</strong> e aplica as penalidades.</p></div>
+    <div class="cartao coral"><h4>Reservas</h4><p>Guarda as <strong>reservas internacionais</strong>, o “colchão” de dólares do país, e controla o capital estrangeiro.</p></div>
+    <div class="cartao coral"><h4>Open market</h4><p>Compra e vende <strong>títulos públicos</strong> para controlar quanto dinheiro circula. Isso a gente vê com calma no capítulo 2.</p></div>
+  </div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Cuidado com material antigo</span>
+    <p>Tem apostila por aí dizendo que o BC é “vinculado ao Ministério da Fazenda”. Isso <strong>era</strong> assim; desde 2021, <strong>não é mais</strong>. Quem continua vinculada à Fazenda é a <strong>CVM</strong>, que vem logo a seguir.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O Banco Central do Brasil é <b>autarquia de natureza especial</b>, caracterizada pela <b>ausência de vinculação a Ministério</b>, com autonomia técnica, operacional, administrativa e financeira (LC 179/2021). Tem por <b>objetivo fundamental assegurar a estabilidade de preços</b>. Sua Diretoria Colegiada tem <b>9 membros</b>, nomeados pelo Presidente da República após <b>aprovação do Senado</b>, com <b>mandato de 4 anos</b>, admitida <b>uma recondução</b>. O mandato do Presidente do BC inicia-se em <b>1º de janeiro do terceiro ano</b> do mandato do Presidente da República.</p>
+    <dl class="termos">
+      <dt>Autarquia</dt><dd>órgão público com vida própria (orçamento e administração próprios)</dd>
+      <dt>Estabilidade de preços</dt><dd>inflação sob controle</dd>
+      <dt>Recondução</dt><dd>ganhar mais um mandato</dd>
+      <dt>Competência privativa</dt><dd>tarefa que só aquele órgão pode fazer</dd>
+      <dt>Meio circulante</dt><dd>as notas e moedas em circulação</dd>
+      <dt>Redesconto</dt><dd>empréstimo do BC para um banco sem caixa</dd>
+      <dt>Recolhimento compulsório</dt><dd>parte dos depósitos que fica parada no BC</dd>
+      <dt>Open market (mercado aberto)</dt><dd>compra e venda de títulos públicos pelo BC</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.5 -->
 <section class="bloco" id="c1-s5" data-titulo="CVM: o xerife do mercado de capitais">
-  <span class="sobretitulo">1.5 · Supervisor</span>
-  <h2 class="titulo-secao">CVM: o xerife do mercado de capitais</h2>
+  <span class="sobretitulo">1.5 · Quem fiscaliza (2)</span>
+  <h2 class="titulo-secao">CVM: o xerife da bolsa</h2>
   <div class="linha-fina"></div>
-  <p>A <strong>Comissão de Valores Mobiliários</strong> foi criada pela <span class="termo">Lei 6.385/1976</span> para fiscalizar, normatizar, disciplinar e desenvolver o mercado de <span class="mt">valores mobiliários</span>. É uma <strong>autarquia em regime especial, vinculada ao Ministério da Fazenda</strong>, com autoridade administrativa independente.</p>
+  <p class="gancho">E quem protege quem compra ações?</p>
+  <p>Quando uma empresa vende ações para o público, alguém precisa garantir que ela não está escondendo prejuízo nem inventando números. Quem faz isso é a <strong>CVM, a Comissão de Valores Mobiliários</strong>. Ela é a “xerife” do mercado de capitais: cuida das empresas que vendem ações, da bolsa, dos fundos de investimento, dos analistas e consultores.</p>
+  <p>Ela é <strong>vinculada ao Ministério da Fazenda</strong> (diferente do BC, lembra?), mas tem independência para trabalhar.</p>
 
   <div class="grade-2">
-    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Colegiado</h4>
-      <p><strong>1 presidente + 4 diretores</strong>, nomeados pelo Presidente da República após aprovação do Senado.</p>
-      <p>Mandato de <strong>5 anos</strong>, <span class="mt-rosa">vedada a recondução</span>. Um quinto do Colegiado é renovado a cada ano.</p></div>
-    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>O que a CVM fiscaliza</h4>
-      <ul class="marcadores mb-0"><li>Emissão, distribuição e negociação de valores mobiliários e derivativos</li><li>Companhias abertas e sua auditoria</li><li>Bolsas de valores e de mercadorias e futuros</li><li>Administração de carteiras, fundos e custódia</li><li>Consultores e analistas de valores mobiliários</li></ul></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Quem comanda</h4>
+      <p><strong>1 presidente + 4 diretores</strong>, indicados pelo Presidente da República e aprovados pelo Senado.</p>
+      <p>O mandato é de <strong>5 anos</strong> e <span class="mt-rosa">não pode ser renovado</span> (sem recondução). Todo ano entra 1 dos 5.</p></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>O que ela vigia</h4>
+      <ul class="marcadores mb-0"><li>Quem lança e negocia ações, debêntures e derivativos</li><li>As empresas de capital aberto e os auditores delas</li><li>A bolsa de valores (B3)</li><li>Fundos de investimento e gestão de carteiras</li><li>Consultores e analistas de investimento</li></ul></div>
   </div>
 
-  <h3>É ou não é valor mobiliário?</h3>
+  <h3>Ah, mas o que é “valor mobiliário”?</h3>
+  <p>É o nome técnico de um investimento que uma <strong>empresa</strong> oferece ao público para captar dinheiro: ação, debênture, cota de fundo… E o CDB? <strong>Não!</strong> O CDB é um título do <strong>banco</strong>. E o Tesouro Direto também não, porque é título do <strong>governo</strong>. Esses dois ficam fora da CVM. Veja:</p>
   <div class="tabela-rolagem"><table class="tabela lado">
-    <thead><tr><th>Teste rápido</th><th>✓ É valor mobiliário (CVM)</th><th>✗ Fica fora da Lei 6.385</th></tr></thead>
+    <thead><tr><th>De quem é o papel?</th><th>✓ É valor mobiliário (CVM)</th><th>✗ Não é valor mobiliário</th></tr></thead>
     <tbody>
-      <tr><td>Empresas</td><td>Ações, debêntures, bônus de subscrição, notas comerciais</td><td>—</td></tr>
-      <tr><td>Fundos</td><td>Cotas de fundos de investimento e de clubes de investimento</td><td>—</td></tr>
+      <tr><td>De empresa</td><td>Ações, debêntures, bônus de subscrição, notas comerciais</td><td>—</td></tr>
+      <tr><td>De fundo</td><td>Cotas de fundos e de clubes de investimento</td><td>—</td></tr>
       <tr><td>Derivativos</td><td>Contratos futuros, opções e outros derivativos</td><td>—</td></tr>
-      <tr><td>Governo</td><td>—</td><td><strong>Títulos públicos</strong> federais, estaduais e municipais</td></tr>
-      <tr><td>Bancos</td><td>—</td><td>Títulos de responsabilidade de instituição financeira, como <strong>CDB, LCI, LCA</strong> (exceto debêntures)</td></tr>
-      <tr><td>Novidade</td><td>Créditos de carbono e ativos do SBCE, quando negociados no mercado financeiro e de capitais (Lei 15.042/2024)</td><td>—</td></tr>
+      <tr><td>Do governo</td><td>—</td><td><strong>Títulos públicos</strong> (Tesouro Direto)</td></tr>
+      <tr><td>De banco</td><td>—</td><td><strong>CDB, LCI, LCA</strong> e outros títulos de banco (exceto debêntures)</td></tr>
+      <tr><td>Novidade</td><td>Créditos de carbono, quando negociados no mercado financeiro (Lei 15.042/2024)</td><td>—</td></tr>
     </tbody>
   </table></div>
 
-  <div class="caixa dica"><span class="rotulo">Dica de prova</span>
-    <p>Se o papel é de <strong>empresa</strong> e é negociado com o público (ação, debênture, nota comercial), pense em <strong>CVM</strong>. Se é de <strong>banco</strong> (CDB, LCI, LCA, poupança) ou do <strong>governo</strong> (Tesouro Direto), <strong>não</strong> é valor mobiliário.</p></div>
+  <div class="caixa dica"><span class="rotulo">Atalho para a prova</span>
+    <p>Pergunte: “de quem é o papel?”. Se é de <strong>empresa</strong> oferecendo ao público, é com a <strong>CVM</strong>. Se é de <strong>banco</strong> (CDB, LCI, LCA, poupança) ou do <strong>governo</strong> (Tesouro), <strong>não</strong> é valor mobiliário.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A CVM é <b>entidade autárquica em regime especial, vinculada ao Ministério da Fazenda</b> (Lei 6.385/1976), responsável por normatizar, fiscalizar e desenvolver o <b>mercado de valores mobiliários</b>. É administrada por <b>um Presidente e quatro Diretores</b>, com <b>mandato de 5 anos, vedada a recondução</b>. Excluem-se do regime da lei os <b>títulos da dívida pública</b> e os <b>títulos cambiais de responsabilidade de instituição financeira</b>, exceto as debêntures.</p>
+    <dl class="termos">
+      <dt>Valor mobiliário</dt><dd>investimento oferecido por empresa ao público (ação, debênture, cota de fundo)</dd>
+      <dt>Mercado de capitais</dt><dd>onde as empresas pegam dinheiro direto com os investidores</dd>
+      <dt>Companhia aberta</dt><dd>empresa com ações negociadas para o público</dd>
+      <dt>Vedada a recondução</dt><dd>proibido ganhar um segundo mandato</dd>
+      <dt>Título cambial de IF</dt><dd>papel emitido por banco (CDB, letra de câmbio…)</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.6 -->
 <section class="bloco" id="c1-s6" data-titulo="Seguros e previdência aberta">
-  <span class="sobretitulo">1.6 · Normativo e supervisor</span>
+  <span class="sobretitulo">1.6 · A turma dos seguros</span>
   <h2 class="titulo-secao">Seguros e previdência aberta</h2>
   <div class="linha-fina"></div>
+  <p class="gancho">E o seguro do carro, o título de capitalização e o PGBL? Quem cuida?</p>
+  <p>Agora a gente saiu do mundo dos bancos e entrou no mundo dos <strong>seguros</strong>. Aqui a dupla é outra: o <strong>CNSP</strong> faz as regras e a <strong>Susep</strong> fiscaliza.</p>
   <div class="fluxo-horizontal">
-    <div class="passo-h destaque"><b>CNSP</b><span>Conselho Nacional de Seguros Privados: fixa as diretrizes e normas de seguros, resseguros, capitalização, previdência aberta e proteção patrimonial mutualista.</span></div>
+    <div class="passo-h destaque"><b>CNSP · faz as regras</b><span>Conselho Nacional de Seguros Privados: decide as regras de seguros, resseguros, capitalização, previdência aberta e das novas cooperativas e associações de proteção.</span></div>
     <div class="seta-h" aria-hidden="true">→</div>
-    <div class="passo-h"><b>Susep</b><span>Superintendência de Seguros Privados: autarquia <strong>vinculada ao Ministério da Fazenda</strong> que executa essas diretrizes e fiscaliza o mercado.</span></div>
+    <div class="passo-h"><b>Susep · fiscaliza</b><span>Superintendência de Seguros Privados: coloca as regras em prática e fiscaliza. É <strong>vinculada ao Ministério da Fazenda</strong>.</span></div>
   </div>
 
-  <h3>Quem senta no CNSP hoje</h3>
+  <h3>Quem senta à mesa do CNSP</h3>
   <div class="grade-2">
     <div class="cartao ambar"><ul class="marcadores mb-0">
-      <li><strong>Ministro da Fazenda</strong> (presidente)</li>
-      <li>Representante do <strong>Ministério da Justiça</strong></li>
-      <li>Representante do <strong>Ministério da Previdência</strong></li>
-      <li><strong>Superintendente da Susep</strong> (preside na ausência do Ministro)</li>
-      <li>Representante do <strong>Banco Central</strong></li>
+      <li><strong>Ministro da Fazenda</strong>, que preside</li>
+      <li>Alguém do <strong>Ministério da Justiça</strong></li>
+      <li>Alguém do <strong>Ministério da Previdência</strong></li>
+      <li>O <strong>Superintendente da Susep</strong>, que preside quando o Ministro falta</li>
+      <li>Alguém do <strong>Banco Central</strong></li>
     </ul></div>
     <div class="caixa atualizacao" style="margin:0"><span class="rotulo">Mudou em 2023</span>
-      <p>A <strong>Lei 14.711/2023</strong> revogou o inciso que colocava um representante da <strong>CVM</strong> no CNSP. Se a sua apostila ainda lista a CVM no CNSP, ela está desatualizada.</p></div>
+      <p>A CVM tinha uma cadeira no CNSP, mas a <strong>Lei 14.711/2023</strong> tirou. Se a sua apostila ainda coloca a <strong>CVM</strong> no CNSP, ela está desatualizada.</p></div>
   </div>
 
   <h3>O que a Susep fiscaliza</h3>
   <div class="grade-4 cartoes-compactos">
-    <div class="cartao"><h4>Seguros</h4><p>Seguradoras e <strong>resseguradores</strong>.</p></div>
-    <div class="cartao"><h4>Capitalização</h4><p>Títulos de capitalização, que combinam guardar dinheiro e concorrer a <strong>sorteios</strong>.</p></div>
-    <div class="cartao"><h4>Previdência aberta</h4><p><strong>PGBL e VGBL</strong>, vendidos ao público em geral.</p></div>
-    <div class="cartao"><h4>Mútuas e cooperativas</h4><p>Cooperativas de seguros e <strong>proteção patrimonial mutualista</strong> (LC 213/2025).</p></div>
+    <div class="cartao"><h4>Seguros</h4><p>Do carro, da casa, de vida… E também o <strong>resseguro</strong>, que é o seguro da própria seguradora.</p></div>
+    <div class="cartao"><h4>Capitalização</h4><p>Aquele título em que você guarda dinheiro e ainda <strong>concorre a sorteios</strong>.</p></div>
+    <div class="cartao"><h4>Previdência aberta</h4><p><strong>PGBL e VGBL</strong>: qualquer pessoa pode contratar, por isso é “aberta”.</p></div>
+    <div class="cartao"><h4>Mútuas e cooperativas</h4><p>As associações de <strong>proteção veicular</strong> e as cooperativas de seguros (novidade da LC 213/2025).</p></div>
   </div>
 
-  <div class="caixa atualizacao"><span class="rotulo">Novidade: LC 213/2025</span>
-    <p>A Lei Complementar 213/2025 trouxe para o Sistema Nacional de Seguros Privados as <strong>sociedades cooperativas de seguros</strong> e as <strong>operações de proteção patrimonial mutualista</strong> (as antigas “associações de proteção veicular”). Elas passam a seguir normas do <strong>CNSP</strong> e a fiscalização da <strong>Susep</strong>.</p></div>
+  <div class="caixa atualizacao"><span class="rotulo">Novidade de 2025</span>
+    <p>Sabe aquelas associações de “proteção veicular”, que funcionavam quase como seguro mas sem fiscalização? A <strong>Lei Complementar 213/2025</strong> trouxe essas operações, chamadas de <strong>proteção patrimonial mutualista</strong>, e as <strong>cooperativas de seguros</strong> para dentro do sistema. Agora seguem regras do <strong>CNSP</strong> e são fiscalizadas pela <strong>Susep</strong>.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">No segmento de <b>seguros privados</b>, o órgão normativo é o <b>CNSP</b> e a entidade supervisora é a <b>Susep</b>, autarquia vinculada ao Ministério da Fazenda. São operadores desse segmento as <b>sociedades seguradoras e resseguradores</b>, as <b>sociedades de capitalização</b> e as <b>entidades abertas de previdência complementar (EAPC)</b>. O CNSP é presidido pelo Ministro da Fazenda.</p>
+    <dl class="termos">
+      <dt>Resseguro</dt><dd>o seguro que a seguradora faz para dividir o risco dela</dd>
+      <dt>Capitalização</dt><dd>guardar dinheiro e concorrer a sorteios</dd>
+      <dt>Previdência complementar aberta</dt><dd>PGBL e VGBL, que qualquer pessoa pode contratar</dd>
+      <dt>EAPC</dt><dd>empresa que vende previdência aberta</dd>
+      <dt>Proteção patrimonial mutualista</dt><dd>as antigas associações de proteção veicular</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.7 -->
 <section class="bloco" id="c1-s7" data-titulo="Previdência fechada: CNPC e Previc">
-  <span class="sobretitulo">1.7 · Normativo e supervisor</span>
+  <span class="sobretitulo">1.7 · A turma dos fundos de pensão</span>
   <h2 class="titulo-secao">Previdência fechada: CNPC e Previc</h2>
   <div class="linha-fina"></div>
-  <p>Fundo de pensão é o plano de aposentadoria <strong>fechado</strong>: só entram empregados de uma empresa, servidores de um ente público ou membros de uma associação ou entidade de classe. As regras vêm do <strong>CNPC</strong>, órgão colegiado do <strong>Ministério da Previdência Social</strong>, e a fiscalização é da <strong>Previc</strong>, autarquia de natureza especial vinculada ao mesmo ministério (Lei 12.154/2009).</p>
+  <p class="gancho">Conhece alguém que trabalhou no Banco do Brasil ou na Petrobras e fala do “fundo de pensão”?</p>
+  <p>Então essa pessoa está na <strong>previdência fechada</strong>. Ela tem esse nome porque não é qualquer um que entra: <strong>só quem tem vínculo</strong>, como os empregados de uma empresa, os servidores de um órgão público ou os membros de uma associação de classe. Exemplos conhecidos: Previ (Banco do Brasil), Petros (Petrobras) e Funcef (Caixa).</p>
+  <p>Aqui a dupla é: <strong>CNPC</strong> faz as regras e <strong>Previc</strong> fiscaliza. Os dois ficam no <strong>Ministério da Previdência Social</strong>.</p>
 
   <div class="tabela-rolagem"><table class="tabela lado">
-    <thead><tr><th>Comparação</th><th>Previdência aberta</th><th>Previdência fechada</th></tr></thead>
+    <thead><tr><th>Comparando</th><th>Previdência aberta</th><th>Previdência fechada</th></tr></thead>
     <tbody>
-      <tr><td>Quem pode entrar</td><td>Qualquer pessoa</td><td>Só vínculo específico (empresa, órgão, associação)</td></tr>
-      <tr><td>Quem oferece</td><td>Entidades abertas e seguradoras (EAPC)</td><td>Entidades fechadas (EFPC), os fundos de pensão</td></tr>
-      <tr><td>Exemplos</td><td>PGBL, VGBL</td><td>Fundos de pensão de estatais e de grandes empresas</td></tr>
-      <tr><td>Normativo</td><td><strong>CNSP</strong></td><td><strong>CNPC</strong></td></tr>
-      <tr><td>Supervisor</td><td><strong>Susep</strong></td><td><strong>Previc</strong></td></tr>
+      <tr><td>Quem pode entrar</td><td>Qualquer pessoa</td><td>Só quem tem vínculo (empresa, órgão, associação)</td></tr>
+      <tr><td>Quem oferece</td><td>Seguradoras e entidades abertas (EAPC)</td><td>Fundos de pensão (EFPC)</td></tr>
+      <tr><td>Exemplos</td><td>PGBL, VGBL</td><td>Previ, Petros, Funcef</td></tr>
+      <tr><td>Quem faz as regras</td><td><strong>CNSP</strong></td><td><strong>CNPC</strong></td></tr>
+      <tr><td>Quem fiscaliza</td><td><strong>Susep</strong></td><td><strong>Previc</strong></td></tr>
     </tbody>
   </table></div>
 
   <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
-    <p class="balao mb-0">Truque das letras: <b>Previc</b> começa como <b>Pre</b>vidência <b>fechada</b>. A Susep cuida de tudo que é <b>vendido ao público</b>: seguro, capitalização, PGBL e VGBL.</p></div>
+    <p class="balao mb-0">Truque: <b>Previc</b> = <b>Pre</b>vidência <b>fechada</b>. Já a Susep cuida de tudo que é <b>vendido para qualquer pessoa</b>: seguro, capitalização, PGBL e VGBL.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">As <b>entidades fechadas de previdência complementar (EFPC)</b>, conhecidas como <b>fundos de pensão</b>, são acessíveis exclusivamente aos empregados de uma empresa ou grupo de empresas, aos servidores de entes públicos e aos associados de entidades de classe. O órgão normativo é o <b>CNPC</b> e a supervisão cabe à <b>Previc</b>, autarquia de natureza especial vinculada ao Ministério da Previdência Social.</p>
+    <dl class="termos">
+      <dt>EFPC</dt><dd>fundo de pensão (previdência fechada)</dd>
+      <dt>Patrocinador</dt><dd>a empresa ou órgão que oferece o fundo aos empregados</dd>
+      <dt>Instituidor</dt><dd>a associação ou entidade de classe que oferece o fundo aos associados</dd>
+      <dt>Participante</dt><dd>a pessoa que contribui para o plano</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.8 -->
 <section class="bloco" id="c1-s8" data-titulo="Os bancos">
-  <span class="sobretitulo">1.8 · Operadores bancários</span>
+  <span class="sobretitulo">1.8 · Quem joga (1)</span>
   <h2 class="titulo-secao">Os bancos</h2>
   <div class="linha-fina"></div>
-  <p>Banco é a instituição financeira especializada em intermediar o dinheiro entre poupadores e quem precisa de empréstimo, além de guardar esse dinheiro. Todos os bancos são supervisionados pelo <strong>Banco Central</strong>. Bancos comerciais e múltiplos devem ter a palavra <strong>“Banco”</strong> no nome (Res. CMN 5.060/2023).</p>
+  <p class="gancho">Banco é tudo igual? Não!</p>
+  <p>Tem banco que abre conta-corrente para você, tem banco que só atende empresa grande e tem banco que financia obra do governo. Todos são fiscalizados pelo <strong>Banco Central</strong>. Bancos comerciais e múltiplos ainda precisam ter a palavra <strong>“Banco”</strong> no nome. Vamos conhecer cada um:</p>
 
   <div class="grade-2">
     <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 10 12 4l9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18"/></svg></span>Banco comercial</h4>
-      <p>Capta <strong>depósitos à vista</strong> (conta corrente) e a prazo, concede crédito e presta serviços de cobrança e pagamento.</p>
-      <p><span class="mt">Cria moeda escritural</span>: o dinheiro emprestado volta a ser depositado e vira novo empréstimo. Fazem isso as instituições que captam depósito à vista: bancos comerciais, múltiplos com carteira comercial e a Caixa.</p></div>
+      <p>É o banco do dia a dia: abre <strong>conta-corrente</strong> (que na prova se chama <strong>depósito à vista</strong>), faz empréstimo, cobrança e pagamento.</p></div>
     <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Banco de investimento</h4>
-      <p>Foco em <strong>empresas e mercado de capitais</strong> (estruturação de IPOs, financiamento de longo prazo).</p>
-      <p><strong>Não capta depósito à vista</strong>: usa depósitos a prazo (CDB) e outros instrumentos.</p></div>
+      <p>Atende <strong>empresas</strong>: ajuda a abrir capital na bolsa e faz financiamentos longos.</p>
+      <p><strong>Não abre conta-corrente</strong> (não capta depósito à vista). Capta dinheiro com CDB, que é um depósito a prazo.</p></div>
     <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21V9M12 9c-4 0-6-3-6-6 4 0 6 3 6 6Zm0 0c4 0 6-3 6-6-4 0-6 3-6 6Z"/></svg></span>Banco de desenvolvimento</h4>
-      <p>Instituições <strong>públicas</strong> que financiam projetos de longo prazo para o desenvolvimento econômico e social. Exemplo federal: <strong>BNDES</strong>.</p></div>
+      <p>Banco <strong>público</strong> que financia projetos grandes e de longo prazo para desenvolver o país ou a região. O exemplo federal é o <strong>BNDES</strong>.</p></div>
     <div class="cartao roxo"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><circle cx="15" cy="15" r="4"/></svg></span>Banco cooperativo</h4>
-      <p>Banco comercial ou múltiplo <strong>controlado por cooperativas centrais de crédito</strong>, que devem deter pelo menos <strong>51%</strong> das ações com voto. Se for múltiplo, a carteira <strong>comercial é obrigatória</strong>.</p></div>
+      <p>É o banco “dono” de um sistema de cooperativas: quem controla são as <strong>cooperativas centrais</strong>, com pelo menos <strong>51%</strong> das ações com voto. Se for banco múltiplo, precisa ter a carteira <strong>comercial</strong>.</p></div>
   </div>
 
-  <h3>Banco múltiplo: vários bancos num só CNPJ</h3>
-  <p>A <span class="termo">Resolução CMN 5.060/2023</span> define o banco múltiplo como a instituição constituída com <span class="mt">no mínimo duas carteiras, sendo uma delas obrigatoriamente comercial ou de investimento</span>.</p>
+  <h3>Ah, e o que é “criar moeda escritural”?</h3>
+  <p>Pensa assim: você deposita <strong>R$ 100</strong> na conta. O banco guarda uma parte e empresta, digamos, R$ 80 ao Zé. O Zé paga o fornecedor, que deposita esses R$ 80 em outro banco, que empresta de novo… Pronto: o dinheiro “se multiplicou” no saldo das contas, sem ninguém imprimir uma nota sequer. Esse dinheiro que existe só na conta é a <span class="mt">moeda escritural</span>.</p>
+  <p>Só consegue fazer isso quem recebe <strong>depósito à vista</strong>: bancos comerciais, bancos múltiplos com carteira comercial e a Caixa.</p>
+
+  <h3>Banco múltiplo: vários bancos dentro de um só</h3>
+  <p>Os grandes bancos que você conhece geralmente são <strong>bancos múltiplos</strong>: um único CNPJ que faz o papel de vários tipos de instituição ao mesmo tempo. Cada “tipo” que ele exerce se chama <strong>carteira</strong>. Pense nas gavetas de um armário:</p>
 
   <figure class="figura par" data-zoom>
     <svg viewBox="0 0 760 330" role="img" aria-label="Banco múltiplo como um armário de seis gavetas: comercial, investimento, desenvolvimento, crédito imobiliário, crédito financiamento e investimento, arrendamento mercantil">
@@ -1225,46 +1362,69 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   </figure>
 
   <div class="caixa atualizacao"><span class="rotulo">Norma nova</span>
-    <p>A antiga <strong>Resolução 2.099/1994</strong>, citada em quase todas as apostilas, foi <strong>totalmente revogada</strong> (por último pela Resolução CMN 5.237/2025, a partir de 1º/9/2025). A regra do banco múltiplo hoje está na <strong>Resolução CMN 5.060/2023</strong>. O conteúdo da regra é o mesmo; mudou só a norma de referência.</p></div>
+    <p>Quase toda apostila cita a <strong>Resolução 2.099/1994</strong> para essa regra. Só que ela foi <strong>totalmente revogada</strong>; a última parte saiu pela Resolução CMN 5.237/2025, em 1º/9/2025. Hoje a regra do banco múltiplo está na <strong>Resolução CMN 5.060/2023</strong>. A regra em si é a mesma; o que mudou foi o número da norma.</p></div>
 
-  <h3>Caixa Econômica Federal</h3>
-  <div class="cartao"><p><strong>Empresa pública</strong> com atividades típicas de banco comercial, mas com prioridade para empréstimos e financiamentos de <strong>programas sociais</strong> (assistência social, saúde, educação, trabalho e esporte) e para a <strong>habitação</strong>. É a única caixa econômica em atividade, <strong>gestora do FGTS</strong>, responsável pelo PIS e pelo seguro-desemprego, e detém o <strong>monopólio da loteria federal</strong>.</p></div>
+  <h3>E a Caixa?</h3>
+  <div class="cartao"><p>A Caixa Econômica Federal é uma <strong>empresa pública</strong> que funciona como banco comercial, mas com prioridade para <strong>programas sociais</strong> (assistência social, saúde, educação, trabalho e esporte) e para a <strong>habitação</strong>. Ela administra o <strong>FGTS</strong>, cuida do PIS e do seguro-desemprego e é a única que pode vender a <strong>loteria federal</strong>. Hoje é a única caixa econômica em funcionamento.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>banco comercial</b> tem como atividade principal a intermediação de recursos e capta <b>depósitos à vista</b>, sendo capaz de <b>criar moeda escritural</b>. O <b>banco de investimento</b> não capta depósitos à vista. O <b>banco múltiplo</b> deve ser constituído com, <b>no mínimo, duas carteiras, sendo uma delas obrigatoriamente comercial ou de investimento</b> (Res. CMN 5.060/2023). As carteiras possíveis são: comercial, de investimento, de desenvolvimento, de crédito imobiliário, de crédito, financiamento e investimento e de arrendamento mercantil.</p>
+    <dl class="termos">
+      <dt>Depósito à vista</dt><dd>dinheiro na conta-corrente, que você saca quando quiser</dd>
+      <dt>Depósito a prazo</dt><dd>dinheiro aplicado por um tempo (CDB)</dd>
+      <dt>Carteira</dt><dd>cada “tipo de banco” que o banco múltiplo exerce</dd>
+      <dt>Criação de moeda escritural</dt><dd>o dinheiro que “se multiplica” nas contas pelos empréstimos</dd>
+      <dt>Denominação social</dt><dd>o nome oficial da empresa</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.9 -->
 <section class="bloco" id="c1-s9" data-titulo="Instituições não bancárias">
-  <span class="sobretitulo">1.9 · Operadores não bancários</span>
+  <span class="sobretitulo">1.9 · Quem joga (2)</span>
   <h2 class="titulo-secao">Instituições não bancárias</h2>
   <div class="linha-fina"></div>
-  <p>São “não bancárias” porque <span class="mt">não recebem depósitos à vista e não criam moeda</span>. Trabalham com ativos não monetários: CDB, letras de câmbio, títulos, debêntures, ações. O nome de cada uma diz o que ela faz.</p>
+  <p class="gancho">Já comprou celular parcelado na loja e o contrato veio de uma tal “Crédito, Financiamento e Investimento”?</p>
+  <p>Aquilo é uma <strong>financeira</strong>, um tipo de instituição <strong>não bancária</strong>. E por que “não bancária”? Porque ela <span class="mt">não abre conta-corrente e não cria moeda</span>. Ela trabalha com outros produtos, como CDB, letras de câmbio e debêntures. A boa notícia: <strong>o nome de cada uma já entrega o que ela faz</strong>.</p>
 
   <div class="grade-2 cartoes-compactos">
-    <div class="cartao ambar"><h4>Financeira (SCFI)</h4><p>Sociedade de <strong>Crédito, Financiamento e Investimento</strong>: financia bens, serviços e capital de giro (carro, eletrodoméstico). Capta por <strong>letras de câmbio</strong> e <strong>RDB</strong>. <span class="mt">Não abre conta corrente.</span></p></div>
-    <div class="cartao"><h4>Sociedade de crédito imobiliário (SCI)</h4><p>Especializada em financiamento habitacional (SFH). Desde os anos 1980 <strong>não capta do público</strong> e atua só como <strong>repassadora</strong>.</p></div>
-    <div class="cartao"><h4>Companhia hipotecária (CH)</h4><p>Financiamento imobiliário residencial e comercial. Capta por <strong>letras hipotecárias, LCI e debêntures</strong>, mas é <strong>proibida de captar poupança</strong>.</p></div>
-    <div class="cartao"><h4>Associação de poupança e empréstimo (APE)</h4><p>Sociedade civil voltada à casa própria. Os depositantes viram associados. Hoje só existe a <strong>Poupex</strong>, que atua no país inteiro.</p></div>
-    <div class="cartao coral"><h4>Arrendamento mercantil (leasing)</h4><p>Compra o bem e o “aluga” ao cliente com opção de compra. É <strong>equiparada a instituição financeira</strong> (não é IF), fiscalizada pelo BC.</p></div>
-    <div class="cartao verde"><h4>Agência de fomento</h4><p>Financia projetos de desenvolvimento no seu estado. <strong>Uma por estado</strong> (e DF), sob controle dele. <span class="mt">Proibida de captar recursos do público.</span></p></div>
-    <div class="cartao"><h4>Sociedade de crédito ao microempreendedor (SCMEPP)</h4><p>Crédito para microempreendedores e empresas de pequeno porte.</p></div>
-    <div class="cartao roxo"><h4>Administradora de consórcio</h4><p>Organiza grupos que juntam dinheiro para comprar bens por <strong>autofinanciamento</strong>. Contemplação por <strong>sorteio ou lance</strong>. Normas, autorização e fiscalização do <strong>BC</strong>.</p></div>
+    <div class="cartao ambar"><h4>Financeira (SCFI)</h4><p>A <strong>Sociedade de Crédito, Financiamento e Investimento</strong> financia o carro, a geladeira, o celular… Pega dinheiro emitindo <strong>letras de câmbio</strong> e <strong>RDB</strong>. <span class="mt">Não abre conta-corrente.</span></p></div>
+    <div class="cartao"><h4>Sociedade de crédito imobiliário (SCI)</h4><p>Financia casa própria. Desde os anos 1980, <strong>não pega dinheiro do público</strong>: só <strong>repassa</strong> recursos de programas (como o Minha Casa, Minha Vida).</p></div>
+    <div class="cartao"><h4>Companhia hipotecária (CH)</h4><p>Também financia imóveis (residenciais e comerciais). Pode emitir <strong>LCI, letras hipotecárias e debêntures</strong>, mas é <strong>proibida de captar poupança</strong>.</p></div>
+    <div class="cartao"><h4>Associação de poupança e empréstimo (APE)</h4><p>Quem deposita vira <strong>associado</strong>, e o foco é a casa própria. Hoje só existe uma: a <strong>Poupex</strong>.</p></div>
+    <div class="cartao coral"><h4>Arrendamento mercantil (leasing)</h4><p>Compra o bem e “aluga” para você, com opção de compra no final. Detalhe que cai: ela <strong>não é</strong> instituição financeira, é <strong>equiparada</strong> a uma.</p></div>
+    <div class="cartao verde"><h4>Agência de fomento</h4><p>Financia projetos de desenvolvimento no seu estado. Cada estado (e o DF) pode ter <strong>só uma</strong>, e ela é <span class="mt">proibida de pegar dinheiro do público</span>.</p></div>
+    <div class="cartao"><h4>Crédito ao microempreendedor (SCMEPP)</h4><p>Empresta para microempreendedores e empresas de pequeno porte.</p></div>
+    <div class="cartao roxo"><h4>Administradora de consórcio</h4><p>Junta um grupo de pessoas que pagam parcelas para comprar um bem (é o <strong>autofinanciamento</strong>). Todo mês alguém é contemplado, por <strong>sorteio ou lance</strong>. Quem fiscaliza é o <strong>BC</strong>.</p></div>
   </div>
 
-  <h3>Quem pode captar o quê no setor imobiliário</h3>
+  <h3>A salada do setor imobiliário</h3>
+  <p>Tem muita instituição mexendo com imóvel, né? Esta tabela resolve a confusão:</p>
   <div class="tabela-rolagem"><table class="tabela">
-    <thead><tr><th>Instituição</th><th>Poupança</th><th>LCI e letra hipotecária</th><th>Forma jurídica</th></tr></thead>
+    <thead><tr><th>Instituição</th><th>Pode captar poupança?</th><th>Pode emitir LCI e letra hipotecária?</th><th>Forma jurídica</th></tr></thead>
     <tbody>
-      <tr><td>Bancos e Caixa</td><td class="sim">Capta</td><td class="sim">Capta</td><td>S.A. / empresa pública</td></tr>
-      <tr><td>SCI</td><td>Pode, mas só repassa</td><td>Pode, mas só repassa</td><td>S.A.</td></tr>
-      <tr><td>Companhia hipotecária</td><td class="nao">Proibida</td><td class="sim">Capta</td><td>S.A.</td></tr>
-      <tr><td>APE</td><td class="sim">Capta</td><td class="sim">Capta</td><td>Sociedade civil</td></tr>
+      <tr><td>Bancos e Caixa</td><td class="sim">Sim</td><td class="sim">Sim</td><td>S.A. / empresa pública</td></tr>
+      <tr><td>SCI</td><td>Pode, mas hoje só repassa</td><td>Pode, mas hoje só repassa</td><td>S.A.</td></tr>
+      <tr><td>Companhia hipotecária</td><td class="nao">Não</td><td class="sim">Sim</td><td>S.A.</td></tr>
+      <tr><td>APE</td><td class="sim">Sim</td><td class="sim">Sim</td><td>Sociedade civil</td></tr>
     </tbody>
   </table></div>
 
-  <h3>Corretoras e distribuidoras</h3>
-  <p>As <strong>CTVM</strong> (corretoras) e as <strong>DTVM</strong> (distribuidoras) intermediam a compra e venda de títulos e valores mobiliários, oferecem home broker, custódia e administração de carteiras. São <span class="mt">supervisionadas pelo BC e pela CVM</span>. Desde a <strong>Decisão Conjunta BCB/CVM 17/2009</strong>, as distribuidoras também podem operar diretamente na bolsa, e a principal diferença entre as duas deixou de existir.</p>
+  <h3>E por onde eu compro ações?</h3>
+  <p>Por uma <strong>corretora</strong> (CTVM) ou uma <strong>distribuidora</strong> (DTVM). São elas que levam a sua ordem até a bolsa e oferecem o home broker, aquele aplicativo de investimentos. Antigamente só a corretora operava na bolsa; desde 2009 (<strong>Decisão Conjunta BCB/CVM 17/2009</strong>), a distribuidora também pode, e na prática as duas fazem quase a mesma coisa. Atenção: elas são fiscalizadas pelo <strong>BC e pela CVM</strong>.</p>
+  <p>E a bolsa em si? No Brasil é a <strong>B3 (Brasil, Bolsa, Balcão)</strong>, fiscalizada pela <strong>CVM</strong>. Já os títulos públicos ficam registrados num sistema do Banco Central chamado <strong>Selic</strong> (Sistema Especial de Liquidação e de Custódia). É daí que vem o nome da taxa Selic!</p>
 
-  <h3>Bolsas e infraestrutura</h3>
-  <p>A <strong>B3 (Brasil, Bolsa, Balcão)</strong> reúne a bolsa de valores e a bolsa de mercadorias e futuros. Bolsas são fiscalizadas pela <strong>CVM</strong>. Os títulos públicos federais ficam registrados no <strong>Selic</strong> (Sistema Especial de Liquidação e de Custódia), que é do Banco Central. O nome da taxa Selic vem daí.</p>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">As instituições <b>não bancárias</b> não recebem depósitos à vista e, por isso, <b>não criam moeda escritural</b>. A <b>SCFI</b> capta por meio de aceite de <b>letras de câmbio</b> e <b>RDB</b>. A <b>sociedade de arrendamento mercantil</b> é <b>equiparada a instituição financeira</b>. A <b>agência de fomento</b> é vedada de captar recursos do público. <b>Corretoras e distribuidoras</b> são supervisionadas pelo <b>BCB e pela CVM</b>.</p>
+    <dl class="termos">
+      <dt>Letra de câmbio (LC)</dt><dd>o “CDB da financeira”</dd>
+      <dt>RDB</dt><dd>parecido com o CDB, mas não pode ser vendido antes do vencimento</dd>
+      <dt>Repassadora</dt><dd>não pega dinheiro do público; só repassa recursos de programas</dd>
+      <dt>Equiparada a IF</dt><dd>não é instituição financeira, mas segue regras como se fosse</dd>
+      <dt>Autofinanciamento</dt><dd>o próprio grupo junta o dinheiro (consórcio)</dd>
+      <dt>Contemplação</dt><dd>ser sorteado ou ganhar no lance no consórcio</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.10 -->
@@ -1274,37 +1434,58 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <div class="linha-fina"></div>
 
   <h3>Cooperativas de crédito</h3>
+  <p class="gancho">Já ouviu falar do Sicoob ou do Sicredi?</p>
+  <p>São sistemas de <strong>cooperativas de crédito</strong>. Funcionam quase como um banco (têm conta, cartão, empréstimo), só que com uma diferença enorme: <strong>os clientes são os donos</strong>.</p>
   <div class="grade-3 cartoes-compactos">
-    <div class="cartao verde"><h4>Donos e usuários</h4><p>Os cooperados são donos e clientes ao mesmo tempo. Atendem <strong>só associados</strong>.</p></div>
-    <div class="cartao verde"><h4>1 pessoa, 1 voto</h4><p>Voto <strong>igual</strong>, não importa o tamanho da cota. O resultado positivo se chama <strong>sobra</strong>.</p></div>
-    <div class="cartao verde"><h4>FGCoop</h4><p>Os depósitos são protegidos pelo <strong>FGCoop</strong>, com o mesmo limite do FGC. Autorizadas e fiscalizadas pelo <strong>BC</strong>.</p></div>
+    <div class="cartao verde"><h4>Dono e cliente</h4><p>Quem usa é sócio (o <strong>cooperado</strong>), e ela atende <strong>só os associados</strong>.</p></div>
+    <div class="cartao verde"><h4>1 pessoa, 1 voto</h4><p>Não importa quanto dinheiro você colocou: todo mundo tem <strong>o mesmo voto</strong>. E o “lucro” se chama <strong>sobra</strong>, dividida entre os cooperados.</p></div>
+    <div class="cartao verde"><h4>Tem garantia?</h4><p>Tem! Mas não é o FGC: é o <strong>FGCoop</strong>, com o mesmo limite. Quem fiscaliza é o <strong>BC</strong>.</p></div>
   </div>
-  <p class="pequeno">Singular: mínimo de 20 pessoas. Central (federação): mínimo de 3 singulares. Confederação: mínimo de 3 centrais. Lei 5.764/1971 e LC 130/2009.</p>
 
-  <h3>Fintechs de crédito: SCD × SEP</h3>
+  <h3>Fintechs de crédito</h3>
+  <p class="gancho">E aquele aplicativo que te empresta dinheiro em 5 minutos?</p>
+  <p>Pode ser uma <strong>fintech de crédito</strong>, que precisa de autorização do BC. Existem dois tipos, e a diferença é de onde vem o dinheiro:</p>
   <div class="tabela-rolagem"><table class="tabela lado">
-    <thead><tr><th>Característica</th><th>SCD · Sociedade de Crédito Direto</th><th>SEP · Sociedade de Empréstimo entre Pessoas</th></tr></thead>
+    <thead><tr><th>Comparando</th><th>SCD · Sociedade de Crédito Direto</th><th>SEP · Sociedade de Empréstimo entre Pessoas</th></tr></thead>
     <tbody>
-      <tr><td>Como empresta</td><td>Com <strong>capital próprio</strong>, por plataforma eletrônica</td><td>Conecta <strong>credores e tomadores</strong> (peer-to-peer)</td></tr>
-      <tr><td>Capta do público?</td><td class="nao">Não</td><td>Só recursos vinculados a cada empréstimo</td></tr>
-      <tr><td>Limite</td><td>—</td><td>Cada credor pode ter no máximo <strong>R$ 15 mil</strong> por SEP</td></tr>
-      <tr><td>Autorização</td><td colspan="2">Banco Central. As operações entram no Sistema de Informações de Créditos (SCR).</td></tr>
+      <tr><td>De onde vem o dinheiro</td><td>Do <strong>próprio bolso</strong> da fintech (capital próprio)</td><td>De <strong>outras pessoas</strong>: ela só junta quem quer emprestar com quem quer pegar (peer-to-peer)</td></tr>
+      <tr><td>Pode pegar dinheiro do público?</td><td class="nao">Não</td><td>Só o dinheiro ligado a cada empréstimo</td></tr>
+      <tr><td>Limite</td><td>—</td><td>Cada pessoa pode emprestar no máximo <strong>R$ 15 mil</strong> por SEP</td></tr>
+      <tr><td>Quem autoriza</td><td colspan="2">Banco Central. Os empréstimos aparecem no registro de crédito do BC (SCR).</td></tr>
     </tbody>
   </table></div>
 
   <h3>Instituição de pagamento (IP)</h3>
+  <p class="gancho">E a conta digital onde você recebe o Pix e usa o cartão pré-pago?</p>
+  <p>Muitas vezes ela é de uma <strong>instituição de pagamento</strong>. Uma IP serve para <strong>movimentar dinheiro</strong> (pagar, transferir, receber), mas <span class="mt">não pode emprestar</span>. Quem faz a maquininha do lojista também é uma IP.</p>
   <div class="grade-2">
-    <div class="cartao azul"><h4>O que é</h4><p>Empresa que viabiliza pagamentos e transferências dentro de um <strong>arranjo de pagamento</strong>, <span class="mt">sem poder conceder empréstimos e financiamentos</span>. Lei 12.865/2013.</p>
-      <p>Tipos: <span class="etq">emissor de moeda eletrônica</span><span class="etq">emissor de pós-pago</span><span class="etq">credenciador</span><span class="etq">iniciador de pagamento</span></p></div>
-    <div class="caixa pegadinha" style="margin:0"><span class="rotulo">Atenção</span>
-      <p>Instituição de pagamento <strong>não é instituição financeira</strong> e <strong>não compõe o SFN</strong>. Mesmo assim, é <strong>regulada e fiscalizada pelo Banco Central</strong>, conforme diretrizes do CMN.</p></div>
+    <div class="cartao azul"><h4>Os 4 tipos de IP</h4>
+      <p><span class="etq">emissor de moeda eletrônica</span> a conta pré-paga</p>
+      <p><span class="etq">emissor de pós-pago</span> o cartão de crédito</p>
+      <p><span class="etq">credenciador</span> a maquininha do lojista</p>
+      <p><span class="etq">iniciador de pagamento</span> o app que dispara o pagamento por você</p></div>
+    <div class="caixa pegadinha" style="margin:0"><span class="rotulo">Atenção, cai muito!</span>
+      <p>A IP <strong>não é instituição financeira</strong> e <strong>não faz parte do SFN</strong>. Mas quem regula e fiscaliza é o <strong>Banco Central</strong>, seguindo as diretrizes do CMN.</p></div>
   </div>
 
-  <div class="caixa atualizacao"><span class="rotulo">Novidade: Resolução Conjunta 17/2025</span>
-    <p>Desde novembro de 2025, nenhuma instituição autorizada pelo BC pode usar no nome, na marca ou no site um termo que sugira uma atividade para a qual não tem autorização (literalmente ou por semelhança de som ou grafia). Na prática: quem não é banco não pode se apresentar como <strong>“banco”</strong> ou <strong>“bank”</strong>.</p></div>
+  <div class="caixa atualizacao"><span class="rotulo">Novidade de 2025</span>
+    <p>Desde novembro de 2025 (<strong>Resolução Conjunta 17/2025</strong>), nenhuma empresa autorizada pelo BC pode usar no nome, na marca ou no site uma palavra que sugira uma atividade que ela não tem autorização para fazer. Na prática: quem não é banco não pode se chamar de <strong>“banco”</strong> ou <strong>“bank”</strong>.</p></div>
 
-  <div class="caixa cotidiano"><span class="rotulo">No dia a dia</span>
-    <p>A conta digital onde você recebe Pix e usa cartão pré-pago pode ser uma <strong>conta de pagamento</strong> numa IP, e não uma conta corrente num banco. O saldo de conta de pagamento <strong>não</strong> é coberto pelo FGC. Os recursos dos clientes ficam separados do patrimônio da IP, conforme as regras do BC.</p></div>
+  <div class="caixa cotidiano"><span class="rotulo">No seu dia a dia</span>
+    <p>O saldo parado numa <strong>conta de pagamento</strong> (de uma IP) <strong>não</strong> tem a garantia do FGC. O que existe é outra proteção: por lei, o dinheiro dos clientes fica separado do dinheiro da empresa.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>cooperativa de crédito</b> presta serviços financeiros exclusivamente aos seus associados; o resultado positivo é denominado <b>sobra</b>, e os depósitos contam com a proteção do <b>FGCoop</b>. A <b>SCD</b> realiza operações de crédito com <b>recursos próprios</b>; a <b>SEP</b> intermedeia operações entre credores e devedores (<b>peer-to-peer lending</b>). A <b>instituição de pagamento</b> viabiliza serviços de pagamento no âmbito de um <b>arranjo de pagamento</b>, <b>sem poder conceder empréstimos</b>; não integra o SFN, mas é regulada e fiscalizada pelo BCB.</p>
+    <dl class="termos">
+      <dt>Cooperado / associado</dt><dd>o cliente que também é dono</dd>
+      <dt>Sobras</dt><dd>o “lucro” da cooperativa, dividido entre os cooperados</dd>
+      <dt>Peer-to-peer</dt><dd>empréstimo entre pessoas, com a fintech no meio</dd>
+      <dt>Arranjo de pagamento</dt><dd>as regras de um meio de pagamento (bandeira de cartão, Pix…)</dd>
+      <dt>Conta de pagamento</dt><dd>a conta digital de uma IP</dd>
+      <dt>Moeda eletrônica</dt><dd>o saldo pré-pago guardado na conta digital</dd>
+      <dt>Credenciador</dt><dd>quem habilita o lojista a aceitar cartão (a maquininha)</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.11 -->
@@ -1312,18 +1493,23 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.11 · Segurança</span>
   <h2 class="titulo-secao">Rede de proteção: o FGC</h2>
   <div class="linha-fina"></div>
-  <p>O <strong>Fundo Garantidor de Créditos</strong> é uma entidade <strong>privada, sem fins lucrativos</strong>, mantida pelas próprias instituições associadas. Se um banco sofrer intervenção ou liquidação, o FGC devolve o dinheiro dos clientes até o limite.</p>
+  <p class="gancho">E se o banco onde está o seu dinheiro quebrar? Você perde tudo?</p>
+  <p>Calma! Para isso existe o <strong>FGC, o Fundo Garantidor de Créditos</strong>. Ele funciona como um “seguro” do seu dinheiro: se o banco quebrar (na prova: sofrer <strong>intervenção ou liquidação</strong> pelo BC), o FGC devolve o que você tinha lá, até um limite.</p>
+  <p>Detalhe que cai: o FGC <strong>não é do governo</strong>. É uma entidade <strong>privada, sem fins lucrativos</strong>, bancada pelas próprias instituições que fazem parte dele.</p>
 
   <div class="grade-2 numeros">
-    <div class="cartao"><span class="valor">R$ 250 mil</span><span class="rotulo-n">por CPF/CNPJ, por instituição <strong>ou conglomerado</strong> financeiro (principal + juros)</span></div>
-    <div class="cartao"><span class="valor">R$ 1 milhão</span><span class="rotulo-n">teto por pessoa, somando todas as instituições, <strong>a cada 4 anos</strong></span></div>
+    <div class="cartao"><span class="valor">R$ 250 mil</span><span class="rotulo-n">por pessoa (CPF ou CNPJ), por instituição <strong>ou por conglomerado</strong> (grupo de empresas do mesmo banco), somando o valor aplicado e os juros</span></div>
+    <div class="cartao"><span class="valor">R$ 1 milhão</span><span class="rotulo-n">é o máximo que uma pessoa pode receber, somando todos os bancos, <strong>a cada 4 anos</strong></span></div>
   </div>
 
+  <h3>O que está protegido e o que não está</h3>
+  <p>A regra de bolso: o FGC protege o que é <strong>dívida do banco com você</strong> (depósitos e letras). O que não é do banco, como ação, fundo, debênture e título público, fica de fora.</p>
   <div class="grade-2 mt-4">
-    <div class="cartao verde"><h4>✓ Tem garantia do FGC</h4><ul class="check mb-0"><li>Depósitos à vista e poupança</li><li>CDB, RDB e depósitos a prazo</li><li>Letras de câmbio (LC)</li><li>LCI, LCA e letras hipotecárias</li><li><strong>LCD</strong> (desde a Res. CMN 5.184/2024)</li><li>Contas-salário</li></ul></div>
-    <div class="cartao coral"><h4>✗ Não tem garantia do FGC</h4><ul class="check mb-0"><li class="nao">Cotas de fundos de investimento</li><li class="nao">Debêntures, CRI e CRA (não são de banco)</li><li class="nao">Ações e títulos públicos</li><li class="nao">Planos de previdência (PGBL/VGBL)</li><li class="nao">Saldo em conta de pagamento de IP</li><li class="nao">Instrumentos com cláusula de subordinação</li></ul></div>
+    <div class="cartao verde"><h4>✓ Tem garantia do FGC</h4><ul class="check mb-0"><li>Conta-corrente e poupança</li><li>CDB, RDB e depósitos a prazo</li><li>Letras de câmbio (LC)</li><li>LCI, LCA e letras hipotecárias</li><li><strong>LCD</strong> (desde a Res. CMN 5.184/2024)</li><li>Conta-salário</li></ul></div>
+    <div class="cartao coral"><h4>✗ Não tem garantia do FGC</h4><ul class="check mb-0"><li class="nao">Fundos de investimento</li><li class="nao">Debêntures, CRI e CRA (são de empresas, não de banco)</li><li class="nao">Ações e títulos públicos</li><li class="nao">Previdência (PGBL e VGBL)</li><li class="nao">Saldo em conta de pagamento de IP</li><li class="nao">Papéis com cláusula de subordinação</li></ul></div>
   </div>
 
+  <h3>Vamos ver na prática?</h3>
   <figure class="figura" data-zoom>
     <svg viewBox="0 0 760 300" role="img" aria-label="Exemplo: Ana tem 180 mil em CDB e 120 mil em LCI no mesmo conglomerado e recebe 250 mil; os 100 mil no outro banco são cobertos integralmente">
       <rect width="760" height="300" fill="#fff"/>
@@ -1356,10 +1542,20 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   </figure>
 
   <div class="caixa atualizacao"><span class="rotulo">Corrigindo material antigo</span>
-    <p>Muitas apostilas dizem que a <strong>LCD (Letra de Crédito do Desenvolvimento)</strong> não tem FGC. A <strong>Resolução CMN 5.184/2024</strong> incluiu a LCD na lista de garantia ordinária do FGC (Res. 4.222/2013, art. 2º do regulamento).</p></div>
+    <p>Muita apostila diz que a <strong>LCD (Letra de Crédito do Desenvolvimento)</strong> não tem FGC. Tem, sim! A <strong>Resolução CMN 5.184/2024</strong> colocou a LCD na lista de garantia do FGC.</p></div>
 
   <div class="caixa dica"><span class="rotulo">Curiosidade que cai</span>
-    <p>O <strong>CRSFN</strong> (Conselho de Recursos do Sistema Financeiro Nacional) é o “tribunal de segunda instância” administrativo: julga recursos contra penalidades aplicadas pelo <strong>BC</strong>, pela <strong>CVM</strong> e, em casos de lavagem de dinheiro, pelo <strong>COAF</strong>. Fica na estrutura do Ministério da Fazenda.</p></div>
+    <p>E se o BC ou a CVM multar um banco e o banco achar a multa injusta? Ele recorre ao <strong>CRSFN</strong> (Conselho de Recursos do Sistema Financeiro Nacional), uma espécie de “segunda instância” administrativa. O CRSFN também julga recursos contra penalidades do <strong>COAF</strong> em casos de lavagem de dinheiro e fica no Ministério da Fazenda.</p></div>
+
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>FGC</b> é entidade <b>privada, sem fins lucrativos</b>, que administra mecanismo de proteção aos titulares de créditos contra as instituições associadas. A <b>garantia ordinária</b> é de até <b>R$ 250 mil por CPF/CNPJ, por instituição ou conglomerado financeiro</b>, limitada a <b>R$ 1 milhão a cada período de 4 anos consecutivos</b>. Não são cobertos, entre outros, cotas de fundos de investimento e instrumentos com <b>cláusula de subordinação</b>.</p>
+    <dl class="termos">
+      <dt>Garantia ordinária</dt><dd>a proteção “normal” do FGC, até R$ 250 mil</dd>
+      <dt>Conglomerado financeiro</dt><dd>o grupo de empresas do mesmo banco: o limite é um só</dd>
+      <dt>Intervenção / liquidação extrajudicial</dt><dd>o BC assume ou encerra a instituição que quebrou</dd>
+      <dt>Cláusula de subordinação</dt><dd>o investidor só recebe depois de todos os outros credores</dd>
+    </dl>
+  </div>
 </section>
 
 <!-- 1.12 -->
@@ -1367,9 +1563,10 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.12 · Visão do todo</span>
   <h2 class="titulo-secao">Mapa mental do SFN</h2>
   <div class="linha-fina"></div>
+  <p>Agora junta tudo numa folha só. Se você conseguir explicar cada ramo deste mapa em voz alta, está pronta para as questões deste assunto.</p>
   <div class="mapa-caderno" data-mapa="sfn"></div>
   <div class="caixa dica"><span class="rotulo">Como revisar com o mapa</span>
-    <p>Ligue o <strong>Modo treino</strong> no topo: os itens somem e você toca em cada um para lembrar. Faça isso com os seis ramos na véspera da prova. Leva menos de 5 minutos e mostra exatamente o que ainda não fixou.</p></div>
+    <p>Ligue o <strong>Modo treino</strong> lá no topo: os itens somem e você toca em cada um para conferir se lembrou. Faça isso na véspera da prova. Leva menos de 5 minutos e mostra direitinho o que ainda não fixou.</p></div>
 </section>
 
 <!-- 1.13 -->
@@ -1377,17 +1574,17 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.13 · Não caia nessa</span>
   <h2 class="titulo-secao">Pegadinhas de prova</h2>
   <div class="linha-fina"></div>
-  <p class="pequeno">Toque em cada cartão para revelar a versão correta.</p>
-  <div class="ce fechado"><div class="errado">O CMN executa a política monetária e fiscaliza os bancos.</div><div class="certo"><span class="toque">toque para ver</span>O CMN <strong>normatiza</strong> e define metas. Quem <strong>executa e fiscaliza</strong> é o Banco Central.</div></div>
-  <div class="ce fechado"><div class="errado">O Banco Central é vinculado ao Ministério da Fazenda.</div><div class="certo"><span class="toque">toque para ver</span>Desde a LC 179/2021 o BC <strong>não tem vinculação a Ministério</strong>. A CVM e a Susep é que são vinculadas à Fazenda.</div></div>
-  <div class="ce fechado"><div class="errado">O mandato do presidente do BC coincide com o do Presidente da República.</div><div class="certo"><span class="toque">toque para ver</span>Começa em 1º de janeiro do <strong>terceiro ano</strong> do mandato presidencial e dura 4 anos.</div></div>
-  <div class="ce fechado"><div class="errado">Os dirigentes da CVM podem ser reconduzidos uma vez.</div><div class="certo"><span class="toque">toque para ver</span>Na CVM, mandato de <strong>5 anos, vedada a recondução</strong>. Quem pode ser reconduzido uma vez é a diretoria do <strong>BC</strong>.</div></div>
-  <div class="ce fechado"><div class="errado">CDB e títulos públicos são valores mobiliários fiscalizados pela CVM.</div><div class="certo"><span class="toque">toque para ver</span>Ficam <strong>fora</strong> da Lei 6.385: títulos públicos e títulos de instituição financeira (exceto debêntures).</div></div>
-  <div class="ce fechado"><div class="errado">Fundo de pensão de uma estatal é fiscalizado pela Susep.</div><div class="certo"><span class="toque">toque para ver</span>Previdência <strong>fechada</strong> é com a <strong>Previc</strong> (normas do CNPC). A Susep fica com a previdência <strong>aberta</strong>.</div></div>
-  <div class="ce fechado"><div class="errado">O banco múltiplo pode ter as carteiras de câmbio e de crédito imobiliário.</div><div class="certo"><span class="toque">toque para ver</span>Câmbio <strong>não é carteira</strong>. São no mínimo 2 carteiras, uma delas <strong>comercial ou de investimento</strong>.</div></div>
-  <div class="ce fechado"><div class="errado">Instituição de pagamento é instituição financeira e pode emprestar.</div><div class="certo"><span class="toque">toque para ver</span>IP <strong>não é IF</strong>, não compõe o SFN e <strong>não pode emprestar</strong>. Mas é regulada e fiscalizada pelo BC.</div></div>
-  <div class="ce fechado"><div class="errado">A LCD não tem cobertura do FGC.</div><div class="certo"><span class="toque">toque para ver</span>Tem, desde a <strong>Resolução CMN 5.184/2024</strong>.</div></div>
-  <div class="ce fechado"><div class="errado">O FGC garante R$ 250 mil por instituição, mesmo que sejam do mesmo grupo.</div><div class="certo"><span class="toque">toque para ver</span>O limite é por instituição <strong>ou conglomerado</strong>. Dois bancos do mesmo grupo dividem os mesmos R$ 250 mil.</div></div>
+  <p>Estas são as frases que a banca adora usar para te derrubar. Leia a frase errada, tente lembrar a certa e só depois toque no cartão para conferir.</p>
+  <div class="ce fechado"><div class="errado">O CMN executa a política monetária e fiscaliza os bancos.</div><div class="certo"><span class="toque">toque para ver</span>O CMN só <strong>faz as regras</strong> e define as metas. Quem <strong>executa e fiscaliza</strong> é o Banco Central.</div></div>
+  <div class="ce fechado"><div class="errado">O Banco Central é vinculado ao Ministério da Fazenda.</div><div class="certo"><span class="toque">toque para ver</span>Desde a LC 179/2021, o BC <strong>não é vinculado a nenhum Ministério</strong>. Quem é vinculada à Fazenda são a CVM e a Susep.</div></div>
+  <div class="ce fechado"><div class="errado">O mandato do presidente do BC coincide com o do Presidente da República.</div><div class="certo"><span class="toque">toque para ver</span>Não coincide: começa em 1º de janeiro do <strong>3º ano</strong> do governo e dura 4 anos.</div></div>
+  <div class="ce fechado"><div class="errado">Os dirigentes da CVM podem ser reconduzidos uma vez.</div><div class="certo"><span class="toque">toque para ver</span>Na CVM são <strong>5 anos, sem recondução</strong>. Quem pode ser reconduzido uma vez é a diretoria do <strong>BC</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">CDB e títulos públicos são valores mobiliários fiscalizados pela CVM.</div><div class="certo"><span class="toque">toque para ver</span>Não são: títulos públicos e títulos de banco (exceto debêntures) ficam <strong>fora</strong> da CVM.</div></div>
+  <div class="ce fechado"><div class="errado">O fundo de pensão de uma estatal é fiscalizado pela Susep.</div><div class="certo"><span class="toque">toque para ver</span>Fundo de pensão é previdência <strong>fechada</strong>, então é com a <strong>Previc</strong> (regras do CNPC). A Susep cuida da previdência <strong>aberta</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O banco múltiplo pode ter só as carteiras de câmbio e de crédito imobiliário.</div><div class="certo"><span class="toque">toque para ver</span>Câmbio <strong>não é carteira</strong>. São no mínimo 2 carteiras, e uma delas tem que ser <strong>comercial ou de investimento</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">Instituição de pagamento é instituição financeira e pode emprestar.</div><div class="certo"><span class="toque">toque para ver</span>IP <strong>não é IF</strong>, não faz parte do SFN e <strong>não pode emprestar</strong>. Mas é fiscalizada pelo BC.</div></div>
+  <div class="ce fechado"><div class="errado">A LCD não tem cobertura do FGC.</div><div class="certo"><span class="toque">toque para ver</span>Tem, sim, desde a <strong>Resolução CMN 5.184/2024</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O FGC garante R$ 250 mil em cada banco, mesmo que sejam do mesmo grupo.</div><div class="certo"><span class="toque">toque para ver</span>O limite é por instituição <strong>ou conglomerado</strong>: dois bancos do mesmo grupo dividem os mesmos R$ 250 mil.</div></div>
 </section>
 
 <!-- 1.14 -->
@@ -1395,7 +1592,7 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.14 · Jogo</span>
   <h2 class="titulo-secao">Desafio relâmpago: quem fiscaliza?</h2>
   <div class="linha-fina"></div>
-  <p>Aparece uma instituição; você tem <strong>8 segundos</strong> para escolher o supervisor. São 10 rodadas sorteadas.</p>
+  <p>Bora testar? Aparece uma instituição e você tem <strong>8 segundos</strong> para dizer quem fiscaliza. São 10 rodadas sorteadas. Consegue gabaritar?</p>
   <div class="jogo" data-jogo="fiscaliza"></div>
 </section>
 
@@ -1404,31 +1601,65 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
   <span class="sobretitulo">1.15 · Treino</span>
   <h2 class="titulo-secao">Questões com correção na hora</h2>
   <div class="linha-fina"></div>
-  <p>Questões <strong>inéditas</strong> no estilo da prova CPA da ANBIMA, escritas para este capítulo. Toque numa alternativa: a correção e a explicação aparecem na hora, e cada erro vai automaticamente para o seu <a href="#painel">caderno de erros</a>.</p>
+  <p>Agora é com você! Estas questões são <strong>inéditas</strong> e estão escritas <strong>do jeito que a banca escreve</strong>, de propósito, para você se acostumar com a linguagem da prova. Toque numa alternativa: a correção e o porquê aparecem na hora, e cada erro vai direto para o seu <a href="#painel">caderno de erros</a>.</p>
   <div class="lista-questoes" data-questoes="1"></div>
 </section>
 
 <!-- 1.16 -->
-<section class="bloco" id="c1-s16" data-titulo="Revisão de 1 minuto">
+<section class="bloco" id="c1-s16" data-titulo="Revisão e dicionário da prova">
   <span class="sobretitulo">1.16 · Revisão</span>
-  <h2 class="titulo-secao">Revisão de 1 minuto</h2>
+  <h2 class="titulo-secao">Revisão e dicionário da prova</h2>
   <div class="linha-fina"></div>
+
+  <h3>Dicionário da prova</h3>
+  <p>Na hora da prova, a banca usa os nomes técnicos. Aqui está cada um traduzido. Com o <strong>Modo treino</strong> ligado, a tradução some: tente lembrar e toque para conferir.</p>
+  <div class="tabela-rolagem"><table class="tabela dicionario">
+    <thead><tr><th>Quando a prova diz…</th><th>…quer dizer</th></tr></thead>
+    <tbody>
+      <tr><td>Intermediação financeira</td><td><span class="trad">o banco levando o dinheiro de quem sobra para quem precisa</span></td></tr>
+      <tr><td>Agente superavitário / deficitário</td><td><span class="trad">quem tem dinheiro sobrando / quem precisa de dinheiro</span></td></tr>
+      <tr><td>Spread bancário</td><td><span class="trad">juro cobrado menos juro pago</span></td></tr>
+      <tr><td>Órgão normativo</td><td><span class="trad">quem faz as regras (CMN, CNSP, CNPC)</span></td></tr>
+      <tr><td>Entidade supervisora</td><td><span class="trad">quem fiscaliza (BC, CVM, Susep, Previc)</span></td></tr>
+      <tr><td>Operador</td><td><span class="trad">a instituição que atende o público</span></td></tr>
+      <tr><td>Autarquia de natureza especial</td><td><span class="trad">órgão público com autonomia (o BC não obedece a ministério)</span></td></tr>
+      <tr><td>Estabilidade de preços</td><td><span class="trad">inflação sob controle</span></td></tr>
+      <tr><td>Recondução</td><td><span class="trad">ganhar mais um mandato</span></td></tr>
+      <tr><td>Meio circulante</td><td><span class="trad">as notas e moedas em circulação</span></td></tr>
+      <tr><td>Recolhimento compulsório</td><td><span class="trad">parte dos depósitos que fica parada no BC</span></td></tr>
+      <tr><td>Redesconto</td><td><span class="trad">empréstimo do BC para banco sem caixa</span></td></tr>
+      <tr><td>Valor mobiliário</td><td><span class="trad">investimento oferecido por empresa ao público (ação, debênture, cota)</span></td></tr>
+      <tr><td>Depósito à vista</td><td><span class="trad">o dinheiro da conta-corrente</span></td></tr>
+      <tr><td>Moeda escritural</td><td><span class="trad">o dinheiro que existe só no saldo da conta</span></td></tr>
+      <tr><td>Carteira (banco múltiplo)</td><td><span class="trad">cada “tipo de banco” que ele exerce</span></td></tr>
+      <tr><td>Equiparada a instituição financeira</td><td><span class="trad">não é IF, mas segue as regras como se fosse (leasing)</span></td></tr>
+      <tr><td>EAPC / EFPC</td><td><span class="trad">previdência aberta (PGBL/VGBL) / fundo de pensão</span></td></tr>
+      <tr><td>Sobras</td><td><span class="trad">o “lucro” da cooperativa</span></td></tr>
+      <tr><td>Peer-to-peer</td><td><span class="trad">empréstimo entre pessoas (SEP)</span></td></tr>
+      <tr><td>Arranjo de pagamento</td><td><span class="trad">as regras de um meio de pagamento</span></td></tr>
+      <tr><td>Garantia ordinária do FGC</td><td><span class="trad">até R$ 250 mil por pessoa, por banco ou grupo</span></td></tr>
+      <tr><td>Conglomerado financeiro</td><td><span class="trad">o grupo de empresas do mesmo banco</span></td></tr>
+      <tr><td>Cláusula de subordinação</td><td><span class="trad">recebe só depois de todos os outros credores</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Revisão de 1 minuto</h3>
   <p class="pequeno">No Modo treino, as respostas em vermelho somem. Toque para conferir.</p>
   <ol class="frases-resumo">
-    <li><b>Normativos</b><span class="manuscrito">CMN, CNSP e CNPC</span></li>
-    <li><b>Supervisores</b><span class="manuscrito">BC, CVM, Susep e Previc</span></li>
-    <li><b>CMN</b><span class="manuscrito">Fazenda (preside), Planejamento e presidente do BC</span></li>
-    <li><b>Objetivo do BC</b><span class="manuscrito">estabilidade de preços</span></li>
-    <li><b>Mandato BC</b><span class="manuscrito">4 anos, 1 recondução, começa no 3º ano do governo</span></li>
-    <li><b>Mandato CVM</b><span class="manuscrito">5 anos, sem recondução</span></li>
+    <li><b>Quem faz as regras</b><span class="manuscrito">CMN, CNSP e CNPC</span></li>
+    <li><b>Quem fiscaliza</b><span class="manuscrito">BC, CVM, Susep e Previc</span></li>
+    <li><b>Quem é o CMN</b><span class="manuscrito">Fazenda (preside), Planejamento e presidente do BC</span></li>
+    <li><b>Missão do BC</b><span class="manuscrito">estabilidade de preços</span></li>
+    <li><b>Mandato no BC</b><span class="manuscrito">4 anos, 1 recondução, começa no 3º ano do governo</span></li>
+    <li><b>Mandato na CVM</b><span class="manuscrito">5 anos, sem recondução</span></li>
     <li><b>Previdência aberta</b><span class="manuscrito">CNSP + Susep</span></li>
     <li><b>Previdência fechada</b><span class="manuscrito">CNPC + Previc</span></li>
     <li><b>Banco múltiplo</b><span class="manuscrito">2 carteiras, uma comercial ou de investimento</span></li>
-    <li><b>Cria moeda</b><span class="manuscrito">banco comercial (depósito à vista)</span></li>
-    <li><b>IP</b><span class="manuscrito">não é IF, não empresta, fiscalizada pelo BC</span></li>
-    <li><b>FGC</b><span class="manuscrito">R$ 250 mil por conglomerado; R$ 1 mi a cada 4 anos</span></li>
+    <li><b>Quem cria moeda</b><span class="manuscrito">quem tem depósito à vista (banco comercial)</span></li>
+    <li><b>Instituição de pagamento</b><span class="manuscrito">não é IF, não empresta, fiscalizada pelo BC</span></li>
+    <li><b>FGC</b><span class="manuscrito">R$ 250 mil por grupo; R$ 1 milhão a cada 4 anos</span></li>
   </ol>
-  <div class="frase-final"><span class="manuscrito">Normativo decide, supervisor fiscaliza, operador atende.</span>Se lembrar só de uma frase deste capítulo, que seja esta.</div>
+  <div class="frase-final"><span class="manuscrito">Quem faz a regra não apita, e quem apita não joga.</span>Se lembrar de uma frase só deste capítulo, que seja esta.</div>
 </section>
 
 <!-- 1.17 -->
@@ -1548,102 +1779,102 @@ APOSTILA.capitulos[1] = {
     { id: 'c1q1', tema: 'Estrutura do SFN', n: 'facil',
       q: 'No Sistema Financeiro Nacional, os órgãos que estabelecem as regras gerais de funcionamento, sem atender o público nem fiscalizar diretamente, são:',
       o: ['CMN, CNSP e CNPC', 'Banco Central, CVM e CMN', 'Banco Central, CVM, Susep e Previc', 'CMN, Susep e Previc'], c: 0,
-      e: 'Os normativos são os três conselhos: CMN (moeda, crédito, capitais e câmbio), CNSP (seguros privados) e CNPC (previdência fechada).',
+      e: 'Pensa no campeonato: quem escreve as regras são os três conselhos, CMN, CNSP e CNPC. Na prova eles aparecem como “órgãos normativos”. BC, CVM, Susep e Previc são os que apitam, as “entidades supervisoras”.',
       a: ['Correta: são os três órgãos normativos.', 'BC e CVM são supervisores, não normativos.', 'Essa é a lista dos supervisores.', 'Mistura um normativo (CMN) com dois supervisores.'] },
     { id: 'c1q2', tema: 'CMN', n: 'facil',
       q: 'Fazem parte do Conselho Monetário Nacional:',
       o: ['O Ministro da Fazenda, o presidente do Banco Central e o presidente da CVM', 'O Ministro da Fazenda, o(a) Ministro(a) do Planejamento e Orçamento e o presidente do Banco Central', 'O Presidente da República, o Ministro da Fazenda e o presidente do Banco Central', 'O presidente do Banco Central, o presidente da CVM e o Superintendente da Susep'], c: 1,
-      e: 'O CMN tem só três membros: Fazenda (que preside), Planejamento e Orçamento, e o presidente do BC. Atalho: “FPB”.',
+      e: 'Lembra do tripé “FPB”? Fazenda (que preside), Planejamento e Orçamento, e o presidente do Banco Central. Só três cadeiras. CVM, Susep e o Presidente da República não sentam no CMN.',
       a: ['O presidente da CVM não integra o CMN.', 'Correta.', 'O Presidente da República não integra o CMN.', 'CVM e Susep não fazem parte do CMN.'] },
     { id: 'c1q3', tema: 'CMN', n: 'medio',
       q: 'Sobre a divisão de papéis entre o CMN e o Banco Central na política monetária, é correto afirmar que:',
       o: ['O CMN executa a política monetária e o Banco Central fixa as metas', 'O CMN estabelece as metas e compete privativamente ao Banco Central conduzir a política monetária para cumpri-las', 'Ambos executam a política monetária em conjunto, com voto do Ministro da Fazenda', 'A CVM fixa as metas de inflação e o Banco Central as executa'], c: 1,
-      e: 'LC 179/2021, art. 2º: as metas são do CMN; conduzir a política monetária é privativo do BC.',
+      e: 'O CMN só diz aonde quer chegar, que é a meta. Quem dirige o carro até lá é o BC. Na linguagem da lei (LC 179/2021, art. 2º): as metas são “estabelecidas pelo CMN”, e conduzir a política monetária “compete privativamente ao Banco Central”.',
       a: ['Inverte os papéis.', 'Correta.', 'A condução é privativa do BC.', 'A CVM não atua na política monetária.'] },
     { id: 'c1q4', tema: 'Banco Central', n: 'facil',
       q: 'De acordo com a Lei Complementar 179/2021, o objetivo fundamental do Banco Central do Brasil é:',
       o: ['Fomentar o pleno emprego', 'Financiar o Tesouro Nacional', 'Assegurar a estabilidade de preços', 'Definir a meta para a inflação'], c: 2,
-      e: 'Estabilidade de preços é o objetivo fundamental. Pleno emprego, estabilidade financeira e suavizar flutuações são objetivos secundários.',
+      e: 'A missão número 1 do BC é segurar a inflação, que na prova aparece como “assegurar a estabilidade de preços”. Pleno emprego e estabilidade do sistema financeiro também são objetivos, mas secundários. E quem define a meta é o CMN, não o BC.',
       a: ['É objetivo secundário, “sem prejuízo” do fundamental.', 'O BC não tem essa função.', 'Correta.', 'Quem define a meta é o CMN.'] },
     { id: 'c1q5', tema: 'Banco Central', n: 'medio',
       q: 'Um governo toma posse em 1º de janeiro. Pela LC 179/2021, o presidente do Banco Central nomeado por esse governo, em regra, inicia o mandato:',
       o: ['No mesmo dia da posse do Presidente da República', 'Em 1º de janeiro do segundo ano do mandato presidencial', 'Em 1º de janeiro do terceiro ano do mandato presidencial', 'Somente no primeiro ano do mandato presidencial seguinte'], c: 2,
-      e: 'O mandato do presidente do BC é de 4 anos e começa em 1º de janeiro do 3º ano do mandato do Presidente da República. Assim os mandatos não coincidem.',
+      e: 'Os mandatos são desencontrados de propósito: o presidente do BC entra em 1º de janeiro do 3º ano do governo. Assim, nenhum governo troca o comando do BC logo que assume.',
       a: ['Os mandatos são propositalmente desencontrados.', 'No 2º ano começam dois diretores, não o presidente.', 'Correta.', 'Não há essa regra.'] },
     { id: 'c1q6', tema: 'Banco Central', n: 'medio',
       q: 'Desde a Lei Complementar 179/2021, o Banco Central do Brasil é:',
       o: ['Uma empresa pública vinculada ao Ministério da Fazenda', 'Uma autarquia de natureza especial, sem vinculação a Ministério', 'Um órgão da administração direta subordinado ao CMN', 'Uma autarquia vinculada ao Ministério do Planejamento'], c: 1,
-      e: 'A LC 179/2021 (art. 6º) define o BC como autarquia de natureza especial, sem vinculação a Ministério, tutela ou subordinação hierárquica.',
+      e: 'Desde 2021 o BC não obedece a nenhum ministério. O termo da prova é “autarquia de natureza especial, sem vinculação a Ministério”. Quem continua vinculada à Fazenda é a CVM (e a Susep).',
       a: ['O BC não é empresa pública.', 'Correta.', 'O BC não é subordinado ao CMN: segue as metas, mas tem autonomia.', 'Não há vinculação a Ministério.'] },
     { id: 'c1q7', tema: 'Banco Central', n: 'facil',
       q: 'Entre as competências privativas do Banco Central está:',
       o: ['Emitir papel-moeda e moeda metálica, nos limites autorizados pelo CMN', 'Registrar ofertas públicas de ações', 'Fiscalizar os planos de previdência aberta', 'Aprovar a composição do CNSP'], c: 0,
-      e: 'Emitir moeda e executar os serviços do meio circulante são funções privativas do BC (Lei 4.595, art. 10).',
+      e: 'Só o BC pode colocar nota e moeda em circulação, dentro do limite autorizado pelo CMN. Na prova: “emitir moeda e executar os serviços do meio circulante”. Oferta de ações é com a CVM, previdência aberta é com a Susep.',
       a: ['Correta.', 'Ofertas públicas de valores mobiliários são com a CVM.', 'Previdência aberta é com a Susep.', 'A composição do CNSP está na lei.'] },
     { id: 'c1q8', tema: 'CVM', n: 'medio',
       q: 'Um investidor pergunta qual destes ativos é um valor mobiliário sujeito à regulação da CVM. A resposta correta é:',
       o: ['CDB de um banco múltiplo', 'Tesouro Selic', 'Debênture de uma companhia de energia', 'Depósito em caderneta de poupança'], c: 2,
-      e: 'Debêntures são valores mobiliários (Lei 6.385, art. 2º). Ficam fora da lei os títulos públicos e os títulos de responsabilidade de instituição financeira, exceto debêntures.',
+      e: 'Faça a pergunta “de quem é o papel?”. Debênture é de empresa oferecendo ao público: é valor mobiliário, então é da CVM. CDB e poupança são de banco; o Tesouro Selic é do governo. Esses ficam fora.',
       a: ['CDB é título de banco: fora do regime da CVM.', 'Título público fica fora da Lei 6.385.', 'Correta.', 'Poupança é depósito bancário.'] },
     { id: 'c1q9', tema: 'CVM', n: 'medio',
       q: 'Sobre o Colegiado da CVM, é correto afirmar:',
       o: ['Tem 9 membros com mandato de 4 anos, admitida uma recondução', 'Tem 1 presidente e 4 diretores, com mandato de 5 anos, vedada a recondução', 'É composto pelos membros do CMN', 'Seus diretores são escolhidos pelo presidente do Banco Central'], c: 1,
-      e: 'Lei 6.385, art. 6º: presidente e quatro diretores, nomeados pelo Presidente da República após aprovação do Senado; 5 anos, sem recondução.',
+      e: 'CVM: 1 presidente + 4 diretores, 5 anos, sem recondução (“vedada a recondução”). Não confunda com o BC, que tem 9 dirigentes, 4 anos e pode ser reconduzido uma vez.',
       a: ['Essa é a descrição da diretoria do BC.', 'Correta.', 'Não há essa relação.', 'Quem nomeia é o Presidente da República, após o Senado.'] },
     { id: 'c1q10', tema: 'Seguros e previdência', n: 'facil',
       q: 'Uma pessoa quer contratar um plano VGBL. A entidade que fiscaliza esse produto é:',
       o: ['Previc', 'Banco Central', 'CVM', 'Susep'], c: 3,
-      e: 'VGBL e PGBL são previdência aberta, vendida ao público em geral: normas do CNSP e fiscalização da Susep.',
+      e: 'VGBL é previdência que qualquer pessoa pode contratar, ou seja, previdência “aberta”. Quem faz as regras é o CNSP e quem fiscaliza é a Susep. A Previc fica com os fundos de pensão.',
       a: ['A Previc cuida da previdência fechada (fundos de pensão).', 'O BC não fiscaliza previdência.', 'A CVM não fiscaliza planos de previdência.', 'Correta.'] },
     { id: 'c1q11', tema: 'Seguros e previdência', n: 'facil',
       q: 'O fundo de pensão dos empregados de uma estatal é regulado e fiscalizado, respectivamente, por:',
       o: ['CNSP e Susep', 'CNPC e Previc', 'CMN e Banco Central', 'CMN e CVM'], c: 1,
-      e: 'Fundo de pensão é entidade fechada de previdência complementar (EFPC): CNPC normatiza, Previc fiscaliza.',
+      e: 'Fundo de pensão de estatal só aceita quem trabalha lá, então é previdência “fechada” (EFPC). A dupla é CNPC (regras) + Previc (fiscalização).',
       a: ['Essa dupla cuida da previdência aberta e dos seguros.', 'Correta.', 'Previdência fechada não é do CMN/BC.', 'Não é do CMN/CVM.'] },
     { id: 'c1q12', tema: 'Seguros e previdência', n: 'dificil',
       q: 'Considerando a redação atual do Decreto-Lei 73/1966, NÃO integra o Conselho Nacional de Seguros Privados (CNSP):',
       o: ['O Ministro de Estado da Fazenda', 'O Superintendente da Susep', 'Um representante do Banco Central', 'Um representante da CVM'], c: 3,
-      e: 'A Lei 14.711/2023 revogou o inciso que incluía a CVM no CNSP. Hoje: Fazenda (presidente), Justiça, Previdência, Superintendente da Susep e Banco Central.',
+      e: 'Essa é de atualização! A CVM tinha uma cadeira no CNSP, mas a Lei 14.711/2023 tirou. Hoje sentam lá: Fazenda (preside), Justiça, Previdência, o Superintendente da Susep e o Banco Central.',
       a: ['O Ministro da Fazenda preside o CNSP.', 'O Superintendente da Susep é membro e preside na ausência do Ministro.', 'O BC tem um representante.', 'Correta: a CVM saiu do CNSP em 2023.'] },
     { id: 'c1q13', tema: 'Bancos', n: 'facil',
       q: 'Segundo a regulamentação do CMN, um banco múltiplo deve ser constituído com:',
       o: ['No mínimo duas carteiras, sendo uma delas obrigatoriamente comercial ou de investimento', 'No mínimo três carteiras, sendo uma obrigatoriamente de câmbio', 'Apenas a carteira comercial e a de crédito imobiliário', 'No mínimo duas carteiras, sendo uma obrigatoriamente de desenvolvimento'], c: 0,
-      e: 'Resolução CMN 5.060/2023, art. 4º. As carteiras possíveis: comercial, investimento, desenvolvimento, crédito imobiliário, crédito, financiamento e investimento, e arrendamento mercantil.',
+      e: 'Banco múltiplo é um banco com várias “gavetas” (carteiras): no mínimo 2, e uma tem que ser comercial ou de investimento (Res. CMN 5.060/2023). Câmbio não é carteira!',
       a: ['Correta.', 'Câmbio não é carteira, e o mínimo é dois.', 'Não existe essa obrigação.', 'A obrigatória é comercial ou investimento.'] },
     { id: 'c1q14', tema: 'Bancos', n: 'medio',
       q: 'A instituição capaz de criar moeda escritural, por captar depósitos à vista e conceder crédito, é:',
       o: ['O banco de investimento', 'A sociedade de crédito, financiamento e investimento', 'O banco comercial', 'A companhia hipotecária'], c: 2,
-      e: 'O depósito à vista é exclusivo de bancos comerciais (e múltiplos com carteira comercial e caixas econômicas). O dinheiro emprestado volta ao sistema como novo depósito: é a criação de moeda escritural.',
+      e: 'Só cria moeda escritural quem abre conta-corrente, que na prova se chama “depósito à vista”: o dinheiro emprestado volta como novo depósito e “se multiplica”. Banco de investimento, financeira e companhia hipotecária não captam depósito à vista.',
       a: ['Banco de investimento não capta depósito à vista.', 'Financeira capta por letras de câmbio e RDB.', 'Correta.', 'Companhia hipotecária não capta depósito à vista.'] },
     { id: 'c1q15', tema: 'Não bancárias', n: 'medio',
       q: 'Uma loja de departamentos tem uma financeira própria para financiar as compras dos clientes. Essa financeira capta recursos principalmente por meio de:',
       o: ['Depósitos à vista em conta corrente', 'Depósitos de poupança', 'Letras de câmbio e RDB', 'Emissão de cotas de fundos'], c: 2,
-      e: 'A SCFI (“financeira”) capta por aceite de letras de câmbio, RDB, depósitos interfinanceiros e cessão de créditos. Não abre conta corrente.',
+      e: 'Financeira (SCFI) não abre conta-corrente. Ela pega dinheiro emitindo letras de câmbio e RDB. Na prova aparece como “aceite de letras de câmbio”.',
       a: ['Financeira não abre conta corrente.', 'Poupança não é captação de financeira.', 'Correta.', 'Fundo não é forma de captação da financeira.'] },
     { id: 'c1q16', tema: 'Não bancárias', n: 'medio',
       q: 'Sobre as agências de fomento, é correto afirmar:',
       o: ['Podem captar recursos do público por meio de CDB', 'Cada estado e o Distrito Federal pode constituir uma única agência, e é vedada a captação de recursos do público', 'São fiscalizadas pela CVM', 'São obrigatoriamente controladas pela União'], c: 1,
-      e: 'A agência de fomento é S.A. de capital fechado, controlada pelo estado onde tem sede, uma por unidade da federação, e não pode captar do público.',
+      e: 'Agência de fomento é o “banquinho de desenvolvimento” do estado: só uma por estado (e DF), controlada por ele, e proibida de pegar dinheiro do público. Quem fiscaliza é o BC.',
       a: ['É proibida a captação do público.', 'Correta.', 'A supervisão é do Banco Central.', 'O controle é do estado ou DF.'] },
     { id: 'c1q17', tema: 'Fintechs e IP', n: 'medio',
       q: 'Uma fintech conecta, por plataforma eletrônica, pessoas que querem emprestar a pessoas que querem tomar crédito, sem usar capital próprio. Ela deve ser autorizada pelo Banco Central como:',
       o: ['Sociedade de Crédito Direto (SCD)', 'Sociedade de Empréstimo entre Pessoas (SEP)', 'Instituição de pagamento credenciadora', 'Administradora de consórcio'], c: 1,
-      e: 'A SEP faz o peer-to-peer lending. A SCD empresta com capital próprio e não capta do público.',
+      e: 'Se a fintech só junta quem quer emprestar com quem quer pegar emprestado, é a SEP (peer-to-peer). Se ela empresta o próprio dinheiro, é a SCD.',
       a: ['A SCD usa capital próprio.', 'Correta.', 'IP não pode intermediar empréstimos.', 'Consórcio é autofinanciamento em grupo.'] },
     { id: 'c1q18', tema: 'Fintechs e IP', n: 'medio',
       q: 'Sobre as instituições de pagamento (IP), é correto afirmar que:',
       o: ['São instituições financeiras e podem conceder empréstimos', 'São fiscalizadas pela CVM', 'Não compõem o SFN e não podem conceder empréstimos, mas são reguladas e fiscalizadas pelo Banco Central', 'Podem captar depósitos à vista como os bancos comerciais'], c: 2,
-      e: 'O próprio quadro do SFN do Banco Central traz a nota: IPs não compõem o SFN, mas são reguladas e fiscalizadas pelo BC conforme diretrizes do CMN.',
+      e: 'Instituição de pagamento movimenta dinheiro (Pix, cartão pré-pago, maquininha), mas não empresta. Ela não é instituição financeira e não faz parte do SFN, mas quem regula e fiscaliza é o Banco Central.',
       a: ['IP não é IF e não empresta.', 'A supervisão é do BC.', 'Correta.', 'IP gerencia conta de pagamento, não depósito à vista.'] },
     { id: 'c1q19', tema: 'FGC', n: 'dificil',
       q: 'Marina tem R$ 200 mil em CDB no Banco X e R$ 100 mil em LCA na Financeira X, do mesmo conglomerado. As duas sofrem liquidação. Pelo FGC, Marina recebe:',
       o: ['R$ 300 mil', 'R$ 250 mil', 'R$ 200 mil', 'R$ 500 mil'], c: 1,
-      e: 'O limite de R$ 250 mil é por pessoa contra a mesma instituição ou contra todas as instituições do mesmo conglomerado.',
+      e: 'Banco X e Financeira X são do mesmo grupo, o “conglomerado”, e por isso dividem um único limite de R$ 250 mil. A Marina tinha R$ 300 mil e recebe R$ 250 mil.',
       a: ['Ultrapassa o limite do conglomerado.', 'Correta.', 'Ela tem direito até R$ 250 mil, não só ao CDB.', 'Não se somam dois limites dentro do mesmo grupo.'] },
     { id: 'c1q20', tema: 'FGC', n: 'medio',
       q: 'Qual destes investimentos NÃO conta com a garantia do FGC?',
       o: ['Letra de Crédito do Agronegócio (LCA)', 'Caderneta de poupança', 'Debênture', 'Letra de câmbio'], c: 2,
-      e: 'Debênture é dívida de empresa, não de instituição associada ao FGC. LCA, poupança e letra de câmbio estão na lista de garantia ordinária.',
+      e: 'O FGC protege dívida do banco com você (depósitos e letras). Debênture é dívida de uma empresa comum, não de banco, então não tem FGC. LCA, poupança e letra de câmbio têm.',
       a: ['LCA é garantida.', 'Poupança é garantida.', 'Correta.', 'Letra de câmbio é garantida.'] }
   ],
   revisaoTemas: ['Estrutura do SFN', 'CMN', 'Banco Central', 'CVM', 'Seguros e previdência', 'Bancos', 'Não bancárias', 'Fintechs e IP', 'FGC']
@@ -2146,7 +2377,7 @@ APOSTILA.jogos.fiscaliza = {
   function aplicarTreino() {
     document.body.classList.toggle('treino', !!E.treino);
     $('#b-treino').setAttribute('aria-pressed', E.treino ? 'true' : 'false');
-    $$('.treino-oculto .ver, .mc-ramo li.ver, .frases-resumo .manuscrito.ver').forEach((x) => x.classList.remove('ver'));
+    $$('.mc-ramo li.ver, .frases-resumo .manuscrito.ver, dl.termos dd.ver, table.dicionario .trad.ver').forEach((x) => x.classList.remove('ver'));
   }
 
   function atualizarGeral() { if (viewAtual === 'inicio') montarInicio(); }
@@ -2176,6 +2407,7 @@ APOSTILA.jogos.fiscaliza = {
       const ce = ev.target.closest('.ce');
       if (ce && ce.classList.contains('fechado')) { ce.classList.remove('fechado'); ce.classList.add('abriu'); return; }
       const fr = ev.target.closest('.treino .frases-resumo .manuscrito'); if (fr) { fr.classList.toggle('ver'); return; }
+      const tr = ev.target.closest('.treino dl.termos dd, .treino table.dicionario .trad'); if (tr) { tr.classList.toggle('ver'); return; }
       const fig = ev.target.closest('.figura[data-zoom]'); if (fig && !ev.target.closest('a')) { abrirLupa(fig); return; }
       const link = ev.target.closest('#gaveta a, #busca-resultados a'); if (link) { fecharGaveta(); $('#busca').hidden = true; }
     });
