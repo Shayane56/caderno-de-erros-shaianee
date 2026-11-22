@@ -125,3 +125,6 @@ html.pdf .legenda-caixas .caixa { font-size: 12.5px; padding: 8px 10px 6px; }
 html.pdf .legenda-caixas .juca { grid-column: 1 / -1; }
 html.pdf .sumario .caixa.destaque { font-size: 13.5px; }
 html.pdf .questao .contexto { font-size: 13.5px; padding: 6px 10px; margin-bottom: 6px; }
+html.pdf .rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.pdf .rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.pdf #c1-s20 { break-before: page; margin-top: 0; }

@@ -1,51 +1,61 @@
-// Gera o PDF a partir de dist/apostila-pdf.html (rode antes: python3 build.py).
-// Uso: node build-pdf.cjs [saida.pdf]
-// A capa sai sem margens; o miolo sai em A4 com margens e rodapé numerado. As duas partes são unidas com pdfunite.
+// Gera os PDFs a partir de dist/ (rode antes: python3 build.py).
+// Uso: node build-pdf.cjs --cap 2            PDF completo do capítulo 2 (capa sem margens + miolo A4 com rodapé)
+//      node build-pdf.cjs --cap 2 --resumo   PDF do resumo do capítulo 2 (2 páginas)
+// A capa e o miolo são unidos com pdfunite (poppler-utils).
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 const { execFileSync } = require('child_process');
 
 const RAIZ = __dirname;
-const ENTRADA = path.join(RAIZ, 'dist', 'apostila-pdf.html');
-const SAIDA = (process.argv[2] && !process.argv[2].startsWith('--') && process.argv[2]) || path.join(RAIZ, 'dist', 'Apostila-CPA-Cap1-Sistema-Financeiro-Nacional.pdf');
-const TMP = path.join(RAIZ, 'dist', '.tmp');
+const DIST = path.join(RAIZ, 'dist');
+const TMP = path.join(DIST, '.tmp');
 
-const RODAPE = `<div style="width:100%;font-family:Nunito,Arial,sans-serif;font-size:8.5px;color:#5b6970;padding:0 14mm;display:flex;justify-content:space-between">
-  <span>Apostila CPA · Capítulo 1 · Sistema Financeiro Nacional</span><span>página <span class="pageNumber"></span> de <span class="totalPages"></span></span></div>`;
+// título e nome de arquivo de cada capítulo pronto
+const CAPS = {
+  1: { titulo: 'Sistema Financeiro Nacional', arquivo: 'Sistema-Financeiro-Nacional' },
+  2: { titulo: 'Política econômica e indicadores', arquivo: 'Politica-Economica-e-Indicadores' }
+};
 
-async function resumo() {
-  // node build-pdf.cjs --resumo : gera só o PDF do resumo (sem capa, margens menores)
+const arg = (nome) => { const i = process.argv.indexOf(nome); return i >= 0 ? process.argv[i + 1] : null; };
+const N = Number(arg('--cap') || 1);
+const CAP = CAPS[N];
+if (!CAP) { console.error('Capítulo sem configuração em build-pdf.cjs:', N); process.exit(1); }
+const nn = String(N).padStart(2, '0');
+
+const rodape = (texto) => `<div style="width:100%;font-family:Nunito,Arial,sans-serif;font-size:8.5px;color:#5b6970;padding:0 14mm;display:flex;justify-content:space-between">
+  <span>${texto}</span><span>página <span class="pageNumber"></span> de <span class="totalPages"></span></span></div>`;
+
+async function abrir(arquivo, largura) {
   const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
   const browser = await chromium.launch(proxy ? { proxy: { server: proxy } } : {});
-  const page = await browser.newPage({ viewport: { width: 718, height: 1000 } });
+  const page = await browser.newPage({ viewport: { width: largura, height: 1000 } });
   await page.emulateMedia({ media: 'print', colorScheme: 'light' });
-  await page.goto('file://' + path.join(RAIZ, 'dist', 'resumo-pdf.html'), { waitUntil: 'networkidle' });
+  await page.goto('file://' + path.join(DIST, arquivo), { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  const saida = path.join(RAIZ, 'dist', 'Apostila-CPA-Cap1-Resumo.pdf');
+  await page.waitForTimeout(800);
+  return { browser, page };
+}
+
+async function resumo() {
+  const { browser, page } = await abrir(`resumo-pdf-cap${nn}.html`, 718);
+  const saida = path.join(DIST, `Apostila-CPA-Cap${N}-Resumo.pdf`);
   await page.pdf({
     path: saida, format: 'A4', printBackground: true, displayHeaderFooter: true, headerTemplate: '<div></div>',
-    footerTemplate: RODAPE.replace('Capítulo 1 · Sistema Financeiro Nacional', 'Resumo do Capítulo 1 · Sistema Financeiro Nacional'),
+    footerTemplate: rodape(`Apostila CPA · Resumo do Capítulo ${N} · ${CAP.titulo}`),
     margin: { top: '10mm', right: '10mm', bottom: '13mm', left: '10mm' }
   });
   await browser.close();
   console.log('PDF do resumo:', saida, (fs.statSync(saida).size / 1024).toFixed(0) + ' KB');
 }
 
-(async () => {
-  if (process.argv.includes('--resumo')) return resumo();
+async function completo() {
   fs.mkdirSync(TMP, { recursive: true });
-  const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
-  const browser = await chromium.launch(proxy ? { proxy: { server: proxy } } : {});
   // 182 mm de largura útil (A4 menos 14 mm de cada lado) ≈ 688 px: o mapa mental é desenhado nessa largura.
-  const page = await browser.newPage({ viewport: { width: 688, height: 1000 } });
-  await page.emulateMedia({ media: 'print', colorScheme: 'light' });
-  await page.goto('file://' + ENTRADA, { waitUntil: 'networkidle' });
-  await page.evaluate(() => document.fonts.ready);
-  await page.waitForTimeout(800);
-
+  const { browser, page } = await abrir(`apostila-pdf-cap${nn}.html`, 688);
   const capa = path.join(TMP, 'capa.pdf');
   const miolo = path.join(TMP, 'miolo.pdf');
+  const saida = path.join(DIST, `Apostila-CPA-Cap${N}-${CAP.arquivo}.pdf`);
   const esconder = await page.addStyleTag({ content: 'body > *:not(.capa):not(.defs-globais):not(script){display:none !important}' });
   await page.pdf({ path: capa, format: 'A4', printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 }, pageRanges: '1' });
   await esconder.evaluate((el) => el.remove());
@@ -53,11 +63,13 @@ async function resumo() {
   await page.evaluate(() => document.querySelectorAll('.mapa-caderno').forEach((m) => m._desenhar && m._desenhar()));
   await page.pdf({
     path: miolo, format: 'A4', printBackground: true, displayHeaderFooter: true,
-    headerTemplate: '<div></div>', footerTemplate: RODAPE,
+    headerTemplate: '<div></div>', footerTemplate: rodape(`Apostila CPA · Capítulo ${N} · ${CAP.titulo}`),
     margin: { top: '14mm', right: '14mm', bottom: '16mm', left: '14mm' }
   });
   await browser.close();
-  execFileSync('pdfunite', [capa, miolo, SAIDA]);
+  execFileSync('pdfunite', [capa, miolo, saida]);
   fs.rmSync(TMP, { recursive: true, force: true });
-  console.log('PDF gerado:', SAIDA, (fs.statSync(SAIDA).size / 1024).toFixed(0) + ' KB');
-})();
+  console.log('PDF gerado:', saida, (fs.statSync(saida).size / 1024).toFixed(0) + ' KB');
+}
+
+(process.argv.includes('--resumo') ? resumo() : completo()).catch((e) => { console.error(e); process.exit(1); });

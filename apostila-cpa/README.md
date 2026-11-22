@@ -31,8 +31,8 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | Cap. | Módulo (peso) | Assunto | Status |
 | --- | --- | --- | --- |
 | 1 | 1 (20%) | Sistema Financeiro Nacional | pronto · cobre todo o item 1.1 do programa |
-| 2 | 1 (20%) | Política econômica e indicadores 🔥 | próxima etapa |
-| 3 | 1 (20%) | Matemática financeira | |
+| 2 | 1 (20%) | Política econômica e indicadores 🔥 | pronto · cobre todo o item 1.2 do programa |
+| 3 | 1 (20%) | Matemática financeira | próxima etapa |
 | 4 | 1 (20%) | Regulação e infraestrutura de mercado | |
 | 5 | 2 (40%) | Renda fixa 🔥 | |
 | 6 | 2 (40%) | Renda variável e COE 🔥 | |
@@ -49,9 +49,14 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 ## Como gerar
 
 ```bash
-python3 build.py          # monta dist/caderno.html, dist/Apostila-CPA-caderno.html e dist/apostila-pdf.html
-node build-pdf.cjs        # gera o PDF (precisa de Playwright/Chromium e do pdfunite, do poppler-utils)
+python3 build.py                     # monta o caderno e os documentos de PDF de cada capítulo em dist/
+node build-pdf.cjs --cap 2           # PDF completo do capítulo 2 (precisa de Playwright/Chromium e do pdfunite)
+node build-pdf.cjs --cap 2 --resumo  # PDF do resumo de 2 páginas do capítulo 2
 ```
+
+Para adicionar um capítulo: crie `capNN.html`, `dados-capNN.js`, `resumoNN.html` e `capa-capNN.html` em `src/`,
+inclua o número em `CAPITULOS` (build.py) e em `CAPS` (build-pdf.cjs) e os marcadores `<!--@@CAPNN@@-->` e
+`<!--@@RESUMONN@@-->` em `casca.html`.
 
 ## Estrutura de `src/`
 

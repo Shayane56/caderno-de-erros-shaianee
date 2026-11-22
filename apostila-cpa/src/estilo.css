@@ -684,3 +684,13 @@ table.dicionario .trad { color: var(--tinta); }
 .questao .contexto b { display: block; font: 700 13px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
 .questao .enunciado { font-weight: 700; }
 .questao .cab .cog { font: 700 13px var(--f-mao); padding: 0 8px; border-radius: 8px; background: var(--roxo-claro); color: var(--roxo); }
+
+/* índice por módulo do programa ANBIMA */
+.g-modulo { margin: 16px 6px 4px; padding: 6px 10px; border-radius: 10px; background: var(--fundo); font: 400 14px/1.3 var(--f-texto); color: var(--tinta); }
+.g-modulo b { display: block; font: 700 15px var(--f-mao); letter-spacing: .05em; text-transform: uppercase; color: var(--teal); }
+.g-modulo span { display: block; font-size: 12.5px; color: var(--suave); }
+/* capítulo 2: capa e resumo */
+.capa-ouro { background: radial-gradient(120% 80% at 85% 8%, #e7b04a 0%, #a8701c 42%, #4a2f0b 100%); }
+.rs-numeros.rs-tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rs-cola-grade.rs-tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .rs-numeros.rs-tres, .rs-cola-grade.rs-tres-col { grid-template-columns: minmax(0, 1fr); } }
