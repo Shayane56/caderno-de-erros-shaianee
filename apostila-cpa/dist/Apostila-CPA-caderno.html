@@ -627,6 +627,50 @@ table.dicionario .trad { color: var(--tinta); }
 .treino table.dicionario .trad { color: transparent; background: repeating-linear-gradient(90deg, var(--linha) 0 12px, transparent 12px 16px) 0 70% / 100% 3px no-repeat; cursor: pointer; }
 .treino table.dicionario .trad.ver { color: var(--tinta); background: none; }
 @media (max-width: 640px) { dl.termos { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.termos dd { margin-bottom: 6px; } }
+
+
+/* ---------------- resumo do capítulo ("cola" de 2 páginas) ---------------- */
+.resumo { max-width: 1040px; margin: 0 auto; }
+.rs-topo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 18px; align-items: center; margin-bottom: 16px; }
+.rs-titulo { margin: 0; font: 400 clamp(38px, 6vw, 60px)/1.05 var(--f-titulo); transform: rotate(-1.5deg); transform-origin: left; text-wrap: balance; }
+.rs-titulo span { display: block; font: 700 clamp(20px, 3vw, 26px)/1.2 var(--f-mao); color: var(--coral); transform: rotate(1deg); margin-top: 4px; }
+.rs-sub { margin: 10px 0 0; color: var(--suave); }
+.rs-juca { margin: 0; }
+.rs-termo { font-weight: 800; color: var(--petroleo); background: linear-gradient(transparent 60%, var(--mk-azul) 60%); padding: 0 1px; }
+.rs-grade { display: flex; flex-direction: column; gap: 14px; }
+.rs-linha { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.rs-linha.rs-uma { grid-template-columns: minmax(0, 1fr); }
+.rs-largo { grid-column: 1 / -1; }
+.rs-card { --cc: var(--teal); background: var(--papel-2); border: 2px solid color-mix(in oklab, var(--cc) 45%, var(--linha)); border-top: 6px solid var(--cc); border-radius: 6px 6px 14px 14px; padding: 10px 14px 12px; min-width: 0; font-size: 15px; line-height: 1.45; }
+.rs-card h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; font: 700 21px/1.2 var(--f-mao); color: var(--tinta); }
+.rs-card h2 i { font-style: normal; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50% 45% 55% 50%; background: var(--cc); color: #fff; font: 700 15px var(--f-mao); flex: none; }
+.rs-card p { margin: 0; }
+.rs-card ul, .rs-card ol { margin: 0; padding-left: 18px; }
+.rs-card li { margin: 0 0 4px; }
+.rs-card.c-teal { --cc: var(--teal); } .rs-card.c-ambar { --cc: var(--ambar); } .rs-card.c-azul { --cc: var(--azul); }
+.rs-card.c-verde { --cc: var(--verde); } .rs-card.c-coral { --cc: var(--coral); } .rs-card.c-roxo { --cc: var(--roxo); }
+.rs-tab { min-width: 560px; font-size: 14px; }
+.rs-tab td small { display: block; font: 400 12px var(--f-texto); color: var(--suave); }
+.rs-alerta { background: var(--coral-claro); color: var(--coral-escuro); font-weight: 800; padding: 0 4px; border-radius: 4px; }
+.rs-numeros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 2px 0 8px; }
+.rs-numeros span { background: var(--verde-claro); border-radius: 10px; padding: 6px 8px; text-align: center; font-size: 13px; line-height: 1.3; }
+.rs-numeros b { display: block; font: 700 22px/1.1 var(--f-mao); color: var(--verde-escuro); }
+.rs-pegadinhas { --cc: var(--coral); background: var(--postit-rosa); }
+.rs-pegadinhas ol { columns: 2; column-gap: 26px; }
+.rs-pegadinhas li { break-inside: avoid; }
+.rs-navega { margin-top: 22px; }
+.hero-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+@media (max-width: 760px) {
+  .rs-topo, .rs-linha { grid-template-columns: minmax(0, 1fr); }
+  .rs-pegadinhas ol { columns: 1; }
+}
+
+.rs-cola-grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.rs-cola-grade div { background: var(--azul-claro); border-radius: 10px; padding: 7px 9px; }
+.rs-cola-grade b { display: block; font: 700 19px/1.1 var(--f-mao); color: var(--azul); margin-bottom: 2px; }
+.rs-cola-grade span { font-size: 13.5px; line-height: 1.35; display: block; }
+.rs-cola-nota { margin-top: 8px !important; font-size: 14px; }
+@media (max-width: 760px) { .rs-cola-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
 <!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
 <svg class="defs-globais" aria-hidden="true" width="0" height="0">
@@ -798,7 +842,8 @@ table.dicionario .trad { color: var(--tinta); }
     <span class="hero-sobre">Capítulo 1 · A base de toda a prova</span>
     <h1 class="hero-titulo">Sistema Financeiro Nacional</h1>
     <p class="hero-sub">Já parou para pensar em como o dinheiro que você guarda no banco vira o empréstimo de outra pessoa? E quem vigia tudo isso? É disso que este capítulo fala. E, sendo bem sincera, ele é a base da prova inteira.</p>
-    <div class="hero-chips"><span>CMN</span><span>Banco Central</span><span>CVM</span><span>Susep</span><span>Previc</span><span>banco múltiplo</span><span>fintechs</span><span>FGC</span></div>
+    <div class="hero-acoes"><a class="btn-mao principal pequeno" href="#resumo-1">Ver o resumo em 2 páginas</a><a class="btn-mao pequeno" href="#c1-s15">Ir direto às questões</a></div>
+    <div class="hero-chips" style="margin-top:14px"><span>CMN</span><span>Banco Central</span><span>CVM</span><span>Susep</span><span>Previc</span><span>banco múltiplo</span><span>fintechs</span><span>FGC</span></div>
   </div>
   <div class="hero-aprender">
     <h2>Perguntas que você vai saber responder</h2>
@@ -1701,6 +1746,163 @@ table.dicionario .trad { color: var(--tinta); }
   </div>
 </div>
 
+<div class="view folha" id="view-resumo-1" hidden>
+  <article class="resumo tema-mar" id="resumo-1" data-cap="1">
+  <header class="rs-topo">
+    <div>
+      <span class="sobretitulo">Capítulo 1 · Resumo</span>
+      <h1 class="rs-titulo">Sistema Financeiro Nacional <span>em 2 páginas</span></h1>
+      <p class="rs-sub">Só o que mais cai. Os termos em <b class="rs-termo">destaque</b> são os nomes que a prova usa.</p>
+    </div>
+    <div class="juca rs-juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+      <p class="balao mb-0"><b>Quem faz a regra não apita, e quem apita não joga.</b></p></div>
+  </header>
+
+  <div class="rs-grade">
+    <div class="rs-linha rs-uma">
+    <section class="rs-card c-teal rs-largo">
+      <h2><i>1</i>O que é o SFN</h2>
+      <p>É o conjunto de órgãos e instituições que fazem a <b class="rs-termo">intermediação financeira</b>: levam o dinheiro de quem tem sobrando (<b class="rs-termo">agente superavitário</b>) para quem precisa (<b class="rs-termo">agente deficitário</b>). O que o banco ganha nesse meio de campo (juro cobrado − juro pago) é o <b class="rs-termo">spread bancário</b>.</p>
+    </section>
+    </div>
+    <div class="rs-linha rs-uma">
+
+    <section class="rs-card c-teal rs-largo">
+      <h2><i>2</i>Os 3 andares</h2>
+      <div class="tabela-rolagem"><table class="tabela rs-tab">
+        <thead><tr><th></th><th>Bancos, crédito, investimentos, câmbio</th><th>Seguros e previdência aberta</th><th>Previdência fechada</th></tr></thead>
+        <tbody>
+          <tr><td>Faz as regras <small>órgão normativo</small></td><td><b>CMN</b></td><td><b>CNSP</b></td><td><b>CNPC</b></td></tr>
+          <tr><td>Fiscaliza <small>entidade supervisora</small></td><td><b>BC</b> e <b>CVM</b></td><td><b>Susep</b></td><td><b>Previc</b></td></tr>
+          <tr><td>Atende o público <small>operador</small></td><td>bancos, cooperativas, financeiras, corretoras, consórcios, bolsa</td><td>seguradoras, resseguradores, capitalização, EAPC</td><td>fundos de pensão (EFPC)</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    </div>
+    <div class="rs-linha">
+
+    <section class="rs-card c-ambar">
+      <h2><i>3</i>CMN</h2>
+      <ul>
+        <li><b class="rs-termo">Órgão normativo máximo</b> do SFN. <strong>Só faz regras</strong>: não executa e não fiscaliza.</li>
+        <li><strong>3 membros (“FPB”)</strong>: Ministro da <b>F</b>azenda (preside), Ministro do <b>P</b>lanejamento e Orçamento e presidente do <b>B</b>C.</li>
+        <li>Reúne-se <strong>1 vez por mês</strong>; decide por <b class="rs-termo">Resolução CMN</b>.</li>
+        <li>Fixa a <strong>meta de inflação</strong>, as regras do crédito e do câmbio e as do funcionamento das instituições.</li>
+      </ul>
+    </section>
+
+    <section class="rs-card c-azul">
+      <h2><i>4</i>Banco Central</h2>
+      <ul>
+        <li><b class="rs-termo">Autarquia de natureza especial, sem vinculação a Ministério</b> (LC 179/2021).</li>
+        <li>Objetivo fundamental: <b class="rs-termo">estabilidade de preços</b>. Os secundários são o sistema financeiro estável, suavizar a economia e o pleno emprego.</li>
+        <li><strong>9 diretores</strong>, <strong>4 anos</strong>, <strong>1 recondução</strong>, com aprovação do <strong>Senado</strong>. O presidente entra no <strong>3º ano</strong> do governo.</li>
+        <li><b class="rs-termo">Privativo</b> do BC: emitir moeda, <b class="rs-termo">compulsório</b>, <b class="rs-termo">redesconto</b>, autorizar e fiscalizar, reservas internacionais, <b class="rs-termo">open market</b>.</li>
+      </ul>
+    </section>
+    </div>
+    <div class="rs-linha">
+
+    <section class="rs-card c-verde">
+      <h2><i>5</i>CVM</h2>
+      <ul>
+        <li><b class="rs-termo">Autarquia em regime especial, vinculada ao Ministério da Fazenda</b> (Lei 6.385/1976).</li>
+        <li><strong>1 presidente + 4 diretores</strong>, <strong>5 anos</strong>, <b class="rs-termo">vedada a recondução</b>.</li>
+        <li><b class="rs-termo">Valor mobiliário</b> (é da CVM): ação, debênture, cotas de fundos, derivativos.</li>
+        <li><strong>Não é valor mobiliário</strong>: título público e título de banco (<strong>CDB, LCI, LCA</strong>).</li>
+      </ul>
+    </section>
+
+    <section class="rs-card c-ambar">
+      <h2><i>6</i>Seguros e previdência</h2>
+      <ul>
+        <li><strong>CNSP</strong> (regras) + <strong>Susep</strong> (fiscaliza, vinculada à Fazenda): seguros, <b class="rs-termo">resseguro</b>, <b class="rs-termo">capitalização</b> e previdência <strong>aberta</strong> (<strong>PGBL/VGBL</strong>, vendidos pelas EAPC).</li>
+        <li>CNSP: Fazenda preside. <span class="rs-alerta">A CVM saiu do CNSP em 2023.</span></li>
+        <li><strong>CNPC</strong> + <strong>Previc</strong>: previdência <strong>fechada</strong> (<b class="rs-termo">EFPC</b>, os fundos de pensão), só para quem tem vínculo.</li>
+        <li>Novidade: proteção veicular e cooperativas de seguros agora são da Susep (LC 213/2025).</li>
+      </ul>
+    </section>
+    </div>
+    <div class="rs-linha rs-quebra">
+
+    <section class="rs-card c-coral">
+      <h2><i>7</i>Bancos</h2>
+      <ul>
+        <li><strong>Comercial</strong>: capta <b class="rs-termo">depósito à vista</b> (conta-corrente), por isso <b class="rs-termo">cria moeda escritural</b>.</li>
+        <li><strong>De investimento</strong>: atende empresas e <strong>não</strong> capta depósito à vista.</li>
+        <li><strong>Múltiplo</strong>: <strong>mínimo de 2 carteiras</strong>, uma <strong>comercial ou de investimento</strong> (Res. CMN 5.060/2023). <span class="rs-alerta">Câmbio não é carteira.</span></li>
+        <li><strong>Cooperativo</strong>: controlado por cooperativas centrais (≥ 51%). <strong>Caixa</strong>: empresa pública, FGTS, loteria.</li>
+      </ul>
+    </section>
+
+    <section class="rs-card c-roxo">
+      <h2><i>8</i>Não bancárias</h2>
+      <ul>
+        <li>Não captam depósito à vista e <strong>não criam moeda</strong>.</li>
+        <li><strong>Financeira (SCFI)</strong>: crédito ao consumo; capta por <b class="rs-termo">letra de câmbio</b> e RDB; sem conta-corrente.</li>
+        <li><strong>Leasing</strong>: <b class="rs-termo">equiparado a instituição financeira</b>. <strong>Agência de fomento</strong>: 1 por estado, não capta do público.</li>
+        <li><strong>Consórcio</strong>: fiscalizado pelo BC. <strong>Corretoras/distribuidoras</strong>: <strong>BC + CVM</strong>.</li>
+      </ul>
+    </section>
+    </div>
+    <div class="rs-linha">
+
+    <section class="rs-card c-teal">
+      <h2><i>9</i>Cooperativas, fintechs e IP</h2>
+      <ul>
+        <li><strong>Cooperativa</strong>: o cliente é dono, voto igual, lucro = <b class="rs-termo">sobras</b>, garantia do <strong>FGCoop</strong>.</li>
+        <li><strong>SCD</strong>: empresta com <strong>capital próprio</strong>. <strong>SEP</strong>: <b class="rs-termo">peer-to-peer</b>, até R$ 15 mil por credor.</li>
+        <li><strong>Instituição de pagamento</strong>: <span class="rs-alerta">não é IF, não empresta e não compõe o SFN</span>, mas é fiscalizada pelo <strong>BC</strong>.</li>
+        <li>Desde 2025: quem não é banco não pode usar “banco/bank” no nome.</li>
+      </ul>
+    </section>
+
+    <section class="rs-card c-verde">
+      <h2><i>10</i>FGC</h2>
+      <div class="rs-numeros"><span><b>R$ 250 mil</b>por CPF, por instituição <strong>ou conglomerado</strong></span><span><b>R$ 1 milhão</b>a cada <strong>4 anos</strong></span></div>
+      <ul>
+        <li>Entidade <strong>privada, sem fins lucrativos</strong>.</li>
+        <li><strong>Cobre</strong>: conta, poupança, CDB, RDB, LC, LCI, LCA, LH e <strong>LCD</strong>.</li>
+        <li><strong>Não cobre</strong>: fundos, debêntures, CRI, CRA, ações, títulos públicos, PGBL/VGBL.</li>
+      </ul>
+    </section>
+    </div>
+    <div class="rs-linha rs-uma">
+
+    <section class="rs-card rs-pegadinhas rs-largo">
+      <h2><i>!</i>As 6 pegadinhas que mais derrubam</h2>
+      <ol>
+        <li>CMN <strong>não executa</strong> política monetária: quem executa é o BC.</li>
+        <li>BC <strong>não é vinculado</strong> a ministério; a CVM é (Fazenda).</li>
+        <li>BC: 4 anos <strong>com</strong> 1 recondução. CVM: 5 anos <strong>sem</strong> recondução.</li>
+        <li>Fundo de pensão é <strong>Previc</strong>; PGBL/VGBL é <strong>Susep</strong>.</li>
+        <li>IP <strong>não empresta</strong> e não é instituição financeira.</li>
+        <li>FGC: o limite é por <strong>conglomerado</strong>, e a LCD <strong>tem</strong> FGC.</li>
+      </ol>
+    </section>
+    </div>
+    <div class="rs-linha rs-uma">
+    <section class="rs-card c-azul rs-cola">
+      <h2><i>✓</i>Cola rápida: quem fiscaliza o quê</h2>
+      <div class="rs-cola-grade">
+        <div><b>BC</b><span>bancos e Caixa, cooperativas de crédito, financeiras, consórcios, fintechs (SCD/SEP), instituições de pagamento</span></div>
+        <div><b>CVM</b><span>companhias abertas, fundos de investimento, bolsa (B3), auditores, analistas e consultores</span></div>
+        <div><b>Susep</b><span>seguradoras, resseguradores, capitalização, PGBL/VGBL, proteção veicular</span></div>
+        <div><b>Previc</b><span>fundos de pensão (previdência fechada)</span></div>
+      </div>
+      <p class="rs-cola-nota">Corretoras e distribuidoras: <strong>BC + CVM</strong>. E lembre: quem faz as regras é CMN, CNSP e CNPC.</p>
+    </section>
+    </div>
+  </div>
+
+  <nav class="navega rs-navega" aria-label="Navegação do resumo">
+    <a href="#cap-1"><small>quer os detalhes?</small><b>← Capítulo completo</b></a>
+    <a class="prox" href="#c1-s15"><small>hora de testar</small><b>Fazer as questões →</b></a>
+  </nav>
+</article>
+
+</div>
+
 <!-- ======================= DESEMPENHO ======================= -->
 <div class="view folha" id="view-painel" hidden>
   <div class="cap-layout"><div class="capitulo">
@@ -2195,6 +2397,7 @@ APOSTILA.jogos.fiscaliza = {
 
   /* ---------------- views ---------------- */
   const VIEWS = { inicio: $('#view-inicio'), painel: $('#view-painel') };
+  $$('article.resumo').forEach((a) => { VIEWS['resumo-' + a.dataset.cap] = a.closest('.view'); });
   $$('article.capitulo').forEach((a) => { VIEWS['cap-' + a.dataset.cap] = a.closest('.view'); });
   let viewAtual = '';
   function mostrar(view, alvoId) {
@@ -2202,8 +2405,9 @@ APOSTILA.jogos.fiscaliza = {
     Object.entries(VIEWS).forEach(([k, v]) => { if (v) v.hidden = k !== view; });
     if (view !== viewAtual) { viewAtual = view; if (!alvoId) window.scrollTo(0, 0); }
     const cap = view.startsWith('cap-') ? CAPS.find((c) => 'cap-' + c.n === view) : null;
-    $('#b-titulo').textContent = cap ? `Cap. ${cap.n} · ${cap.t}` : view === 'painel' ? 'Meu desempenho' : 'Apostila interativa';
-    document.title = cap ? `Cap. ${cap.n} · ${cap.t} · Apostila CPA` : 'Apostila CPA';
+    const res = view.startsWith('resumo-') ? CAPS.find((c) => 'resumo-' + c.n === view) : null;
+    $('#b-titulo').textContent = cap ? `Cap. ${cap.n} · ${cap.t}` : res ? `Resumo · Cap. ${res.n}` : view === 'painel' ? 'Meu desempenho' : 'Apostila interativa';
+    document.title = cap ? `Cap. ${cap.n} · ${cap.t} · Apostila CPA` : res ? `Resumo do cap. ${res.n} · Apostila CPA` : 'Apostila CPA';
     if (view === 'inicio') montarInicio();
     if (view === 'painel') montarPainel();
     if (cap) { $$('.mapa-caderno', VIEWS[view]).forEach((m) => m._desenhar && requestAnimationFrame(m._desenhar)); }
@@ -2302,7 +2506,7 @@ APOSTILA.jogos.fiscaliza = {
         const ok = !!D.capitulos[c.n];
         const secs = ok ? $$(`#cap-${c.n} section.bloco`) : [];
         return `<a class="g-item ${c.tema}${ok ? '' : ' bloqueado'}" href="#cap-${c.n}" data-view="cap-${c.n}"><span class="g-num">${c.n}</span><span class="g-nome">${escH(c.t)}${ok ? '' : '<small>em breve</small>'}</span></a>`
-          + (ok ? `<ul class="g-secoes">${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
+          + (ok ? `<ul class="g-secoes">${document.getElementById('resumo-' + c.n) ? `<li><a href="#resumo-${c.n}"><b>★ Resumo em 2 páginas</b></a></li>` : ''}${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
       }).join('');
     marcarVistas();
   }

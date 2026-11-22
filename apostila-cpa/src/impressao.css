@@ -77,3 +77,43 @@ html.pdf .ce > div { font-size: 14.5px; padding: 8px 12px; }
 
 html.pdf .caixa.prova { break-inside: avoid; box-shadow: none; }
 html.pdf .gancho { break-after: avoid; }
+
+/* resumo em PDF: 2 páginas A4 */
+html.pdf .resumo { max-width: none; }
+html.pdf .rs-topo { grid-template-columns: minmax(0, 1fr) 250px; margin-bottom: 10px; }
+html.pdf .rs-titulo { font-size: 44px; }
+html.pdf .rs-titulo span { font-size: 21px; }
+html.pdf .rs-sub { font-size: 13px; margin-top: 6px; }
+html.pdf .rs-juca { grid-template-columns: 58px minmax(0, 1fr); }
+html.pdf .rs-juca svg { width: 58px; height: 58px; }
+html.pdf .rs-juca .balao { font-size: 14px; padding: 8px 10px; }
+html.pdf .rs-grade { gap: 10px; }
+html.pdf .rs-linha { gap: 10px; break-inside: avoid; }
+html.pdf .rs-quebra { break-before: page; }
+html.pdf .rs-largo { grid-column: 1 / -1; }
+html.pdf .rs-card { font-size: 13.4px; line-height: 1.45; padding: 9px 12px 10px; break-inside: avoid; }
+html.pdf .rs-card h2 { font-size: 18.5px; margin-bottom: 4px; }
+html.pdf .rs-card h2 i { width: 23px; height: 23px; font-size: 13px; }
+html.pdf .rs-card li { margin-bottom: 3px; }
+html.pdf .rs-tab { min-width: 0; font-size: 13px; }
+html.pdf .rs-tab th, html.pdf .rs-tab td { padding: 4px 7px !important; }
+html.pdf .rs-tab th { font-size: 13px; }
+html.pdf .rs-numeros b { font-size: 18px; }
+html.pdf .rs-numeros span { font-size: 11.5px; padding: 4px 6px; }
+html.pdf .rs-pegadinhas ol { columns: 2; }
+html.pdf .rs-navega { display: none; }
+
+html.pdf .rs-linha { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html.pdf .rs-linha.rs-uma { grid-template-columns: minmax(0, 1fr); }
+html.pdf .rs-topo { grid-template-columns: minmax(0, 1fr) 250px; }
+html.pdf .rs-pegadinhas ol { columns: 2; }
+html.pdf .rs-topo { grid-template-columns: minmax(0, 1fr); margin-bottom: 6px; }
+html.pdf .rs-juca { display: none; }
+html.pdf .rs-titulo { font-size: 38px; transform: none; }
+html.pdf .rs-titulo span { display: inline; font-size: 20px; margin-left: 10px; }
+html.pdf .rs-tab td small { display: inline; margin-left: 4px; }
+html.pdf .rs-tab td { line-height: 1.3; }
+html.pdf .rs-card { font-size: 13px; line-height: 1.42; }
+html.pdf .rs-grade, html.pdf .rs-linha { gap: 8px; }
+html.pdf .rs-cola-grade { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+html.pdf .rs-cola-grade span { font-size: 12.3px; }

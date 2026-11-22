@@ -37,6 +37,9 @@ def montar() -> None:
                    .replace("/*@@APP@@*/", app))
     for n, html in caps.items():
         pagina = pagina.replace(f"<!--@@CAP{n:02d}@@-->", html)
+        resumo = SRC / f"resumo{n:02d}.html"
+        if resumo.exists():
+            pagina = pagina.replace(f"<!--@@RESUMO{n:02d}@@-->", resumo.read_text(encoding="utf-8"))
     (DIST / "caderno.html").write_text(pagina, encoding="utf-8")
 
     completo = ("<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\">\n"
@@ -58,7 +61,19 @@ def montar() -> None:
            .replace("/*@@APP@@*/", app))
     (DIST / "apostila-pdf.html").write_text(pdf, encoding="utf-8")
 
-    for f in ("caderno.html", "Apostila-CPA-caderno.html", "apostila-pdf.html"):
+    # PDF só do resumo (2 páginas por capítulo)
+    corpo_res = "".join(f'<div class="folha">{(SRC / f"resumo{n:02d}.html").read_text(encoding="utf-8")}</div>'
+                        for n in CAPITULOS if (SRC / f"resumo{n:02d}.html").exists())
+    res = (ler("casca-pdf.html").replace("/*@@ESTILO@@*/", estilo)
+           .replace("/*@@IMPRESSAO@@*/", ler("impressao.css"))
+           .replace("<!--@@SIMBOLOS@@-->", simbolos)
+           .replace("<!--@@CORPO@@-->", corpo_res)
+           .replace("/*@@DADOS@@*/", dados)
+           .replace("/*@@APP@@*/", app)
+           .replace("<title>Apostila CPA · Capítulo 1 · Sistema Financeiro Nacional</title>", "<title>Apostila CPA · Resumo do Capítulo 1</title>"))
+    (DIST / "resumo-pdf.html").write_text(res, encoding="utf-8")
+
+    for f in ("caderno.html", "Apostila-CPA-caderno.html", "apostila-pdf.html", "resumo-pdf.html"):
         print(f"{f}: {(DIST / f).stat().st_size / 1024:.0f} KB")
 
 

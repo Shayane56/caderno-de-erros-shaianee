@@ -275,6 +275,7 @@
 
   /* ---------------- views ---------------- */
   const VIEWS = { inicio: $('#view-inicio'), painel: $('#view-painel') };
+  $$('article.resumo').forEach((a) => { VIEWS['resumo-' + a.dataset.cap] = a.closest('.view'); });
   $$('article.capitulo').forEach((a) => { VIEWS['cap-' + a.dataset.cap] = a.closest('.view'); });
   let viewAtual = '';
   function mostrar(view, alvoId) {
@@ -282,8 +283,9 @@
     Object.entries(VIEWS).forEach(([k, v]) => { if (v) v.hidden = k !== view; });
     if (view !== viewAtual) { viewAtual = view; if (!alvoId) window.scrollTo(0, 0); }
     const cap = view.startsWith('cap-') ? CAPS.find((c) => 'cap-' + c.n === view) : null;
-    $('#b-titulo').textContent = cap ? `Cap. ${cap.n} · ${cap.t}` : view === 'painel' ? 'Meu desempenho' : 'Apostila interativa';
-    document.title = cap ? `Cap. ${cap.n} · ${cap.t} · Apostila CPA` : 'Apostila CPA';
+    const res = view.startsWith('resumo-') ? CAPS.find((c) => 'resumo-' + c.n === view) : null;
+    $('#b-titulo').textContent = cap ? `Cap. ${cap.n} · ${cap.t}` : res ? `Resumo · Cap. ${res.n}` : view === 'painel' ? 'Meu desempenho' : 'Apostila interativa';
+    document.title = cap ? `Cap. ${cap.n} · ${cap.t} · Apostila CPA` : res ? `Resumo do cap. ${res.n} · Apostila CPA` : 'Apostila CPA';
     if (view === 'inicio') montarInicio();
     if (view === 'painel') montarPainel();
     if (cap) { $$('.mapa-caderno', VIEWS[view]).forEach((m) => m._desenhar && requestAnimationFrame(m._desenhar)); }
@@ -382,7 +384,7 @@
         const ok = !!D.capitulos[c.n];
         const secs = ok ? $$(`#cap-${c.n} section.bloco`) : [];
         return `<a class="g-item ${c.tema}${ok ? '' : ' bloqueado'}" href="#cap-${c.n}" data-view="cap-${c.n}"><span class="g-num">${c.n}</span><span class="g-nome">${escH(c.t)}${ok ? '' : '<small>em breve</small>'}</span></a>`
-          + (ok ? `<ul class="g-secoes">${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
+          + (ok ? `<ul class="g-secoes">${document.getElementById('resumo-' + c.n) ? `<li><a href="#resumo-${c.n}"><b>★ Resumo em 2 páginas</b></a></li>` : ''}${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
       }).join('');
     marcarVistas();
   }

@@ -8,13 +8,32 @@ const { execFileSync } = require('child_process');
 
 const RAIZ = __dirname;
 const ENTRADA = path.join(RAIZ, 'dist', 'apostila-pdf.html');
-const SAIDA = process.argv[2] || path.join(RAIZ, 'dist', 'Apostila-CPA-Cap1-Sistema-Financeiro-Nacional.pdf');
+const SAIDA = (process.argv[2] && !process.argv[2].startsWith('--') && process.argv[2]) || path.join(RAIZ, 'dist', 'Apostila-CPA-Cap1-Sistema-Financeiro-Nacional.pdf');
 const TMP = path.join(RAIZ, 'dist', '.tmp');
 
 const RODAPE = `<div style="width:100%;font-family:Nunito,Arial,sans-serif;font-size:8.5px;color:#5b6970;padding:0 14mm;display:flex;justify-content:space-between">
   <span>Apostila CPA · Capítulo 1 · Sistema Financeiro Nacional</span><span>página <span class="pageNumber"></span> de <span class="totalPages"></span></span></div>`;
 
+async function resumo() {
+  // node build-pdf.cjs --resumo : gera só o PDF do resumo (sem capa, margens menores)
+  const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
+  const browser = await chromium.launch(proxy ? { proxy: { server: proxy } } : {});
+  const page = await browser.newPage({ viewport: { width: 718, height: 1000 } });
+  await page.emulateMedia({ media: 'print', colorScheme: 'light' });
+  await page.goto('file://' + path.join(RAIZ, 'dist', 'resumo-pdf.html'), { waitUntil: 'networkidle' });
+  await page.evaluate(() => document.fonts.ready);
+  const saida = path.join(RAIZ, 'dist', 'Apostila-CPA-Cap1-Resumo.pdf');
+  await page.pdf({
+    path: saida, format: 'A4', printBackground: true, displayHeaderFooter: true, headerTemplate: '<div></div>',
+    footerTemplate: RODAPE.replace('Capítulo 1 · Sistema Financeiro Nacional', 'Resumo do Capítulo 1 · Sistema Financeiro Nacional'),
+    margin: { top: '10mm', right: '10mm', bottom: '13mm', left: '10mm' }
+  });
+  await browser.close();
+  console.log('PDF do resumo:', saida, (fs.statSync(saida).size / 1024).toFixed(0) + ' KB');
+}
+
 (async () => {
+  if (process.argv.includes('--resumo')) return resumo();
   fs.mkdirSync(TMP, { recursive: true });
   const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
   const browser = await chromium.launch(proxy ? { proxy: { server: proxy } } : {});
