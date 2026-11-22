@@ -1,0 +1,2175 @@
+<title>Apostila CPA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Apostila interativa da certificação CPA: Sistema Financeiro Nacional, com mapas mentais, questões corrigidas na hora e caderno de erros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Kalam:wght@300;400;700&family=Kaushan+Script&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>/* =====================================================================
+   Apostila CPA — caderno interativo
+   Mesma identidade da Apostila ACE: folha pautada com margem, títulos
+   manuscritos (Kaushan Script / Kalam), texto em Nunito, figuras "coladas"
+   com fita, post-its e marca-texto. Cores petróleo + coral + âmbar.
+   Layout: barra fixa no topo; capítulo em coluna de leitura (até 820px)
+   com índice lateral em post-it nas telas largas.
+   ===================================================================== */
+:root {
+  --papel: #fbfaf5; --papel-2: #ffffff; --pauta: #dfe9f2; --margem: rgba(224, 83, 61, .28);
+  --tinta: #1d2a31; --suave: #5b6970; --linha: #d9e2e5; --fundo: #f3f7f7;
+  --petroleo: #0b4f5c; --petroleo-fundo: #0b4f5c; --teal: #13858a; --teal-fundo: #13858a; --teal-claro: #e3f2f1; --teal-medio: #b9dfdc;
+  --ambar: #f0a12f; --ambar-escuro: #a96300; --ambar-claro: #fff2dc;
+  --coral: #d9472f; --coral-escuro: #b3311d; --coral-claro: #fdebe6;
+  --verde: #23905f; --verde-escuro: #1b7049; --verde-claro: #e4f4ec;
+  --roxo: #6550d0; --roxo-claro: #eeebfc; --azul: #1f6fbf; --azul-claro: #e6f0fb; --rosa: #cf2f6b; --laranja: #e0590c;
+  --mk-amarelo: rgba(255, 221, 87, .75); --mk-verde: rgba(140, 233, 154, .65); --mk-rosa: rgba(255, 168, 214, .65);
+  --mk-laranja: rgba(255, 190, 120, .7); --mk-azul: rgba(160, 214, 255, .7); --mk-roxo: rgba(208, 191, 255, .72);
+  --postit: #fff4a8; --postit-rosa: #ffd9e6; --postit-verde: #dcf6d6; --postit-azul: #d9ecff; --fita: rgba(255, 255, 255, .6);
+  --sombra: 0 10px 24px rgba(40, 50, 40, .12), 0 1px 2px rgba(40, 50, 40, .08);
+  --sombra-forte: 0 22px 44px rgba(30, 30, 10, .22);
+  --vidro: rgba(18, 24, 26, .5); --figura: #ffffff; --pele: #f6c9a4; --pele-2: #d99a6c;
+  --f-texto: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mao: 'Kalam', 'Comic Sans MS', 'Segoe Print', cursive;
+  --f-titulo: 'Kaushan Script', 'Brush Script MT', cursive;
+  --f-manuscrito: 'Caveat', 'Kalam', cursive;
+  --borda-mao: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --papel: #161c1f; --papel-2: #1e262a; --pauta: #22313a; --margem: rgba(255, 122, 99, .22);
+  --tinta: #e8eef0; --suave: #a2b0b6; --linha: #2e3c42; --fundo: #1b2327;
+  --petroleo: #86d6dd; --petroleo-fundo: #0e5866; --teal: #4fc6cc; --teal-fundo: #11767b; --teal-claro: #1a3236; --teal-medio: #2b5257;
+  --ambar: #f5b453; --ambar-escuro: #f2b45c; --ambar-claro: #382c17;
+  --coral: #ff7a63; --coral-escuro: #ff9c89; --coral-claro: #3a2320;
+  --verde: #55d394; --verde-escuro: #77ddaa; --verde-claro: #183127;
+  --roxo: #a99bff; --roxo-claro: #28254a; --azul: #7ab8ff; --azul-claro: #1b2a3d; --rosa: #ff86b3; --laranja: #ff9b5e;
+  --mk-amarelo: rgba(255, 214, 64, .3); --mk-verde: rgba(100, 220, 120, .28); --mk-rosa: rgba(255, 120, 190, .3);
+  --mk-laranja: rgba(255, 150, 70, .3); --mk-azul: rgba(90, 170, 255, .3); --mk-roxo: rgba(170, 140, 255, .3);
+  --postit: #3b381d; --postit-rosa: #3e2530; --postit-verde: #1f3524; --postit-azul: #1d2c3d; --fita: rgba(255, 255, 255, .15);
+  --sombra: 0 10px 24px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3); --sombra-forte: 0 22px 44px rgba(0, 0, 0, .6);
+  --vidro: rgba(0, 0, 0, .66); --figura: #f4f6f4; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --papel: #161c1f; --papel-2: #1e262a; --pauta: #22313a; --margem: rgba(255, 122, 99, .22);
+  --tinta: #e8eef0; --suave: #a2b0b6; --linha: #2e3c42; --fundo: #1b2327;
+  --petroleo: #86d6dd; --petroleo-fundo: #0e5866; --teal: #4fc6cc; --teal-fundo: #11767b; --teal-claro: #1a3236; --teal-medio: #2b5257;
+  --ambar: #f5b453; --ambar-escuro: #f2b45c; --ambar-claro: #382c17;
+  --coral: #ff7a63; --coral-escuro: #ff9c89; --coral-claro: #3a2320;
+  --verde: #55d394; --verde-escuro: #77ddaa; --verde-claro: #183127;
+  --roxo: #a99bff; --roxo-claro: #28254a; --azul: #7ab8ff; --azul-claro: #1b2a3d; --rosa: #ff86b3; --laranja: #ff9b5e;
+  --mk-amarelo: rgba(255, 214, 64, .3); --mk-verde: rgba(100, 220, 120, .28); --mk-rosa: rgba(255, 120, 190, .3);
+  --mk-laranja: rgba(255, 150, 70, .3); --mk-azul: rgba(90, 170, 255, .3); --mk-roxo: rgba(170, 140, 255, .3);
+  --postit: #3b381d; --postit-rosa: #3e2530; --postit-verde: #1f3524; --postit-azul: #1d2c3d; --fita: rgba(255, 255, 255, .15);
+  --sombra: 0 10px 24px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3); --sombra-forte: 0 22px 44px rgba(0, 0, 0, .6);
+  --vidro: rgba(0, 0, 0, .66); --figura: #f4f6f4; color-scheme: dark; }
+
+/* ---------------- base ---------------- */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--papel); scroll-padding-top: 84px; }
+body {
+  margin: 0; background-color: var(--papel); color: var(--tinta); font: 400 17px/1.62 var(--f-texto);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='4' seed='11'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.08'/></svg>"),
+    repeating-linear-gradient(to bottom, transparent 0 33px, var(--pauta) 33px 34px);
+  -webkit-text-size-adjust: 100%;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--papel); }
+.defs-globais { position: absolute; width: 0; height: 0; overflow: hidden; }
+button { font: inherit; color: inherit; }
+a { color: var(--azul); }
+:focus-visible { outline: 2.5px dashed var(--laranja); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--mk-amarelo); }
+
+/* ---------------- barra ---------------- */
+.barra { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; display: flex; align-items: center; gap: 10px;
+  padding: 8px max(14px, env(safe-area-inset-right, 0px)) 10px max(14px, env(safe-area-inset-left, 0px));
+  background: color-mix(in oklab, var(--papel) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 2px dashed var(--linha); }
+.b-logo { font: 400 30px/1 var(--f-titulo); color: var(--coral); text-decoration: none; transform: rotate(-6deg); padding: 0 4px; }
+.b-titulo { flex: 1; min-width: 0; font: 700 18px/1.2 var(--f-mao); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.b-acoes { display: flex; gap: 8px; }
+.b-botao { display: inline-flex; align-items: center; gap: 6px; background: var(--papel-2); border: 2px solid var(--tinta); border-radius: var(--borda-mao);
+  padding: 4px 12px; font: 700 15px var(--f-mao); cursor: pointer; transition: transform .15s, background .15s; min-height: 38px; text-decoration: none; color: var(--tinta); }
+.b-botao:hover { transform: rotate(-1.5deg); }
+.b-botao svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.b-botao[aria-pressed="true"] { background: var(--mk-amarelo); }
+.b-botao .risco-olho { opacity: 0; }
+.b-botao[aria-pressed="true"] .risco-olho { opacity: 1; }
+.b-progresso { position: absolute; left: 0; right: 0; bottom: -2px; height: 5px; }
+.b-progresso span { display: block; height: 100%; width: 0; background: var(--mk-amarelo); border-radius: 0 4px 4px 0; }
+@media (max-width: 700px) { .b-botao span { display: none; } .b-botao { padding: 4px 9px; } .b-titulo { font-size: 16px; } }
+
+/* ---------------- gaveta (índice) ---------------- */
+.gaveta-fundo { position: fixed; inset: 0; z-index: 70; background: var(--vidro); }
+.gaveta { position: absolute; top: 0; bottom: 0; left: 0; width: min(380px, 92vw); background: var(--papel); overflow-y: auto; box-shadow: var(--sombra-forte);
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 16px calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  animation: entra-esq .25s ease-out both; border-right: 3px solid var(--margem); }
+@keyframes entra-esq { from { transform: translateX(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.gaveta-topo { display: flex; align-items: center; justify-content: space-between; font: 400 34px var(--f-titulo); margin-bottom: 8px; }
+.fechar-x { width: 40px; height: 40px; flex: none; border-radius: 50%; border: 2px solid var(--tinta); background: var(--papel-2); font: 700 22px/1 var(--f-mao); cursor: pointer; color: var(--tinta); }
+.g-item { display: grid; grid-template-columns: 38px 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; text-decoration: none; color: var(--tinta); }
+.g-item:hover, .g-item.atual { background: var(--mk-amarelo); }
+.g-item.bloqueado { opacity: .5; pointer-events: none; }
+.g-num { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 16px var(--f-mao); color: #fff; background: var(--cor-tema, var(--teal-fundo)); }
+.g-nome { font: 700 18px/1.2 var(--f-mao); }
+.g-nome small { display: block; font: 400 13px var(--f-texto); color: var(--suave); }
+.g-secoes { list-style: none; margin: 2px 0 10px 48px; padding: 0 0 0 10px; border-left: 2px dashed var(--linha); }
+.g-secoes a { display: flex; gap: 6px; padding: 3px 6px; font-size: 15px; color: var(--tinta); text-decoration: none; border-radius: 6px; }
+.g-secoes a:hover { background: var(--mk-azul); }
+.g-secoes a.vista::after { content: "✓"; color: var(--verde); font-weight: 800; margin-left: auto; }
+.g-separador { font: 700 14px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin: 14px 10px 4px; }
+
+/* ---------------- palco ---------------- */
+.folha { max-width: 1240px; margin: 0 auto; padding-block: 18px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* ---------------- início ---------------- */
+.ini-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 34px; align-items: center; padding-top: 10px; }
+.ini-sobre { font: 700 15px var(--f-mao); letter-spacing: .05em; text-transform: uppercase; color: var(--teal); }
+.ini-titulo { margin: 4px 0 6px; font: 400 clamp(64px, 11vw, 132px)/1 var(--f-titulo); transform: rotate(-3deg); transform-origin: left; color: var(--tinta); }
+.ini-titulo span { color: var(--coral); position: relative; z-index: 0; }
+.ini-titulo span::after { content: ""; position: absolute; left: 4%; right: -2%; bottom: .02em; height: .14em; background: var(--mk-amarelo); z-index: -1; border-radius: 4px; transform: rotate(-2deg); }
+.ini-sub { font-size: 19px; color: var(--suave); max-width: 52ch; margin: 18px 0 18px; }
+.contagem { display: inline-flex; align-items: center; gap: 14px; padding: 10px 18px 10px 12px; background: var(--postit); box-shadow: var(--sombra); transform: rotate(-1.5deg);
+  border-radius: 2px 2px 18px 2px / 2px 2px 26px 2px; }
+.contagem-num { font: 400 58px/1 var(--f-titulo); color: var(--coral); min-width: 1.4em; text-align: center; font-variant-numeric: tabular-nums; }
+.contagem-txt b { display: block; font: 700 21px/1.1 var(--f-mao); }
+.contagem-txt span { font-size: 14px; color: var(--suave); }
+.contagem-txt input { font: 700 15px var(--f-mao); border: 0; border-bottom: 2px dashed var(--suave); background: transparent; color: var(--tinta); padding: 0 2px; }
+.ini-botoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.btn-mao { display: inline-flex; align-items: center; gap: 8px; padding: 9px 22px; font: 700 19px var(--f-mao); color: var(--tinta); background: var(--papel-2);
+  border: 2.5px solid var(--tinta); border-radius: var(--borda-mao); text-decoration: none; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.btn-mao:hover { transform: rotate(-1.5deg) translateY(-2px); box-shadow: var(--sombra); }
+.btn-mao.principal { background: var(--mk-amarelo); }
+.btn-mao.pequeno { padding: 4px 14px; font-size: 16px; }
+.ini-arte { position: relative; background: linear-gradient(160deg, #0b3f4b 0%, #0f6470 45%, #13858a 100%); border-radius: 6px; padding: 10px; transform: rotate(2deg); box-shadow: var(--sombra-forte); }
+.ini-arte svg { display: block; width: 100%; height: auto; }
+.fita { position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; transform: translateX(-50%) rotate(-3deg); background: var(--fita); z-index: 2;
+  border-left: 2px dotted rgba(0, 0, 0, .1); border-right: 2px dotted rgba(0, 0, 0, .1); box-shadow: 0 1px 2px rgba(0, 0, 0, .06); }
+.ini-painel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 44px 0 10px; }
+.stat { background: var(--papel-2); border: 2px solid var(--linha); border-radius: var(--borda-mao); padding: 12px 14px; text-align: center; }
+.stat b { display: block; font: 700 32px/1.1 var(--f-mao); color: var(--teal); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; color: var(--suave); }
+.ini-h2 { margin: 46px 0 16px; font: 700 34px/1.1 var(--f-mao); display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.ini-h2::after { content: ""; flex: 1 1 60px; height: 3px; background: var(--mk-amarelo); border-radius: 3px; min-width: 40px; }
+.ini-h2 small { font: 400 16px var(--f-mao); color: var(--suave); order: 2; }
+.fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 26px 22px; }
+.ficha { position: relative; display: flex; flex-direction: column; text-decoration: none; color: var(--tinta); background: var(--papel-2);
+  border-radius: 4px 4px 16px 4px; box-shadow: var(--sombra); transform: rotate(var(--rot, -1deg)); transition: transform .2s, box-shadow .2s; overflow: hidden; }
+a.ficha:hover { transform: rotate(0) translateY(-6px) scale(1.02); box-shadow: var(--sombra-forte); }
+.ficha.em-breve { opacity: .62; filter: saturate(.5); }
+.ficha-arte { position: relative; height: 130px; background: var(--grad); display: grid; place-items: center; overflow: hidden; }
+.ficha-arte svg { height: 86%; width: auto; max-width: 90%; transition: transform .35s; }
+a.ficha:hover .ficha-arte svg { transform: scale(1.08) rotate(-3deg); }
+.ficha-num { position: absolute; left: 10px; top: 4px; font: 400 44px/1 var(--f-titulo); color: rgba(255, 255, 255, .85); }
+.ficha-corpo { padding: 10px 14px 14px; display: grid; gap: 6px; }
+.ficha-titulo { font: 700 21px/1.15 var(--f-mao); }
+.ficha-sobre { font-size: 13px; color: var(--suave); }
+.ficha-barra { height: 6px; border-radius: 4px; background: var(--linha); overflow: hidden; }
+.ficha-barra i { display: block; height: 100%; width: 0; background: var(--verde); border-radius: 4px; }
+.ficha-info { display: flex; justify-content: space-between; font-size: 13px; color: var(--suave); font-variant-numeric: tabular-nums; }
+.ficha-selo { position: absolute; right: 10px; top: 10px; color: var(--tinta); font: 700 14px var(--f-mao); padding: 1px 10px; border-radius: 12px; transform: rotate(4deg); background: var(--papel-2); }
+.como-usar { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.uso { padding: 12px 14px; border-left: 4px solid var(--ambar); background: color-mix(in oklab, var(--papel-2) 80%, transparent); border-radius: 0 10px 10px 0; }
+.uso b { display: block; font: 700 19px var(--f-mao); }
+.uso span { font-size: 15px; color: var(--suave); }
+.ini-rodape { margin-top: 40px; font-size: 14px; color: var(--suave); text-align: center; }
+
+.tema-mar { --grad: radial-gradient(120% 90% at 85% 10%, #1b9a9a 0%, #0f6470 45%, #0b3f4b 100%); --cor-tema: #13858a; }
+.tema-ouro { --grad: radial-gradient(120% 90% at 85% 10%, #e7b04a 0%, #a8701c 45%, #4a2f0b 100%); --cor-tema: #a96300; }
+.tema-coral { --grad: radial-gradient(120% 90% at 85% 10%, #f07a5e 0%, #b3311d 45%, #4a150c 100%); --cor-tema: #b3311d; }
+.tema-roxo { --grad: radial-gradient(120% 90% at 85% 10%, #8a6fd8 0%, #4a3a8a 45%, #1f1a3d 100%); --cor-tema: #5a48a8; }
+.tema-verde { --grad: radial-gradient(120% 90% at 85% 10%, #4cc38a 0%, #1b7049 45%, #0c2e1f 100%); --cor-tema: #1b7049; }
+.tema-azul { --grad: radial-gradient(120% 90% at 85% 10%, #3aa6d6 0%, #1a6f99 45%, #0b3f4b 100%); --cor-tema: #1a6f99; }
+
+/* ---------------- capítulo ---------------- */
+.cap-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; max-width: 860px; margin: 0 auto; }
+@media (min-width: 1180px) { .cap-layout { grid-template-columns: minmax(0, 820px) 270px; max-width: 1150px; } }
+.indice-lateral { display: none; }
+@media (min-width: 1180px) {
+  .indice-lateral { display: block; position: sticky; top: 90px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; padding: 14px 12px 14px 16px;
+    background: var(--postit); box-shadow: var(--sombra); transform: rotate(1deg); border-radius: 2px 2px 16px 2px; }
+  .indice-lateral h3 { margin: 0 0 6px; font: 700 20px var(--f-mao); }
+  .indice-lateral h3::before { display: none; }
+  .indice-lateral ol { list-style: none; margin: 0; padding: 0; }
+  .indice-lateral li { margin: 0; }
+  .indice-lateral a { display: flex; gap: 6px; padding: 3px 6px; font-size: 14px; line-height: 1.3; color: var(--tinta); text-decoration: none; border-radius: 6px; }
+  .indice-lateral a:hover { background: var(--mk-azul); }
+  .indice-lateral a.ativa { background: var(--mk-amarelo); font-weight: 700; }
+  .indice-lateral a.vista::after { content: "✓"; margin-left: auto; color: var(--verde); font-weight: 800; }
+  .indice-lateral .il-prog { margin-top: 8px; font: 700 15px var(--f-mao); color: var(--suave); }
+}
+.capitulo { position: relative; min-width: 0; }
+.cap-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 30px 34px; align-items: center; margin: 14px 0 20px; }
+.hero-foto { position: relative; background: var(--grad); border-radius: 6px; padding: 14px; aspect-ratio: 1 / 1; max-width: 100%; display: grid; place-items: center;
+  box-shadow: var(--sombra-forte); transform: rotate(-2.5deg); }
+.hero-arte { width: 100%; height: 100%; display: grid; place-items: center; animation: flutua 5s ease-in-out infinite; }
+.hero-arte svg { width: 100%; height: 100%; }
+@keyframes flutua { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-8px) rotate(1.5deg); } }
+.hero-num { position: absolute; right: 12px; bottom: 0; font: 400 96px/1 var(--f-titulo); color: rgba(255, 255, 255, .22); pointer-events: none; }
+.hero-sobre { font: 700 15px var(--f-mao); letter-spacing: .05em; text-transform: uppercase; color: var(--teal); }
+.hero-titulo { margin: 2px 0 10px; font: 400 clamp(46px, 7vw, 84px)/1.02 var(--f-titulo); color: var(--tinta); transform: rotate(-2deg); transform-origin: left; text-wrap: balance; }
+.hero-sub { margin: 0 0 14px; color: var(--suave); font-size: 18px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.hero-chips span { font: 700 16px var(--f-mao); padding: 1px 10px; background: var(--mk-amarelo); transform: rotate(-1deg); border-radius: 3px; }
+.hero-chips span:nth-child(4n+2) { background: var(--mk-verde); transform: rotate(1deg); }
+.hero-chips span:nth-child(4n+3) { background: var(--mk-rosa); }
+.hero-chips span:nth-child(4n+4) { background: var(--mk-azul); transform: rotate(1.5deg); }
+.hero-aprender { grid-column: 1 / -1; background: var(--postit); padding: 16px 22px 12px; box-shadow: var(--sombra); transform: rotate(.6deg); border-radius: 2px 2px 20px 2px / 2px 2px 30px 2px; }
+.hero-aprender h2 { margin: 0 0 6px; font: 700 22px var(--f-mao); }
+.hero-aprender ul { columns: 2; column-gap: 30px; margin: 0; }
+.hero-aprender li { break-inside: avoid; }
+
+.bloco { margin-top: 64px; scroll-margin-top: 84px; position: relative; }
+.bloco.extra { padding: 22px 22px 18px; background: color-mix(in oklab, var(--papel-2) 85%, transparent); border: 2.5px dashed var(--ambar); border-radius: 18px; }
+.bloco.piscar { animation: piscar 1.6s ease-out; }
+@keyframes piscar { 0%, 30% { background: var(--mk-amarelo); } 100% { background: transparent; } }
+
+/* ---------------- tipografia ---------------- */
+h1, h2, h3, h4 { line-height: 1.2; }
+.sobretitulo { display: block; font: 700 15px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+h2.titulo-secao { margin: 0; font: 700 clamp(30px, 4.6vw, 40px)/1.15 var(--f-mao); color: var(--tinta); text-wrap: balance; }
+.linha-fina { width: 170px; max-width: 60%; height: 14px; margin: 2px 0 16px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 170 14' preserveAspectRatio='none'><path d='M3 9 C 30 3, 60 13, 90 7 S 145 4, 167 9' fill='none' stroke='%23f0a12f' stroke-width='4' stroke-linecap='round'/></svg>") no-repeat left / 100% 100%; }
+h3 { display: flex; align-items: center; gap: 10px; margin: 30px 0 10px; font: 700 24px/1.2 var(--f-mao); color: var(--tinta); }
+h3::before { content: ""; width: 14px; height: 14px; flex: none; background: var(--mk-laranja); border: 2px solid var(--ambar); border-radius: 50% 40% 55% 45%; }
+h3.sem-marca::before { display: none; }
+h4 { font: 700 19px/1.25 var(--f-mao); color: var(--tinta); margin: 14px 0 6px; }
+p { margin: 0 0 12px; }
+.lead { font-size: 19px; color: var(--suave); }
+strong { color: var(--tinta); font-weight: 800; }
+.termo { font-weight: 800; color: var(--teal); }
+.mt { background: linear-gradient(transparent 50%, var(--mk-amarelo) 50%); padding: 0 2px; }
+.mt-verde { background: linear-gradient(transparent 50%, var(--mk-verde) 50%); padding: 0 2px; }
+.mt-rosa { background: linear-gradient(transparent 50%, var(--mk-rosa) 50%); padding: 0 2px; }
+.mt-azul { background: linear-gradient(transparent 50%, var(--mk-azul) 50%); padding: 0 2px; }
+.manuscrito { font-family: var(--f-manuscrito); font-weight: 700; color: var(--coral); font-size: 24px; line-height: 1.15; }
+.pequeno { font-size: 15px; color: var(--suave); }
+.centro { text-align: center; }
+ul, ol { margin: 0 0 12px; padding-left: 22px; }
+li { margin: 0 0 5px; }
+ul.marcadores { list-style: none; padding-left: 0; }
+ul.marcadores > li { position: relative; padding-left: 22px; }
+ul.marcadores > li::before { content: ""; position: absolute; left: 3px; top: .55em; width: 9px; height: 9px; border-radius: 50% 40% 55% 45%; background: var(--teal); }
+ul.check { list-style: none; padding-left: 0; }
+ul.check > li { position: relative; padding-left: 26px; }
+ul.check > li::before { content: "✓"; position: absolute; left: 2px; top: 0; font: 700 19px/1.4 var(--f-mao); color: var(--verde); }
+ul.check > li.nao::before { content: "✗"; color: var(--coral); }
+.grade-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grade-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.grade-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.mt-4 { margin-top: 16px; } .mb-0 { margin-bottom: 0 !important; }
+
+/* figuras coladas */
+.figura { position: relative; margin: 22px auto 18px; padding: 12px; background: var(--figura); border-radius: 4px; box-shadow: var(--sombra); transform: rotate(-.4deg);
+  cursor: zoom-in; transition: transform .2s, box-shadow .2s; max-width: 100%; color: #1d2a31; }
+.figura.par { transform: rotate(.5deg); }
+.figura:hover { transform: rotate(0) scale(1.01); box-shadow: var(--sombra-forte); }
+.figura::before { content: ""; position: absolute; top: -12px; left: 50%; width: 96px; height: 24px; transform: translateX(-50%) rotate(-2deg); background: var(--fita);
+  border-left: 2px dotted rgba(0, 0, 0, .1); border-right: 2px dotted rgba(0, 0, 0, .1); }
+.figura::after { content: "toque para ampliar"; position: absolute; right: 10px; bottom: 6px; font: 700 12px var(--f-mao); color: #5b6970; background: rgba(255, 255, 255, .85); padding: 0 8px; border-radius: 8px; opacity: 0; transition: opacity .2s; }
+.figura:hover::after { opacity: 1; }
+@media (hover: none) { .figura::after { opacity: 1; } }
+.figura svg { display: block; width: 100%; height: auto; margin: 0 auto; }
+.figura svg text { font-family: var(--f-texto); }
+.figura svg .mao { font-family: var(--f-mao); font-weight: 700; }
+.figura svg .tit { font-family: var(--f-titulo); }
+.legenda { font-size: 14px; color: var(--suave); text-align: center; font-style: italic; margin-top: 6px; }
+
+/* caixas */
+.caixa { position: relative; margin: 20px 0; padding: 16px 18px 12px; border-radius: 4px 14px 6px 16px; box-shadow: var(--sombra); background: var(--papel-2); }
+.caixa > .rotulo { display: inline-flex; align-items: center; gap: 6px; font: 700 15px var(--f-mao); letter-spacing: .05em; text-transform: uppercase; padding: 0 10px;
+  margin: 0 0 6px -4px; border-radius: 3px; transform: rotate(-1.5deg); color: var(--tinta); }
+.caixa p:last-child, .caixa ul:last-child, .caixa ol:last-child { margin-bottom: 0; }
+.caixa.definicao { border-top: 4px solid var(--coral); background-image: repeating-linear-gradient(to bottom, transparent 0 27px, color-mix(in oklab, var(--azul) 18%, transparent) 27px 28px); }
+.caixa.definicao > .rotulo { background: var(--mk-azul); }
+.caixa.pegadinha { background: var(--postit-rosa); transform: rotate(-.5deg); }
+.caixa.pegadinha > .rotulo { background: var(--coral); color: #fff; }
+.caixa.dica { background: var(--postit); transform: rotate(.5deg); }
+.caixa.dica::before { content: ""; position: absolute; top: -11px; left: 40px; width: 80px; height: 22px; background: var(--fita); transform: rotate(-4deg); }
+.caixa.dica > .rotulo { background: var(--mk-laranja); }
+.caixa.memorize { background: var(--postit-verde); }
+.caixa.memorize > .rotulo { background: var(--verde); color: #fff; }
+.caixa.atualizacao { background: var(--postit-azul); border-left: 6px solid var(--azul); }
+.caixa.atualizacao > .rotulo { background: var(--azul); color: #fff; }
+.caixa.cotidiano { background: var(--roxo-claro); }
+.caixa.cotidiano > .rotulo { background: var(--mk-roxo); }
+.caixa.destaque { background: linear-gradient(135deg, #0b4f5c, #13858a); color: #fff; }
+.caixa.destaque strong { color: #ffe1a6; }
+.caixa.destaque > .rotulo { background: var(--ambar); color: #1d2a31; }
+.caixa.destaque a { color: #ffe1a6; }
+
+/* mascote em balão */
+.juca { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; align-items: center; margin: 22px 0; }
+.juca svg { width: 92px; height: 92px; }
+.juca .balao { position: relative; background: var(--papel-2); border: 2.5px solid var(--tinta); border-radius: var(--borda-mao); padding: 12px 16px; font: 400 18px/1.4 var(--f-mao); }
+.juca .balao::before { content: ""; position: absolute; left: -14px; top: 50%; width: 22px; height: 22px; background: var(--papel-2); border-left: 2.5px solid var(--tinta); border-bottom: 2.5px solid var(--tinta); transform: translateY(-50%) rotate(45deg) skew(10deg, 10deg); }
+.juca .balao b { font-weight: 700; color: var(--coral); }
+.juca .balao strong { font-family: var(--f-mao); }
+
+/* cartões */
+.cartao { background: var(--papel-2); border: 2px solid var(--linha); border-radius: 14px 6px 16px 8px; padding: 14px 16px; box-shadow: 0 3px 0 var(--linha); min-width: 0; }
+.cartao h4 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
+.cartao p { margin-bottom: 0; font-size: 16px; }
+.cartao p + p { margin-top: 6px; }
+.cartao .ico { width: 38px; height: 38px; border-radius: 50%; background: var(--teal-claro); color: var(--teal); display: inline-grid; place-items: center; flex: none; }
+.cartao .ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cartao.ambar { border-color: color-mix(in oklab, var(--ambar) 45%, var(--linha)); } .cartao.ambar .ico { background: var(--ambar-claro); color: var(--ambar-escuro); }
+.cartao.coral { border-color: color-mix(in oklab, var(--coral) 40%, var(--linha)); } .cartao.coral .ico { background: var(--coral-claro); color: var(--coral); }
+.cartao.verde { border-color: color-mix(in oklab, var(--verde) 40%, var(--linha)); } .cartao.verde .ico { background: var(--verde-claro); color: var(--verde); }
+.cartao.roxo { border-color: color-mix(in oklab, var(--roxo) 40%, var(--linha)); } .cartao.roxo .ico { background: var(--roxo-claro); color: var(--roxo); }
+.cartao.azul { border-color: color-mix(in oklab, var(--azul) 40%, var(--linha)); } .cartao.azul .ico { background: var(--azul-claro); color: var(--azul); }
+.cartao .etq { display: inline-block; font: 700 13px var(--f-mao); padding: 0 8px; border-radius: 8px; background: var(--teal-claro); color: var(--petroleo); margin: 0 4px 4px 0; letter-spacing: .03em; }
+.cartao .etq.coral { background: var(--coral-claro); color: var(--coral-escuro); }
+.cartao .etq.ambar { background: var(--ambar-claro); color: var(--ambar-escuro); }
+.cartao .etq.verde { background: var(--verde-claro); color: var(--verde-escuro); }
+.cartao .etq.roxo { background: var(--roxo-claro); color: var(--roxo); }
+.numeros .cartao { text-align: center; padding: 14px 10px; }
+.numeros .valor { font: 700 34px/1 var(--f-mao); color: var(--teal); display: block; }
+.numeros .rotulo-n { font-size: 14px; color: var(--suave); line-height: 1.35; display: block; margin-top: 6px; }
+
+/* tabelas */
+.tabela-rolagem { overflow-x: auto; margin: 12px 0 16px; border-radius: 12px; -webkit-overflow-scrolling: touch; }
+table.tabela { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 0; font-size: 15.5px; border: 2px solid var(--linha); border-radius: 12px; overflow: hidden; background: var(--papel-2); }
+table.tabela th { background: var(--petroleo-fundo); color: #fff; font: 700 16px var(--f-mao); text-align: left; padding: 9px 11px; vertical-align: bottom; }
+table.tabela td { padding: 9px 11px; vertical-align: top; border-top: 1.5px solid var(--linha); line-height: 1.45; }
+table.tabela tr:nth-child(even) td { background: var(--fundo); }
+table.tabela td:first-child { font-weight: 800; color: var(--petroleo); }
+table.tabela.lado th:nth-child(2) { background: var(--teal-fundo); }
+table.tabela.lado th:nth-child(3) { background: #9a5c00; }
+table.tabela .sim { color: var(--verde-escuro); font-weight: 800; }
+table.tabela .nao { color: var(--coral-escuro); font-weight: 800; }
+
+/* quadro oficial do SFN */
+.quadro-sfn { display: grid; grid-template-columns: 112px repeat(3, minmax(0, 1fr)); gap: 8px; margin: 14px 0; font-size: 15px; }
+.quadro-sfn .q-cab { font: 700 16px/1.2 var(--f-mao); color: #fff; padding: 10px 10px; border-radius: 10px 10px 4px 4px; text-align: center; }
+.quadro-sfn .q-cab small { display: block; font: 400 12.5px/1.3 var(--f-texto); opacity: .9; }
+.quadro-sfn .q-cab.c1 { background: var(--teal-fundo); } .quadro-sfn .q-cab.c2 { background: #9a5c00; } .quadro-sfn .q-cab.c3 { background: #6550d0; }
+.quadro-sfn .q-nivel { display: grid; place-items: center; text-align: center; font: 700 16px/1.15 var(--f-mao); border-radius: 10px; padding: 8px 6px; color: var(--tinta); }
+.quadro-sfn .q-nivel small { display: block; font: 400 12px/1.25 var(--f-texto); color: var(--suave); margin-top: 3px; }
+.quadro-sfn .n1 { background: var(--mk-amarelo); } .quadro-sfn .n2 { background: var(--mk-azul); } .quadro-sfn .n3 { background: var(--mk-verde); }
+.quadro-sfn .q-cel { background: var(--papel-2); border: 2px solid var(--linha); border-radius: 10px; padding: 8px 10px; min-width: 0; }
+.quadro-sfn .q-cel b { display: block; font: 700 17px/1.2 var(--f-mao); color: var(--petroleo); }
+.quadro-sfn .q-cel span { display: block; font-size: 13.5px; color: var(--suave); line-height: 1.3; }
+.quadro-sfn .q-cel ul { margin: 0; padding-left: 16px; font-size: 14px; line-height: 1.35; }
+.quadro-sfn .q-cel li { margin: 0 0 2px; }
+.quadro-sfn .q-cel.larga { grid-column: span 1; }
+.quadro-sfn .q-cel.dupla { display: grid; gap: 6px; }
+.quadro-nota { font-size: 13.5px; color: var(--suave); margin: -4px 0 12px; }
+
+/* fluxos */
+.fluxo-horizontal { display: flex; align-items: stretch; gap: 8px; margin: 10px 0; }
+.passo-h { flex: 1; background: var(--teal-claro); border-radius: 12px 6px 14px 8px; padding: 11px 13px; min-width: 0; }
+.passo-h b { display: block; font: 700 18px var(--f-mao); color: var(--petroleo); margin-bottom: 2px; }
+.passo-h span { font-size: 15.5px; display: block; }
+.passo-h.destaque { background: var(--petroleo-fundo); color: #fff; }
+.passo-h.destaque b, .passo-h.destaque strong { color: #ffd38a; }
+.seta-h { display: flex; align-items: center; color: var(--ambar-escuro); font: 700 26px var(--f-mao); }
+.linha-do-tempo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 10px 0 14px; position: relative; }
+.linha-do-tempo::before { content: ""; position: absolute; left: 10px; right: 10px; top: 12px; height: 3px; background: var(--teal-medio); border-radius: 2px; }
+.linha-do-tempo .marco { position: relative; padding: 30px 10px 0 0; }
+.linha-do-tempo .marco::before { content: ""; position: absolute; left: 4px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--papel-2); border: 4px solid var(--teal); }
+.linha-do-tempo .marco.destaque::before { border-color: var(--coral); }
+.linha-do-tempo .marco b { display: block; font: 700 18px var(--f-mao); color: var(--petroleo); }
+.linha-do-tempo .marco span { display: block; font-size: 14.5px; line-height: 1.38; }
+.faixa-chave { display: flex; gap: 12px; align-items: center; background: var(--petroleo-fundo); color: #fff; border-radius: 14px 6px 16px 8px; padding: 13px 16px; margin: 16px 0; transform: rotate(-.3deg); }
+.faixa-chave .big { font: 400 40px/1 var(--f-titulo); color: #ffd38a; flex: none; }
+.faixa-chave p { margin: 0; font-size: 16.5px; }
+.faixa-chave strong { color: #ffd38a; }
+
+/* certo × errado */
+.ce { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-radius: 14px; overflow: hidden; border: 2px solid var(--linha); margin: 12px 0; cursor: pointer; transition: transform .15s, box-shadow .15s; background: var(--papel-2); }
+.ce:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
+.ce > div { padding: 11px 14px; font-size: 16px; line-height: 1.45; position: relative; }
+.ce .errado { background: var(--coral-claro); }
+.ce .certo { background: var(--verde-claro); }
+.ce .errado::before, .ce .certo::before { display: block; font: 700 14px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+.ce .errado::before { content: "✗ A pegadinha diz"; color: var(--coral-escuro); }
+.ce .certo::before { content: "✓ O correto é"; color: var(--verde-escuro); }
+.ce.fechado .certo, .ce.fechado .certo * { color: transparent; }
+.ce.fechado .certo .toque { color: var(--verde-escuro); }
+.ce.fechado .certo { background: repeating-linear-gradient(-45deg, var(--verde-claro) 0 10px, color-mix(in oklab, var(--verde) 14%, var(--verde-claro)) 10px 20px); }
+.ce.fechado .certo::before { color: transparent; }
+.ce .toque { position: absolute; inset: 0; display: grid; place-items: center; font: 700 17px var(--f-mao); color: var(--verde-escuro); text-align: center; padding: 6px; }
+.ce:not(.fechado) .toque { display: none; }
+.ce.abriu .certo { animation: revela .45s ease-out; }
+@keyframes revela { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* mapa mental */
+.mapa-caderno { container-type: inline-size; margin: 14px 0 6px; }
+.mc { position: relative; display: grid; gap: 40px 26px; grid-template-columns: minmax(0, 1fr) minmax(150px, .78fr) minmax(0, 1fr);
+  grid-template-areas: "r1 . r2" "r3 centro r4" "r5 . r6"; padding: 8px 0; }
+.mc-setas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.mc-setas path { fill: none; stroke: var(--tinta); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: stroke .2s, stroke-width .2s, opacity .2s; }
+.mc-setas .linha-anim { animation: traco 1s ease-out both; animation-delay: var(--d); }
+.mc-setas .acesa path { stroke: var(--c); stroke-width: 3.6; }
+.mc.focado .mc-setas g.sg:not(.acesa) { opacity: .25; }
+@keyframes traco { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+.mc-centro { grid-area: centro; position: relative; z-index: 1; text-align: center; align-self: center; }
+.mc-titulo { display: inline-block; margin: 0; font: 400 clamp(34px, 7cqi, 52px)/1.05 var(--f-titulo); transform: rotate(-4deg); color: var(--tinta); text-wrap: balance; }
+.mc-sub { display: block; margin-top: 6px; font: 700 16px var(--f-mao); color: var(--suave); }
+.mc-extra { display: inline-block; margin-top: 6px; font: 400 15px var(--f-mao); padding: 0 8px; background: var(--mk-verde); transform: rotate(-1.5deg); }
+.mc-ramo { position: relative; z-index: 1; grid-area: var(--area); text-align: left; background: transparent; border: 0; padding: 6px 54px 8px 8px; border-radius: 14px; color: var(--c); cursor: pointer; transition: transform .2s, background .2s, opacity .2s; }
+.mc-ramo:hover { transform: rotate(-.6deg) translateY(-2px); background: color-mix(in oklab, var(--c) 8%, transparent); }
+.mc.focado .mc-ramo:not(.foco) { opacity: .45; }
+.mc-ramo.foco { background: color-mix(in oklab, var(--c) 10%, transparent); }
+.mc-ramo h4 { display: table; margin: 0 0 4px; font: 700 18px/1.15 var(--f-mao); letter-spacing: .03em; text-transform: uppercase; color: var(--c); }
+.mc-ramo.e0 h4 { border: 2.5px solid var(--c); padding: 0 10px; border-radius: var(--borda-mao); }
+.mc-ramo.e1 h4 { background: linear-gradient(var(--c), var(--c)) left bottom / 100% 3px no-repeat; padding-bottom: 2px; }
+.mc-ramo.e2 h4 { border: 2.5px solid var(--c); padding: 0 12px; border-radius: 60px 50px 70px 40px / 40px 60px 40px 60px; }
+.mc-ramo.e3 h4 { background: var(--mk-amarelo); color: var(--tinta); padding: 0 8px; transform: rotate(-1.5deg); }
+.mc-ramo ul { list-style: none; margin: 0; padding: 0; font: 400 16.5px/1.35 var(--f-mao); }
+.mc-ramo li { padding-left: 13px; text-indent: -13px; margin: 0 0 1px; }
+.mc-ramo li::before { content: "– "; }
+.mc-doodle { position: absolute; top: -8px; right: -4px; width: 52px; height: 52px; overflow: visible; filter: url(#tremido); }
+.treino .mc-ramo li { color: transparent; background: repeating-linear-gradient(90deg, color-mix(in oklab, var(--c) 35%, transparent) 0 12px, transparent 12px 16px) 0 72% / 100% 3px no-repeat; }
+.treino .mc-ramo li::before { color: var(--c); }
+.treino .mc-ramo li.ver { color: inherit; background: none; }
+.mc-dica { margin: 4px 0 0; text-align: center; font: 400 15px var(--f-mao); color: var(--suave); }
+@container (max-width: 640px) {
+  .mc { grid-template-columns: minmax(0, 1fr); grid-template-areas: "centro" "r1" "r2" "r3" "r4" "r5" "r6"; gap: 28px; }
+  .mc-ramo { margin-left: 24px; }
+}
+
+/* questões */
+.placar { position: sticky; top: 70px; z-index: 5; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 14px 0; padding: 8px 14px; background: var(--postit);
+  box-shadow: var(--sombra); border-radius: 2px 2px 14px 2px; transform: rotate(-.4deg); font: 700 17px var(--f-mao); }
+.placar .pl-num { font-size: 22px; color: var(--verde); font-variant-numeric: tabular-nums; }
+.placar .pl-barra { flex: 1 1 120px; height: 9px; border-radius: 6px; background: var(--linha); overflow: hidden; display: flex; }
+.placar .pl-barra i { display: block; height: 100%; }
+.placar .pl-barra .ok { background: var(--verde); } .placar .pl-barra .no { background: var(--coral); }
+.placar button { background: none; border: 0; font: 700 14px var(--f-mao); color: var(--suave); text-decoration: underline; cursor: pointer; }
+.questao { background: var(--papel-2); border: 2px solid var(--linha); border-radius: 16px 8px 18px 10px; padding: 14px 16px 12px; margin-bottom: 16px; box-shadow: 0 4px 0 var(--linha); transition: border-color .3s; }
+.questao.acertou { border-color: var(--verde); box-shadow: 0 4px 0 color-mix(in oklab, var(--verde) 40%, transparent); }
+.questao.errou { border-color: var(--coral); box-shadow: 0 4px 0 color-mix(in oklab, var(--coral) 40%, transparent); }
+.questao .cab { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.questao .cab .nq { width: 34px; height: 34px; border-radius: 50% 45% 55% 50%; background: var(--petroleo-fundo); color: #fff; font: 700 18px var(--f-mao); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.questao .cab .fonte { font: 700 14px var(--f-mao); letter-spacing: .04em; text-transform: uppercase; color: var(--teal); }
+.questao .cab .nivel { font: 700 13px var(--f-mao); padding: 0 8px; border-radius: 8px; background: var(--ambar-claro); color: var(--ambar-escuro); }
+.questao .cab .nivel.dificil { background: var(--coral-claro); color: var(--coral-escuro); }
+.questao .cab .nivel.facil { background: var(--verde-claro); color: var(--verde-escuro); }
+.questao .enunciado { font-size: 16.5px; margin-bottom: 10px; }
+.questao ol.alt { list-style: none; padding: 0; margin: 0; counter-reset: alt; display: grid; gap: 7px; }
+.questao ol.alt li { counter-increment: alt; position: relative; padding: 7px 12px 7px 46px; font-size: 16px; line-height: 1.4; margin: 0; border: 2px solid transparent; border-radius: 12px; }
+.questao ol.alt li::before { content: counter(alt, upper-alpha); position: absolute; left: 9px; top: 6px; width: 27px; height: 27px; border-radius: 50%; border: 2px solid var(--teal); color: var(--teal); font: 700 15px var(--f-mao); display: flex; align-items: center; justify-content: center; background: var(--papel-2); }
+.questao li.alt-i { cursor: pointer; border-color: var(--linha); background: var(--papel); transition: background .15s, border-color .15s, transform .15s; }
+.questao li.alt-i:hover { background: var(--mk-amarelo); transform: translateX(3px); }
+.questao.respondida li.alt-i { cursor: default; transform: none; }
+.questao.respondida li.alt-i:hover { background: var(--papel); }
+.questao li.certa, .questao.respondida li.certa:hover { background: var(--verde-claro); border-color: var(--verde); font-weight: 700; }
+.questao li.certa::before { content: "✓"; background: #23905f; border-color: #23905f; color: #fff; }
+.questao li.errada, .questao.respondida li.errada:hover { background: var(--coral-claro); border-color: var(--coral); text-decoration: line-through; text-decoration-color: var(--coral); }
+.questao li.errada::before { content: "✗"; background: #c9432c; border-color: #c9432c; color: #fff; }
+.questao li.apagada { opacity: .55; }
+.questao.treme { animation: treme .4s; }
+@keyframes treme { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.feedback { margin-top: 12px; padding: 10px 14px; border-radius: 12px; font-size: 16px; animation: cai .3s ease-out; }
+@keyframes cai { from { transform: translateY(-6px); opacity: 0; } to { transform: none; opacity: 1; } }
+.feedback.ok { background: var(--verde-claro); border-left: 5px solid var(--verde); }
+.feedback.no { background: var(--coral-claro); border-left: 5px solid var(--coral); }
+.feedback .fb-tit { display: block; font: 700 20px var(--f-mao); }
+.feedback .fb-alts { margin: 6px 0 0; padding-left: 0; list-style: none; font-size: 15px; color: var(--suave); }
+.feedback .fb-alts li { margin: 2px 0; }
+.feedback .fb-acoes { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+.feedback .fb-acoes button { background: none; border: 0; padding: 0; font: 700 14px var(--f-mao); color: var(--suave); text-decoration: underline; cursor: pointer; }
+.resultado-q { margin: 18px 0; padding: 16px 18px; text-align: center; background: var(--papel-2); border: 2.5px solid var(--verde); border-radius: var(--borda-mao); }
+.resultado-q b { display: block; font: 400 42px/1.1 var(--f-titulo); color: var(--verde); }
+.gabarito-impresso { display: none; }
+
+/* jogo relâmpago */
+.jogo { position: relative; max-width: 660px; margin: 10px auto; padding: 26px 22px 20px; background: var(--papel-2); border: 3px solid var(--tinta); border-radius: var(--borda-mao); box-shadow: var(--sombra); text-align: center; }
+.jogo-topo { display: flex; justify-content: space-between; font: 700 16px var(--f-mao); color: var(--suave); font-variant-numeric: tabular-nums; }
+.jogo-tempo { height: 12px; border-radius: 8px; background: var(--linha); overflow: hidden; margin: 8px 0 14px; }
+.jogo-tempo i { display: block; height: 100%; width: 100%; background: var(--ambar); transform-origin: left; }
+.jogo-pergunta { font: 700 19px/1.3 var(--f-mao); color: var(--suave); }
+.jogo-item { display: block; margin: 4px 0 14px; font: 400 clamp(32px, 6vw, 46px)/1.08 var(--f-titulo); color: var(--tinta); transform: rotate(-2deg); text-wrap: balance; }
+.jogo-ops { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+.jogo-ops button { padding: 10px 14px; font: 700 19px var(--f-mao); background: var(--papel); border: 2.5px solid var(--tinta); border-radius: var(--borda-mao); cursor: pointer; transition: transform .12s, background .12s; color: var(--tinta); }
+.jogo-ops button:hover { transform: rotate(-1.5deg) scale(1.02); background: var(--mk-amarelo); }
+.jogo-ops button.certa { background: var(--mk-verde); border-color: var(--verde); }
+.jogo-ops button.errada { background: var(--coral-claro); border-color: var(--coral); text-decoration: line-through; }
+.jogo-ops button:disabled { cursor: default; transform: none; }
+.jogo-msg { min-height: 28px; margin-top: 10px; font: 700 17px var(--f-mao); }
+.jogo-final b { display: block; font: 400 64px/1 var(--f-titulo); color: var(--coral); margin: 6px 0; }
+.jogo-final ul { text-align: left; font-size: 15px; max-width: 500px; margin: 12px auto; }
+
+/* revisão */
+.frases-resumo { list-style: none; margin: 6px 0 0; padding: 0; counter-reset: fr; }
+.frases-resumo li { counter-increment: fr; display: grid; grid-template-columns: 30px minmax(110px, 170px) minmax(0, 1fr); align-items: baseline; gap: 10px; padding: 8px 0; border-bottom: 2px dashed var(--linha); }
+.frases-resumo li::before { content: counter(fr); font: 700 15px var(--f-mao); color: #fff; background: #c9432c; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; align-self: center; }
+.frases-resumo b { font: 700 18px var(--f-mao); color: var(--petroleo); }
+.frases-resumo .manuscrito { font-size: 22px; }
+.treino .frases-resumo .manuscrito { color: transparent; background: repeating-linear-gradient(90deg, var(--linha) 0 14px, transparent 14px 18px) 0 70% / 100% 4px no-repeat; cursor: pointer; }
+.treino .frases-resumo .manuscrito.ver { color: var(--coral); background: none; }
+.frase-final { margin: 24px 0 10px; padding: 16px 20px; border: 2.5px dashed var(--coral); border-radius: 18px; text-align: center; background: color-mix(in oklab, var(--coral-claro) 60%, transparent); transform: rotate(-.6deg); }
+.frase-final .manuscrito { display: block; font-size: clamp(26px, 4vw, 34px); margin-bottom: 4px; }
+.navega { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+.navega a { display: block; padding: 14px 16px; text-decoration: none; color: var(--tinta); border: 2.5px solid var(--tinta); border-radius: var(--borda-mao); background: var(--papel-2); transition: transform .15s; }
+.navega a:hover { transform: rotate(-1deg) translateY(-2px); }
+.navega small { display: block; font: 700 14px var(--f-mao); color: var(--suave); }
+.navega b { font: 700 21px var(--f-mao); }
+.navega .prox { text-align: right; grid-column: 2; }
+
+/* fontes */
+table.fontes td:first-child { font-weight: 400; color: var(--tinta); }
+table.fontes a { color: var(--azul); font-weight: 700; text-decoration-thickness: 1.5px; text-underline-offset: 3px; word-break: break-word; }
+table.fontes a::after { content: " ↗"; font-weight: 400; }
+table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin-top: 2px; }
+.selo-conf { display: inline-block; font: 700 12.5px var(--f-mao); padding: 0 8px; border-radius: 8px; white-space: nowrap; }
+.selo-conf.ok { background: var(--verde-claro); color: var(--verde-escuro); }
+.selo-conf.pend { background: var(--ambar-claro); color: var(--ambar-escuro); }
+
+/* painel de desempenho / treino */
+.painel-topo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+.barra-tema { display: grid; grid-template-columns: minmax(120px, 230px) minmax(0, 1fr) 64px; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 2px dashed var(--linha); font-size: 15.5px; }
+.barra-tema .bt-trilho { height: 14px; border-radius: 8px; background: var(--linha); overflow: hidden; display: flex; }
+.barra-tema .bt-trilho .ok { background: var(--verde); } .barra-tema .bt-trilho .no { background: var(--coral); }
+.barra-tema b { font: 700 16px var(--f-mao); text-align: right; font-variant-numeric: tabular-nums; }
+.vazio { padding: 18px; text-align: center; font: 400 18px var(--f-mao); color: var(--suave); border: 2.5px dashed var(--linha); border-radius: 16px; }
+.treino-opcoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 10px 0 16px; }
+.treino-opcoes label { font: 700 16px var(--f-mao); display: inline-flex; align-items: center; gap: 6px; }
+.treino-opcoes select { font: 700 16px var(--f-mao); padding: 4px 8px; border: 2px solid var(--tinta); border-radius: 10px; background: var(--papel-2); color: var(--tinta); }
+
+/* sobreposições */
+.sobreposicao { position: fixed; inset: 0; z-index: 80; background: var(--vidro); display: flex; justify-content: center; align-items: flex-start; overflow-y: auto;
+  padding: max(20px, env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) max(20px, env(safe-area-inset-bottom, 0px)) max(14px, env(safe-area-inset-left, 0px)); }
+.busca-painel { width: min(720px, 100%); margin-top: 6vh; background: var(--papel); border-radius: 6px 6px 22px 6px; box-shadow: var(--sombra-forte); padding: 16px;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 33px, var(--pauta) 33px 34px); }
+.busca-campo { display: flex; align-items: center; gap: 10px; border: 2.5px solid var(--tinta); border-radius: var(--borda-mao); padding: 4px 6px 4px 14px; background: var(--papel-2); }
+.busca-campo svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; flex: none; }
+.busca-campo input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 400 19px var(--f-mao); color: var(--tinta); padding: 6px 0; }
+.busca-sugestoes { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.busca-sugestoes button { font: 700 15px var(--f-mao); padding: 0 12px; background: var(--mk-azul); border: 0; border-radius: 10px; cursor: pointer; }
+.busca-resultados { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; max-height: 62vh; overflow-y: auto; }
+.busca-resultados a { display: block; padding: 10px 12px; text-decoration: none; color: var(--tinta); background: var(--papel-2); border-radius: 12px; border: 2px solid var(--linha); }
+.busca-resultados a:hover, .busca-resultados a:focus-visible { border-color: var(--tinta); }
+.busca-resultados small { display: block; font: 700 14px var(--f-mao); color: var(--teal); }
+.busca-resultados b { display: block; font: 700 18px var(--f-mao); }
+.busca-resultados span { display: block; font-size: 14.5px; color: var(--suave); }
+.busca-resultados mark { background: var(--mk-amarelo); color: inherit; border-radius: 3px; }
+.busca-vazio { padding: 14px; text-align: center; font: 400 17px var(--f-mao); color: var(--suave); }
+.lupa { flex-direction: column; align-items: stretch; padding: 0; }
+.lupa-barra { display: flex; justify-content: flex-end; gap: 8px; padding: calc(10px + env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) 10px 14px; }
+.lupa-area { flex: 1; overflow: auto; padding: 10px max(14px, env(safe-area-inset-right, 0px)) 30px max(14px, env(safe-area-inset-left, 0px)); }
+.lupa-folha { margin: 0 auto; background: var(--figura); padding: 16px; border-radius: 6px; width: calc(min(1100px, 100%) * var(--z, 1)); max-width: none; box-shadow: var(--sombra-forte); transition: width .25s; color: #1d2a31; }
+.lupa-folha svg { display: block; width: 100%; height: auto; }
+.aviso-toast { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 90; transform: translate(-50%, 30px); opacity: 0; pointer-events: none;
+  background: var(--tinta); color: var(--papel); font: 700 17px var(--f-mao); padding: 8px 18px; border-radius: 20px; transition: transform .25s, opacity .25s; max-width: calc(100% - 32px); text-align: center; }
+.aviso-toast.ver { transform: translate(-50%, 0); opacity: 1; }
+.confete { position: fixed; top: -30px; z-index: 95; pointer-events: none; font: 700 26px var(--f-mao); animation: confete var(--t, 2.6s) cubic-bezier(.3, .6, .5, 1) forwards; }
+@keyframes confete { to { transform: translate(var(--dx, 0), 110vh) rotate(var(--r, 360deg)); } }
+
+/* ---------------- responsivo ---------------- */
+@media (max-width: 860px) {
+  .ini-hero, .cap-hero { grid-template-columns: minmax(0, 1fr); }
+  .ini-arte { max-width: 520px; margin: 10px auto 0; width: 100%; }
+  .hero-foto { max-width: 340px; width: 80%; margin: 10px auto 0; }
+  .ini-painel, .painel-topo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* no celular, o quadro vira três blocos (um por ramo), cada célula com o nome do andar */
+  .quadro-sfn { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .quadro-sfn .q-vazio, .quadro-sfn .q-nivel { display: none; }
+  .quadro-sfn .q-cab { border-radius: 10px; margin-top: 10px; }
+  .quadro-sfn .k1 { order: 1; } .quadro-sfn .k2 { order: 2; } .quadro-sfn .k3 { order: 3; }
+  .quadro-sfn .q-cel[data-nivel]::before { content: attr(data-nivel); display: inline-block; font: 700 12.5px var(--f-mao); letter-spacing: .05em; text-transform: uppercase; padding: 0 8px; border-radius: 8px; margin-bottom: 4px; color: var(--tinta); }
+  .quadro-sfn .q-cel.n1::before { background: var(--mk-amarelo); } .quadro-sfn .q-cel.n2::before { background: var(--mk-azul); } .quadro-sfn .q-cel.n3::before { background: var(--mk-verde); }
+  .quadro-sfn .q-cel.dupla::before { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .grade-2, .grade-3, .grade-4 { grid-template-columns: minmax(0, 1fr); }
+  .hero-aprender ul { columns: 1; }
+  .fluxo-horizontal { flex-direction: column; }
+  .seta-h { transform: rotate(90deg); align-self: center; }
+  .linha-do-tempo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; }
+  .linha-do-tempo::before { display: none; }
+  .ce { grid-template-columns: minmax(0, 1fr); }
+  .navega { grid-template-columns: minmax(0, 1fr); }
+  .navega .prox { grid-column: auto; }
+  .frases-resumo li { grid-template-columns: 30px minmax(0, 1fr); }
+  .frases-resumo .manuscrito { grid-column: 2; }
+  .placar { top: 62px; }
+  .bloco { margin-top: 52px; }
+  .bloco.extra { padding: 18px 14px 14px; }
+  .juca { grid-template-columns: 64px minmax(0, 1fr); }
+  .juca svg { width: 64px; height: 64px; }
+  .barra-tema { grid-template-columns: minmax(0, 1fr) 54px; }
+  .barra-tema .bt-trilho { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+<!-- Símbolos reutilizáveis: filtro de traço "tremido" e o mascote Juca (cofrinho de óculos). -->
+<svg class="defs-globais" aria-hidden="true" width="0" height="0">
+  <defs>
+    <filter id="tremido" filterUnits="userSpaceOnUse" x="-4000" y="-4000" width="12000" height="40000">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.6"/>
+    </filter>
+    <symbol id="juca" viewBox="0 0 120 120">
+      <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 66c9-2 12 6 7 9s-9-3-3-7" fill="none"/>
+        <rect x="30" y="86" width="12" height="18" rx="4" fill="#ee8fa6"/>
+        <rect x="74" y="86" width="12" height="18" rx="4" fill="#ee8fa6"/>
+        <ellipse cx="60" cy="68" rx="44" ry="32" fill="#f6a6b8"/>
+        <path d="M30 42 24 22 42 34Z" fill="#ee8fa6"/>
+        <path d="M70 37 84 20 86 40Z" fill="#ee8fa6"/>
+        <rect x="46" y="35" width="24" height="5" rx="2.5" fill="#1d2a31"/>
+        <ellipse cx="22" cy="72" rx="12" ry="10" fill="#ee8fa6"/>
+        <circle cx="38" cy="58" r="9" fill="#fff"/>
+        <circle cx="60" cy="58" r="9" fill="#fff"/>
+        <path d="M47 58h4" fill="none"/>
+      </g>
+      <circle cx="39" cy="59" r="3.2" fill="#1d2a31"/>
+      <circle cx="61" cy="59" r="3.2" fill="#1d2a31"/>
+      <circle cx="40" cy="57.6" r="1" fill="#fff"/>
+      <circle cx="62" cy="57.6" r="1" fill="#fff"/>
+      <ellipse cx="19" cy="72" rx="2" ry="3" fill="#1d2a31"/>
+      <ellipse cx="26" cy="72" rx="2" ry="3" fill="#1d2a31"/>
+      <ellipse cx="50" cy="76" rx="6" ry="3.5" fill="#f27c9a" opacity=".6"/>
+      <path d="M33 84q8 6 16 0" fill="none" stroke="#1d2a31" stroke-width="2.6" stroke-linecap="round"/>
+      <g stroke="#7a4b00" stroke-width="2.5">
+        <ellipse cx="58" cy="24" rx="11" ry="11" fill="#f5c542"/>
+      </g>
+      <text x="58" y="29" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="14" fill="#7a4b00">R$</text>
+    </symbol>
+  </defs>
+</svg>
+
+
+<header class="barra" id="barra">
+  <button class="b-botao" id="b-menu" type="button" aria-label="Abrir o índice" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h12M4 17h16"/></svg><span>Índice</span>
+  </button>
+  <a class="b-logo" href="#inicio" aria-label="Início">CPA</a>
+  <div class="b-titulo" id="b-titulo">Apostila interativa</div>
+  <div class="b-acoes">
+    <button class="b-botao" id="b-busca" type="button" aria-label="Buscar na apostila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span>Buscar</span>
+    </button>
+    <a class="b-botao" href="#painel" aria-label="Meu desempenho">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Desempenho</span>
+    </a>
+    <button class="b-botao" id="b-treino" type="button" aria-pressed="false" title="Esconde as respostas para você testar a memória">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path class="risco-olho" d="M4 20L20 4"/></svg><span>Modo treino</span>
+    </button>
+  </div>
+  <div class="b-progresso" aria-hidden="true"><span id="b-prog"></span></div>
+</header>
+
+<div class="gaveta-fundo" id="gaveta" hidden>
+  <nav class="gaveta" aria-label="Índice da apostila">
+    <div class="gaveta-topo"><span>Índice</span><button class="fechar-x" id="gaveta-fechar" type="button" aria-label="Fechar o índice">×</button></div>
+    <div id="gaveta-lista"></div>
+  </nav>
+</div>
+
+<main>
+<!-- ======================= INÍCIO ======================= -->
+<div class="view folha" id="view-inicio">
+  <section class="ini-hero">
+    <div>
+      <span class="ini-sobre">Certificação ANBIMA · nova CPA · 2026</span>
+      <h1 class="ini-titulo">Apostila <span>CPA</span></h1>
+      <p class="ini-sub">O mercado financeiro explicado com desenhos, mapas mentais e exemplos do dia a dia. Questões que se corrigem na hora, pegadinhas que viram e um caderno de erros que lembra por você.</p>
+      <div class="contagem">
+        <span class="contagem-num" id="cont-num">?</span>
+        <span class="contagem-txt"><b id="cont-tit">Quando é a sua prova?</b><span><label for="data-prova">Data da prova: </label><input type="date" id="data-prova"></span></span>
+      </div>
+      <div class="ini-botoes">
+        <a class="btn-mao principal" href="#cap-1">Começar pelo capítulo 1</a>
+        <a class="btn-mao" href="#painel">Treinar e revisar erros</a>
+      </div>
+    </div>
+    <div class="ini-arte">
+      <span class="fita" aria-hidden="true"></span>
+      <svg viewBox="0 0 520 400" role="img" aria-label="Mesa de estudo com o cofrinho Juca, moedas, gráfico subindo e o caderno da CPA">
+        <circle cx="430" cy="78" r="44" fill="#f0a12f"/><circle cx="430" cy="78" r="60" fill="#f0a12f" opacity=".2"/>
+        <path d="M40 210 90 160l50 30 60-70 60 40 70-90" fill="none" stroke="#9fe0d9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M300 70h36v36" fill="none" stroke="#9fe0d9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="0" y="300" width="520" height="100" fill="#0a3a44"/>
+        <path d="M0 300h520" stroke="#ffd38a" stroke-width="4"/>
+        <g transform="translate(40 196) rotate(-6)">
+          <rect width="170" height="126" rx="8" fill="#fbfaf5" stroke="#08323b" stroke-width="4"/>
+          <path d="M14 0v126" stroke="#d9472f" stroke-width="3" opacity=".5"/>
+          <g stroke="#dfe9f2" stroke-width="3"><path d="M20 40h140M20 62h140M20 84h140M20 106h140"/></g>
+          <text x="92" y="34" text-anchor="middle" font-family="Kaushan Script, cursive" font-size="30" fill="#d9472f">CPA</text>
+          <text x="90" y="80" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#0b4f5c">CMN → BC</text>
+          <text x="90" y="102" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#0b4f5c">Selic · FGC</text>
+        </g>
+        <g transform="translate(250 150)" style="color:#08323b"><svg width="190" height="190" viewBox="0 0 120 120"><use href="#juca"/></svg></g>
+        <g stroke="#7a4b00" stroke-width="4">
+          <ellipse cx="440" cy="300" rx="34" ry="10" fill="#d9a520"/><rect x="406" y="276" width="68" height="24" fill="#f5c542"/><ellipse cx="440" cy="276" rx="34" ry="10" fill="#f5c542"/>
+          <ellipse cx="440" cy="262" rx="34" ry="10" fill="#f5c542"/><rect x="406" y="250" width="68" height="12" fill="#f5c542" stroke="none"/><ellipse cx="440" cy="250" rx="34" ry="10" fill="#ffd970"/>
+        </g>
+        <text x="260" y="352" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#ffd38a">normativo decide · supervisor fiscaliza</text><text x="260" y="380" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#ffd38a">operador atende</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="ini-painel" aria-label="Seu progresso">
+    <div class="stat"><b id="st-caps">0/12</b><span>capítulos lidos</span></div>
+    <div class="stat"><b id="st-resp">0/0</b><span>questões respondidas</span></div>
+    <div class="stat"><b id="st-pct">—</b><span>de acerto</span></div>
+    <div class="stat"><b id="st-erros">0</b><span>erros para revisar</span></div>
+  </section>
+
+  <h2 class="ini-h2">Os capítulos <small>o capítulo 1 já está pronto; os outros chegam por etapas</small></h2>
+  <div class="fichas" id="fichas"></div>
+
+  <h2 class="ini-h2">Como usar</h2>
+  <div class="como-usar">
+    <div class="uso"><b>1. Leia com os desenhos</b><span>Cada capítulo abre com um mapa do que vem e fecha com mapa mental, pegadinhas e revisão de 1 minuto.</span></div>
+    <div class="uso"><b>2. Responda na hora</b><span>Toque na alternativa: a correção e o porquê de cada opção aparecem na mesma hora.</span></div>
+    <div class="uso"><b>3. Revise seus erros</b><span>Cada erro vai para o caderno de erros em “Desempenho”, até você acertar.</span></div>
+    <div class="uso"><b>4. Ligue o Modo treino</b><span>Esconde as respostas do mapa mental e da revisão para você testar a memória.</span></div>
+  </div>
+  <p class="ini-rodape">Seu progresso fica salvo só neste navegador. Material de estudo independente, conferido em fontes oficiais (nov/2026). Não é produzido nem endossado pela ANBIMA.</p>
+</div>
+
+<!-- ======================= CAPÍTULOS ======================= -->
+<div class="view folha" id="view-cap-1" hidden>
+  <div class="cap-layout">
+    <article class="capitulo tema-mar" id="cap-1" data-cap="1" data-titulo="Sistema Financeiro Nacional">
+
+<header class="cap-hero">
+  <div class="hero-foto">
+    <div class="hero-arte">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Prédio de banco com a sigla SFN, moedas e um apito de árbitro">
+        <ellipse cx="150" cy="262" rx="118" ry="14" fill="#08323b" opacity=".45"/>
+        <path d="M58 104 150 52l92 52Z" fill="#fff5e0" stroke="#08323b" stroke-width="5" stroke-linejoin="round"/>
+        <text x="150" y="96" text-anchor="middle" font-family="Kaushan Script, cursive" font-size="30" fill="#d9472f">SFN</text>
+        <rect x="64" y="104" width="172" height="16" rx="3" fill="#ffe1a6" stroke="#08323b" stroke-width="5"/>
+        <g fill="#ffffff" stroke="#08323b" stroke-width="5">
+          <rect x="76" y="126" width="22" height="98" rx="4"/><rect x="116" y="126" width="22" height="98" rx="4"/>
+          <rect x="162" y="126" width="22" height="98" rx="4"/><rect x="202" y="126" width="22" height="98" rx="4"/>
+        </g>
+        <rect x="56" y="224" width="188" height="18" rx="3" fill="#ffe1a6" stroke="#08323b" stroke-width="5"/>
+        <rect x="44" y="242" width="212" height="16" rx="3" fill="#fff5e0" stroke="#08323b" stroke-width="5"/>
+        <g stroke="#7a4b00" stroke-width="4">
+          <ellipse cx="262" cy="196" rx="20" ry="20" fill="#f5c542"/><ellipse cx="34" cy="168" rx="16" ry="16" fill="#f5c542"/>
+          <ellipse cx="248" cy="58" rx="14" ry="14" fill="#f5c542"/>
+        </g>
+        <text x="262" y="204" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#7a4b00">R$</text>
+        <text x="34" y="175" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="16" fill="#7a4b00">R$</text>
+        <g transform="translate(26 54) rotate(-18)">
+          <rect x="0" y="10" width="52" height="26" rx="13" fill="#ffd38a" stroke="#08323b" stroke-width="4.5"/>
+          <rect x="44" y="4" width="26" height="14" rx="4" fill="#ffd38a" stroke="#08323b" stroke-width="4.5"/>
+          <circle cx="20" cy="23" r="6" fill="#08323b"/>
+          <path d="M-6 30 C -26 40, -18 62, 2 56" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="5 5"/>
+        </g>
+      </svg>
+    </div>
+    <span class="hero-num">1</span>
+  </div>
+  <div>
+    <span class="hero-sobre">Capítulo 1 · A base de toda a prova</span>
+    <h1 class="hero-titulo">Sistema Financeiro Nacional</h1>
+    <p class="hero-sub">Quem cria as regras, quem fiscaliza e quem coloca o dinheiro para girar. Entenda o SFN como um campeonato e nunca mais confunda CMN, BC, CVM, Susep e Previc.</p>
+    <div class="hero-chips"><span>CMN</span><span>Banco Central</span><span>CVM</span><span>Susep</span><span>Previc</span><span>banco múltiplo</span><span>fintechs</span><span>FGC</span></div>
+  </div>
+  <div class="hero-aprender">
+    <h2>Neste capítulo você vai aprender</h2>
+    <ul class="check">
+      <li>O que é intermediação financeira</li>
+      <li>Os 3 andares do SFN: normativos, supervisores e operadores</li>
+      <li>Composição e papel do CMN</li>
+      <li>Banco Central: autonomia, mandatos e funções</li>
+      <li>CVM e o que é (e o que não é) valor mobiliário</li>
+      <li>Seguros e previdência: CNSP, Susep, CNPC e Previc</li>
+      <li>Bancos, financeiras, cooperativas, fintechs e IPs</li>
+      <li>FGC: quanto e o que ele garante</li>
+    </ul>
+  </div>
+</header>
+
+<!-- 1.1 -->
+<section class="bloco" id="c1-s1" data-titulo="O que é o SFN">
+  <span class="sobretitulo">1.1 · Visão geral</span>
+  <h2 class="titulo-secao">O que é o SFN</h2>
+  <div class="linha-fina"></div>
+  <p class="lead">O <strong>Sistema Financeiro Nacional (SFN)</strong> é o conjunto de entidades e instituições que fazem a <span class="mt">intermediação financeira</span>: o encontro entre quem tem dinheiro sobrando e quem precisa de dinheiro.</p>
+  <p>Na prova, esses dois lados ganham nomes técnicos. Quem gasta menos do que ganha é o <span class="termo">agente superavitário</span> (poupador, investidor). Quem precisa de mais recursos do que tem é o <span class="termo">agente deficitário</span> (tomador de crédito). O banco fica no meio, e a diferença entre os juros que ele cobra e os juros que ele paga é o <span class="mt-rosa">spread bancário</span>.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 330" role="img" aria-label="Dona Lúcia deposita no banco, o banco empresta ao Seu Zé; Zé paga juros maiores, Lúcia recebe juros menores e a diferença é o spread">
+      <rect width="760" height="330" fill="#fff"/>
+      <!-- Lúcia -->
+      <g transform="translate(70 60)">
+        <circle cx="50" cy="40" r="30" fill="#f6c9a4" stroke="#1d2a31" stroke-width="3"/>
+        <path d="M22 34c2-24 54-26 56 0-8-10-46-10-56 0Z" fill="#c9ced6" stroke="#1d2a31" stroke-width="3"/>
+        <circle cx="50" cy="8" r="10" fill="#c9ced6" stroke="#1d2a31" stroke-width="3"/>
+        <circle cx="40" cy="42" r="7" fill="none" stroke="#1d2a31" stroke-width="2.5"/><circle cx="60" cy="42" r="7" fill="none" stroke="#1d2a31" stroke-width="2.5"/>
+        <path d="M47 42h6" stroke="#1d2a31" stroke-width="2.5"/>
+        <path d="M42 56q8 6 16 0" fill="none" stroke="#1d2a31" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M14 140c0-40 14-64 36-64s36 24 36 64Z" fill="#6550d0" stroke="#1d2a31" stroke-width="3"/>
+        <rect x="58" y="96" width="40" height="30" rx="6" fill="#f5c542" stroke="#7a4b00" stroke-width="3" transform="rotate(-8 78 111)"/>
+        <text x="78" y="117" text-anchor="middle" class="mao" font-size="15" fill="#7a4b00" transform="rotate(-8 78 111)">R$</text>
+      </g>
+      <text x="120" y="232" text-anchor="middle" class="mao" font-size="19" fill="#1d2a31">Dona Lúcia</text>
+      <text x="120" y="252" text-anchor="middle" font-size="13" fill="#5b6970">aposentada, sobra dinheiro</text>
+      <rect x="44" y="264" width="152" height="28" rx="8" fill="#e4f4ec"/>
+      <text x="120" y="283" text-anchor="middle" class="mao" font-size="15" fill="#1b7049">SUPERAVITÁRIA</text>
+      <!-- Banco -->
+      <g transform="translate(300 52)">
+        <path d="M10 46 80 8l70 38Z" fill="#fff5e0" stroke="#0b4f5c" stroke-width="3.5" stroke-linejoin="round"/>
+        <rect x="16" y="46" width="128" height="10" fill="#ffe1a6" stroke="#0b4f5c" stroke-width="3.5"/>
+        <g fill="#e3f2f1" stroke="#0b4f5c" stroke-width="3.5"><rect x="26" y="60" width="16" height="70" rx="3"/><rect x="58" y="60" width="16" height="70" rx="3"/><rect x="86" y="60" width="16" height="70" rx="3"/><rect x="118" y="60" width="16" height="70" rx="3"/></g>
+        <rect x="8" y="130" width="144" height="14" fill="#ffe1a6" stroke="#0b4f5c" stroke-width="3.5"/>
+        <text x="80" y="40" text-anchor="middle" class="mao" font-size="17" fill="#d9472f">BANCO</text>
+      </g>
+      <text x="380" y="222" text-anchor="middle" class="mao" font-size="19" fill="#0b4f5c">Intermediário financeiro</text>
+      <rect x="290" y="234" width="180" height="58" rx="10" fill="#fff4a8" stroke="#a96300" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="380" y="257" text-anchor="middle" class="mao" font-size="16" fill="#1d2a31">spread = juros cobrados</text>
+      <text x="380" y="279" text-anchor="middle" class="mao" font-size="16" fill="#1d2a31">− juros pagos</text>
+      <!-- Zé -->
+      <g transform="translate(580 52)">
+        <path d="M22 26c-14 0-16-20 0-20 2-14 26-14 28 0 4-12 26-8 22 6 12 2 10 18-2 18" fill="#fff" stroke="#1d2a31" stroke-width="3"/>
+        <rect x="24" y="28" width="52" height="12" fill="#fff" stroke="#1d2a31" stroke-width="3"/>
+        <circle cx="50" cy="62" r="26" fill="#d99a6c" stroke="#1d2a31" stroke-width="3"/>
+        <circle cx="41" cy="60" r="3.2" fill="#1d2a31"/><circle cx="59" cy="60" r="3.2" fill="#1d2a31"/>
+        <path d="M36 72q14-8 28 0" fill="none" stroke="#1d2a31" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40 76q10 4 20 0" fill="none" stroke="#1d2a31" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M12 150c0-40 14-62 38-62s38 22 38 62Z" fill="#f0a12f" stroke="#1d2a31" stroke-width="3"/>
+        <rect x="32" y="102" width="36" height="40" rx="5" fill="#fff" stroke="#1d2a31" stroke-width="2.5"/>
+      </g>
+      <text x="630" y="232" text-anchor="middle" class="mao" font-size="19" fill="#1d2a31">Seu Zé</text>
+      <text x="630" y="252" text-anchor="middle" font-size="13" fill="#5b6970">padeiro, quer um forno novo</text>
+      <rect x="560" y="264" width="140" height="28" rx="8" fill="#fdebe6"/>
+      <text x="630" y="283" text-anchor="middle" class="mao" font-size="15" fill="#b3311d">DEFICITÁRIO</text>
+      <!-- setas -->
+      <defs><marker id="pt1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#13858a"/></marker>
+      <marker id="pt2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d9472f"/></marker></defs>
+      <path d="M196 80 C 236 58, 262 58, 292 74" fill="none" stroke="#13858a" stroke-width="4" marker-end="url(#pt1)"/>
+      <text x="244" y="52" text-anchor="middle" class="mao" font-size="15" fill="#13858a">deposita / investe</text>
+      <path d="M462 74 C 500 58, 534 58, 572 80" fill="none" stroke="#13858a" stroke-width="4" marker-end="url(#pt1)"/>
+      <text x="518" y="52" text-anchor="middle" class="mao" font-size="15" fill="#13858a">empresta</text>
+      <path d="M572 150 C 540 164, 500 164, 472 152" fill="none" stroke="#d9472f" stroke-width="4" marker-end="url(#pt2)"/>
+      <text x="520" y="184" text-anchor="middle" class="mao" font-size="15" fill="#d9472f">paga juros</text>
+      <text x="520" y="201" text-anchor="middle" class="mao" font-size="15" fill="#d9472f">maiores</text>
+      <path d="M290 152 C 262 164, 228 164, 196 150" fill="none" stroke="#d9472f" stroke-width="4" marker-end="url(#pt2)"/>
+      <text x="242" y="184" text-anchor="middle" class="mao" font-size="15" fill="#d9472f">recebe juros</text>
+      <text x="242" y="201" text-anchor="middle" class="mao" font-size="15" fill="#d9472f">menores</text>
+    </svg>
+    <figcaption class="legenda">O banco capta de quem tem sobra e empresta a quem precisa. É a intermediação financeira.</figcaption>
+  </figure>
+
+  <h3>Os ramos e os mercados do SFN</h3>
+  <p>O Banco Central organiza o SFN em <strong>três ramos</strong>. O maior deles, o de moeda, crédito, capitais e câmbio, lida com <strong>quatro mercados</strong>:</p>
+  <div class="grade-4 cartoes-compactos">
+    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>Monetário</h4><p>Fornece papel-moeda e <strong>moeda escritural</strong> (o dinheiro depositado em conta).</p></div>
+    <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17V9l6-4 6 4v8"/><path d="M10 17v-4h4v4"/></svg></span>Crédito</h4><p>Recursos para o <strong>consumo</strong> das pessoas e o funcionamento das empresas.</p></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Capitais</h4><p>Empresas captam recursos de investidores e <strong>compartilham ganhos e riscos</strong> (ações, debêntures).</p></div>
+    <div class="cartao roxo"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></span>Câmbio</h4><p>Compra e venda de <strong>moeda estrangeira</strong>.</p></div>
+  </div>
+  <p class="mt-4">Os outros dois ramos são o de <strong>seguros privados</strong> (seguros, capitalização e previdência complementar <em>aberta</em>) e o de <strong>previdência fechada</strong> (fundos de pensão).</p>
+
+  <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+    <p class="balao mb-0">Oi, eu sou o <b>Juca</b>! Vou aparecer com os atalhos de memória. O primeiro: <strong>superávit sobra, déficit falta</strong>. Quem sobra empresta; quem falta toma emprestado.</p></div>
+</section>
+
+<!-- 1.2 -->
+<section class="bloco" id="c1-s2" data-titulo="A estrutura em 3 andares">
+  <span class="sobretitulo">1.2 · A grande sacada</span>
+  <h2 class="titulo-secao">A estrutura em 3 andares</h2>
+  <div class="linha-fina"></div>
+  <p>Pense no SFN como um <span class="mt">campeonato de futebol</span>. Alguém escreve o livro de regras, alguém apita o jogo e alguém entra em campo para jogar.</p>
+
+  <figure class="figura par" data-zoom>
+    <svg viewBox="0 0 760 340" role="img" aria-label="Normativos escrevem as regras, supervisores apitam o jogo e operadores jogam">
+      <rect width="760" height="340" fill="#fff"/>
+      <g transform="translate(18 18)">
+        <rect width="230" height="300" rx="16" fill="#fff8d6" stroke="#a96300" stroke-width="3"/>
+        <text x="115" y="38" text-anchor="middle" class="mao" font-size="22" fill="#a96300">1 · NORMATIVOS</text>
+        <g transform="translate(55 56)">
+          <path d="M0 10h56v86H8a8 8 0 0 1-8-8Z" fill="#d9472f" stroke="#1d2a31" stroke-width="3"/>
+          <path d="M56 10h56v78a8 8 0 0 1-8 8H56Z" fill="#f0634a" stroke="#1d2a31" stroke-width="3"/>
+          <path d="M56 10v86" stroke="#1d2a31" stroke-width="3"/>
+          <text x="28" y="50" text-anchor="middle" class="mao" font-size="13" fill="#fff">LIVRO</text>
+          <text x="28" y="66" text-anchor="middle" class="mao" font-size="13" fill="#fff">DE</text>
+          <text x="84" y="58" text-anchor="middle" class="mao" font-size="13" fill="#fff">REGRAS</text>
+        </g>
+        <text x="115" y="184" text-anchor="middle" class="mao" font-size="19" fill="#1d2a31">escrevem as regras</text>
+        <text x="115" y="214" text-anchor="middle" font-size="15" fill="#1d2a31" font-weight="800">CMN · CNSP · CNPC</text>
+        <text x="115" y="246" text-anchor="middle" font-size="13" fill="#5b6970">conselhos que decidem</text>
+        <text x="115" y="264" text-anchor="middle" font-size="13" fill="#5b6970">por resoluções</text>
+      </g>
+      <g transform="translate(265 18)">
+        <rect width="230" height="300" rx="16" fill="#e6f0fb" stroke="#1f6fbf" stroke-width="3"/>
+        <text x="115" y="38" text-anchor="middle" class="mao" font-size="22" fill="#1f6fbf">2 · SUPERVISORES</text>
+        <g transform="translate(70 52)">
+          <circle cx="45" cy="30" r="22" fill="#f6c9a4" stroke="#1d2a31" stroke-width="3"/>
+          <circle cx="37" cy="29" r="2.8" fill="#1d2a31"/><circle cx="53" cy="29" r="2.8" fill="#1d2a31"/>
+          <path d="M36 40q9 5 18 0" fill="none" stroke="#1d2a31" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M8 118c0-36 14-60 37-60s37 24 37 60Z" fill="#1d2a31"/>
+          <path d="M26 64h12v54H26zM52 64h12v54H52z" fill="#fff"/>
+          <rect x="74" y="44" width="22" height="30" rx="3" fill="#f5c542" stroke="#1d2a31" stroke-width="2.5" transform="rotate(14 85 59)"/>
+          <ellipse cx="18" cy="48" rx="9" ry="6" fill="#c9ced6" stroke="#1d2a31" stroke-width="2.5"/>
+          <path d="M18 54v10" stroke="#1d2a31" stroke-width="2"/>
+        </g>
+        <text x="115" y="196" text-anchor="middle" class="mao" font-size="19" fill="#1d2a31">fiscalizam e punem</text>
+        <text x="115" y="226" text-anchor="middle" font-size="15" fill="#1d2a31" font-weight="800">BC · CVM · Susep · Previc</text>
+        <text x="115" y="258" text-anchor="middle" font-size="13" fill="#5b6970">garantem que as regras</text>
+        <text x="115" y="276" text-anchor="middle" font-size="13" fill="#5b6970">sejam cumpridas</text>
+      </g>
+      <g transform="translate(512 18)">
+        <rect width="230" height="300" rx="16" fill="#e4f4ec" stroke="#1b7049" stroke-width="3"/>
+        <text x="115" y="38" text-anchor="middle" class="mao" font-size="22" fill="#1b7049">3 · OPERADORES</text>
+        <g transform="translate(40 60)">
+          <circle cx="40" cy="22" r="16" fill="#d99a6c" stroke="#1d2a31" stroke-width="3"/>
+          <path d="M14 98c0-30 10-52 26-52s26 22 26 52Z" fill="#13858a" stroke="#1d2a31" stroke-width="3"/>
+          <text x="40" y="86" text-anchor="middle" class="mao" font-size="18" fill="#fff">10</text>
+          <circle cx="112" cy="22" r="16" fill="#f6c9a4" stroke="#1d2a31" stroke-width="3"/>
+          <path d="M86 98c0-30 10-52 26-52s26 22 26 52Z" fill="#f0a12f" stroke="#1d2a31" stroke-width="3"/>
+          <text x="112" y="86" text-anchor="middle" class="mao" font-size="18" fill="#fff">7</text>
+          <circle cx="76" cy="104" r="14" fill="#fff" stroke="#1d2a31" stroke-width="3"/>
+          <path d="M76 94l6 5-2 7h-8l-2-7Z" fill="#1d2a31"/>
+        </g>
+        <text x="115" y="196" text-anchor="middle" class="mao" font-size="19" fill="#1d2a31">jogam o jogo</text>
+        <text x="115" y="226" text-anchor="middle" font-size="15" fill="#1d2a31" font-weight="800">bancos · corretoras</text>
+        <text x="115" y="246" text-anchor="middle" font-size="15" fill="#1d2a31" font-weight="800">seguradoras · fundos de pensão</text>
+        <text x="115" y="276" text-anchor="middle" font-size="13" fill="#5b6970">atendem o público</text>
+      </g>
+    </svg>
+    <figcaption class="legenda">Normativo decide. Supervisor fiscaliza. Operador atende o público.</figcaption>
+  </figure>
+
+  <h3>O quadro oficial do Banco Central</h3>
+  <p>Este é o mapa que o próprio BC usa. Leia de cima para baixo (andares) e da esquerda para a direita (ramos):</p>
+  <div class="quadro-sfn" role="table" aria-label="Estrutura do SFN segundo o Banco Central">
+    <div class="q-vazio" role="presentation"></div>
+    <div class="q-cab c1 k1" role="columnheader">Moeda, crédito, capitais e câmbio<small>o ramo principal</small></div>
+    <div class="q-cab c2 k2" role="columnheader">Seguros privados<small>seguros, capitalização, previdência aberta</small></div>
+    <div class="q-cab c3 k3" role="columnheader">Previdência fechada<small>fundos de pensão</small></div>
+
+    <div class="q-nivel n1" role="rowheader">Normativos<small>fazem as regras</small></div>
+    <div data-nivel="Normativos" class="k1 n1 q-cel"><b>CMN</b><span>Conselho Monetário Nacional</span></div>
+    <div data-nivel="Normativos" class="k2 n1 q-cel"><b>CNSP</b><span>Conselho Nacional de Seguros Privados</span></div>
+    <div data-nivel="Normativos" class="k3 n1 q-cel"><b>CNPC</b><span>Conselho Nacional de Previdência Complementar</span></div>
+
+    <div class="q-nivel n2" role="rowheader">Supervisores<small>fiscalizam</small></div>
+    <div data-nivel="Supervisores" class="k1 n2 q-cel dupla"><div><b>BC</b><span>Banco Central do Brasil</span></div><div><b>CVM</b><span>Comissão de Valores Mobiliários</span></div></div>
+    <div data-nivel="Supervisores" class="k2 n2 q-cel"><b>Susep</b><span>Superintendência de Seguros Privados</span></div>
+    <div data-nivel="Supervisores" class="k3 n2 q-cel"><b>Previc</b><span>Superintendência Nacional de Previdência Complementar</span></div>
+
+    <div class="q-nivel n3" role="rowheader">Operadores<small>atendem o público</small></div>
+    <div data-nivel="Operadores" class="k1 n3 q-cel"><ul><li>Bancos e caixas econômicas</li><li>Cooperativas de crédito</li><li>Administradoras de consórcios</li><li>Corretoras e distribuidoras*</li><li>Instituições de pagamento**</li><li>Demais instituições não bancárias</li><li>Bolsa de valores · Bolsa de mercadorias e futuros</li></ul></div>
+    <div data-nivel="Operadores" class="k2 n3 q-cel"><ul><li>Seguradoras e resseguradores</li><li>Entidades abertas de previdência</li><li>Sociedades de capitalização</li></ul></div>
+    <div data-nivel="Operadores" class="k3 n3 q-cel"><ul><li>Entidades fechadas de previdência complementar (fundos de pensão)</li></ul></div>
+  </div>
+  <p class="quadro-nota">* Dependendo das atividades, corretoras e distribuidoras também são fiscalizadas pela CVM. ** As instituições de pagamento <strong>não compõem o SFN</strong>, mas são reguladas e fiscalizadas pelo BC, conforme diretrizes do CMN. Fonte: quadro do SFN no site do Banco Central.</p>
+
+  <div class="caixa memorize"><span class="rotulo">Memorize em pares</span>
+    <ul class="marcadores">
+      <li><strong>CMN → BC e CVM</strong>: dinheiro, crédito, investimentos e câmbio.</li>
+      <li><strong>CNSP → Susep</strong>: seguros, capitalização e previdência <span class="mt">aberta</span> (PGBL, VGBL).</li>
+      <li><strong>CNPC → Previc</strong>: previdência <span class="mt">fechada</span> (fundos de pensão de empresas e servidores).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 1.3 -->
+<section class="bloco" id="c1-s3" data-titulo="CMN: o órgão máximo">
+  <span class="sobretitulo">1.3 · Normativo</span>
+  <h2 class="titulo-secao">CMN: o órgão máximo</h2>
+  <div class="linha-fina"></div>
+  <p>O <strong>Conselho Monetário Nacional</strong> é o órgão superior do SFN. Ele formula a política da <span class="mt">moeda e do crédito</span> com o objetivo de manter a estabilidade da moeda e promover o desenvolvimento econômico e social. É no CMN que se decide a <strong>meta para a inflação</strong>, as diretrizes para o câmbio e as normas principais de funcionamento das instituições financeiras.</p>
+
+  <div class="grade-2">
+    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="15" r="3"/><path d="M3 21c1-3 3-4 5-4M21 21c-1-3-3-4-5-4"/></svg></span>Composição: só 3 membros</h4>
+      <ul class="marcadores mb-0">
+        <li><strong>Ministro da Fazenda</strong> (presidente do Conselho)</li>
+        <li><strong>Ministro(a) do Planejamento e Orçamento</strong></li>
+        <li><strong>Presidente do Banco Central</strong></li>
+      </ul></div>
+    <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>Como funciona</h4>
+      <ul class="marcadores mb-0">
+        <li>Reúne-se <strong>uma vez por mês</strong> (pode haver reuniões extraordinárias).</li>
+        <li>As decisões viram <strong>Resoluções CMN</strong>, publicadas no Diário Oficial.</li>
+        <li>Não atende o público e não fiscaliza: <span class="mt">só normatiza</span>.</li>
+      </ul></div>
+  </div>
+
+  <h3>O que compete ao CMN (Lei 4.595/1964, art. 4º)</h3>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao"><p>Definir as <strong>características gerais</strong> das cédulas e moedas e aprovar os orçamentos monetários.</p></div>
+    <div class="cartao"><p>Fixar as diretrizes e normas da <strong>política cambial</strong>.</p></div>
+    <div class="cartao"><p><strong>Disciplinar o crédito</strong> em todas as suas modalidades.</p></div>
+    <div class="cartao"><p>Regular a <strong>constituição, o funcionamento e a fiscalização</strong> das instituições financeiras.</p></div>
+    <div class="cartao"><p>Fixar normas sobre <strong>encaixes</strong> e relações patrimoniais, e normas de <strong>contabilidade</strong> das instituições.</p></div>
+    <div class="cartao"><p>Estabelecer as <strong>metas de política monetária</strong>, que o BC conduz (LC 179/2021, art. 2º).</p></div>
+  </div>
+
+  <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+    <p class="balao mb-0">Atalho: o CMN tem <b>3 cadeiras</b>, como um tripé. <strong>F</strong>azenda preside, <strong>P</strong>lanejamento apoia e o <strong>B</strong>anco Central executa. Pense em <b>“FPB”</b>.</p></div>
+
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha clássica</span>
+    <p>“O CMN executa a política monetária.” <strong>Errado.</strong> O CMN <em>define as metas</em>; quem <em>executa</em> é o Banco Central. O presidente da CVM <strong>não</strong> faz parte do CMN.</p></div>
+</section>
+
+<!-- 1.4 -->
+<section class="bloco" id="c1-s4" data-titulo="Banco Central do Brasil">
+  <span class="sobretitulo">1.4 · Supervisor</span>
+  <h2 class="titulo-secao">Banco Central do Brasil</h2>
+  <div class="linha-fina"></div>
+  <p>O BC garante o cumprimento das normas do CMN, <strong>fiscaliza</strong> o sistema financeiro e <strong>executa</strong> as políticas monetária, cambial e de crédito. Desde a <span class="termo">Lei Complementar 179/2021</span>, ele tem autonomia formal.</p>
+
+  <div class="faixa-chave"><span class="big">1º</span>
+    <p>Objetivo <strong>fundamental</strong>: assegurar a <strong>estabilidade de preços</strong>. Sem prejuízo dele, o BC também deve zelar pela estabilidade e eficiência do sistema financeiro, <strong>suavizar as flutuações</strong> da atividade econômica e <strong>fomentar o pleno emprego</strong>.</p></div>
+
+  <h3>Autonomia em 4 pontos</h3>
+  <div class="grade-2 cartoes-compactos">
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7Z"/></svg></span>Natureza</h4><p>Autarquia de <strong>natureza especial</strong>, <span class="mt">sem vinculação a Ministério</span>, sem tutela nem subordinação hierárquica.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Diretoria</h4><p><strong>9 membros</strong>: o presidente e 8 diretores, indicados pelo Presidente da República e aprovados pelo <strong>Senado</strong>.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span>Mandato</h4><p><strong>4 anos</strong>, com <strong>1 recondução</strong> permitida. O mandato do presidente do BC começa em <strong>1º de janeiro do 3º ano</strong> do mandato do Presidente da República.</p></div>
+    <div class="cartao azul"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Exoneração</h4><p>Só nos casos da lei: a pedido, doença incapacitante, condenação por improbidade ou crime, ou desempenho insuficiente (proposta do CMN, aprovada por <strong>maioria absoluta do Senado</strong>).</p></div>
+  </div>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 250" role="img" aria-label="Linha do tempo: o mandato do presidente do BC começa no terceiro ano do mandato do Presidente da República e termina no segundo ano do mandato seguinte">
+      <rect width="760" height="250" fill="#fff"/>
+      <text x="20" y="34" class="mao" font-size="19" fill="#1d2a31">Mandatos que não coincidem</text>
+      <g font-size="13" fill="#5b6970" text-anchor="middle">
+        <text x="200" y="62">ano 1</text><text x="290" y="62">ano 2</text><text x="380" y="62">ano 3</text><text x="470" y="62">ano 4</text><text x="560" y="62">ano 1</text><text x="650" y="62">ano 2</text>
+      </g>
+      <path d="M155 70v150M515 70v150" stroke="#d9e2e5" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="20" y="98" font-size="14" font-weight="800" fill="#1d2a31">Presidente da</text>
+      <text x="20" y="114" font-size="14" font-weight="800" fill="#1d2a31">República</text>
+      <rect x="155" y="84" width="360" height="30" rx="10" fill="#6550d0"/>
+      <text x="335" y="104" text-anchor="middle" class="mao" font-size="16" fill="#fff">governo A</text>
+      <rect x="515" y="84" width="225" height="30" rx="10" fill="#b8adf0"/>
+      <text x="628" y="104" text-anchor="middle" class="mao" font-size="16" fill="#1d2a31">governo B →</text>
+      <text x="20" y="160" font-size="14" font-weight="800" fill="#1d2a31">Presidente</text>
+      <text x="20" y="176" font-size="14" font-weight="800" fill="#1d2a31">do BC</text>
+      <rect x="335" y="146" width="360" height="30" rx="10" fill="#d9472f"/>
+      <text x="515" y="166" text-anchor="middle" class="mao" font-size="16" fill="#fff">4 anos: começa em 1º/jan do ano 3</text>
+      <text x="20" y="214" font-size="14" font-weight="800" fill="#1d2a31">Diretores</text>
+      <g font-size="12.5" fill="#0b4f5c" text-anchor="middle" font-weight="700">
+        <circle cx="200" cy="210" r="13" fill="#e3f2f1" stroke="#13858a" stroke-width="2"/><text x="200" y="215">2</text>
+        <circle cx="290" cy="210" r="13" fill="#e3f2f1" stroke="#13858a" stroke-width="2"/><text x="290" y="215">2</text>
+        <circle cx="380" cy="210" r="13" fill="#e3f2f1" stroke="#13858a" stroke-width="2"/><text x="380" y="215">2</text>
+        <circle cx="470" cy="210" r="13" fill="#e3f2f1" stroke="#13858a" stroke-width="2"/><text x="470" y="215">2</text>
+      </g>
+      <text x="520" y="214" font-size="13" fill="#5b6970">2 diretores iniciam mandato a cada ano</text>
+      <text x="520" y="232" font-size="13" fill="#5b6970">(1º/mar no ano 1; 1º/jan nos anos 2, 3 e 4)</text>
+    </svg>
+    <figcaption class="legenda">Um governo herda o presidente do BC escolhido pelo governo anterior durante os dois primeiros anos. Essa é a ideia da autonomia.</figcaption>
+  </figure>
+
+  <h3>As funções privativas do BC</h3>
+  <p>Pela Lei 4.595/1964 (art. 10), só o BC pode:</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao coral"><h4>Emitir moeda</h4><p>Papel-moeda e moeda metálica, nos limites autorizados pelo CMN, e executar os serviços do <strong>meio circulante</strong>.</p></div>
+    <div class="cartao coral"><h4>Compulsório</h4><p>Determinar e receber o <strong>recolhimento compulsório</strong> dos bancos.</p></div>
+    <div class="cartao coral"><h4>Redesconto</h4><p>Fazer <strong>redesconto e empréstimos</strong> às instituições financeiras (o “banco dos bancos”).</p></div>
+    <div class="cartao coral"><h4>Fiscalizar e autorizar</h4><p><strong>Fiscalizar</strong> as instituições, aplicar penalidades e <strong>autorizar o funcionamento</strong> delas.</p></div>
+    <div class="cartao coral"><h4>Reservas</h4><p>Ser depositário das <strong>reservas internacionais</strong> e controlar o capital estrangeiro.</p></div>
+    <div class="cartao coral"><h4>Open market</h4><p>Comprar e vender <strong>títulos públicos federais</strong> como instrumento de política monetária.</p></div>
+  </div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Atualizado pela LC 179/2021</span>
+    <p>Muito material antigo diz que o BC é “vinculado ao Ministério da Fazenda”. Isso <strong>não vale mais</strong>: desde 2021 o BC é autarquia de natureza especial <strong>sem vinculação a Ministério</strong>. Quem continua vinculada à Fazenda é a <strong>CVM</strong>.</p></div>
+</section>
+
+<!-- 1.5 -->
+<section class="bloco" id="c1-s5" data-titulo="CVM: o xerife do mercado de capitais">
+  <span class="sobretitulo">1.5 · Supervisor</span>
+  <h2 class="titulo-secao">CVM: o xerife do mercado de capitais</h2>
+  <div class="linha-fina"></div>
+  <p>A <strong>Comissão de Valores Mobiliários</strong> foi criada pela <span class="termo">Lei 6.385/1976</span> para fiscalizar, normatizar, disciplinar e desenvolver o mercado de <span class="mt">valores mobiliários</span>. É uma <strong>autarquia em regime especial, vinculada ao Ministério da Fazenda</strong>, com autoridade administrativa independente.</p>
+
+  <div class="grade-2">
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>Colegiado</h4>
+      <p><strong>1 presidente + 4 diretores</strong>, nomeados pelo Presidente da República após aprovação do Senado.</p>
+      <p>Mandato de <strong>5 anos</strong>, <span class="mt-rosa">vedada a recondução</span>. Um quinto do Colegiado é renovado a cada ano.</p></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>O que a CVM fiscaliza</h4>
+      <ul class="marcadores mb-0"><li>Emissão, distribuição e negociação de valores mobiliários e derivativos</li><li>Companhias abertas e sua auditoria</li><li>Bolsas de valores e de mercadorias e futuros</li><li>Administração de carteiras, fundos e custódia</li><li>Consultores e analistas de valores mobiliários</li></ul></div>
+  </div>
+
+  <h3>É ou não é valor mobiliário?</h3>
+  <div class="tabela-rolagem"><table class="tabela lado">
+    <thead><tr><th>Teste rápido</th><th>✓ É valor mobiliário (CVM)</th><th>✗ Fica fora da Lei 6.385</th></tr></thead>
+    <tbody>
+      <tr><td>Empresas</td><td>Ações, debêntures, bônus de subscrição, notas comerciais</td><td>—</td></tr>
+      <tr><td>Fundos</td><td>Cotas de fundos de investimento e de clubes de investimento</td><td>—</td></tr>
+      <tr><td>Derivativos</td><td>Contratos futuros, opções e outros derivativos</td><td>—</td></tr>
+      <tr><td>Governo</td><td>—</td><td><strong>Títulos públicos</strong> federais, estaduais e municipais</td></tr>
+      <tr><td>Bancos</td><td>—</td><td>Títulos de responsabilidade de instituição financeira, como <strong>CDB, LCI, LCA</strong> (exceto debêntures)</td></tr>
+      <tr><td>Novidade</td><td>Créditos de carbono e ativos do SBCE, quando negociados no mercado financeiro e de capitais (Lei 15.042/2024)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa dica"><span class="rotulo">Dica de prova</span>
+    <p>Se o papel é de <strong>empresa</strong> e é negociado com o público (ação, debênture, nota comercial), pense em <strong>CVM</strong>. Se é de <strong>banco</strong> (CDB, LCI, LCA, poupança) ou do <strong>governo</strong> (Tesouro Direto), <strong>não</strong> é valor mobiliário.</p></div>
+</section>
+
+<!-- 1.6 -->
+<section class="bloco" id="c1-s6" data-titulo="Seguros e previdência aberta">
+  <span class="sobretitulo">1.6 · Normativo e supervisor</span>
+  <h2 class="titulo-secao">Seguros e previdência aberta</h2>
+  <div class="linha-fina"></div>
+  <div class="fluxo-horizontal">
+    <div class="passo-h destaque"><b>CNSP</b><span>Conselho Nacional de Seguros Privados: fixa as diretrizes e normas de seguros, resseguros, capitalização, previdência aberta e proteção patrimonial mutualista.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Susep</b><span>Superintendência de Seguros Privados: autarquia <strong>vinculada ao Ministério da Fazenda</strong> que executa essas diretrizes e fiscaliza o mercado.</span></div>
+  </div>
+
+  <h3>Quem senta no CNSP hoje</h3>
+  <div class="grade-2">
+    <div class="cartao ambar"><ul class="marcadores mb-0">
+      <li><strong>Ministro da Fazenda</strong> (presidente)</li>
+      <li>Representante do <strong>Ministério da Justiça</strong></li>
+      <li>Representante do <strong>Ministério da Previdência</strong></li>
+      <li><strong>Superintendente da Susep</strong> (preside na ausência do Ministro)</li>
+      <li>Representante do <strong>Banco Central</strong></li>
+    </ul></div>
+    <div class="caixa atualizacao" style="margin:0"><span class="rotulo">Mudou em 2023</span>
+      <p>A <strong>Lei 14.711/2023</strong> revogou o inciso que colocava um representante da <strong>CVM</strong> no CNSP. Se a sua apostila ainda lista a CVM no CNSP, ela está desatualizada.</p></div>
+  </div>
+
+  <h3>O que a Susep fiscaliza</h3>
+  <div class="grade-4 cartoes-compactos">
+    <div class="cartao"><h4>Seguros</h4><p>Seguradoras e <strong>resseguradores</strong>.</p></div>
+    <div class="cartao"><h4>Capitalização</h4><p>Títulos de capitalização, que combinam guardar dinheiro e concorrer a <strong>sorteios</strong>.</p></div>
+    <div class="cartao"><h4>Previdência aberta</h4><p><strong>PGBL e VGBL</strong>, vendidos ao público em geral.</p></div>
+    <div class="cartao"><h4>Mútuas e cooperativas</h4><p>Cooperativas de seguros e <strong>proteção patrimonial mutualista</strong> (LC 213/2025).</p></div>
+  </div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Novidade: LC 213/2025</span>
+    <p>A Lei Complementar 213/2025 trouxe para o Sistema Nacional de Seguros Privados as <strong>sociedades cooperativas de seguros</strong> e as <strong>operações de proteção patrimonial mutualista</strong> (as antigas “associações de proteção veicular”). Elas passam a seguir normas do <strong>CNSP</strong> e a fiscalização da <strong>Susep</strong>.</p></div>
+</section>
+
+<!-- 1.7 -->
+<section class="bloco" id="c1-s7" data-titulo="Previdência fechada: CNPC e Previc">
+  <span class="sobretitulo">1.7 · Normativo e supervisor</span>
+  <h2 class="titulo-secao">Previdência fechada: CNPC e Previc</h2>
+  <div class="linha-fina"></div>
+  <p>Fundo de pensão é o plano de aposentadoria <strong>fechado</strong>: só entram empregados de uma empresa, servidores de um ente público ou membros de uma associação ou entidade de classe. As regras vêm do <strong>CNPC</strong>, órgão colegiado do <strong>Ministério da Previdência Social</strong>, e a fiscalização é da <strong>Previc</strong>, autarquia de natureza especial vinculada ao mesmo ministério (Lei 12.154/2009).</p>
+
+  <div class="tabela-rolagem"><table class="tabela lado">
+    <thead><tr><th>Comparação</th><th>Previdência aberta</th><th>Previdência fechada</th></tr></thead>
+    <tbody>
+      <tr><td>Quem pode entrar</td><td>Qualquer pessoa</td><td>Só vínculo específico (empresa, órgão, associação)</td></tr>
+      <tr><td>Quem oferece</td><td>Entidades abertas e seguradoras (EAPC)</td><td>Entidades fechadas (EFPC), os fundos de pensão</td></tr>
+      <tr><td>Exemplos</td><td>PGBL, VGBL</td><td>Fundos de pensão de estatais e de grandes empresas</td></tr>
+      <tr><td>Normativo</td><td><strong>CNSP</strong></td><td><strong>CNPC</strong></td></tr>
+      <tr><td>Supervisor</td><td><strong>Susep</strong></td><td><strong>Previc</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="juca"><svg viewBox="0 0 120 120" aria-hidden="true" style="color:var(--tinta)"><use href="#juca"/></svg>
+    <p class="balao mb-0">Truque das letras: <b>Previc</b> começa como <b>Pre</b>vidência <b>fechada</b>. A Susep cuida de tudo que é <b>vendido ao público</b>: seguro, capitalização, PGBL e VGBL.</p></div>
+</section>
+
+<!-- 1.8 -->
+<section class="bloco" id="c1-s8" data-titulo="Os bancos">
+  <span class="sobretitulo">1.8 · Operadores bancários</span>
+  <h2 class="titulo-secao">Os bancos</h2>
+  <div class="linha-fina"></div>
+  <p>Banco é a instituição financeira especializada em intermediar o dinheiro entre poupadores e quem precisa de empréstimo, além de guardar esse dinheiro. Todos os bancos são supervisionados pelo <strong>Banco Central</strong>. Bancos comerciais e múltiplos devem ter a palavra <strong>“Banco”</strong> no nome (Res. CMN 5.060/2023).</p>
+
+  <div class="grade-2">
+    <div class="cartao"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 10 12 4l9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18"/></svg></span>Banco comercial</h4>
+      <p>Capta <strong>depósitos à vista</strong> (conta corrente) e a prazo, concede crédito e presta serviços de cobrança e pagamento.</p>
+      <p><span class="mt">Cria moeda escritural</span>: o dinheiro emprestado volta a ser depositado e vira novo empréstimo. Fazem isso as instituições que captam depósito à vista: bancos comerciais, múltiplos com carteira comercial e a Caixa.</p></div>
+    <div class="cartao ambar"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Banco de investimento</h4>
+      <p>Foco em <strong>empresas e mercado de capitais</strong> (estruturação de IPOs, financiamento de longo prazo).</p>
+      <p><strong>Não capta depósito à vista</strong>: usa depósitos a prazo (CDB) e outros instrumentos.</p></div>
+    <div class="cartao verde"><h4><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21V9M12 9c-4 0-6-3-6-6 4 0 6 3 6 6Zm0 0c4 0 6-3 6-6-4 0-6 3-6 6Z"/></svg></span>Banco de desenvolvimento</h4>
+      <p>Instituições <strong>públicas</strong> que financiam projetos de longo prazo para o desenvolvimento econômico e social. Exemplo federal: <strong>BNDES</strong>.</p></div>
+    <div class="cartao roxo"><h4><span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><circle cx="15" cy="15" r="4"/></svg></span>Banco cooperativo</h4>
+      <p>Banco comercial ou múltiplo <strong>controlado por cooperativas centrais de crédito</strong>, que devem deter pelo menos <strong>51%</strong> das ações com voto. Se for múltiplo, a carteira <strong>comercial é obrigatória</strong>.</p></div>
+  </div>
+
+  <h3>Banco múltiplo: vários bancos num só CNPJ</h3>
+  <p>A <span class="termo">Resolução CMN 5.060/2023</span> define o banco múltiplo como a instituição constituída com <span class="mt">no mínimo duas carteiras, sendo uma delas obrigatoriamente comercial ou de investimento</span>.</p>
+
+  <figure class="figura par" data-zoom>
+    <svg viewBox="0 0 760 330" role="img" aria-label="Banco múltiplo como um armário de seis gavetas: comercial, investimento, desenvolvimento, crédito imobiliário, crédito financiamento e investimento, arrendamento mercantil">
+      <rect width="760" height="330" fill="#fff"/>
+      <path d="M40 70 200 18l160 52Z" fill="#fff5e0" stroke="#0b4f5c" stroke-width="4" stroke-linejoin="round"/>
+      <text x="200" y="60" text-anchor="middle" class="tit" font-size="24" fill="#d9472f">Banco Múltiplo</text>
+      <rect x="50" y="70" width="300" height="236" rx="8" fill="#e3f2f1" stroke="#0b4f5c" stroke-width="4"/>
+      <g font-size="15" font-weight="800">
+        <rect x="66" y="84" width="130" height="62" rx="8" fill="#13858a" stroke="#0b4f5c" stroke-width="3"/><text x="131" y="112" text-anchor="middle" fill="#fff">comercial</text><circle cx="131" cy="132" r="4" fill="#ffd38a"/>
+        <rect x="206" y="84" width="130" height="62" rx="8" fill="#13858a" stroke="#0b4f5c" stroke-width="3"/><text x="271" y="112" text-anchor="middle" fill="#fff">investimento</text><circle cx="271" cy="132" r="4" fill="#ffd38a"/>
+        <rect x="66" y="156" width="130" height="62" rx="8" fill="#fff" stroke="#0b4f5c" stroke-width="3"/><text x="131" y="184" text-anchor="middle" fill="#0b4f5c">desenvolvimento</text><circle cx="131" cy="204" r="4" fill="#0b4f5c"/>
+        <rect x="206" y="156" width="130" height="62" rx="8" fill="#fff" stroke="#0b4f5c" stroke-width="3"/><text x="271" y="178" text-anchor="middle" fill="#0b4f5c">crédito</text><text x="271" y="195" text-anchor="middle" fill="#0b4f5c">imobiliário</text><circle cx="271" cy="208" r="4" fill="#0b4f5c"/>
+        <rect x="66" y="228" width="130" height="62" rx="8" fill="#fff" stroke="#0b4f5c" stroke-width="3"/><text x="131" y="250" text-anchor="middle" fill="#0b4f5c">crédito, financ.</text><text x="131" y="267" text-anchor="middle" fill="#0b4f5c">e investimento</text><circle cx="131" cy="280" r="4" fill="#0b4f5c"/>
+        <rect x="206" y="228" width="130" height="62" rx="8" fill="#fff" stroke="#0b4f5c" stroke-width="3"/><text x="271" y="250" text-anchor="middle" fill="#0b4f5c">arrendamento</text><text x="271" y="267" text-anchor="middle" fill="#0b4f5c">mercantil</text><circle cx="271" cy="280" r="4" fill="#0b4f5c"/>
+      </g>
+      <g transform="translate(392 56)">
+        <rect width="340" height="112" rx="14" fill="#fff4a8" stroke="#a96300" stroke-width="2.5"/>
+        <text x="20" y="34" class="mao" font-size="21" fill="#1d2a31">Regra de ouro</text>
+        <text x="20" y="62" font-size="15" fill="#1d2a31">mínimo de <tspan font-weight="800">2 carteiras</tspan></text>
+        <text x="20" y="86" font-size="15" fill="#1d2a31">e pelo menos uma <tspan font-weight="800" fill="#13858a">verde-escura</tspan>:</text>
+        <text x="20" y="104" font-size="15" fill="#1d2a31" font-weight="800">comercial ou investimento</text>
+      </g>
+      <g transform="translate(392 188)">
+        <rect width="340" height="118" rx="14" fill="#fdebe6" stroke="#d9472f" stroke-width="2.5"/>
+        <text x="20" y="32" class="mao" font-size="20" fill="#b3311d">Câmbio não é carteira!</text>
+        <text x="20" y="60" font-size="14.5" fill="#1d2a31">Operar câmbio depende de autorização</text>
+        <text x="20" y="80" font-size="14.5" fill="#1d2a31">do BC. Não entra na conta das</text>
+        <text x="20" y="100" font-size="14.5" fill="#1d2a31">6 carteiras do banco múltiplo.</text>
+      </g>
+    </svg>
+    <figcaption class="legenda">As 6 carteiras possíveis. Cada carteira segue as regras da instituição “sozinha” que ela imita.</figcaption>
+  </figure>
+
+  <div class="caixa atualizacao"><span class="rotulo">Norma nova</span>
+    <p>A antiga <strong>Resolução 2.099/1994</strong>, citada em quase todas as apostilas, foi <strong>totalmente revogada</strong> (por último pela Resolução CMN 5.237/2025, a partir de 1º/9/2025). A regra do banco múltiplo hoje está na <strong>Resolução CMN 5.060/2023</strong>. O conteúdo da regra é o mesmo; mudou só a norma de referência.</p></div>
+
+  <h3>Caixa Econômica Federal</h3>
+  <div class="cartao"><p><strong>Empresa pública</strong> com atividades típicas de banco comercial, mas com prioridade para empréstimos e financiamentos de <strong>programas sociais</strong> (assistência social, saúde, educação, trabalho e esporte) e para a <strong>habitação</strong>. É a única caixa econômica em atividade, <strong>gestora do FGTS</strong>, responsável pelo PIS e pelo seguro-desemprego, e detém o <strong>monopólio da loteria federal</strong>.</p></div>
+</section>
+
+<!-- 1.9 -->
+<section class="bloco" id="c1-s9" data-titulo="Instituições não bancárias">
+  <span class="sobretitulo">1.9 · Operadores não bancários</span>
+  <h2 class="titulo-secao">Instituições não bancárias</h2>
+  <div class="linha-fina"></div>
+  <p>São “não bancárias” porque <span class="mt">não recebem depósitos à vista e não criam moeda</span>. Trabalham com ativos não monetários: CDB, letras de câmbio, títulos, debêntures, ações. O nome de cada uma diz o que ela faz.</p>
+
+  <div class="grade-2 cartoes-compactos">
+    <div class="cartao ambar"><h4>Financeira (SCFI)</h4><p>Sociedade de <strong>Crédito, Financiamento e Investimento</strong>: financia bens, serviços e capital de giro (carro, eletrodoméstico). Capta por <strong>letras de câmbio</strong> e <strong>RDB</strong>. <span class="mt">Não abre conta corrente.</span></p></div>
+    <div class="cartao"><h4>Sociedade de crédito imobiliário (SCI)</h4><p>Especializada em financiamento habitacional (SFH). Desde os anos 1980 <strong>não capta do público</strong> e atua só como <strong>repassadora</strong>.</p></div>
+    <div class="cartao"><h4>Companhia hipotecária (CH)</h4><p>Financiamento imobiliário residencial e comercial. Capta por <strong>letras hipotecárias, LCI e debêntures</strong>, mas é <strong>proibida de captar poupança</strong>.</p></div>
+    <div class="cartao"><h4>Associação de poupança e empréstimo (APE)</h4><p>Sociedade civil voltada à casa própria. Os depositantes viram associados. Hoje só existe a <strong>Poupex</strong>, que atua no país inteiro.</p></div>
+    <div class="cartao coral"><h4>Arrendamento mercantil (leasing)</h4><p>Compra o bem e o “aluga” ao cliente com opção de compra. É <strong>equiparada a instituição financeira</strong> (não é IF), fiscalizada pelo BC.</p></div>
+    <div class="cartao verde"><h4>Agência de fomento</h4><p>Financia projetos de desenvolvimento no seu estado. <strong>Uma por estado</strong> (e DF), sob controle dele. <span class="mt">Proibida de captar recursos do público.</span></p></div>
+    <div class="cartao"><h4>Sociedade de crédito ao microempreendedor (SCMEPP)</h4><p>Crédito para microempreendedores e empresas de pequeno porte.</p></div>
+    <div class="cartao roxo"><h4>Administradora de consórcio</h4><p>Organiza grupos que juntam dinheiro para comprar bens por <strong>autofinanciamento</strong>. Contemplação por <strong>sorteio ou lance</strong>. Normas, autorização e fiscalização do <strong>BC</strong>.</p></div>
+  </div>
+
+  <h3>Quem pode captar o quê no setor imobiliário</h3>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Instituição</th><th>Poupança</th><th>LCI e letra hipotecária</th><th>Forma jurídica</th></tr></thead>
+    <tbody>
+      <tr><td>Bancos e Caixa</td><td class="sim">Capta</td><td class="sim">Capta</td><td>S.A. / empresa pública</td></tr>
+      <tr><td>SCI</td><td>Pode, mas só repassa</td><td>Pode, mas só repassa</td><td>S.A.</td></tr>
+      <tr><td>Companhia hipotecária</td><td class="nao">Proibida</td><td class="sim">Capta</td><td>S.A.</td></tr>
+      <tr><td>APE</td><td class="sim">Capta</td><td class="sim">Capta</td><td>Sociedade civil</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Corretoras e distribuidoras</h3>
+  <p>As <strong>CTVM</strong> (corretoras) e as <strong>DTVM</strong> (distribuidoras) intermediam a compra e venda de títulos e valores mobiliários, oferecem home broker, custódia e administração de carteiras. São <span class="mt">supervisionadas pelo BC e pela CVM</span>. Desde a <strong>Decisão Conjunta BCB/CVM 17/2009</strong>, as distribuidoras também podem operar diretamente na bolsa, e a principal diferença entre as duas deixou de existir.</p>
+
+  <h3>Bolsas e infraestrutura</h3>
+  <p>A <strong>B3 (Brasil, Bolsa, Balcão)</strong> reúne a bolsa de valores e a bolsa de mercadorias e futuros. Bolsas são fiscalizadas pela <strong>CVM</strong>. Os títulos públicos federais ficam registrados no <strong>Selic</strong> (Sistema Especial de Liquidação e de Custódia), que é do Banco Central. O nome da taxa Selic vem daí.</p>
+</section>
+
+<!-- 1.10 -->
+<section class="bloco" id="c1-s10" data-titulo="Cooperativas, fintechs e instituições de pagamento">
+  <span class="sobretitulo">1.10 · O novo mapa</span>
+  <h2 class="titulo-secao">Cooperativas, fintechs e instituições de pagamento</h2>
+  <div class="linha-fina"></div>
+
+  <h3>Cooperativas de crédito</h3>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao verde"><h4>Donos e usuários</h4><p>Os cooperados são donos e clientes ao mesmo tempo. Atendem <strong>só associados</strong>.</p></div>
+    <div class="cartao verde"><h4>1 pessoa, 1 voto</h4><p>Voto <strong>igual</strong>, não importa o tamanho da cota. O resultado positivo se chama <strong>sobra</strong>.</p></div>
+    <div class="cartao verde"><h4>FGCoop</h4><p>Os depósitos são protegidos pelo <strong>FGCoop</strong>, com o mesmo limite do FGC. Autorizadas e fiscalizadas pelo <strong>BC</strong>.</p></div>
+  </div>
+  <p class="pequeno">Singular: mínimo de 20 pessoas. Central (federação): mínimo de 3 singulares. Confederação: mínimo de 3 centrais. Lei 5.764/1971 e LC 130/2009.</p>
+
+  <h3>Fintechs de crédito: SCD × SEP</h3>
+  <div class="tabela-rolagem"><table class="tabela lado">
+    <thead><tr><th>Característica</th><th>SCD · Sociedade de Crédito Direto</th><th>SEP · Sociedade de Empréstimo entre Pessoas</th></tr></thead>
+    <tbody>
+      <tr><td>Como empresta</td><td>Com <strong>capital próprio</strong>, por plataforma eletrônica</td><td>Conecta <strong>credores e tomadores</strong> (peer-to-peer)</td></tr>
+      <tr><td>Capta do público?</td><td class="nao">Não</td><td>Só recursos vinculados a cada empréstimo</td></tr>
+      <tr><td>Limite</td><td>—</td><td>Cada credor pode ter no máximo <strong>R$ 15 mil</strong> por SEP</td></tr>
+      <tr><td>Autorização</td><td colspan="2">Banco Central. As operações entram no Sistema de Informações de Créditos (SCR).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Instituição de pagamento (IP)</h3>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>O que é</h4><p>Empresa que viabiliza pagamentos e transferências dentro de um <strong>arranjo de pagamento</strong>, <span class="mt">sem poder conceder empréstimos e financiamentos</span>. Lei 12.865/2013.</p>
+      <p>Tipos: <span class="etq">emissor de moeda eletrônica</span><span class="etq">emissor de pós-pago</span><span class="etq">credenciador</span><span class="etq">iniciador de pagamento</span></p></div>
+    <div class="caixa pegadinha" style="margin:0"><span class="rotulo">Atenção</span>
+      <p>Instituição de pagamento <strong>não é instituição financeira</strong> e <strong>não compõe o SFN</strong>. Mesmo assim, é <strong>regulada e fiscalizada pelo Banco Central</strong>, conforme diretrizes do CMN.</p></div>
+  </div>
+
+  <div class="caixa atualizacao"><span class="rotulo">Novidade: Resolução Conjunta 17/2025</span>
+    <p>Desde novembro de 2025, nenhuma instituição autorizada pelo BC pode usar no nome, na marca ou no site um termo que sugira uma atividade para a qual não tem autorização (literalmente ou por semelhança de som ou grafia). Na prática: quem não é banco não pode se apresentar como <strong>“banco”</strong> ou <strong>“bank”</strong>.</p></div>
+
+  <div class="caixa cotidiano"><span class="rotulo">No dia a dia</span>
+    <p>A conta digital onde você recebe Pix e usa cartão pré-pago pode ser uma <strong>conta de pagamento</strong> numa IP, e não uma conta corrente num banco. O saldo de conta de pagamento <strong>não</strong> é coberto pelo FGC. Os recursos dos clientes ficam separados do patrimônio da IP, conforme as regras do BC.</p></div>
+</section>
+
+<!-- 1.11 -->
+<section class="bloco" id="c1-s11" data-titulo="Rede de proteção: FGC">
+  <span class="sobretitulo">1.11 · Segurança</span>
+  <h2 class="titulo-secao">Rede de proteção: o FGC</h2>
+  <div class="linha-fina"></div>
+  <p>O <strong>Fundo Garantidor de Créditos</strong> é uma entidade <strong>privada, sem fins lucrativos</strong>, mantida pelas próprias instituições associadas. Se um banco sofrer intervenção ou liquidação, o FGC devolve o dinheiro dos clientes até o limite.</p>
+
+  <div class="grade-2 numeros">
+    <div class="cartao"><span class="valor">R$ 250 mil</span><span class="rotulo-n">por CPF/CNPJ, por instituição <strong>ou conglomerado</strong> financeiro (principal + juros)</span></div>
+    <div class="cartao"><span class="valor">R$ 1 milhão</span><span class="rotulo-n">teto por pessoa, somando todas as instituições, <strong>a cada 4 anos</strong></span></div>
+  </div>
+
+  <div class="grade-2 mt-4">
+    <div class="cartao verde"><h4>✓ Tem garantia do FGC</h4><ul class="check mb-0"><li>Depósitos à vista e poupança</li><li>CDB, RDB e depósitos a prazo</li><li>Letras de câmbio (LC)</li><li>LCI, LCA e letras hipotecárias</li><li><strong>LCD</strong> (desde a Res. CMN 5.184/2024)</li><li>Contas-salário</li></ul></div>
+    <div class="cartao coral"><h4>✗ Não tem garantia do FGC</h4><ul class="check mb-0"><li class="nao">Cotas de fundos de investimento</li><li class="nao">Debêntures, CRI e CRA (não são de banco)</li><li class="nao">Ações e títulos públicos</li><li class="nao">Planos de previdência (PGBL/VGBL)</li><li class="nao">Saldo em conta de pagamento de IP</li><li class="nao">Instrumentos com cláusula de subordinação</li></ul></div>
+  </div>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 300" role="img" aria-label="Exemplo: Ana tem 180 mil em CDB e 120 mil em LCI no mesmo conglomerado e recebe 250 mil; os 100 mil no outro banco são cobertos integralmente">
+      <rect width="760" height="300" fill="#fff"/>
+      <text x="20" y="34" class="mao" font-size="20" fill="#1d2a31">Exemplo: a Ana e dois bancos que quebraram</text>
+      <g transform="translate(20 52)">
+        <rect width="420" height="226" rx="14" fill="#e3f2f1" stroke="#13858a" stroke-width="3"/>
+        <text x="20" y="32" class="mao" font-size="18" fill="#0b4f5c">Conglomerado Alfa</text>
+        <rect x="20" y="48" width="180" height="58" rx="10" fill="#fff" stroke="#13858a" stroke-width="2"/>
+        <text x="110" y="72" text-anchor="middle" font-size="14" fill="#5b6970">CDB no Banco Alfa</text>
+        <text x="110" y="95" text-anchor="middle" class="mao" font-size="20" fill="#1d2a31">R$ 180 mil</text>
+        <rect x="220" y="48" width="180" height="58" rx="10" fill="#fff" stroke="#13858a" stroke-width="2"/>
+        <text x="310" y="72" text-anchor="middle" font-size="14" fill="#5b6970">LCI na Financeira Alfa</text>
+        <text x="310" y="95" text-anchor="middle" class="mao" font-size="20" fill="#1d2a31">R$ 120 mil</text>
+        <text x="210" y="138" text-anchor="middle" font-size="15" fill="#1d2a31">total no grupo: <tspan font-weight="800">R$ 300 mil</tspan></text>
+        <rect x="70" y="154" width="280" height="54" rx="12" fill="#13858a"/>
+        <text x="210" y="188" text-anchor="middle" class="mao" font-size="21" fill="#fff">FGC paga R$ 250 mil</text>
+      </g>
+      <g transform="translate(460 52)">
+        <rect width="280" height="226" rx="14" fill="#fff4a8" stroke="#a96300" stroke-width="3"/>
+        <text x="20" y="32" class="mao" font-size="18" fill="#a96300">Banco Beta (outro grupo)</text>
+        <rect x="50" y="48" width="180" height="58" rx="10" fill="#fff" stroke="#a96300" stroke-width="2"/>
+        <text x="140" y="72" text-anchor="middle" font-size="14" fill="#5b6970">CDB no Banco Beta</text>
+        <text x="140" y="95" text-anchor="middle" class="mao" font-size="20" fill="#1d2a31">R$ 100 mil</text>
+        <rect x="30" y="154" width="220" height="54" rx="12" fill="#a96300"/>
+        <text x="140" y="188" text-anchor="middle" class="mao" font-size="21" fill="#fff">FGC paga R$ 100 mil</text>
+        <text x="140" y="136" text-anchor="middle" font-size="14" fill="#1d2a31">abaixo do limite: recebe tudo</text>
+      </g>
+    </svg>
+    <figcaption class="legenda">Ana recebe R$ 350 mil no total e perde R$ 50 mil no grupo Alfa. Os R$ 350 mil contam para o teto de R$ 1 milhão em 4 anos.</figcaption>
+  </figure>
+
+  <div class="caixa atualizacao"><span class="rotulo">Corrigindo material antigo</span>
+    <p>Muitas apostilas dizem que a <strong>LCD (Letra de Crédito do Desenvolvimento)</strong> não tem FGC. A <strong>Resolução CMN 5.184/2024</strong> incluiu a LCD na lista de garantia ordinária do FGC (Res. 4.222/2013, art. 2º do regulamento).</p></div>
+
+  <div class="caixa dica"><span class="rotulo">Curiosidade que cai</span>
+    <p>O <strong>CRSFN</strong> (Conselho de Recursos do Sistema Financeiro Nacional) é o “tribunal de segunda instância” administrativo: julga recursos contra penalidades aplicadas pelo <strong>BC</strong>, pela <strong>CVM</strong> e, em casos de lavagem de dinheiro, pelo <strong>COAF</strong>. Fica na estrutura do Ministério da Fazenda.</p></div>
+</section>
+
+<!-- 1.12 -->
+<section class="bloco" id="c1-s12" data-titulo="Mapa mental do SFN">
+  <span class="sobretitulo">1.12 · Visão do todo</span>
+  <h2 class="titulo-secao">Mapa mental do SFN</h2>
+  <div class="linha-fina"></div>
+  <div class="mapa-caderno" data-mapa="sfn"></div>
+  <div class="caixa dica"><span class="rotulo">Como revisar com o mapa</span>
+    <p>Ligue o <strong>Modo treino</strong> no topo: os itens somem e você toca em cada um para lembrar. Faça isso com os seis ramos na véspera da prova. Leva menos de 5 minutos e mostra exatamente o que ainda não fixou.</p></div>
+</section>
+
+<!-- 1.13 -->
+<section class="bloco" id="c1-s13" data-titulo="Pegadinhas de prova">
+  <span class="sobretitulo">1.13 · Não caia nessa</span>
+  <h2 class="titulo-secao">Pegadinhas de prova</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">Toque em cada cartão para revelar a versão correta.</p>
+  <div class="ce fechado"><div class="errado">O CMN executa a política monetária e fiscaliza os bancos.</div><div class="certo"><span class="toque">toque para ver</span>O CMN <strong>normatiza</strong> e define metas. Quem <strong>executa e fiscaliza</strong> é o Banco Central.</div></div>
+  <div class="ce fechado"><div class="errado">O Banco Central é vinculado ao Ministério da Fazenda.</div><div class="certo"><span class="toque">toque para ver</span>Desde a LC 179/2021 o BC <strong>não tem vinculação a Ministério</strong>. A CVM e a Susep é que são vinculadas à Fazenda.</div></div>
+  <div class="ce fechado"><div class="errado">O mandato do presidente do BC coincide com o do Presidente da República.</div><div class="certo"><span class="toque">toque para ver</span>Começa em 1º de janeiro do <strong>terceiro ano</strong> do mandato presidencial e dura 4 anos.</div></div>
+  <div class="ce fechado"><div class="errado">Os dirigentes da CVM podem ser reconduzidos uma vez.</div><div class="certo"><span class="toque">toque para ver</span>Na CVM, mandato de <strong>5 anos, vedada a recondução</strong>. Quem pode ser reconduzido uma vez é a diretoria do <strong>BC</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">CDB e títulos públicos são valores mobiliários fiscalizados pela CVM.</div><div class="certo"><span class="toque">toque para ver</span>Ficam <strong>fora</strong> da Lei 6.385: títulos públicos e títulos de instituição financeira (exceto debêntures).</div></div>
+  <div class="ce fechado"><div class="errado">Fundo de pensão de uma estatal é fiscalizado pela Susep.</div><div class="certo"><span class="toque">toque para ver</span>Previdência <strong>fechada</strong> é com a <strong>Previc</strong> (normas do CNPC). A Susep fica com a previdência <strong>aberta</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O banco múltiplo pode ter as carteiras de câmbio e de crédito imobiliário.</div><div class="certo"><span class="toque">toque para ver</span>Câmbio <strong>não é carteira</strong>. São no mínimo 2 carteiras, uma delas <strong>comercial ou de investimento</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">Instituição de pagamento é instituição financeira e pode emprestar.</div><div class="certo"><span class="toque">toque para ver</span>IP <strong>não é IF</strong>, não compõe o SFN e <strong>não pode emprestar</strong>. Mas é regulada e fiscalizada pelo BC.</div></div>
+  <div class="ce fechado"><div class="errado">A LCD não tem cobertura do FGC.</div><div class="certo"><span class="toque">toque para ver</span>Tem, desde a <strong>Resolução CMN 5.184/2024</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O FGC garante R$ 250 mil por instituição, mesmo que sejam do mesmo grupo.</div><div class="certo"><span class="toque">toque para ver</span>O limite é por instituição <strong>ou conglomerado</strong>. Dois bancos do mesmo grupo dividem os mesmos R$ 250 mil.</div></div>
+</section>
+
+<!-- 1.14 -->
+<section class="bloco extra" id="c1-s14" data-titulo="Desafio relâmpago: quem fiscaliza?">
+  <span class="sobretitulo">1.14 · Jogo</span>
+  <h2 class="titulo-secao">Desafio relâmpago: quem fiscaliza?</h2>
+  <div class="linha-fina"></div>
+  <p>Aparece uma instituição; você tem <strong>8 segundos</strong> para escolher o supervisor. São 10 rodadas sorteadas.</p>
+  <div class="jogo" data-jogo="fiscaliza"></div>
+</section>
+
+<!-- 1.15 -->
+<section class="bloco" id="c1-s15" data-titulo="Questões com correção na hora">
+  <span class="sobretitulo">1.15 · Treino</span>
+  <h2 class="titulo-secao">Questões com correção na hora</h2>
+  <div class="linha-fina"></div>
+  <p>Questões <strong>inéditas</strong> no estilo da prova CPA da ANBIMA, escritas para este capítulo. Toque numa alternativa: a correção e a explicação aparecem na hora, e cada erro vai automaticamente para o seu <a href="#painel">caderno de erros</a>.</p>
+  <div class="lista-questoes" data-questoes="1"></div>
+</section>
+
+<!-- 1.16 -->
+<section class="bloco" id="c1-s16" data-titulo="Revisão de 1 minuto">
+  <span class="sobretitulo">1.16 · Revisão</span>
+  <h2 class="titulo-secao">Revisão de 1 minuto</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">No Modo treino, as respostas em vermelho somem. Toque para conferir.</p>
+  <ol class="frases-resumo">
+    <li><b>Normativos</b><span class="manuscrito">CMN, CNSP e CNPC</span></li>
+    <li><b>Supervisores</b><span class="manuscrito">BC, CVM, Susep e Previc</span></li>
+    <li><b>CMN</b><span class="manuscrito">Fazenda (preside), Planejamento e presidente do BC</span></li>
+    <li><b>Objetivo do BC</b><span class="manuscrito">estabilidade de preços</span></li>
+    <li><b>Mandato BC</b><span class="manuscrito">4 anos, 1 recondução, começa no 3º ano do governo</span></li>
+    <li><b>Mandato CVM</b><span class="manuscrito">5 anos, sem recondução</span></li>
+    <li><b>Previdência aberta</b><span class="manuscrito">CNSP + Susep</span></li>
+    <li><b>Previdência fechada</b><span class="manuscrito">CNPC + Previc</span></li>
+    <li><b>Banco múltiplo</b><span class="manuscrito">2 carteiras, uma comercial ou de investimento</span></li>
+    <li><b>Cria moeda</b><span class="manuscrito">banco comercial (depósito à vista)</span></li>
+    <li><b>IP</b><span class="manuscrito">não é IF, não empresta, fiscalizada pelo BC</span></li>
+    <li><b>FGC</b><span class="manuscrito">R$ 250 mil por conglomerado; R$ 1 mi a cada 4 anos</span></li>
+  </ol>
+  <div class="frase-final"><span class="manuscrito">Normativo decide, supervisor fiscaliza, operador atende.</span>Se lembrar só de uma frase deste capítulo, que seja esta.</div>
+</section>
+
+<!-- 1.17 -->
+<section class="bloco" id="c1-s17" data-titulo="Fontes e links para verificação">
+  <span class="sobretitulo">1.17 · Confira você mesma</span>
+  <h2 class="titulo-secao">Fontes e links para verificação</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">Todas as informações deste capítulo foram conferidas em novembro de 2026 nas fontes oficiais abaixo.</p>
+  <div class="tabela-rolagem"><table class="tabela fontes">
+    <thead><tr><th>Assunto</th><th>Fonte oficial</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Estrutura do SFN, ramos, mercados, IP fora do SFN, CRSFN</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/sfn" target="_blank" rel="noopener">Sistema Financeiro Nacional</a><span class="org">Banco Central do Brasil</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Composição e reuniões do CMN</td><td><a href="https://www.gov.br/fazenda/pt-br/assuntos/cmn" target="_blank" rel="noopener">Conselho Monetário Nacional</a><span class="org">Ministério da Fazenda</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Competências do CMN e do BC; definição de instituição financeira</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/1960-1969/lei-4595-31-dezembro-1964-353886-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 4.595/1964 (texto atualizado)</a><span class="org">Câmara dos Deputados</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Autonomia, objetivos, diretoria e mandatos do BC</td><td><a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp179.htm" target="_blank" rel="noopener">Lei Complementar 179/2021</a><span class="org">Planalto · <a href="https://www2.camara.leg.br/legin/fed/leicom/2021/leicomplementar-179-24-fevereiro-2021-791083-publicacaooriginal-162335-pl.html" target="_blank" rel="noopener">cópia na Câmara</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>CVM: natureza, colegiado, valores mobiliários</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/1970-1979/lei-6385-7-dezembro-1976-357234-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 6.385/1976 (texto atualizado)</a><span class="org">Câmara · <a href="https://www.gov.br/cvm/pt-br/acesso-a-informacao-cvm/institucional/sobre-a-cvm" target="_blank" rel="noopener">Sobre a CVM</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>CNSP (composição atual) e Susep; LC 213/2025</td><td><a href="https://www2.camara.leg.br/legin/fed/declei/1960-1969/decreto-lei-73-21-novembro-1966-374590-normaatualizada-pe.pdf" target="_blank" rel="noopener">Decreto-Lei 73/1966 (texto atualizado)</a><span class="org">Câmara · <a href="https://www.gov.br/susep/pt-br/acesso-a-informacao/institucional/sobre-a-susep" target="_blank" rel="noopener">Sobre a Susep</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>CNPC e Previc</td><td><a href="https://www.gov.br/previdencia/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/conselho-nacional-de-previdencia-complementar" target="_blank" rel="noopener">Conselho Nacional de Previdência Complementar</a><span class="org">Ministério da Previdência · <a href="https://www2.camara.leg.br/legin/fed/lei/2009/lei-12154-23-dezembro-2009-599155-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 12.154/2009</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Bancos comerciais, múltiplos e cooperativos</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5060" target="_blank" rel="noopener">Resolução CMN 5.060/2023</a><span class="org">Banco Central · revogação da Res. 2.099: <a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&amp;numero=5237" target="_blank" rel="noopener">Res. CMN 5.237/2025</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Caixa econômica, financeiras, SCI, CH, APE, leasing, agência de fomento</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/instituicoesnaobancarias" target="_blank" rel="noopener">Instituições não bancárias</a><span class="org">Banco Central · <a href="https://www.bcb.gov.br/estabilidadefinanceira/bancoscaixaseconomicas" target="_blank" rel="noopener">Bancos e caixas econômicas</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Cooperativas de crédito e FGCoop</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/cooperativacredito" target="_blank" rel="noopener">Cooperativas de crédito</a><span class="org">Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Fintechs (SCD e SEP)</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/fintechs" target="_blank" rel="noopener">Fintechs</a><span class="org">Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Instituições de pagamento</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/instituicaopagamento" target="_blank" rel="noopener">Instituições de pagamento</a><span class="org">Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Corretoras, distribuidoras e consórcios</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/corretoradistribuidora" target="_blank" rel="noopener">Corretoras e distribuidoras</a><span class="org">Banco Central · <a href="https://www.bcb.gov.br/estabilidadefinanceira/administradoraconsorcio" target="_blank" rel="noopener">Administradoras de consórcio</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Nomes “banco”/“bank”</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20Conjunta&amp;numero=17" target="_blank" rel="noopener">Resolução Conjunta 17/2025</a><span class="org">CMN e Banco Central</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>FGC: limites, produtos garantidos, LCD</td><td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o&amp;numero=4222" target="_blank" rel="noopener">Resolução CMN 4.222/2013 (estatuto e regulamento do FGC)</a><span class="org">Banco Central · <a href="https://www.fgc.org.br/" target="_blank" rel="noopener">site do FGC</a></span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno">Material de estudo independente. Não é produzido nem endossado pela ANBIMA, pelo Banco Central ou pelos demais órgãos citados.</p>
+
+  <nav class="navega" aria-label="Navegação entre capítulos">
+    <a href="#inicio"><small>← voltar</small><b>Início</b></a>
+    <a class="prox" href="#painel"><small>quando terminar</small><b>Meu desempenho →</b></a>
+  </nav>
+</section>
+</article>
+
+    <aside class="indice-lateral" aria-label="Seções do capítulo"></aside>
+  </div>
+</div>
+
+<!-- ======================= DESEMPENHO ======================= -->
+<div class="view folha" id="view-painel" hidden>
+  <div class="cap-layout"><div class="capitulo">
+    <span class="sobretitulo">Seu painel</span>
+    <h1 class="hero-titulo">Meu desempenho</h1>
+    <div class="painel-topo">
+      <div class="stat"><b id="pn-resp">0/0</b><span>questões respondidas</span></div>
+      <div class="stat"><b id="pn-pct">—</b><span>de acerto</span></div>
+      <div class="stat"><b id="pn-erros">0</b><span>erros no caderno</span></div>
+      <div class="stat"><b id="pn-rec">0/10</b><span>recorde no desafio</span></div>
+    </div>
+
+    <section class="bloco" id="pn-desempenho" style="margin-top:30px">
+      <span class="sobretitulo">Por assunto</span>
+      <h2 class="titulo-secao">Onde estou bem e onde preciso reforçar</h2>
+      <div class="linha-fina"></div>
+      <div id="pn-temas"></div>
+      <p class="pequeno">Verde = acertos, vermelho = erros, cinza = ainda não respondidas.</p>
+    </section>
+
+    <section class="bloco extra" id="pn-treino">
+      <span class="sobretitulo">Modo treino</span>
+      <h2 class="titulo-secao">Treino rápido</h2>
+      <div class="linha-fina"></div>
+      <div class="treino-opcoes">
+        <label for="tr-tema">Tema</label><select id="tr-tema"><option value="">Todos os temas</option></select>
+        <label for="tr-so">Questões</label><select id="tr-so"><option value="todas">todas</option><option value="erros">só as que errei</option><option value="novas">só as que nunca fiz</option></select>
+        <label for="tr-qtd">Quantas</label><select id="tr-qtd"><option>5</option><option selected>10</option><option>20</option></select>
+        <button class="btn-mao principal pequeno" type="button" id="tr-ir">Sortear questões</button>
+      </div>
+      <div id="tr-lista"><div class="vazio">Escolha os filtros e toque em “Sortear questões”.</div></div>
+    </section>
+
+    <section class="bloco" id="pn-erros-sec">
+      <span class="sobretitulo">Revisão de erros</span>
+      <h2 class="titulo-secao">Meu caderno de erros</h2>
+      <div class="linha-fina"></div>
+      <p>Aqui ficam as questões que você errou. Responda de novo: quando acertar, ela sai do caderno na próxima vez que você abrir esta página.</p>
+      <div id="pn-lista-erros"></div>
+    </section>
+  </div></div>
+</div>
+</main>
+
+<div class="sobreposicao" id="busca" hidden>
+  <div class="busca-painel" role="dialog" aria-modal="true" aria-label="Buscar na apostila">
+    <div class="busca-campo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="busca-texto" type="search" placeholder="Busque: CMN, recondução, FGC, SEP…" autocomplete="off" aria-label="Termo de busca">
+      <button class="fechar-x" id="busca-fechar" type="button" aria-label="Fechar a busca">×</button>
+    </div>
+    <div class="busca-sugestoes" id="busca-sugestoes"></div>
+    <ol class="busca-resultados" id="busca-resultados" aria-live="polite"></ol>
+  </div>
+</div>
+
+<div class="sobreposicao lupa" id="lupa" hidden>
+  <div class="lupa-barra">
+    <button class="b-botao" id="lupa-menos" type="button" aria-label="Diminuir">−</button>
+    <button class="b-botao" id="lupa-mais" type="button" aria-label="Aumentar">+</button>
+    <button class="fechar-x" id="lupa-fechar" type="button" aria-label="Fechar">×</button>
+  </div>
+  <div class="lupa-area"><div class="lupa-folha" id="lupa-folha"></div></div>
+</div>
+
+<div class="aviso-toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>/* Dados do Capítulo 1 · Sistema Financeiro Nacional
+   Questões inéditas (4 alternativas, como na prova CPA). `c` = índice da correta (0 = A).
+   `e` = explicação geral; `a` = por que cada alternativa está certa ou errada. */
+window.APOSTILA = window.APOSTILA || { capitulos: {}, mapas: {}, jogos: {} };
+
+APOSTILA.capitulos[1] = {
+  titulo: 'Sistema Financeiro Nacional',
+  questoes: [
+    { id: 'c1q1', tema: 'Estrutura do SFN', n: 'facil',
+      q: 'No Sistema Financeiro Nacional, os órgãos que estabelecem as regras gerais de funcionamento, sem atender o público nem fiscalizar diretamente, são:',
+      o: ['CMN, CNSP e CNPC', 'Banco Central, CVM e CMN', 'Banco Central, CVM, Susep e Previc', 'CMN, Susep e Previc'], c: 0,
+      e: 'Os normativos são os três conselhos: CMN (moeda, crédito, capitais e câmbio), CNSP (seguros privados) e CNPC (previdência fechada).',
+      a: ['Correta: são os três órgãos normativos.', 'BC e CVM são supervisores, não normativos.', 'Essa é a lista dos supervisores.', 'Mistura um normativo (CMN) com dois supervisores.'] },
+    { id: 'c1q2', tema: 'CMN', n: 'facil',
+      q: 'Fazem parte do Conselho Monetário Nacional:',
+      o: ['O Ministro da Fazenda, o presidente do Banco Central e o presidente da CVM', 'O Ministro da Fazenda, o(a) Ministro(a) do Planejamento e Orçamento e o presidente do Banco Central', 'O Presidente da República, o Ministro da Fazenda e o presidente do Banco Central', 'O presidente do Banco Central, o presidente da CVM e o Superintendente da Susep'], c: 1,
+      e: 'O CMN tem só três membros: Fazenda (que preside), Planejamento e Orçamento, e o presidente do BC. Atalho: “FPB”.',
+      a: ['O presidente da CVM não integra o CMN.', 'Correta.', 'O Presidente da República não integra o CMN.', 'CVM e Susep não fazem parte do CMN.'] },
+    { id: 'c1q3', tema: 'CMN', n: 'medio',
+      q: 'Sobre a divisão de papéis entre o CMN e o Banco Central na política monetária, é correto afirmar que:',
+      o: ['O CMN executa a política monetária e o Banco Central fixa as metas', 'O CMN estabelece as metas e compete privativamente ao Banco Central conduzir a política monetária para cumpri-las', 'Ambos executam a política monetária em conjunto, com voto do Ministro da Fazenda', 'A CVM fixa as metas de inflação e o Banco Central as executa'], c: 1,
+      e: 'LC 179/2021, art. 2º: as metas são do CMN; conduzir a política monetária é privativo do BC.',
+      a: ['Inverte os papéis.', 'Correta.', 'A condução é privativa do BC.', 'A CVM não atua na política monetária.'] },
+    { id: 'c1q4', tema: 'Banco Central', n: 'facil',
+      q: 'De acordo com a Lei Complementar 179/2021, o objetivo fundamental do Banco Central do Brasil é:',
+      o: ['Fomentar o pleno emprego', 'Financiar o Tesouro Nacional', 'Assegurar a estabilidade de preços', 'Definir a meta para a inflação'], c: 2,
+      e: 'Estabilidade de preços é o objetivo fundamental. Pleno emprego, estabilidade financeira e suavizar flutuações são objetivos secundários.',
+      a: ['É objetivo secundário, “sem prejuízo” do fundamental.', 'O BC não tem essa função.', 'Correta.', 'Quem define a meta é o CMN.'] },
+    { id: 'c1q5', tema: 'Banco Central', n: 'medio',
+      q: 'Um governo toma posse em 1º de janeiro. Pela LC 179/2021, o presidente do Banco Central nomeado por esse governo, em regra, inicia o mandato:',
+      o: ['No mesmo dia da posse do Presidente da República', 'Em 1º de janeiro do segundo ano do mandato presidencial', 'Em 1º de janeiro do terceiro ano do mandato presidencial', 'Somente no primeiro ano do mandato presidencial seguinte'], c: 2,
+      e: 'O mandato do presidente do BC é de 4 anos e começa em 1º de janeiro do 3º ano do mandato do Presidente da República. Assim os mandatos não coincidem.',
+      a: ['Os mandatos são propositalmente desencontrados.', 'No 2º ano começam dois diretores, não o presidente.', 'Correta.', 'Não há essa regra.'] },
+    { id: 'c1q6', tema: 'Banco Central', n: 'medio',
+      q: 'Desde a Lei Complementar 179/2021, o Banco Central do Brasil é:',
+      o: ['Uma empresa pública vinculada ao Ministério da Fazenda', 'Uma autarquia de natureza especial, sem vinculação a Ministério', 'Um órgão da administração direta subordinado ao CMN', 'Uma autarquia vinculada ao Ministério do Planejamento'], c: 1,
+      e: 'A LC 179/2021 (art. 6º) define o BC como autarquia de natureza especial, sem vinculação a Ministério, tutela ou subordinação hierárquica.',
+      a: ['O BC não é empresa pública.', 'Correta.', 'O BC não é subordinado ao CMN: segue as metas, mas tem autonomia.', 'Não há vinculação a Ministério.'] },
+    { id: 'c1q7', tema: 'Banco Central', n: 'facil',
+      q: 'Entre as competências privativas do Banco Central está:',
+      o: ['Emitir papel-moeda e moeda metálica, nos limites autorizados pelo CMN', 'Registrar ofertas públicas de ações', 'Fiscalizar os planos de previdência aberta', 'Aprovar a composição do CNSP'], c: 0,
+      e: 'Emitir moeda e executar os serviços do meio circulante são funções privativas do BC (Lei 4.595, art. 10).',
+      a: ['Correta.', 'Ofertas públicas de valores mobiliários são com a CVM.', 'Previdência aberta é com a Susep.', 'A composição do CNSP está na lei.'] },
+    { id: 'c1q8', tema: 'CVM', n: 'medio',
+      q: 'Um investidor pergunta qual destes ativos é um valor mobiliário sujeito à regulação da CVM. A resposta correta é:',
+      o: ['CDB de um banco múltiplo', 'Tesouro Selic', 'Debênture de uma companhia de energia', 'Depósito em caderneta de poupança'], c: 2,
+      e: 'Debêntures são valores mobiliários (Lei 6.385, art. 2º). Ficam fora da lei os títulos públicos e os títulos de responsabilidade de instituição financeira, exceto debêntures.',
+      a: ['CDB é título de banco: fora do regime da CVM.', 'Título público fica fora da Lei 6.385.', 'Correta.', 'Poupança é depósito bancário.'] },
+    { id: 'c1q9', tema: 'CVM', n: 'medio',
+      q: 'Sobre o Colegiado da CVM, é correto afirmar:',
+      o: ['Tem 9 membros com mandato de 4 anos, admitida uma recondução', 'Tem 1 presidente e 4 diretores, com mandato de 5 anos, vedada a recondução', 'É composto pelos membros do CMN', 'Seus diretores são escolhidos pelo presidente do Banco Central'], c: 1,
+      e: 'Lei 6.385, art. 6º: presidente e quatro diretores, nomeados pelo Presidente da República após aprovação do Senado; 5 anos, sem recondução.',
+      a: ['Essa é a descrição da diretoria do BC.', 'Correta.', 'Não há essa relação.', 'Quem nomeia é o Presidente da República, após o Senado.'] },
+    { id: 'c1q10', tema: 'Seguros e previdência', n: 'facil',
+      q: 'Uma pessoa quer contratar um plano VGBL. A entidade que fiscaliza esse produto é:',
+      o: ['Previc', 'Banco Central', 'CVM', 'Susep'], c: 3,
+      e: 'VGBL e PGBL são previdência aberta, vendida ao público em geral: normas do CNSP e fiscalização da Susep.',
+      a: ['A Previc cuida da previdência fechada (fundos de pensão).', 'O BC não fiscaliza previdência.', 'A CVM não fiscaliza planos de previdência.', 'Correta.'] },
+    { id: 'c1q11', tema: 'Seguros e previdência', n: 'facil',
+      q: 'O fundo de pensão dos empregados de uma estatal é regulado e fiscalizado, respectivamente, por:',
+      o: ['CNSP e Susep', 'CNPC e Previc', 'CMN e Banco Central', 'CMN e CVM'], c: 1,
+      e: 'Fundo de pensão é entidade fechada de previdência complementar (EFPC): CNPC normatiza, Previc fiscaliza.',
+      a: ['Essa dupla cuida da previdência aberta e dos seguros.', 'Correta.', 'Previdência fechada não é do CMN/BC.', 'Não é do CMN/CVM.'] },
+    { id: 'c1q12', tema: 'Seguros e previdência', n: 'dificil',
+      q: 'Considerando a redação atual do Decreto-Lei 73/1966, NÃO integra o Conselho Nacional de Seguros Privados (CNSP):',
+      o: ['O Ministro de Estado da Fazenda', 'O Superintendente da Susep', 'Um representante do Banco Central', 'Um representante da CVM'], c: 3,
+      e: 'A Lei 14.711/2023 revogou o inciso que incluía a CVM no CNSP. Hoje: Fazenda (presidente), Justiça, Previdência, Superintendente da Susep e Banco Central.',
+      a: ['O Ministro da Fazenda preside o CNSP.', 'O Superintendente da Susep é membro e preside na ausência do Ministro.', 'O BC tem um representante.', 'Correta: a CVM saiu do CNSP em 2023.'] },
+    { id: 'c1q13', tema: 'Bancos', n: 'facil',
+      q: 'Segundo a regulamentação do CMN, um banco múltiplo deve ser constituído com:',
+      o: ['No mínimo duas carteiras, sendo uma delas obrigatoriamente comercial ou de investimento', 'No mínimo três carteiras, sendo uma obrigatoriamente de câmbio', 'Apenas a carteira comercial e a de crédito imobiliário', 'No mínimo duas carteiras, sendo uma obrigatoriamente de desenvolvimento'], c: 0,
+      e: 'Resolução CMN 5.060/2023, art. 4º. As carteiras possíveis: comercial, investimento, desenvolvimento, crédito imobiliário, crédito, financiamento e investimento, e arrendamento mercantil.',
+      a: ['Correta.', 'Câmbio não é carteira, e o mínimo é dois.', 'Não existe essa obrigação.', 'A obrigatória é comercial ou investimento.'] },
+    { id: 'c1q14', tema: 'Bancos', n: 'medio',
+      q: 'A instituição capaz de criar moeda escritural, por captar depósitos à vista e conceder crédito, é:',
+      o: ['O banco de investimento', 'A sociedade de crédito, financiamento e investimento', 'O banco comercial', 'A companhia hipotecária'], c: 2,
+      e: 'O depósito à vista é exclusivo de bancos comerciais (e múltiplos com carteira comercial e caixas econômicas). O dinheiro emprestado volta ao sistema como novo depósito: é a criação de moeda escritural.',
+      a: ['Banco de investimento não capta depósito à vista.', 'Financeira capta por letras de câmbio e RDB.', 'Correta.', 'Companhia hipotecária não capta depósito à vista.'] },
+    { id: 'c1q15', tema: 'Não bancárias', n: 'medio',
+      q: 'Uma loja de departamentos tem uma financeira própria para financiar as compras dos clientes. Essa financeira capta recursos principalmente por meio de:',
+      o: ['Depósitos à vista em conta corrente', 'Depósitos de poupança', 'Letras de câmbio e RDB', 'Emissão de cotas de fundos'], c: 2,
+      e: 'A SCFI (“financeira”) capta por aceite de letras de câmbio, RDB, depósitos interfinanceiros e cessão de créditos. Não abre conta corrente.',
+      a: ['Financeira não abre conta corrente.', 'Poupança não é captação de financeira.', 'Correta.', 'Fundo não é forma de captação da financeira.'] },
+    { id: 'c1q16', tema: 'Não bancárias', n: 'medio',
+      q: 'Sobre as agências de fomento, é correto afirmar:',
+      o: ['Podem captar recursos do público por meio de CDB', 'Cada estado e o Distrito Federal pode constituir uma única agência, e é vedada a captação de recursos do público', 'São fiscalizadas pela CVM', 'São obrigatoriamente controladas pela União'], c: 1,
+      e: 'A agência de fomento é S.A. de capital fechado, controlada pelo estado onde tem sede, uma por unidade da federação, e não pode captar do público.',
+      a: ['É proibida a captação do público.', 'Correta.', 'A supervisão é do Banco Central.', 'O controle é do estado ou DF.'] },
+    { id: 'c1q17', tema: 'Fintechs e IP', n: 'medio',
+      q: 'Uma fintech conecta, por plataforma eletrônica, pessoas que querem emprestar a pessoas que querem tomar crédito, sem usar capital próprio. Ela deve ser autorizada pelo Banco Central como:',
+      o: ['Sociedade de Crédito Direto (SCD)', 'Sociedade de Empréstimo entre Pessoas (SEP)', 'Instituição de pagamento credenciadora', 'Administradora de consórcio'], c: 1,
+      e: 'A SEP faz o peer-to-peer lending. A SCD empresta com capital próprio e não capta do público.',
+      a: ['A SCD usa capital próprio.', 'Correta.', 'IP não pode intermediar empréstimos.', 'Consórcio é autofinanciamento em grupo.'] },
+    { id: 'c1q18', tema: 'Fintechs e IP', n: 'medio',
+      q: 'Sobre as instituições de pagamento (IP), é correto afirmar que:',
+      o: ['São instituições financeiras e podem conceder empréstimos', 'São fiscalizadas pela CVM', 'Não compõem o SFN e não podem conceder empréstimos, mas são reguladas e fiscalizadas pelo Banco Central', 'Podem captar depósitos à vista como os bancos comerciais'], c: 2,
+      e: 'O próprio quadro do SFN do Banco Central traz a nota: IPs não compõem o SFN, mas são reguladas e fiscalizadas pelo BC conforme diretrizes do CMN.',
+      a: ['IP não é IF e não empresta.', 'A supervisão é do BC.', 'Correta.', 'IP gerencia conta de pagamento, não depósito à vista.'] },
+    { id: 'c1q19', tema: 'FGC', n: 'dificil',
+      q: 'Marina tem R$ 200 mil em CDB no Banco X e R$ 100 mil em LCA na Financeira X, do mesmo conglomerado. As duas sofrem liquidação. Pelo FGC, Marina recebe:',
+      o: ['R$ 300 mil', 'R$ 250 mil', 'R$ 200 mil', 'R$ 500 mil'], c: 1,
+      e: 'O limite de R$ 250 mil é por pessoa contra a mesma instituição ou contra todas as instituições do mesmo conglomerado.',
+      a: ['Ultrapassa o limite do conglomerado.', 'Correta.', 'Ela tem direito até R$ 250 mil, não só ao CDB.', 'Não se somam dois limites dentro do mesmo grupo.'] },
+    { id: 'c1q20', tema: 'FGC', n: 'medio',
+      q: 'Qual destes investimentos NÃO conta com a garantia do FGC?',
+      o: ['Letra de Crédito do Agronegócio (LCA)', 'Caderneta de poupança', 'Debênture', 'Letra de câmbio'], c: 2,
+      e: 'Debênture é dívida de empresa, não de instituição associada ao FGC. LCA, poupança e letra de câmbio estão na lista de garantia ordinária.',
+      a: ['LCA é garantida.', 'Poupança é garantida.', 'Correta.', 'Letra de câmbio é garantida.'] }
+  ],
+  revisaoTemas: ['Estrutura do SFN', 'CMN', 'Banco Central', 'CVM', 'Seguros e previdência', 'Bancos', 'Não bancárias', 'Fintechs e IP', 'FGC']
+};
+
+APOSTILA.mapas.sfn = {
+  centro: 'SFN', sub: 'Sistema Financeiro Nacional', extra: 'intermediação financeira',
+  ramos: [
+    { t: 'Normativos', d: 'livro', i: ['CMN: moeda, crédito, câmbio', 'CNSP: seguros e prev. aberta', 'CNPC: prev. fechada', 'Decidem por resoluções'] },
+    { t: 'Supervisores', d: 'apito', i: ['BC: bancos, crédito, câmbio', 'CVM: valores mobiliários', 'Susep: seguros, PGBL/VGBL', 'Previc: fundos de pensão'] },
+    { t: 'CMN e BC', d: 'predio', i: ['CMN: Fazenda, Planejamento, BC', 'BC: estabilidade de preços', 'BC: 9 dirigentes, 4 anos', 'Sem vínculo a Ministério'] },
+    { t: 'Bancos', d: 'moeda', i: ['Comercial: depósito à vista', 'Múltiplo: 2 carteiras', 'Comercial ou investimento', 'Caixa: empresa pública'] },
+    { t: 'Não bancárias', d: 'chave', i: ['Financeira: LC e RDB', 'SCD e SEP (fintechs)', 'IP: não empresta', 'Corretoras: BC + CVM'] },
+    { t: 'Proteção', d: 'escudo', i: ['FGC: R$ 250 mil', 'por conglomerado', 'R$ 1 mi a cada 4 anos', 'FGCoop nas cooperativas'] }
+  ]
+};
+
+APOSTILA.jogos.fiscaliza = {
+  pergunta: 'Quem fiscaliza?',
+  opcoes: ['BC', 'CVM', 'Susep', 'Previc'],
+  itens: [
+    ['Banco múltiplo', 'BC', 'Bancos são supervisionados pelo Banco Central.'],
+    ['Cooperativa de crédito', 'BC', 'Cooperativas de crédito são autorizadas e fiscalizadas pelo BC.'],
+    ['Administradora de consórcio', 'BC', 'O BC normatiza, autoriza e fiscaliza os consórcios.'],
+    ['Instituição de pagamento', 'BC', 'Não compõe o SFN, mas é fiscalizada pelo BC.'],
+    ['Fintech SCD', 'BC', 'SCD e SEP precisam de autorização do BC.'],
+    ['Agência de fomento', 'BC', 'Supervisão do Banco Central.'],
+    ['Financeira (SCFI)', 'BC', 'As financeiras são supervisionadas pelo BC.'],
+    ['Companhia aberta', 'CVM', 'Emissores de valores mobiliários respondem à CVM.'],
+    ['Fundo de investimento', 'CVM', 'Fundos e administração de carteiras são com a CVM.'],
+    ['Bolsa de valores (B3)', 'CVM', 'Bolsas de valores e de mercadorias e futuros são fiscalizadas pela CVM.'],
+    ['Auditor de companhia aberta', 'CVM', 'A auditoria das companhias abertas está na Lei 6.385.'],
+    ['Analista de valores mobiliários', 'CVM', 'Consultores e analistas de valores mobiliários respondem à CVM.'],
+    ['Seguradora de automóveis', 'Susep', 'Seguros privados: Susep.'],
+    ['Plano PGBL', 'Susep', 'Previdência aberta: Susep.'],
+    ['Título de capitalização', 'Susep', 'Capitalização: Susep.'],
+    ['Resseguradora', 'Susep', 'Resseguro também é com a Susep.'],
+    ['Cooperativa de seguros', 'Susep', 'Novidade da LC 213/2025: Susep.'],
+    ['Fundo de pensão de estatal', 'Previc', 'Previdência fechada: Previc.'],
+    ['Fundo de pensão de servidores', 'Previc', 'Entidade fechada de previdência: Previc.']
+  ]
+};
+</script>
+<script>/* Apostila CPA — caderno interativo.
+   Views por hash: #inicio, #cap-N (ou o id de uma seção, ex. #c1-s3), #painel.
+   O progresso fica no localStorage do navegador (só deste aparelho). */
+(function () {
+  'use strict';
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  const escH = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const D = window.APOSTILA;
+  const MODO_PDF = document.documentElement.classList.contains('pdf');
+  const LETRAS = 'ABCDE';
+  const semMovimento = () => window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- armazenamento (tolerante a falhas) ---------------- */
+  const CHAVE = 'apostila-cpa-v1';
+  let E = { respostas: {}, vistas: {}, prova: '', recorde: 0, treino: false };
+  try { const s = JSON.parse(localStorage.getItem(CHAVE) || 'null'); if (s && typeof s === 'object') E = Object.assign(E, s); } catch (e) { /* sem armazenamento */ }
+  const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(E)); } catch (e) { /* ignora */ } };
+
+  /* ---------------- catálogo de capítulos ---------------- */
+  const CAPS = [
+    { n: 1, t: 'Sistema Financeiro Nacional', s: 'CMN, BC, CVM, Susep, Previc, bancos, fintechs e FGC', tema: 'tema-mar', ico: 'predio' },
+    { n: 2, t: 'Economia e política monetária', s: 'Selic, Copom, inflação, indicadores e câmbio', tema: 'tema-ouro', ico: 'grafico' },
+    { n: 3, t: 'Matemática financeira', s: 'juros simples e compostos, VP, VF, VPL e TIR', tema: 'tema-roxo', ico: 'calc' },
+    { n: 4, t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, debêntures, CRI e CRA', tema: 'tema-azul', ico: 'doc' },
+    { n: 5, t: 'Renda variável', s: 'ações, ofertas públicas, índices e governança', tema: 'tema-verde', ico: 'velas' },
+    { n: 6, t: 'Fundos de investimento', s: 'tipos, taxas, tributação e fundos imobiliários', tema: 'tema-coral', ico: 'pizza' },
+    { n: 7, t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação e rendas', tema: 'tema-mar', ico: 'ampulheta' },
+    { n: 8, t: 'Crédito, serviços e seguros', s: 'empréstimo, financiamento, consignado e seguros', tema: 'tema-ouro', ico: 'cartao' },
+    { n: 9, t: 'Relacionamento e planejamento', s: 'suitability, ciclo de vida, orçamento e IR', tema: 'tema-roxo', ico: 'alvo' },
+    { n: 10, t: 'Conduta, PLD e crimes de mercado', s: 'ética, lavagem de dinheiro, LGPD e insider', tema: 'tema-coral', ico: 'balanca' },
+    { n: 11, t: 'Inovação no mercado', s: 'blockchain, tokenização, Open Finance e IA', tema: 'tema-azul', ico: 'chip' },
+    { n: 12, t: 'Meios de pagamento', s: 'arranjos, Pix, adquirentes e subadquirentes', tema: 'tema-verde', ico: 'maquina' }
+  ];
+  const ICONES = {
+    predio: '<path d="M14 40 50 18l36 22Z"/><path d="M20 44v34M36 44v34M64 44v34M80 44v34M10 82h80"/>',
+    grafico: '<path d="M12 80h76M16 70l18-20 16 10 26-30"/><path d="M62 30h14v14"/>',
+    calc: '<rect x="24" y="12" width="52" height="76" rx="8"/><rect x="32" y="20" width="36" height="16" rx="3"/><path d="M34 50h4M48 50h4M62 50h4M34 64h4M48 64h4M62 64h4M34 78h4M48 78h18"/>',
+    doc: '<path d="M26 10h34l16 16v64H26Z"/><path d="M60 10v16h16"/><circle cx="42" cy="50" r="5"/><circle cx="60" cy="70" r="5"/><path d="M62 46 40 74"/>',
+    velas: '<path d="M22 20v60M42 30v50M62 14v62M82 34v40"/><rect x="16" y="34" width="12" height="28" rx="2"/><rect x="36" y="44" width="12" height="20" rx="2"/><rect x="56" y="24" width="12" height="34" rx="2"/><rect x="76" y="42" width="12" height="20" rx="2"/>',
+    pizza: '<circle cx="50" cy="50" r="36"/><path d="M50 14v36l30 20"/><path d="M50 50 22 72"/>',
+    ampulheta: '<path d="M28 12h44M28 88h44M32 12c0 24 36 26 36 38s-36 14-36 38M68 12c0 24-36 26-36 38s36 14 36 38"/>',
+    cartao: '<rect x="12" y="26" width="76" height="50" rx="8"/><path d="M12 42h76M24 62h18"/>',
+    alvo: '<circle cx="50" cy="50" r="36"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="8"/><path d="M50 50 84 16M74 16h10v10"/>',
+    balanca: '<path d="M50 14v70M30 84h40M18 30h64"/><path d="M18 30 8 56h20ZM82 30 72 56h20Z"/>',
+    chip: '<rect x="26" y="26" width="48" height="48" rx="6"/><rect x="38" y="38" width="24" height="24" rx="3"/><path d="M38 14v12M50 14v12M62 14v12M38 74v12M50 74v12M62 74v12M14 38h12M14 50h12M14 62h12M74 38h12M74 50h12M74 62h12"/>',
+    maquina: '<rect x="28" y="10" width="44" height="80" rx="8"/><rect x="36" y="20" width="28" height="20" rx="3"/><path d="M38 52h4M50 52h4M62 52h0M38 64h4M50 64h4M38 76h24"/>'
+  };
+  const icone = (k) => `<svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONES[k] || ''}</svg>`;
+
+  /* todas as questões (de todos os capítulos disponíveis) */
+  const TODAS = [];
+  Object.keys(D.capitulos).forEach((n) => D.capitulos[n].questoes.forEach((q) => TODAS.push(Object.assign({ cap: Number(n) }, q))));
+  const POR_ID = {}; TODAS.forEach((q) => { POR_ID[q.id] = q; });
+
+  /* ---------------- utilidades de interface ---------------- */
+  let tToast;
+  function toast(msg) { const t = $('#toast'); if (!t) return; t.textContent = msg; t.classList.add('ver'); clearTimeout(tToast); tToast = setTimeout(() => t.classList.remove('ver'), 2400); }
+  function confete() {
+    if (semMovimento() || MODO_PDF) return;
+    const cores = ['#d9472f', '#13858a', '#f0a12f', '#6550d0', '#23905f'];
+    for (let i = 0; i < 26; i++) {
+      const c = document.createElement('span'); c.className = 'confete'; c.textContent = ['✦', '★', '●', '✿'][i % 4];
+      c.style.left = Math.random() * 100 + 'vw'; c.style.color = cores[i % 5];
+      c.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px'); c.style.setProperty('--r', (Math.random() * 720 - 360) + 'deg'); c.style.setProperty('--t', (2 + Math.random() * 1.6) + 's');
+      document.body.appendChild(c); setTimeout(() => c.remove(), 4000);
+    }
+  }
+
+  /* ---------------- estatísticas ---------------- */
+  function stats(lista) {
+    let resp = 0, ok = 0;
+    lista.forEach((q) => { const r = E.respostas[q.id]; if (r) { resp++; if (r.certa) ok++; } });
+    return { total: lista.length, resp, ok, pct: resp ? Math.round((ok / resp) * 100) : null };
+  }
+  const erradas = () => TODAS.filter((q) => E.respostas[q.id] && !E.respostas[q.id].certa);
+
+  /* ---------------- questões ---------------- */
+  function htmlQuestao(q, num) {
+    const nivel = { facil: 'fácil', medio: 'médio', dificil: 'difícil' }[q.n] || '';
+    return `<div class="questao" data-q="${q.id}">
+      <div class="cab"><span class="nq">${num}</span><span class="fonte">Inédita · Cap. ${q.cap} · ${escH(q.tema)}</span><span class="nivel ${q.n}">${nivel}</span></div>
+      <div class="enunciado">${escH(q.q)}</div>
+      <ol class="alt">${q.o.map((a, i) => `<li class="alt-i" data-i="${i}" tabindex="0" role="button">${escH(a)}</li>`).join('')}</ol>
+      <div class="fb-lugar" aria-live="polite"></div></div>`;
+  }
+  function aplicarResposta(div, q, i, animar) {
+    div.classList.add('respondida');
+    const certa = i === q.c;
+    div.classList.toggle('acertou', certa); div.classList.toggle('errou', !certa);
+    $$('li.alt-i', div).forEach((li, k) => {
+      li.classList.remove('certa', 'errada', 'apagada'); li.removeAttribute('tabindex');
+      if (k === q.c) li.classList.add('certa'); else if (k === i) li.classList.add('errada'); else li.classList.add('apagada');
+    });
+    const alts = q.a ? `<ul class="fb-alts">${q.a.map((t, k) => `<li><b>${LETRAS[k]})</b> ${escH(t)}</li>`).join('')}</ul>` : '';
+    $('.fb-lugar', div).innerHTML = `<div class="feedback ${certa ? 'ok' : 'no'}">
+      <span class="fb-tit">${certa ? 'Isso! Resposta ' + LETRAS[q.c] + '.' : 'Quase. A resposta é ' + LETRAS[q.c] + '.'}</span>
+      ${escH(q.e)}${alts}
+      <div class="fb-acoes"><button type="button" data-acao="refazer">refazer esta questão</button>${certa ? '' : '<span class="pequeno">anotada no seu caderno de erros</span>'}</div></div>`;
+    if (animar && !certa && !semMovimento()) { div.classList.add('treme'); setTimeout(() => div.classList.remove('treme'), 450); }
+  }
+  function limparResposta(div) {
+    div.classList.remove('respondida', 'acertou', 'errou');
+    $$('li.alt-i', div).forEach((li) => { li.classList.remove('certa', 'errada', 'apagada'); li.setAttribute('tabindex', '0'); });
+    $('.fb-lugar', div).innerHTML = '';
+  }
+  function montarLista(alvo, lista, opcoes = {}) {
+    if (!lista.length) { alvo.innerHTML = `<div class="vazio">${opcoes.vazio || 'Nenhuma questão aqui.'}</div>`; return; }
+    alvo.innerHTML = (opcoes.placar !== false ? '<div class="placar"><span>Placar</span><span class="pl-num"></span><span class="pl-barra"><i class="ok"></i><i class="no"></i></span><button type="button" data-acao="zerar">recomeçar</button></div>' : '')
+      + lista.map((q, k) => htmlQuestao(q, k + 1)).join('') + '<div class="resultado-q" hidden></div>';
+    const sessao = {};
+    const respDe = (q) => (opcoes.fresco ? sessao[q.id] : E.respostas[q.id]);
+    const statsLocal = () => { let resp = 0, ok = 0; lista.forEach((q) => { const r = respDe(q); if (r) { resp++; if (r.certa) ok++; } }); return { total: lista.length, resp, ok, pct: resp ? Math.round(ok / resp * 100) : null }; };
+    const atualizarPlacar = () => {
+      const s = statsLocal();
+      const pl = $('.placar', alvo);
+      if (pl) {
+        $('.pl-num', pl).textContent = `${s.ok}/${s.total}`;
+        $('.pl-barra .ok', pl).style.width = (s.ok / s.total * 100) + '%';
+        $('.pl-barra .no', pl).style.width = ((s.resp - s.ok) / s.total * 100) + '%';
+      }
+      const res = $('.resultado-q', alvo);
+      if (s.resp === s.total) {
+        res.hidden = false;
+        res.innerHTML = `<b>${s.ok} de ${s.total}</b>${s.pct >= 80 ? 'Excelente! Você está pronta para este assunto.' : s.pct >= 60 ? 'Bom resultado. Revise os erros no caderno e tente de novo.' : 'Volte às pegadinhas e ao mapa mental e refaça. Erro aqui é acerto na prova.'}`;
+      } else res.hidden = true;
+      atualizarGeral();
+      return s;
+    };
+    lista.forEach((q) => { const r = respDe(q); const div = $(`.questao[data-q="${q.id}"]`, alvo); if (r && div) aplicarResposta(div, q, r.i, false); });
+    atualizarPlacar();
+    alvo.addEventListener('click', (ev) => {
+      const zerar = ev.target.closest('[data-acao="zerar"]');
+      if (zerar) { lista.forEach((q) => { if (opcoes.fresco) delete sessao[q.id]; else delete E.respostas[q.id]; const d = $(`.questao[data-q="${q.id}"]`, alvo); if (d) limparResposta(d); }); salvar(); atualizarPlacar(); toast('Placar zerado'); return; }
+      const ref = ev.target.closest('[data-acao="refazer"]');
+      if (ref) { const div = ref.closest('.questao'); if (opcoes.fresco) delete sessao[div.dataset.q]; else delete E.respostas[div.dataset.q]; salvar(); limparResposta(div); atualizarPlacar(); return; }
+      const li = ev.target.closest('li.alt-i'); if (!li) return;
+      const div = li.closest('.questao'); if (div.classList.contains('respondida')) return;
+      const q = POR_ID[div.dataset.q]; const i = Number(li.dataset.i);
+      const ant = E.respostas[q.id];
+      const rec = { i, certa: i === q.c, quando: Date.now(), tent: ((ant && ant.tent) || 0) + 1 };
+      E.respostas[q.id] = rec; sessao[q.id] = rec;
+      salvar(); aplicarResposta(div, q, i, true);
+      const s = atualizarPlacar();
+      if (s.resp === s.total && s.ok === s.total) confete();
+    });
+    alvo.addEventListener('keydown', (ev) => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('li.alt-i')) { ev.preventDefault(); ev.target.click(); } });
+  }
+
+  /* gabarito impresso (modo PDF) */
+  function montarListaImpressa(alvo, lista) {
+    alvo.innerHTML = lista.map((q, k) => `<div class="questao"><div class="cab"><span class="nq">${k + 1}</span><span class="fonte">Inédita · ${escH(q.tema)}</span></div>
+      <div class="enunciado">${escH(q.q)}</div><ol class="alt">${q.o.map((a) => `<li>${escH(a)}</li>`).join('')}</ol></div>`).join('')
+      + `<div class="gabarito-impresso"><h3 class="sem-marca">Gabarito comentado</h3>${lista.map((q, k) => `<div class="gab-item"><b>${k + 1} · ${LETRAS[q.c]}</b> ${escH(q.e)}</div>`).join('')}</div>`;
+  }
+
+  /* ---------------- mapa mental ---------------- */
+  const CORES_MAPA = ['var(--laranja)', 'var(--teal)', 'var(--roxo)', 'var(--verde)', 'var(--rosa)', 'var(--azul)'];
+  const DOODLES = {
+    livro: '<path d="M14 18h24v46H18a4 4 0 0 1-4-4Z" fill="currentColor" opacity=".18"/><path d="M14 18h24v46H18a4 4 0 0 1-4-4ZM38 18h24v42a4 4 0 0 1-4 4H38ZM38 18v46" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>',
+    apito: '<rect x="10" y="30" width="40" height="22" rx="11" fill="currentColor" opacity=".18"/><rect x="10" y="30" width="40" height="22" rx="11" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="44" y="24" width="20" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="26" cy="41" r="5" fill="currentColor"/>',
+    predio: '<path d="M10 30 38 12l28 18Z" fill="currentColor" opacity=".18"/><path d="M10 30 38 12l28 18ZM16 34v26M30 34v26M46 34v26M60 34v26M8 64h60" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>',
+    moeda: '<circle cx="38" cy="38" r="24" fill="currentColor" opacity=".18"/><circle cx="38" cy="38" r="24" fill="none" stroke="currentColor" stroke-width="3.5"/><text x="38" y="46" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="22" fill="currentColor">R$</text>',
+    chave: '<circle cx="24" cy="38" r="12" fill="currentColor" opacity=".18"/><circle cx="24" cy="38" r="12" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M36 38h30M58 38v10M66 38v8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>',
+    escudo: '<path d="M38 10 62 20v18c0 16-11 24-24 28-13-4-24-12-24-28V20Z" fill="currentColor" opacity=".18"/><path d="M38 10 62 20v18c0 16-11 24-24 28-13-4-24-12-24-28V20ZM28 38l8 8 14-16" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>'
+  };
+  function montarMapa(el) {
+    const d = D.mapas[el.dataset.mapa]; if (!d) return;
+    el.innerHTML = `<div class="mc"><svg class="mc-setas" aria-hidden="true"><g filter="url(#tremido)"></g></svg>
+      <div class="mc-centro"><h3 class="mc-titulo sem-marca">${escH(d.centro)}</h3><span class="mc-sub">${escH(d.sub || '')}</span>${d.extra ? `<span class="mc-extra">${escH(d.extra)}</span>` : ''}</div>
+      ${d.ramos.map((r, i) => `<div role="button" tabindex="0" class="mc-ramo e${i % 4}" style="--c:${CORES_MAPA[i % 6]};--area:r${i + 1}" aria-pressed="false">
+        <svg class="mc-doodle" viewBox="0 0 76 76" aria-hidden="true" style="color:${CORES_MAPA[i % 6]}">${DOODLES[r.d] || ''}</svg>
+        <h4>${escH(r.t)}</h4><ul>${r.i.map((x) => `<li>${escH(x)}</li>`).join('')}</ul></div>`).join('')}
+    </div><p class="mc-dica">Toque num ramo para destacar. No Modo treino, os itens somem: toque em cada um para lembrar.</p>`;
+    const mc = $('.mc', el), g = $('.mc-setas g', el), titulo = $('.mc-titulo', el);
+    const ramos = $$('.mc-ramo', el);
+    let primeira = true;
+    function desenhar() {
+      if (!el.isConnected || !el.offsetWidth) return;
+      g.innerHTML = '';
+      if (el.offsetWidth < 640) return;
+      const base = mc.getBoundingClientRect(), c = titulo.getBoundingClientRect();
+      const cx = c.left + c.width / 2 - base.left, cy = c.top + c.height / 2 - base.top;
+      ramos.forEach((b, i) => {
+        const h = $('h4', b).getBoundingClientRect();
+        const esquerda = h.left + h.width / 2 - base.left < cx;
+        const tx = esquerda ? h.right - base.left + 6 : h.left - base.left - 6;
+        const ty = h.top + h.height / 2 - base.top;
+        const sx = cx + (esquerda ? -1 : 1) * Math.min(c.width / 2 + 4, 90);
+        const sy = cy + (ty < cy ? -c.height / 2 : c.height / 2) * 0.7;
+        const mx = (sx + tx) / 2 + (esquerda ? -14 : 14), my = (sy + ty) / 2 + (ty < cy ? -18 : 18);
+        const ang = Math.atan2(ty - my, tx - mx);
+        const p1 = [tx - 13 * Math.cos(ang - 0.45), ty - 13 * Math.sin(ang - 0.45)], p2 = [tx - 13 * Math.cos(ang + 0.45), ty - 13 * Math.sin(ang + 0.45)];
+        const grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        grupo.setAttribute('class', 'sg'); grupo.dataset.i = i; grupo.style.setProperty('--c', CORES_MAPA[i % 6]);
+        grupo.innerHTML = `<path d="M${sx} ${sy} Q ${mx} ${my} ${tx} ${ty}"/><path d="M${p1[0]} ${p1[1]} L${tx} ${ty} L${p2[0]} ${p2[1]}"/>`;
+        g.appendChild(grupo);
+        if (primeira && !semMovimento() && !MODO_PDF) {
+          const linha = grupo.firstChild; const len = linha.getTotalLength();
+          linha.style.strokeDasharray = len; linha.style.setProperty('--len', len); linha.style.setProperty('--d', (0.15 + i * 0.14) + 's'); linha.classList.add('linha-anim');
+        }
+      });
+      primeira = false; foco();
+    }
+    function foco() {
+      const i = ramos.findIndex((b) => b.classList.contains('foco'));
+      mc.classList.toggle('focado', i >= 0);
+      $$('g.sg', g).forEach((x) => x.classList.toggle('acesa', Number(x.dataset.i) === i));
+    }
+    ramos.forEach((b) => {
+      b.addEventListener('click', (ev) => {
+        const li = ev.target.closest('li');
+        if (document.body.classList.contains('treino') && li) { li.classList.toggle('ver'); return; }
+        const ja = b.classList.contains('foco');
+        ramos.forEach((x) => { x.classList.remove('foco'); x.setAttribute('aria-pressed', 'false'); });
+        if (!ja) { b.classList.add('foco'); b.setAttribute('aria-pressed', 'true'); }
+        foco();
+      });
+      b.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); b.click(); } });
+    });
+    let t;
+    if (window.ResizeObserver) new ResizeObserver(() => { clearTimeout(t); t = setTimeout(desenhar, 60); }).observe(el);
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(desenhar));
+    el._desenhar = desenhar;
+  }
+
+  /* ---------------- jogo relâmpago ---------------- */
+  function montarJogo(el) {
+    const J = D.jogos[el.dataset.jogo]; if (!J) return;
+    if (MODO_PDF) {
+      el.innerHTML = `<p class="jogo-pergunta">Gabarito do desafio: quem fiscaliza cada instituição</p><ul style="text-align:left;columns:2;column-gap:28px;font-size:15px">${J.itens.map((x) => `<li><b>${escH(x[0])}</b>: ${escH(x[1])}</li>`).join('')}</ul>`;
+      return;
+    }
+    let rodadas = [], k = 0, pontos = 0, timer = null, inicio = 0, erros = [];
+    const TEMPO = 8000;
+    function tela0() {
+      el.innerHTML = `<p class="jogo-pergunta">10 rodadas · 8 segundos cada</p><span class="jogo-item">${escH(J.pergunta)}</span>
+        <p class="pequeno">Seu recorde: <b>${E.recorde || 0}/10</b></p><button class="btn-mao principal" type="button" data-acao="comecar">Começar o desafio</button>`;
+    }
+    function rodada() {
+      const [nome] = rodadas[k];
+      el.innerHTML = `<div class="jogo-topo"><span>Rodada ${k + 1}/10</span><span>${pontos} ponto${pontos === 1 ? '' : 's'}</span></div>
+        <div class="jogo-tempo"><i></i></div><p class="jogo-pergunta">${escH(J.pergunta)}</p><span class="jogo-item">${escH(nome)}</span>
+        <div class="jogo-ops">${J.opcoes.map((o) => `<button type="button" data-op="${escH(o)}">${escH(o)}</button>`).join('')}</div><p class="jogo-msg" aria-live="polite"></p>`;
+      const barra = $('.jogo-tempo i', el); inicio = performance.now();
+      cancelAnimationFrame(timer);
+      const tick = (t) => { const f = Math.max(0, 1 - (t - inicio) / TEMPO); barra.style.transform = `scaleX(${f})`; if (f <= 0) responder(null); else timer = requestAnimationFrame(tick); };
+      timer = requestAnimationFrame(tick);
+    }
+    function responder(op) {
+      cancelAnimationFrame(timer);
+      const [nome, certo, porque] = rodadas[k];
+      const ok = op === certo; if (ok) pontos++; else erros.push([nome, certo, porque]);
+      $$('.jogo-ops button', el).forEach((b) => { b.disabled = true; if (b.dataset.op === certo) b.classList.add('certa'); else if (b.dataset.op === op) b.classList.add('errada'); });
+      $('.jogo-msg', el).textContent = (ok ? '✓ ' : op ? '✗ ' : '⏱ Tempo! ') + porque;
+      setTimeout(() => { k++; if (k < 10) rodada(); else fim(); }, ok ? 1100 : 2200);
+    }
+    function fim() {
+      const novo = pontos > (E.recorde || 0); if (novo) { E.recorde = pontos; salvar(); }
+      el.innerHTML = `<div class="jogo-final"><p class="jogo-pergunta">Resultado</p><b>${pontos}/10</b>
+        <p>${novo ? 'Novo recorde!' : 'Recorde: ' + E.recorde + '/10'}</p>
+        ${erros.length ? `<ul>${erros.map((e) => `<li><b>${escH(e[0])}</b> → ${escH(e[1])}. ${escH(e[2])}</li>`).join('')}</ul>` : '<p>Gabaritou! Nenhum supervisor te engana mais.</p>'}
+        <button class="btn-mao principal" type="button" data-acao="comecar">Jogar de novo</button></div>`;
+      if (pontos === 10 || novo) confete();
+      atualizarGeral();
+    }
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('[data-acao="comecar"]')) {
+        rodadas = J.itens.slice().sort(() => Math.random() - 0.5).slice(0, 10); k = 0; pontos = 0; erros = []; rodada(); return;
+      }
+      const b = ev.target.closest('button[data-op]'); if (b && !b.disabled) responder(b.dataset.op);
+    });
+    tela0();
+  }
+
+  /* ---------------- views ---------------- */
+  const VIEWS = { inicio: $('#view-inicio'), painel: $('#view-painel') };
+  $$('article.capitulo').forEach((a) => { VIEWS['cap-' + a.dataset.cap] = a.closest('.view'); });
+  let viewAtual = '';
+  function mostrar(view, alvoId) {
+    if (!VIEWS[view]) view = 'inicio';
+    Object.entries(VIEWS).forEach(([k, v]) => { if (v) v.hidden = k !== view; });
+    if (view !== viewAtual) { viewAtual = view; if (!alvoId) window.scrollTo(0, 0); }
+    const cap = view.startsWith('cap-') ? CAPS.find((c) => 'cap-' + c.n === view) : null;
+    $('#b-titulo').textContent = cap ? `Cap. ${cap.n} · ${cap.t}` : view === 'painel' ? 'Meu desempenho' : 'Apostila interativa';
+    document.title = cap ? `Cap. ${cap.n} · ${cap.t} · Apostila CPA` : 'Apostila CPA';
+    if (view === 'inicio') montarInicio();
+    if (view === 'painel') montarPainel();
+    if (cap) { $$('.mapa-caderno', VIEWS[view]).forEach((m) => m._desenhar && requestAnimationFrame(m._desenhar)); }
+    if (alvoId) {
+      const alvo = document.getElementById(alvoId);
+      if (alvo) requestAnimationFrame(() => { alvo.scrollIntoView({ behavior: semMovimento() ? 'auto' : 'smooth', block: 'start' }); alvo.classList.add('piscar'); setTimeout(() => alvo.classList.remove('piscar'), 1700); });
+    }
+    marcarGaveta(view);
+    progressoLeitura();
+  }
+  function rotear() {
+    const h = decodeURIComponent((location.hash || '#inicio').slice(1));
+    if (VIEWS[h]) return mostrar(h);
+    const el = h && document.getElementById(h);
+    if (el) { const art = el.closest('article.capitulo'); if (art) return mostrar('cap-' + art.dataset.cap, h); }
+    mostrar('inicio');
+  }
+
+  /* ---------------- início ---------------- */
+  function diasParaProva() {
+    if (!E.prova) return null;
+    const d = new Date(E.prova + 'T12:00:00'); if (isNaN(d)) return null;
+    return Math.ceil((d - new Date()) / 86400000);
+  }
+  function montarInicio() {
+    const s = stats(TODAS);
+    const vistasCap = (n) => { const secs = $$(`#cap-${n} section.bloco`); return secs.length ? Math.round(secs.filter((x) => E.vistas[x.id]).length / secs.length * 100) : 0; };
+    const lidos = CAPS.filter((c) => D.capitulos[c.n] && vistasCap(c.n) >= 90).length;
+    $('#st-caps').textContent = `${lidos}/${CAPS.length}`;
+    $('#st-resp').textContent = `${s.resp}/${s.total}`;
+    $('#st-pct').textContent = s.pct == null ? '—' : s.pct + '%';
+    $('#st-erros').textContent = erradas().length;
+    const dias = diasParaProva();
+    $('#cont-num').textContent = dias == null ? '?' : dias < 0 ? '✓' : dias;
+    $('#cont-tit').textContent = dias == null ? 'Quando é a sua prova?' : dias < 0 ? 'Prova realizada' : dias === 1 ? 'dia para a prova' : 'dias para a prova';
+    const inp = $('#data-prova'); if (inp && document.activeElement !== inp) inp.value = E.prova || '';
+    $('#fichas').innerHTML = CAPS.map((c, i) => {
+      const ok = !!D.capitulos[c.n];
+      const sq = ok ? stats(TODAS.filter((q) => q.cap === c.n)) : null;
+      const pv = ok ? vistasCap(c.n) : 0;
+      const tag = ok ? 'a' : 'div';
+      return `<${tag} class="ficha ${c.tema}${ok ? '' : ' em-breve'}" ${ok ? `href="#cap-${c.n}"` : 'aria-disabled="true"'} style="--rot:${[-1.2, .8, -.6, 1.1][i % 4]}deg">
+        <div class="ficha-arte"><span class="ficha-num">${c.n}</span>${icone(c.ico)}${ok ? '' : '<span class="ficha-selo">em breve</span>'}</div>
+        <div class="ficha-corpo"><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>
+        ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% lido</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
+    }).join('');
+  }
+
+  /* ---------------- painel ---------------- */
+  function montarPainel() {
+    const s = stats(TODAS), err = erradas();
+    $('#pn-resp').textContent = `${s.resp}/${s.total}`;
+    $('#pn-pct').textContent = s.pct == null ? '—' : s.pct + '%';
+    $('#pn-erros').textContent = err.length;
+    $('#pn-rec').textContent = `${E.recorde || 0}/10`;
+    const temas = [];
+    TODAS.forEach((q) => { if (!temas.find((t) => t.t === q.tema && t.cap === q.cap)) temas.push({ t: q.tema, cap: q.cap }); });
+    $('#pn-temas').innerHTML = temas.map((t) => {
+      const st = stats(TODAS.filter((q) => q.tema === t.t && q.cap === t.cap));
+      return `<div class="barra-tema"><span>${escH(t.t)} <span class="pequeno">· cap. ${t.cap}</span></span>
+        <span class="bt-trilho"><i class="ok" style="width:${st.ok / st.total * 100}%"></i><i class="no" style="width:${(st.resp - st.ok) / st.total * 100}%"></i></span>
+        <b>${st.pct == null ? '—' : st.pct + '%'}</b></div>`;
+    }).join('');
+    const sel = $('#tr-tema');
+    if (sel && !sel.dataset.ok) {
+      sel.innerHTML = '<option value="">Todos os temas</option>' + temas.map((t) => `<option value="${escH(t.t)}">${escH(t.t)}</option>`).join('');
+      sel.dataset.ok = '1';
+    }
+    const alvoErros = $('#pn-lista-erros'); const novoErros = alvoErros.cloneNode(false); alvoErros.replaceWith(novoErros);
+    montarLista(novoErros, err, { fresco: true, vazio: s.resp ? 'Nenhum erro pendente. Cada questão que você errar aparece aqui até você acertar.' : 'Você ainda não respondeu questões. Comece pelo capítulo 1.' });
+  }
+  function treinoRapido() {
+    const tema = $('#tr-tema').value, so = $('#tr-so').value, qtd = Number($('#tr-qtd').value) || 10;
+    let base = TODAS.filter((q) => !tema || q.tema === tema);
+    if (so === 'erros') base = base.filter((q) => E.respostas[q.id] && !E.respostas[q.id].certa);
+    if (so === 'novas') base = base.filter((q) => !E.respostas[q.id]);
+    base = base.slice().sort(() => Math.random() - 0.5).slice(0, qtd);
+    const alvo = $('#tr-lista');
+    const novo = alvo.cloneNode(false); alvo.replaceWith(novo);
+    montarLista(novo, base, { fresco: true, vazio: so === 'erros' ? 'Você não tem erros pendentes neste tema.' : 'Nenhuma questão encontrada com esses filtros.' });
+    novo.scrollIntoView({ behavior: semMovimento() ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  /* ---------------- leitura: índice lateral, seções vistas, progresso ---------------- */
+  function montarIndices() {
+    $$('article.capitulo').forEach((art) => {
+      const secs = $$('section.bloco', art);
+      const lat = art.parentElement.querySelector('.indice-lateral');
+      if (lat) lat.innerHTML = `<h3>Neste capítulo</h3><ol>${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH($('.sobretitulo', s).textContent.split('·')[0].trim())} ${escH(s.dataset.titulo)}</a></li>`).join('')}</ol><div class="il-prog"></div>`;
+    });
+    const lista = $('#gaveta-lista');
+    lista.innerHTML = `<a class="g-item" href="#inicio" data-view="inicio"><span class="g-num" style="background:var(--coral)">⌂</span><span class="g-nome">Início</span></a>
+      <a class="g-item" href="#painel" data-view="painel"><span class="g-num" style="background:var(--verde)">✓</span><span class="g-nome">Meu desempenho<small>caderno de erros e treino</small></span></a>
+      <div class="g-separador">Capítulos</div>`
+      + CAPS.map((c) => {
+        const ok = !!D.capitulos[c.n];
+        const secs = ok ? $$(`#cap-${c.n} section.bloco`) : [];
+        return `<a class="g-item ${c.tema}${ok ? '' : ' bloqueado'}" href="#cap-${c.n}" data-view="cap-${c.n}"><span class="g-num">${c.n}</span><span class="g-nome">${escH(c.t)}${ok ? '' : '<small>em breve</small>'}</span></a>`
+          + (ok ? `<ul class="g-secoes">${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escH(s.dataset.titulo)}</a></li>`).join('')}</ul>` : '');
+      }).join('');
+    marcarVistas();
+  }
+  function marcarVistas() { $$('a[data-sec]').forEach((a) => a.classList.toggle('vista', !!E.vistas[a.dataset.sec])); $$('.il-prog').forEach((p) => { const art = p.closest('.cap-layout').querySelector('article'); const secs = $$('section.bloco', art); p.textContent = `${secs.filter((s) => E.vistas[s.id]).length} de ${secs.length} seções lidas`; }); }
+  function marcarGaveta(view) { $$('.g-item').forEach((a) => a.classList.toggle('atual', a.dataset.view === view)); }
+  function progressoLeitura() {
+    const bar = $('#b-prog'); if (!bar) return;
+    const h = document.documentElement; const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = max > 0 ? (h.scrollTop / max * 100) + '%' : '0';
+  }
+  function observarSecoes() {
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const id = en.target.id;
+        $$('.indice-lateral a').forEach((a) => a.classList.toggle('ativa', a.dataset.sec === id));
+        if (!E.vistas[id]) { E.vistas[id] = 1; salvar(); marcarVistas(); }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    $$('article.capitulo section.bloco').forEach((s) => io.observe(s));
+  }
+
+  /* ---------------- busca ---------------- */
+  let INDICE = null;
+  function indexar() {
+    INDICE = $$('article.capitulo section.bloco').map((s) => ({ id: s.id, cap: s.closest('article').dataset.cap, titulo: s.dataset.titulo, texto: s.innerText.replace(/\s+/g, ' ') }));
+  }
+  const semAcento = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  function buscar(termo) {
+    const out = $('#busca-resultados'); const t = semAcento(termo.trim());
+    if (t.length < 2) { out.innerHTML = ''; return; }
+    if (!INDICE) indexar();
+    const res = INDICE.map((x) => { const n = semAcento(x.texto); const p = n.indexOf(t); return p < 0 ? null : { x, p, peso: (semAcento(x.titulo).includes(t) ? 0 : 1) }; }).filter(Boolean).sort((a, b) => a.peso - b.peso).slice(0, 12);
+    if (!res.length) { out.innerHTML = `<li class="busca-vazio">Nada encontrado para “${escH(termo)}”.</li>`; return; }
+    out.innerHTML = res.map(({ x, p }) => {
+      const ini = Math.max(0, p - 60); const trecho = x.texto.slice(ini, p + t.length + 90);
+      const rel = semAcento(trecho).indexOf(t);
+      const marcado = escH(trecho.slice(0, rel)) + '<mark>' + escH(trecho.slice(rel, rel + t.length)) + '</mark>' + escH(trecho.slice(rel + t.length));
+      return `<li><a href="#${x.id}"><small>Capítulo ${x.cap}</small><b>${escH(x.titulo)}</b><span>${ini ? '…' : ''}${marcado}…</span></a></li>`;
+    }).join('');
+  }
+
+  /* ---------------- lupa (ampliar figura) ---------------- */
+  let zoom = 1;
+  function abrirLupa(fig) {
+    const svg = $('svg', fig); if (!svg) return;
+    zoom = 1; $('#lupa-folha').style.setProperty('--z', 1);
+    $('#lupa-folha').innerHTML = svg.outerHTML; $('#lupa').hidden = false; $('#lupa-fechar').focus();
+  }
+
+  /* ---------------- modo treino ---------------- */
+  function aplicarTreino() {
+    document.body.classList.toggle('treino', !!E.treino);
+    $('#b-treino').setAttribute('aria-pressed', E.treino ? 'true' : 'false');
+    $$('.treino-oculto .ver, .mc-ramo li.ver, .frases-resumo .manuscrito.ver').forEach((x) => x.classList.remove('ver'));
+  }
+
+  function atualizarGeral() { if (viewAtual === 'inicio') montarInicio(); }
+
+  /* ---------------- início do app ---------------- */
+  function iniciar() {
+    $$('.mapa-caderno').forEach(montarMapa);
+    $$('.jogo[data-jogo]').forEach(montarJogo);
+    $$('.lista-questoes[data-questoes]').forEach((el) => {
+      const n = Number(el.dataset.questoes); const lista = TODAS.filter((q) => q.cap === n);
+      if (MODO_PDF) montarListaImpressa(el, lista); else montarLista(el, lista);
+    });
+    if (MODO_PDF) {
+      $$('.ce').forEach((c) => c.classList.remove('fechado'));
+      $$('.view').forEach((v) => { v.hidden = false; });
+      return;
+    }
+    montarIndices();
+    observarSecoes();
+    aplicarTreino();
+
+    document.addEventListener('click', (ev) => {
+      const ce = ev.target.closest('.ce');
+      if (ce && ce.classList.contains('fechado')) { ce.classList.remove('fechado'); ce.classList.add('abriu'); return; }
+      const fr = ev.target.closest('.treino .frases-resumo .manuscrito'); if (fr) { fr.classList.toggle('ver'); return; }
+      const fig = ev.target.closest('.figura[data-zoom]'); if (fig && !ev.target.closest('a')) { abrirLupa(fig); return; }
+      const link = ev.target.closest('#gaveta a, #busca-resultados a'); if (link) { fecharGaveta(); $('#busca').hidden = true; }
+    });
+    const gav = $('#gaveta');
+    const abrirGaveta = () => { gav.hidden = false; $('#b-menu').setAttribute('aria-expanded', 'true'); $('#gaveta-fechar').focus(); };
+    function fecharGaveta() { gav.hidden = true; $('#b-menu').setAttribute('aria-expanded', 'false'); }
+    $('#b-menu').addEventListener('click', abrirGaveta);
+    $('#gaveta-fechar').addEventListener('click', fecharGaveta);
+    gav.addEventListener('click', (ev) => { if (ev.target === gav) fecharGaveta(); });
+    $('#b-treino').addEventListener('click', () => { E.treino = !E.treino; salvar(); aplicarTreino(); toast(E.treino ? 'Modo treino ligado: respostas escondidas' : 'Modo treino desligado'); });
+    const abrirBusca = () => { $('#busca').hidden = false; $('#busca-texto').focus(); };
+    $('#b-busca').addEventListener('click', abrirBusca);
+    $$('[data-abrir="busca"]').forEach((b) => b.addEventListener('click', abrirBusca));
+    $('#busca-fechar').addEventListener('click', () => { $('#busca').hidden = true; });
+    $('#busca').addEventListener('click', (ev) => { if (ev.target.id === 'busca') $('#busca').hidden = true; });
+    $('#busca-texto').addEventListener('input', (ev) => buscar(ev.target.value));
+    $('#busca-sugestoes').innerHTML = ['CMN', 'recondução', 'Previc', 'banco múltiplo', 'FGC', 'SEP', 'valor mobiliário', 'agência de fomento'].map((s) => `<button type="button">${s}</button>`).join('');
+    $('#busca-sugestoes').addEventListener('click', (ev) => { const b = ev.target.closest('button'); if (b) { $('#busca-texto').value = b.textContent; buscar(b.textContent); } });
+    $('#lupa-fechar').addEventListener('click', () => { $('#lupa').hidden = true; });
+    $('#lupa-mais').addEventListener('click', () => { zoom = Math.min(3, zoom + 0.4); $('#lupa-folha').style.setProperty('--z', zoom); });
+    $('#lupa-menos').addEventListener('click', () => { zoom = Math.max(1, zoom - 0.4); $('#lupa-folha').style.setProperty('--z', zoom); });
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') { fecharGaveta(); $('#busca').hidden = true; $('#lupa').hidden = true; }
+      if (ev.key === '/' && !ev.target.closest('input, textarea, select')) { ev.preventDefault(); abrirBusca(); }
+    });
+    $('#data-prova').addEventListener('change', (ev) => { E.prova = ev.target.value; salvar(); montarInicio(); });
+    $('#tr-ir').addEventListener('click', treinoRapido);
+    window.addEventListener('scroll', progressoLeitura, { passive: true });
+    window.addEventListener('hashchange', rotear);
+    rotear();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+})();
+</script>
