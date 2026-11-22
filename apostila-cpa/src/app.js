@@ -27,22 +27,24 @@
   // (alta = tema que apareceu em 2 ou 3 das 3 provas analisadas); r = temas recorrentes.
   const CAPS = [
     { n: 1, m: 1, pd: '1.1', t: 'Sistema Financeiro Nacional', s: 'CMN, BC, CVM, Susep, Previc, bancos, fintechs, ANBIMA, FGC e SPB', tema: 'tema-mar', ico: 'predio' },
-    { n: 2, m: 1, pd: '1.2', p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-ouro', ico: 'grafico' },
-    { n: 3, m: 1, pd: '1.3', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-roxo', ico: 'calc' },
-    { n: 4, m: 1, pd: '1.4', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-azul', ico: 'rede' },
-    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-azul', ico: 'doc' },
-    { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-verde', ico: 'velas' },
-    { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-coral', ico: 'pizza' },
-    { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-mar', ico: 'ampulheta' },
+    { n: 2, m: 1, pd: '1.2', p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-mar', ico: 'grafico' },
+    { n: 3, m: 1, pd: '1.3', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
+    { n: 4, m: 1, pd: '1.4', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-mar', ico: 'rede' },
+    { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
+    { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
+    { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-ouro', ico: 'pizza' },
+    { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
     { n: 9, m: 2, pd: '2.3', p: 'alta', r: 'consignado, cartão, cheque especial e encargos', t: 'Produtos de crédito', s: 'empréstimo, financiamento, leasing, cartão, consignado e CDC', tema: 'tema-ouro', ico: 'cartao' },
-    { n: 10, m: 2, pd: '2.4 e 2.5', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-verde', ico: 'maquina' },
-    { n: 11, m: 3, pd: '3.1 e 3.2', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-roxo', ico: 'alvo' },
+    { n: 10, m: 2, pd: '2.4 e 2.5', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-ouro', ico: 'maquina' },
+    { n: 11, m: 3, pd: '3.1 e 3.2', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-coral', ico: 'alvo' },
     { n: 12, m: 3, pd: '3.3 e 3.4.1 a 3.4.4', p: 'alta', r: 'conduta, ética e práticas vedadas', t: 'Suitability, código ANBIMA e ética', s: 'perfil do investidor, suitability, 9 princípios éticos e conflitos', tema: 'tema-coral', ico: 'balanca' },
-    { n: 13, m: 3, pd: '3.4.5 a 3.4.7', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-azul', ico: 'escudo' },
-    { n: 14, m: 4, pd: '4.1 a 4.3', t: 'ESG', s: 'ambiental, social e governança, investimentos e fundos sustentáveis', tema: 'tema-verde', ico: 'folha' },
+    { n: 13, m: 3, pd: '3.4.5 a 3.4.7', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-coral', ico: 'escudo' },
+    { n: 14, m: 4, pd: '4.1 a 4.3', t: 'ESG', s: 'ambiental, social e governança, investimentos e fundos sustentáveis', tema: 'tema-roxo', ico: 'folha' },
     { n: 15, m: 4, pd: '4.4 a 4.7', t: 'Inovação e meios de pagamento', s: 'DeFi, tokenização, Drex, Open Finance, IA, fintechs e arranjos', tema: 'tema-roxo', ico: 'chip' }
   ];
   const MODULOS = { 1: 'Módulo 1 · 20%', 2: 'Módulo 2 · 40%', 3: 'Módulo 3 · 30%', 4: 'Módulo 4 · 10%' };
+  const TEMAS_MODULO = { 1: 'tema-mar', 2: 'tema-ouro', 3: 'tema-coral', 4: 'tema-roxo' };
+  const PESOS = { 1: [20, 22], 2: [40, 43], 3: [30, 26], 4: [10, 9] }; // [programa oficial, últimas provas analisadas]
   const NOMES_MODULOS = { 1: 'Estrutura e dinâmica do SFN', 2: 'Produtos do mercado financeiro', 3: 'Relacionamento com o cliente', 4: 'Inovação e desenvolvimento de mercado' };
   const ICONES = {
     predio: '<path d="M14 40 50 18l36 22Z"/><path d="M20 44v34M36 44v34M64 44v34M80 44v34M10 82h80"/>',
@@ -339,15 +341,27 @@
     $('#cont-num').textContent = dias == null ? '?' : dias < 0 ? '✓' : dias;
     $('#cont-tit').textContent = dias == null ? 'Quando é a sua prova?' : dias < 0 ? 'Prova realizada' : dias === 1 ? 'dia para a prova' : 'dias para a prova';
     const inp = $('#data-prova'); if (inp && document.activeElement !== inp) inp.value = E.prova || '';
-    $('#fichas').innerHTML = CAPS.map((c, i) => {
+    const ficha = (c, i) => {
       const ok = !!D.capitulos[c.n];
       const sq = ok ? stats(TODAS.filter((q) => q.cap === c.n)) : null;
       const pv = ok ? vistasCap(c.n) : 0;
       const tag = ok ? 'a' : 'div';
       return `<${tag} class="ficha ${c.tema}${ok ? '' : ' em-breve'}" ${ok ? `href="#cap-${c.n}"` : 'aria-disabled="true"'} style="--rot:${[-1.2, .8, -.6, 1.1][i % 4]}deg">
         <div class="ficha-arte"><span class="ficha-num">${c.n}</span>${icone(c.ico)}${ok ? '' : '<span class="ficha-selo">em breve</span>'}</div>
-        <div class="ficha-corpo"><span class="ficha-modulo">${MODULOS[c.m]} · prog. ${c.pd}${c.p ? ` <b class="prio ${c.p}">${c.p === 'alta' ? '🔥 cai muito' : '⚡ cai bastante'}</b>` : ''}</span><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>${c.r ? `<span class="ficha-cai">Mais cobrado: ${escH(c.r)}</span>` : ''}
+        <div class="ficha-corpo"><span class="ficha-modulo">programa ${c.pd}${c.p ? ` <b class="prio ${c.p}">${c.p === 'alta' ? '🔥 cai muito' : '⚡ cai bastante'}</b>` : ''}</span><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>${c.r ? `<span class="ficha-cai">Mais cobrado: ${escH(c.r)}</span>` : ''}
         ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% estudado</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
+    };
+    $('#fichas').innerHTML = [1, 2, 3, 4].map((m) => {
+      const caps = CAPS.filter((c) => c.m === m);
+      const prontos = caps.filter((c) => D.capitulos[c.n]).length;
+      const aberto = !!(E.mods && E.mods[m]);
+      return `<section class="modulo-grupo ${TEMAS_MODULO[m]}${aberto ? ' aberto' : ''}" aria-label="Módulo ${m}">
+        <button type="button" class="modulo-cab" data-mod="${m}" aria-expanded="${aberto}" aria-controls="mod-${m}"><span class="modulo-aba">Módulo ${m}</span>
+          <span class="modulo-txt"><b class="modulo-nome">${escH(NOMES_MODULOS[m])}</b>
+          <span>${PESOS[m][0]}% do programa · ${PESOS[m][1]}% nas últimas provas · ${prontos} de ${caps.length} capítulos prontos</span>
+          <span class="modulo-mini" aria-hidden="true">${caps.map((c) => `<i class="${c.tema}${D.capitulos[c.n] ? ' pronto' : ''}"><em>${c.n}</em>${icone(c.ico)}</i>`).join('')}</span></span>
+          <span class="modulo-seta" aria-hidden="true">▾</span><span class="modulo-acao">${aberto ? 'fechar' : 'ver capítulos'}</span></button>
+        <div class="fichas" id="mod-${m}"${aberto ? '' : ' hidden'}>${caps.map(ficha).join('')}</div></section>`;
     }).join('');
   }
 
@@ -577,6 +591,14 @@
     document.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape') { fecharGaveta(); $('#busca').hidden = true; $('#lupa').hidden = true; }
       if (ev.key === '/' && !ev.target.closest('input, textarea, select')) { ev.preventDefault(); abrirBusca(); }
+    });
+    $('#fichas').addEventListener('click', (ev) => {
+      const cab = ev.target.closest('.modulo-cab'); if (!cab) return;
+      const m = cab.dataset.mod;
+      E.mods = E.mods || {};
+      if (E.mods[m]) delete E.mods[m]; else E.mods[m] = 1;
+      salvar(); montarInicio();
+      if (E.mods[m]) requestAnimationFrame(() => { const g = $(`.modulo-cab[data-mod="${m}"]`); if (g) g.scrollIntoView({ behavior: semMovimento() ? 'auto' : 'smooth', block: 'start' }); });
     });
     $('#data-prova').addEventListener('change', (ev) => { E.prova = ev.target.value; salvar(); montarInicio(); });
     $('#tr-ir').addEventListener('click', treinoRapido);
