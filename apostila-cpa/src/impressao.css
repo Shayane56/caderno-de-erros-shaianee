@@ -1,0 +1,76 @@
+/* Ajustes da versão PDF (A4). Usado só no build do PDF, junto com estilo.css. */
+html.pdf, html.pdf body { background-color: #fbfaf5; }
+html.pdf body { font-size: 15.5px; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html.pdf .folha { max-width: none; padding: 0; }
+html.pdf .cap-layout { display: block; max-width: none; }
+html.pdf .barra, html.pdf .indice-lateral, html.pdf .placar, html.pdf .mc-dica, html.pdf .navega, html.pdf .resultado-q, html.pdf .fb-lugar { display: none !important; }
+html.pdf .figura { cursor: default; box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
+html.pdf .figura::after { display: none; }
+html.pdf .hero-arte { animation: none; }
+html.pdf .bloco { margin-top: 34px; }
+html.pdf h2.titulo-secao { font-size: 32px; }
+html.pdf .cap-hero { margin-top: 0; }
+html.pdf .hero-titulo { font-size: 64px; }
+html.pdf .hero-foto { max-width: 280px; }
+html.pdf .ce { cursor: default; }
+html.pdf .ce:hover, html.pdf .figura:hover, html.pdf .cartao:hover { transform: none; }
+html.pdf .mc-ramo { cursor: default; }
+html.pdf .jogo { box-shadow: none; padding: 16px 20px; }
+
+/* quebras de página */
+html.pdf .figura, html.pdf .cartao, html.pdf .caixa, html.pdf .ce, html.pdf .questao, html.pdf .juca, html.pdf .faixa-chave,
+html.pdf tr, html.pdf .quadro-sfn, html.pdf .mapa-caderno, html.pdf .frases-resumo li, html.pdf .gab-item, html.pdf .fluxo-horizontal { break-inside: avoid; }
+html.pdf h2, html.pdf h3, html.pdf h4, html.pdf .sobretitulo, html.pdf .linha-fina { break-after: avoid; }
+html.pdf .quebra, html.pdf #c1-s2, html.pdf #c1-s4, html.pdf #c1-s8, html.pdf #c1-s12, html.pdf #c1-s15, html.pdf #c1-s17 { break-before: page; margin-top: 0; }
+
+/* questões em papel */
+html.pdf .questao ol.alt li { border-color: var(--linha); background: #fff; }
+html.pdf .gabarito-impresso { display: block; break-before: page; }
+html.pdf .gabarito-impresso h3 { font-size: 30px; margin-top: 0; }
+html.pdf .gab-item { border-left: 5px solid var(--verde); background: var(--verde-claro); border-radius: 0 12px 12px 0; padding: 8px 12px; margin-bottom: 8px; font-size: 14.5px; }
+html.pdf .gab-item b { font: 700 17px var(--f-mao); color: var(--verde-escuro); margin-right: 6px; }
+
+/* capa */
+.capa { width: 210mm; height: 297mm; position: relative; overflow: hidden; color: #fff; break-after: page;
+  background: radial-gradient(120% 80% at 85% 8%, #1b9a9a 0%, #0f6470 42%, #0b3f4b 100%); }
+.capa::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0 33px, rgba(255, 255, 255, .06) 33px 34px); }
+.capa-conteudo { position: absolute; inset: 22mm 18mm 18mm; display: flex; flex-direction: column; }
+.capa-selo { font: 700 16px var(--f-mao); letter-spacing: .08em; text-transform: uppercase; color: #ffd38a; }
+.capa h1 { margin: 6mm 0 0; font: 400 112px/0.95 var(--f-titulo); transform: rotate(-4deg); transform-origin: left; color: #fff; }
+.capa h1 span { color: #ffb3a6; }
+.capa-cap { margin-top: 10mm; display: inline-block; align-self: flex-start; background: #fff4a8; color: #1d2a31; padding: 10px 22px 8px; transform: rotate(-1.5deg); box-shadow: 0 10px 24px rgba(0, 0, 0, .25); border-radius: 2px 2px 18px 2px; }
+.capa-cap b { display: block; font: 700 18px var(--f-mao); letter-spacing: .06em; text-transform: uppercase; color: #a96300; }
+.capa-cap span { font: 400 40px/1.1 var(--f-titulo); color: #1d2a31; }
+.capa-arte { flex: 1; display: grid; place-items: center; }
+.capa-arte svg { width: 120mm; height: auto; }
+.capa-rodape { display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; font-size: 13px; color: rgba(255, 255, 255, .85); }
+.capa-rodape b { font: 700 18px var(--f-mao); color: #fff; display: block; }
+.capa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8mm; }
+.capa-chips span { font: 700 15px var(--f-mao); padding: 1px 10px; border-radius: 4px; background: rgba(255, 255, 255, .16); color: #fff; }
+
+/* sumário */
+.sumario { break-after: page; }
+.sumario ol { list-style: none; padding: 0; margin: 10px 0 0; columns: 2; column-gap: 26px; }
+.sumario li { break-inside: avoid; display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 2px dashed var(--linha); font-size: 15px; }
+.sumario li b { font: 700 17px var(--f-mao); color: var(--coral); min-width: 34px; }
+.legenda-caixas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; margin-top: 10px; }
+.legenda-caixas .caixa { margin: 0; padding: 10px 14px 8px; font-size: 14px; }
+
+/* o PDF tem 688 px de largura útil: força o layout de desktop onde o CSS de tela empilharia */
+html.pdf .cap-hero { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+html.pdf .hero-foto { width: 100%; margin: 0; }
+html.pdf .quadro-sfn { grid-template-columns: 96px repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 13.5px; }
+html.pdf .quadro-sfn .q-vazio { display: block; }
+html.pdf .quadro-sfn .q-nivel { display: grid; }
+html.pdf .quadro-sfn .q-cab { margin-top: 0; border-radius: 10px 10px 4px 4px; font-size: 14.5px; }
+html.pdf .quadro-sfn .k1, html.pdf .quadro-sfn .k2, html.pdf .quadro-sfn .k3 { order: 0; }
+html.pdf .quadro-sfn .q-cel[data-nivel]::before { display: none; }
+html.pdf .quadro-sfn .q-cel ul { font-size: 12.5px; }
+html.pdf .grade-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* questões mais compactas no papel */
+html.pdf .questao { padding: 10px 12px 8px; margin-bottom: 10px; box-shadow: none; }
+html.pdf .questao .enunciado { font-size: 14.5px; margin-bottom: 6px; }
+html.pdf .questao ol.alt { gap: 4px; }
+html.pdf .questao ol.alt li { font-size: 14px; padding: 4px 10px 4px 40px; }
+html.pdf .questao ol.alt li::before { width: 23px; height: 23px; top: 3px; font-size: 13px; }
+html.pdf .ce > div { font-size: 14.5px; padding: 8px 12px; }

@@ -1,0 +1,176 @@
+<title>Apostila CPA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Apostila interativa da certificação CPA: Sistema Financeiro Nacional, com mapas mentais, questões corrigidas na hora e caderno de erros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Kalam:wght@300;400;700&family=Kaushan+Script&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>/*@@ESTILO@@*/</style>
+<!--@@SIMBOLOS@@-->
+
+<header class="barra" id="barra">
+  <button class="b-botao" id="b-menu" type="button" aria-label="Abrir o índice" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h12M4 17h16"/></svg><span>Índice</span>
+  </button>
+  <a class="b-logo" href="#inicio" aria-label="Início">CPA</a>
+  <div class="b-titulo" id="b-titulo">Apostila interativa</div>
+  <div class="b-acoes">
+    <button class="b-botao" id="b-busca" type="button" aria-label="Buscar na apostila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span>Buscar</span>
+    </button>
+    <a class="b-botao" href="#painel" aria-label="Meu desempenho">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Desempenho</span>
+    </a>
+    <button class="b-botao" id="b-treino" type="button" aria-pressed="false" title="Esconde as respostas para você testar a memória">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path class="risco-olho" d="M4 20L20 4"/></svg><span>Modo treino</span>
+    </button>
+  </div>
+  <div class="b-progresso" aria-hidden="true"><span id="b-prog"></span></div>
+</header>
+
+<div class="gaveta-fundo" id="gaveta" hidden>
+  <nav class="gaveta" aria-label="Índice da apostila">
+    <div class="gaveta-topo"><span>Índice</span><button class="fechar-x" id="gaveta-fechar" type="button" aria-label="Fechar o índice">×</button></div>
+    <div id="gaveta-lista"></div>
+  </nav>
+</div>
+
+<main>
+<!-- ======================= INÍCIO ======================= -->
+<div class="view folha" id="view-inicio">
+  <section class="ini-hero">
+    <div>
+      <span class="ini-sobre">Certificação ANBIMA · nova CPA · 2026</span>
+      <h1 class="ini-titulo">Apostila <span>CPA</span></h1>
+      <p class="ini-sub">O mercado financeiro explicado com desenhos, mapas mentais e exemplos do dia a dia. Questões que se corrigem na hora, pegadinhas que viram e um caderno de erros que lembra por você.</p>
+      <div class="contagem">
+        <span class="contagem-num" id="cont-num">?</span>
+        <span class="contagem-txt"><b id="cont-tit">Quando é a sua prova?</b><span><label for="data-prova">Data da prova: </label><input type="date" id="data-prova"></span></span>
+      </div>
+      <div class="ini-botoes">
+        <a class="btn-mao principal" href="#cap-1">Começar pelo capítulo 1</a>
+        <a class="btn-mao" href="#painel">Treinar e revisar erros</a>
+      </div>
+    </div>
+    <div class="ini-arte">
+      <span class="fita" aria-hidden="true"></span>
+      <svg viewBox="0 0 520 400" role="img" aria-label="Mesa de estudo com o cofrinho Juca, moedas, gráfico subindo e o caderno da CPA">
+        <circle cx="430" cy="78" r="44" fill="#f0a12f"/><circle cx="430" cy="78" r="60" fill="#f0a12f" opacity=".2"/>
+        <path d="M40 210 90 160l50 30 60-70 60 40 70-90" fill="none" stroke="#9fe0d9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M300 70h36v36" fill="none" stroke="#9fe0d9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="0" y="300" width="520" height="100" fill="#0a3a44"/>
+        <path d="M0 300h520" stroke="#ffd38a" stroke-width="4"/>
+        <g transform="translate(40 196) rotate(-6)">
+          <rect width="170" height="126" rx="8" fill="#fbfaf5" stroke="#08323b" stroke-width="4"/>
+          <path d="M14 0v126" stroke="#d9472f" stroke-width="3" opacity=".5"/>
+          <g stroke="#dfe9f2" stroke-width="3"><path d="M20 40h140M20 62h140M20 84h140M20 106h140"/></g>
+          <text x="92" y="34" text-anchor="middle" font-family="Kaushan Script, cursive" font-size="30" fill="#d9472f">CPA</text>
+          <text x="90" y="80" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#0b4f5c">CMN → BC</text>
+          <text x="90" y="102" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#0b4f5c">Selic · FGC</text>
+        </g>
+        <g transform="translate(250 150)" style="color:#08323b"><svg width="190" height="190" viewBox="0 0 120 120"><use href="#juca"/></svg></g>
+        <g stroke="#7a4b00" stroke-width="4">
+          <ellipse cx="440" cy="300" rx="34" ry="10" fill="#d9a520"/><rect x="406" y="276" width="68" height="24" fill="#f5c542"/><ellipse cx="440" cy="276" rx="34" ry="10" fill="#f5c542"/>
+          <ellipse cx="440" cy="262" rx="34" ry="10" fill="#f5c542"/><rect x="406" y="250" width="68" height="12" fill="#f5c542" stroke="none"/><ellipse cx="440" cy="250" rx="34" ry="10" fill="#ffd970"/>
+        </g>
+        <text x="260" y="352" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#ffd38a">normativo decide · supervisor fiscaliza</text><text x="260" y="380" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#ffd38a">operador atende</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="ini-painel" aria-label="Seu progresso">
+    <div class="stat"><b id="st-caps">0/12</b><span>capítulos lidos</span></div>
+    <div class="stat"><b id="st-resp">0/0</b><span>questões respondidas</span></div>
+    <div class="stat"><b id="st-pct">—</b><span>de acerto</span></div>
+    <div class="stat"><b id="st-erros">0</b><span>erros para revisar</span></div>
+  </section>
+
+  <h2 class="ini-h2">Os capítulos <small>o capítulo 1 já está pronto; os outros chegam por etapas</small></h2>
+  <div class="fichas" id="fichas"></div>
+
+  <h2 class="ini-h2">Como usar</h2>
+  <div class="como-usar">
+    <div class="uso"><b>1. Leia com os desenhos</b><span>Cada capítulo abre com um mapa do que vem e fecha com mapa mental, pegadinhas e revisão de 1 minuto.</span></div>
+    <div class="uso"><b>2. Responda na hora</b><span>Toque na alternativa: a correção e o porquê de cada opção aparecem na mesma hora.</span></div>
+    <div class="uso"><b>3. Revise seus erros</b><span>Cada erro vai para o caderno de erros em “Desempenho”, até você acertar.</span></div>
+    <div class="uso"><b>4. Ligue o Modo treino</b><span>Esconde as respostas do mapa mental e da revisão para você testar a memória.</span></div>
+  </div>
+  <p class="ini-rodape">Seu progresso fica salvo só neste navegador. Material de estudo independente, conferido em fontes oficiais (nov/2026). Não é produzido nem endossado pela ANBIMA.</p>
+</div>
+
+<!-- ======================= CAPÍTULOS ======================= -->
+<div class="view folha" id="view-cap-1" hidden>
+  <div class="cap-layout">
+    <!--@@CAP01@@-->
+    <aside class="indice-lateral" aria-label="Seções do capítulo"></aside>
+  </div>
+</div>
+
+<!-- ======================= DESEMPENHO ======================= -->
+<div class="view folha" id="view-painel" hidden>
+  <div class="cap-layout"><div class="capitulo">
+    <span class="sobretitulo">Seu painel</span>
+    <h1 class="hero-titulo">Meu desempenho</h1>
+    <div class="painel-topo">
+      <div class="stat"><b id="pn-resp">0/0</b><span>questões respondidas</span></div>
+      <div class="stat"><b id="pn-pct">—</b><span>de acerto</span></div>
+      <div class="stat"><b id="pn-erros">0</b><span>erros no caderno</span></div>
+      <div class="stat"><b id="pn-rec">0/10</b><span>recorde no desafio</span></div>
+    </div>
+
+    <section class="bloco" id="pn-desempenho" style="margin-top:30px">
+      <span class="sobretitulo">Por assunto</span>
+      <h2 class="titulo-secao">Onde estou bem e onde preciso reforçar</h2>
+      <div class="linha-fina"></div>
+      <div id="pn-temas"></div>
+      <p class="pequeno">Verde = acertos, vermelho = erros, cinza = ainda não respondidas.</p>
+    </section>
+
+    <section class="bloco extra" id="pn-treino">
+      <span class="sobretitulo">Modo treino</span>
+      <h2 class="titulo-secao">Treino rápido</h2>
+      <div class="linha-fina"></div>
+      <div class="treino-opcoes">
+        <label for="tr-tema">Tema</label><select id="tr-tema"><option value="">Todos os temas</option></select>
+        <label for="tr-so">Questões</label><select id="tr-so"><option value="todas">todas</option><option value="erros">só as que errei</option><option value="novas">só as que nunca fiz</option></select>
+        <label for="tr-qtd">Quantas</label><select id="tr-qtd"><option>5</option><option selected>10</option><option>20</option></select>
+        <button class="btn-mao principal pequeno" type="button" id="tr-ir">Sortear questões</button>
+      </div>
+      <div id="tr-lista"><div class="vazio">Escolha os filtros e toque em “Sortear questões”.</div></div>
+    </section>
+
+    <section class="bloco" id="pn-erros-sec">
+      <span class="sobretitulo">Revisão de erros</span>
+      <h2 class="titulo-secao">Meu caderno de erros</h2>
+      <div class="linha-fina"></div>
+      <p>Aqui ficam as questões que você errou. Responda de novo: quando acertar, ela sai do caderno na próxima vez que você abrir esta página.</p>
+      <div id="pn-lista-erros"></div>
+    </section>
+  </div></div>
+</div>
+</main>
+
+<div class="sobreposicao" id="busca" hidden>
+  <div class="busca-painel" role="dialog" aria-modal="true" aria-label="Buscar na apostila">
+    <div class="busca-campo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="busca-texto" type="search" placeholder="Busque: CMN, recondução, FGC, SEP…" autocomplete="off" aria-label="Termo de busca">
+      <button class="fechar-x" id="busca-fechar" type="button" aria-label="Fechar a busca">×</button>
+    </div>
+    <div class="busca-sugestoes" id="busca-sugestoes"></div>
+    <ol class="busca-resultados" id="busca-resultados" aria-live="polite"></ol>
+  </div>
+</div>
+
+<div class="sobreposicao lupa" id="lupa" hidden>
+  <div class="lupa-barra">
+    <button class="b-botao" id="lupa-menos" type="button" aria-label="Diminuir">−</button>
+    <button class="b-botao" id="lupa-mais" type="button" aria-label="Aumentar">+</button>
+    <button class="fechar-x" id="lupa-fechar" type="button" aria-label="Fechar">×</button>
+  </div>
+  <div class="lupa-area"><div class="lupa-folha" id="lupa-folha"></div></div>
+</div>
+
+<div class="aviso-toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>/*@@DADOS@@*/</script>
+<script>/*@@APP@@*/</script>
