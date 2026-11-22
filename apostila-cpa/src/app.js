@@ -18,20 +18,26 @@
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(E)); } catch (e) { /* ignora */ } };
 
   /* ---------------- catálogo de capítulos ---------------- */
+  // Plano pelo programa oficial da CPA (v1.2, vigência 2026). m = módulo; p = prioridade pela análise das últimas provas
+  // (alta = tema que apareceu em 2 ou 3 das 3 provas analisadas); r = temas recorrentes.
   const CAPS = [
-    { n: 1, t: 'Sistema Financeiro Nacional', s: 'CMN, BC, CVM, Susep, Previc, bancos, fintechs e FGC', tema: 'tema-mar', ico: 'predio' },
-    { n: 2, t: 'Economia e política monetária', s: 'Selic, Copom, inflação, indicadores e câmbio', tema: 'tema-ouro', ico: 'grafico' },
-    { n: 3, t: 'Matemática financeira', s: 'juros simples e compostos, VP, VF, VPL e TIR', tema: 'tema-roxo', ico: 'calc' },
-    { n: 4, t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, debêntures, CRI e CRA', tema: 'tema-azul', ico: 'doc' },
-    { n: 5, t: 'Renda variável', s: 'ações, ofertas públicas, índices e governança', tema: 'tema-verde', ico: 'velas' },
-    { n: 6, t: 'Fundos de investimento', s: 'tipos, taxas, tributação e fundos imobiliários', tema: 'tema-coral', ico: 'pizza' },
-    { n: 7, t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação e rendas', tema: 'tema-mar', ico: 'ampulheta' },
-    { n: 8, t: 'Crédito, serviços e seguros', s: 'empréstimo, financiamento, consignado e seguros', tema: 'tema-ouro', ico: 'cartao' },
-    { n: 9, t: 'Relacionamento e planejamento', s: 'suitability, ciclo de vida, orçamento e IR', tema: 'tema-roxo', ico: 'alvo' },
-    { n: 10, t: 'Conduta, PLD e crimes de mercado', s: 'ética, lavagem de dinheiro, LGPD e insider', tema: 'tema-coral', ico: 'balanca' },
-    { n: 11, t: 'Inovação no mercado', s: 'blockchain, tokenização, Open Finance e IA', tema: 'tema-azul', ico: 'chip' },
-    { n: 12, t: 'Meios de pagamento', s: 'arranjos, Pix, adquirentes e subadquirentes', tema: 'tema-verde', ico: 'maquina' }
+    { n: 1, m: 1, t: 'Sistema Financeiro Nacional', s: 'CMN, BC, CVM, Susep, Previc, bancos, fintechs, ANBIMA, FGC e SPB', tema: 'tema-mar', ico: 'predio' },
+    { n: 2, m: 1, p: 'alta', r: 'política monetária: Selic, Copom e CDI', t: 'Política econômica e indicadores', s: 'política monetária, fiscal e cambial, Copom, Selic, CDI, IPCA e PIB', tema: 'tema-ouro', ico: 'grafico' },
+    { n: 3, m: 1, t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-roxo', ico: 'calc' },
+    { n: 4, m: 1, t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-azul', ico: 'rede' },
+    { n: 5, m: 2, p: 'alta', r: 'debêntures, Tesouro e tributação de renda fixa', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-azul', ico: 'doc' },
+    { n: 6, m: 2, p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-verde', ico: 'velas' },
+    { n: 7, m: 2, p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-coral', ico: 'pizza' },
+    { n: 8, m: 2, p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-mar', ico: 'ampulheta' },
+    { n: 9, m: 2, p: 'alta', r: 'consignado, cartão, cheque especial e encargos', t: 'Produtos de crédito', s: 'empréstimo, financiamento, leasing, cartão, consignado e CDC', tema: 'tema-ouro', ico: 'cartao' },
+    { n: 10, m: 2, t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-verde', ico: 'maquina' },
+    { n: 11, m: 3, t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-roxo', ico: 'alvo' },
+    { n: 12, m: 3, p: 'alta', r: 'conduta, ética e práticas vedadas', t: 'Suitability, código ANBIMA e ética', s: 'perfil do investidor, suitability, 9 princípios éticos e conflitos', tema: 'tema-coral', ico: 'balanca' },
+    { n: 13, m: 3, t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-azul', ico: 'escudo' },
+    { n: 14, m: 4, t: 'ESG', s: 'ambiental, social e governança, investimentos e fundos sustentáveis', tema: 'tema-verde', ico: 'folha' },
+    { n: 15, m: 4, t: 'Inovação e meios de pagamento', s: 'DeFi, tokenização, Drex, Open Finance, IA, fintechs e arranjos', tema: 'tema-roxo', ico: 'chip' }
   ];
+  const MODULOS = { 1: 'Módulo 1 · 20%', 2: 'Módulo 2 · 40%', 3: 'Módulo 3 · 30%', 4: 'Módulo 4 · 10%' };
   const ICONES = {
     predio: '<path d="M14 40 50 18l36 22Z"/><path d="M20 44v34M36 44v34M64 44v34M80 44v34M10 82h80"/>',
     grafico: '<path d="M12 80h76M16 70l18-20 16 10 26-30"/><path d="M62 30h14v14"/>',
@@ -44,6 +50,9 @@
     alvo: '<circle cx="50" cy="50" r="36"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="8"/><path d="M50 50 84 16M74 16h10v10"/>',
     balanca: '<path d="M50 14v70M30 84h40M18 30h64"/><path d="M18 30 8 56h20ZM82 30 72 56h20Z"/>',
     chip: '<rect x="26" y="26" width="48" height="48" rx="6"/><rect x="38" y="38" width="24" height="24" rx="3"/><path d="M38 14v12M50 14v12M62 14v12M38 74v12M50 74v12M62 74v12M14 38h12M14 50h12M14 62h12M74 38h12M74 50h12M74 62h12"/>',
+    rede: '<circle cx="50" cy="22" r="10"/><circle cx="22" cy="74" r="10"/><circle cx="78" cy="74" r="10"/><path d="M45 31 27 65M55 31l18 34M32 74h36"/>',
+    escudo: '<path d="M50 10 82 22v24c0 22-15 34-32 42-17-8-32-20-32-42V22Z"/><path d="M36 50l10 10 18-22"/>',
+    folha: '<path d="M20 80C20 40 46 18 84 16c0 40-22 66-58 66Z"/><path d="M20 80c14-20 30-34 48-44"/>',
     maquina: '<rect x="28" y="10" width="44" height="80" rx="8"/><rect x="36" y="20" width="28" height="20" rx="3"/><path d="M38 52h4M50 52h4M62 52h0M38 64h4M50 64h4M38 76h24"/>'
   };
   const icone = (k) => `<svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONES[k] || ''}</svg>`;
@@ -329,7 +338,7 @@
       const tag = ok ? 'a' : 'div';
       return `<${tag} class="ficha ${c.tema}${ok ? '' : ' em-breve'}" ${ok ? `href="#cap-${c.n}"` : 'aria-disabled="true"'} style="--rot:${[-1.2, .8, -.6, 1.1][i % 4]}deg">
         <div class="ficha-arte"><span class="ficha-num">${c.n}</span>${icone(c.ico)}${ok ? '' : '<span class="ficha-selo">em breve</span>'}</div>
-        <div class="ficha-corpo"><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>
+        <div class="ficha-corpo"><span class="ficha-modulo">${MODULOS[c.m]}${c.p ? ` <b class="prio ${c.p}">${c.p === 'alta' ? '🔥 cai muito' : '⚡ cai bastante'}</b>` : ''}</span><span class="ficha-titulo">${escH(c.t)}</span><span class="ficha-sobre">${escH(c.s)}</span>${c.r ? `<span class="ficha-cai">Mais cobrado: ${escH(c.r)}</span>` : ''}
         ${ok ? `<div class="ficha-barra"><i style="width:${pv}%"></i></div><div class="ficha-info"><span>${pv}% lido</span><span>${sq.resp}/${sq.total} questões${sq.pct != null ? ' · ' + sq.pct + '%' : ''}</span></div>` : '<div class="ficha-info"><span>próxima etapa</span></div>'}</div></${tag}>`;
     }).join('');
   }

@@ -658,3 +658,23 @@ table.dicionario .trad { color: var(--tinta); }
 .rs-cola-grade span { font-size: 13.5px; line-height: 1.35; display: block; }
 .rs-cola-nota { margin-top: 8px !important; font-size: 14px; }
 @media (max-width: 760px) { .rs-cola-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* tela inicial: módulo, prioridade e pesos da prova */
+.ficha-modulo { font: 700 13px var(--f-mao); letter-spacing: .04em; color: var(--teal); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.prio { text-transform: none; letter-spacing: 0; font: 700 13px var(--f-mao); padding: 0 8px; border-radius: 8px; }
+.prio.alta { background: var(--coral-claro); color: var(--coral-escuro); }
+.prio.media { background: var(--ambar-claro); color: var(--ambar-escuro); }
+.ficha-cai { font-size: 13px; line-height: 1.35; color: var(--tinta); background: var(--mk-amarelo); padding: 2px 6px; border-radius: 4px; }
+.pesos { display: grid; gap: 10px; max-width: 900px; }
+.peso-linha { display: grid; grid-template-columns: minmax(150px, 260px) minmax(0, 1fr) 96px; gap: 12px; align-items: center; }
+.peso-nome { font: 700 17px/1.2 var(--f-mao); }
+.peso-barras { display: grid; gap: 4px; }
+.peso-barras i { display: block; height: 10px; border-radius: 6px; }
+.peso-barras .of, .pesos-legenda .lg.of { background: var(--teal); }
+.peso-barras .ob, .pesos-legenda .lg.ob { background: var(--ambar); }
+.peso-num { font-size: 14px; color: var(--suave); text-align: right; font-variant-numeric: tabular-nums; }
+.peso-num b { font: 700 18px var(--f-mao); color: var(--teal); }
+.pesos-legenda { margin: 4px 0 0; font-size: 14px; color: var(--suave); }
+.pesos-legenda .lg { display: inline-block; width: 14px; height: 10px; border-radius: 4px; margin: 0 4px 0 10px; vertical-align: 0; }
+.pesos-legenda .lg:first-child { margin-left: 0; }
+@media (max-width: 640px) { .peso-linha { grid-template-columns: minmax(0, 1fr) 84px; } .peso-barras { grid-column: 1 / -1; grid-row: 2; } }

@@ -25,10 +25,26 @@ O caderno digital tem:
 
 ## Status
 
-| Cap. | Assunto | Status |
-| --- | --- | --- |
-| 1 | Sistema Financeiro Nacional | pronto (fontes conferidas em nov/2026) |
-| 2–12 | Economia, matemática financeira, renda fixa, renda variável, fundos, previdência, crédito e seguros, planejamento, conduta e PLD, inovação, meios de pagamento | próximas etapas |
+Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIMA, v1.2, vigência 2026).
+🔥 = tema que mais se repetiu nas 3 provas de julho/2026 (análise de questões lembradas; tendência, não garantia).
+
+| Cap. | Módulo (peso) | Assunto | Status |
+| --- | --- | --- | --- |
+| 1 | 1 (20%) | Sistema Financeiro Nacional | pronto · cobre todo o item 1.1 do programa |
+| 2 | 1 (20%) | Política econômica e indicadores 🔥 | próxima etapa |
+| 3 | 1 (20%) | Matemática financeira | |
+| 4 | 1 (20%) | Regulação e infraestrutura de mercado | |
+| 5 | 2 (40%) | Renda fixa 🔥 | |
+| 6 | 2 (40%) | Renda variável e COE 🔥 | |
+| 7 | 2 (40%) | Fundos de investimento e FII | |
+| 8 | 2 (40%) | Previdência complementar | |
+| 9 | 2 (40%) | Produtos de crédito 🔥 | |
+| 10 | 2 (40%) | Serviços bancários e seguros | |
+| 11 | 3 (30%) | Finanças pessoais e planejamento | |
+| 12 | 3 (30%) | Suitability, código ANBIMA e ética 🔥 | |
+| 13 | 3 (30%) | PLD, LGPD e crimes de mercado | |
+| 14 | 4 (10%) | ESG | |
+| 15 | 4 (10%) | Inovação e meios de pagamento | |
 
 ## Como gerar
 
