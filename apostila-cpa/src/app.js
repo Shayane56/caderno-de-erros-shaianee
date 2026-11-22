@@ -33,7 +33,7 @@
     { n: 3, m: 1, pd: '1.3', r: 'conceitos: Fisher, VPL, TIR, duration, SAC × Price', t: 'Matemática financeira', s: 'juros, Fisher, VP, VF, VPL, TIR, SAC, Price e duration', tema: 'tema-mar', ico: 'calc' },
     { n: 4, m: 1, pd: '1.4', r: 'IMFs, Basileia, investidor qualificado e Código ANBIMA', t: 'Regulação e infraestrutura', s: 'IMFs, Selic, B3, Basileia, investidor qualificado e código ANBIMA', tema: 'tema-mar', ico: 'rede' },
     { n: 5, m: 2, pd: '2.1.1.1', p: 'alta', r: 'debêntures, Tesouro Direto e tributação (IR e IOF)', t: 'Renda fixa', s: 'Tesouro Direto, CDB, LCI, LCA, LCD, debêntures, CRI, CRA, IR e IOF', tema: 'tema-ouro', ico: 'doc' },
-    { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações, ON/PN, Novo Mercado e tag along', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
+    { n: 6, m: 2, pd: '2.1.1.2 a 2.1.1.4', p: 'alta', r: 'ações ON/PN, Novo Mercado, tag along e IR de ações', t: 'Renda variável e COE', s: 'ações, ofertas, eventos, índices, governança e COE', tema: 'tema-ouro', ico: 'velas' },
     { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-ouro', ico: 'pizza' },
     { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
     { n: 9, m: 2, pd: '2.3', p: 'alta', r: 'consignado, cartão, cheque especial e encargos', t: 'Produtos de crédito', s: 'empréstimo, financiamento, leasing, cartão, consignado e CDC', tema: 'tema-ouro', ico: 'cartao' },
@@ -372,8 +372,38 @@
     el.addEventListener('input', atualizar); atualizar();
   }
 
+
+  function calcIrrv(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>IR na venda de ações</b></div>
+      <div class="calc-entradas quatro">${campo('v', 'Total vendido no mês (R$)', 50000, 'min="0" step="1000"')}${campo('l', 'Lucro (ou prejuízo, com −) no mês (R$)', 8000, 'step="100"')}${campo('p', 'Prejuízo acumulado a compensar (R$)', 0, 'min="0" step="100"')}
+        <label class="calc-campo"><span>Tipo de operação</span><select data-k="t"><option value="c" selected>Comum (swing trade)</option><option value="d">Day trade</option></select></label></div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const v = Math.max(0, ler('v')), l = ler('l'), p = Math.max(0, ler('p')), day = $('[data-k="t"]', el).value === 'd';
+      let html = '';
+      if (!day && v <= 20000) {
+        html = `<div class="calc-cards dois"><div class="destaque"><small>Resultado</small><b>Isento</b><span>vendas de ações à vista até R$ 20 mil no mês (Lei 11.033, art. 3º)</span></div>
+          <div><small>Atenção</small><b>${l < 0 ? 'Prejuízo perdido' : 'Nada a pagar'}</b><span>${l < 0 ? 'prejuízo de mês isento não pode ser compensado depois' : 'o lucro de ' + brl(l) + ' não paga IR'}</span></div></div>`;
+      } else if (l <= 0) {
+        html = `<div class="calc-cards dois"><div><small>Resultado do mês</small><b>${brl(l)}</b><span>sem lucro, sem imposto</span></div>
+          <div class="destaque"><small>Prejuízo a levar para frente</small><b>${brl(p - l)}</b><span>${day ? 'compensa só com lucros de day trade' : 'compensa só com lucros de operações comuns'}, sem prazo</span></div></div>`;
+      } else {
+        const comp = Math.min(p, l), base = l - comp, aliq = day ? 0.20 : 0.15;
+        const ir = base * aliq, ret = day ? l * 0.01 : v * 0.00005, darf = Math.max(0, ir - ret);
+        html = `<div class="calc-cards">
+          <div><small>Base de cálculo</small><b>${brl(base)}</b><span>lucro ${brl(l)}${comp ? ' − prejuízo compensado ' + brl(comp) : ''}</span></div>
+          <div><small>IR (${day ? '20%' : '15%'})</small><b>${brl(ir)}</b><span>${day ? 'day trade' : 'operações comuns'}</span></div>
+          <div class="destaque"><small>DARF a pagar</small><b>${brl(darf)}</b><span>já descontada a retenção na fonte de ${brl(ret)} (${day ? '1% do resultado' : '0,005% das vendas'})</span></div></div>
+          <p class="calc-nota">O investidor paga por <b>DARF</b> até o último dia útil do mês seguinte. ${p - comp > 0 ? 'Ainda sobra prejuízo de ' + brl(p - comp) + ' para compensar depois.' : ''}</p>`;
+      }
+      $('.calc-res', el).innerHTML = html + '<p class="calc-nota pequeno">Simulação didática: valores de corretagem e emolumentos já devem estar incluídos no lucro.</p>';
+    }
+    el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

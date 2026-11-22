@@ -22,6 +22,7 @@ CAPITULOS = {
     3: "Matemática financeira",
     4: "Regulação e infraestrutura de mercado",
     5: "Renda fixa",
+    6: "Renda variável e COE",
 }
 
 

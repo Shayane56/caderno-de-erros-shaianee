@@ -17,7 +17,8 @@ const CAPS = {
   2: { titulo: 'Política econômica e indicadores', arquivo: 'Politica-Economica-e-Indicadores' },
   3: { titulo: 'Matemática financeira', arquivo: 'Matematica-Financeira' },
   4: { titulo: 'Regulação e infraestrutura de mercado', arquivo: 'Regulacao-e-Infraestrutura' },
-  5: { titulo: 'Renda fixa', arquivo: 'Renda-Fixa' }
+  5: { titulo: 'Renda fixa', arquivo: 'Renda-Fixa' },
+  6: { titulo: 'Renda variável e COE', arquivo: 'Renda-Variavel-e-COE' }
 };
 
 const arg = (nome) => { const i = process.argv.indexOf(nome); return i >= 0 ? process.argv[i + 1] : null; };

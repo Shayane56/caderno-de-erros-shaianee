@@ -35,8 +35,8 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 3 | 1 (20%) | Matemática financeira | pronto · cobre todo o item 1.3 do programa · 3 simuladores (juros, taxas e SAC × Price) |
 | 4 | 1 (20%) | Regulação e infraestrutura de mercado | pronto · cobre todo o item 1.4 (IMFs, Basileia, CVM 30, Código ANBIMA) |
 | 5 | 2 (40%) | Renda fixa 🔥 | pronto · cobre todo o item 2.1.1.1 · simulador LCI × CDB |
-| 6 | 2 (40%) | Renda variável e COE 🔥 | próxima etapa |
-| 7 | 2 (40%) | Fundos de investimento e FII | |
+| 6 | 2 (40%) | Renda variável e COE 🔥 | pronto · itens 2.1.1.2 a 2.1.1.4 · simulador de IR de ações |
+| 7 | 2 (40%) | Fundos de investimento e FII | próxima etapa |
 | 8 | 2 (40%) | Previdência complementar | |
 | 9 | 2 (40%) | Produtos de crédito 🔥 | |
 | 10 | 2 (40%) | Serviços bancários e seguros | |
