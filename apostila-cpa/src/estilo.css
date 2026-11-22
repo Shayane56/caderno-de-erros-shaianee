@@ -85,9 +85,13 @@ a { color: var(--azul); }
 .b-botao[aria-pressed="true"] { background: var(--mk-amarelo); }
 .b-botao .risco-olho { opacity: 0; }
 .b-botao[aria-pressed="true"] .risco-olho { opacity: 1; }
+.b-botao .ic-lua { display: none; }
+:root[data-tema-efetivo="dark"] .b-botao .ic-sol { display: none; }
+:root[data-tema-efetivo="dark"] .b-botao .ic-lua { display: inline; }
 .b-progresso { position: absolute; left: 0; right: 0; bottom: -2px; height: 5px; }
 .b-progresso span { display: block; height: 100%; width: 0; background: var(--mk-amarelo); border-radius: 0 4px 4px 0; }
 @media (max-width: 700px) { .b-botao span { display: none; } .b-botao { padding: 4px 9px; } .b-titulo { font-size: 16px; } }
+@media (max-width: 480px) { .b-titulo { visibility: hidden; } .barra { gap: 6px; } .b-acoes { gap: 6px; } }
 
 /* ---------------- gaveta (índice) ---------------- */
 .gaveta-fundo { position: fixed; inset: 0; z-index: 70; background: var(--vidro); }

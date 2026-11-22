@@ -91,9 +91,13 @@ a { color: var(--azul); }
 .b-botao[aria-pressed="true"] { background: var(--mk-amarelo); }
 .b-botao .risco-olho { opacity: 0; }
 .b-botao[aria-pressed="true"] .risco-olho { opacity: 1; }
+.b-botao .ic-lua { display: none; }
+:root[data-tema-efetivo="dark"] .b-botao .ic-sol { display: none; }
+:root[data-tema-efetivo="dark"] .b-botao .ic-lua { display: inline; }
 .b-progresso { position: absolute; left: 0; right: 0; bottom: -2px; height: 5px; }
 .b-progresso span { display: block; height: 100%; width: 0; background: var(--mk-amarelo); border-radius: 0 4px 4px 0; }
 @media (max-width: 700px) { .b-botao span { display: none; } .b-botao { padding: 4px 9px; } .b-titulo { font-size: 16px; } }
+@media (max-width: 480px) { .b-titulo { visibility: hidden; } .barra { gap: 6px; } .b-acoes { gap: 6px; } }
 
 /* ---------------- gaveta (índice) ---------------- */
 .gaveta-fundo { position: fixed; inset: 0; z-index: 70; background: var(--vidro); }
@@ -644,6 +648,9 @@ table.fontes .org { display: block; font-size: 13px; color: var(--suave); margin
     <a class="b-botao" href="#painel" aria-label="Meu desempenho">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Desempenho</span>
     </a>
+    <button class="b-botao" id="b-tema" type="button" aria-label="Mudar para o tema escuro" title="Tema claro ou escuro">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-sol"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><path class="ic-lua" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span id="b-tema-txt">Tema</span>
+    </button>
     <button class="b-botao" id="b-treino" type="button" aria-pressed="false" title="Esconde as respostas para você testar a memória">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path class="risco-olho" d="M4 20L20 4"/></svg><span>Modo treino</span>
     </button>
@@ -2109,6 +2116,25 @@ APOSTILA.jogos.fiscaliza = {
     $('#lupa-folha').innerHTML = svg.outerHTML; $('#lupa').hidden = false; $('#lupa-fechar').focus();
   }
 
+  /* ---------------- tema claro / escuro ---------------- */
+  // Sem escolha salva, segue o aparelho (ou o tema do claude.ai). O botão grava a escolha.
+  const raiz = document.documentElement;
+  const mqEscuro = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+  const temaEfetivo = () => raiz.dataset.theme || (mqEscuro && mqEscuro.matches ? 'dark' : 'light');
+  function aplicarTema() {
+    if (E.tema === 'light' || E.tema === 'dark') raiz.setAttribute('data-theme', E.tema);
+    const ef = temaEfetivo();
+    raiz.setAttribute('data-tema-efetivo', ef);
+    const b = $('#b-tema'); if (!b) return;
+    b.setAttribute('aria-label', ef === 'dark' ? 'Mudar para o tema claro' : 'Mudar para o tema escuro');
+    $('#b-tema-txt').textContent = ef === 'dark' ? 'Escuro' : 'Claro';
+  }
+  function alternarTema() {
+    E.tema = temaEfetivo() === 'dark' ? 'light' : 'dark'; salvar(); aplicarTema();
+    $$('.mapa-caderno').forEach((m) => m._desenhar && m._desenhar());
+    toast(E.tema === 'dark' ? 'Tema escuro' : 'Tema claro');
+  }
+
   /* ---------------- modo treino ---------------- */
   function aplicarTreino() {
     document.body.classList.toggle('treino', !!E.treino);
@@ -2134,6 +2160,10 @@ APOSTILA.jogos.fiscaliza = {
     montarIndices();
     observarSecoes();
     aplicarTreino();
+    aplicarTema();
+    $('#b-tema').addEventListener('click', alternarTema);
+    if (mqEscuro && mqEscuro.addEventListener) mqEscuro.addEventListener('change', aplicarTema);
+    if (window.MutationObserver) new MutationObserver(() => { const ef = temaEfetivo(); if (raiz.getAttribute('data-tema-efetivo') !== ef) raiz.setAttribute('data-tema-efetivo', ef); }).observe(raiz, { attributes: true, attributeFilter: ['data-theme'] });
 
     document.addEventListener('click', (ev) => {
       const ce = ev.target.closest('.ce');

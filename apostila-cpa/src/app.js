@@ -434,6 +434,25 @@
     $('#lupa-folha').innerHTML = svg.outerHTML; $('#lupa').hidden = false; $('#lupa-fechar').focus();
   }
 
+  /* ---------------- tema claro / escuro ---------------- */
+  // Sem escolha salva, segue o aparelho (ou o tema do claude.ai). O botão grava a escolha.
+  const raiz = document.documentElement;
+  const mqEscuro = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+  const temaEfetivo = () => raiz.dataset.theme || (mqEscuro && mqEscuro.matches ? 'dark' : 'light');
+  function aplicarTema() {
+    if (E.tema === 'light' || E.tema === 'dark') raiz.setAttribute('data-theme', E.tema);
+    const ef = temaEfetivo();
+    raiz.setAttribute('data-tema-efetivo', ef);
+    const b = $('#b-tema'); if (!b) return;
+    b.setAttribute('aria-label', ef === 'dark' ? 'Mudar para o tema claro' : 'Mudar para o tema escuro');
+    $('#b-tema-txt').textContent = ef === 'dark' ? 'Escuro' : 'Claro';
+  }
+  function alternarTema() {
+    E.tema = temaEfetivo() === 'dark' ? 'light' : 'dark'; salvar(); aplicarTema();
+    $$('.mapa-caderno').forEach((m) => m._desenhar && m._desenhar());
+    toast(E.tema === 'dark' ? 'Tema escuro' : 'Tema claro');
+  }
+
   /* ---------------- modo treino ---------------- */
   function aplicarTreino() {
     document.body.classList.toggle('treino', !!E.treino);
@@ -459,6 +478,10 @@
     montarIndices();
     observarSecoes();
     aplicarTreino();
+    aplicarTema();
+    $('#b-tema').addEventListener('click', alternarTema);
+    if (mqEscuro && mqEscuro.addEventListener) mqEscuro.addEventListener('change', aplicarTema);
+    if (window.MutationObserver) new MutationObserver(() => { const ef = temaEfetivo(); if (raiz.getAttribute('data-tema-efetivo') !== ef) raiz.setAttribute('data-tema-efetivo', ef); }).observe(raiz, { attributes: true, attributeFilter: ['data-theme'] });
 
     document.addEventListener('click', (ev) => {
       const ce = ev.target.closest('.ce');
