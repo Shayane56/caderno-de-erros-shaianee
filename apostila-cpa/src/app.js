@@ -560,8 +560,34 @@
     el.addEventListener('input', atualizar); atualizar();
   }
 
+  /* ---------------- simulador do capítulo 8 ---------------- */
+  function calcPrevid(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>IR no resgate da previdência</b></div>
+      <div class="calc-entradas quatro"><label class="calc-campo"><span>Plano</span><select data-k="p"><option value="pgbl" selected>PGBL</option><option value="vgbl">VGBL</option></select></label>${campo('a', 'Total aportado (R$)', 60000, 'min="0" step="1000"')}${campo('s', 'Saldo hoje (R$)', 100000, 'min="0" step="1000"')}${campo('r', 'Sua renda bruta tributável por ano (R$)', 150000, 'min="0" step="5000"')}${faixa('n', 'Anos de acumulação dos aportes', 11, 1, 20)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => Math.max(0, num($(`[data-k="${k}"]`, el)));
+    const reg = (n) => (n <= 2 ? 0.35 : n <= 4 ? 0.30 : n <= 6 ? 0.25 : n <= 8 ? 0.20 : n <= 10 ? 0.15 : 0.10);
+    function atualizar() {
+      const pg = $('[data-k="p"]', el).value === 'pgbl', a = ler('a'), sd = ler('s'), r = ler('r');
+      const n = Math.round(Math.min(20, Math.max(1, ler('n'))));
+      $('[data-v="n"]', el).textContent = n + (n > 10 ? ' (mais de 10)' : '');
+      const base = pg ? sd : Math.max(0, sd - a), al = reg(n), irR = base * al, ret = base * 0.15;
+      const ded = r * 0.12;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Base do IR</small><b>${brl(base)}</b><span>${pg ? 'PGBL: o valor <strong>total</strong> resgatado' : 'VGBL: só o <strong>rendimento</strong> (' + brl(sd) + ' − ' + brl(a) + ')'}</span></div>
+          <div class="destaque"><small>Regressivo · ${pct(al, 0)}</small><b>${brl(irR)}</b><span>definitivo; você recebe ${brl(sd - irR)}</span></div>
+          <div><small>Progressivo · retenção 15%</small><b>${brl(ret)}</b><span>antecipação; o ajuste na declaração usa a tabela (de 0% a 27,5%)</span></div></div>
+        ${pg ? `<div class="calc-cards dois">
+          <div><small>Dedução máxima por ano no PGBL</small><b>${brl(ded)}</b><span>12% de ${brl(r)}, só na declaração <strong>completa</strong> e contribuindo ao INSS</span></div>
+          <div><small>Imposto adiado por ano (até)</small><b>${brl(ded * 0.275)}</b><span>se você estiver na faixa de 27,5%</span></div></div>` : ''}
+        <p class="calc-veredito ${al <= 0.15 ? 'lci' : ''}">${al <= 0.10 ? 'Com mais de 10 anos, o regressivo chega ao piso de <b>10%</b>: em geral, imbatível para quem terá renda alta.' : al >= 0.30 ? 'Com prazo curto, o regressivo cobra <b>' + pct(al, 0) + '</b>: se o dinheiro puder ser usado logo, o progressivo tende a ser melhor.' : 'Quanto mais tempo cada aporte ficar, menor a alíquota regressiva: 35, 30, 25, 20, 15 e 10%.'}</p>
+        <p class="calc-nota pequeno">Simulação didática: considera todos os aportes com o mesmo prazo de acumulação. No regressivo real, cada aporte tem o seu prazo.</p>`;
+    }
+    el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii, previd: calcPrevid }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

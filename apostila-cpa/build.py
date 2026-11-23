@@ -24,6 +24,7 @@ CAPITULOS = {
     5: "Renda fixa",
     6: "Renda variável e COE",
     7: "Fundos de investimento e FII",
+    8: "Previdência complementar",
     9: "Produtos de crédito",
     11: "Finanças pessoais e planejamento",
     14: "ESG",
