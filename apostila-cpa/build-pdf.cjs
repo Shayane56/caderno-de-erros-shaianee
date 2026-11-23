@@ -24,6 +24,7 @@ const CAPS = {
   9: { titulo: 'Produtos de crédito', arquivo: 'Produtos-de-Credito' },
   10: { titulo: 'Serviços bancários e seguros', arquivo: 'Servicos-Bancarios-e-Seguros' },
   11: { titulo: 'Finanças pessoais e planejamento', arquivo: 'Financas-Pessoais-e-Planejamento' },
+  12: { titulo: 'Suitability, código ANBIMA e ética', arquivo: 'Suitability-Codigo-ANBIMA-e-Etica' },
   14: { titulo: 'ESG', arquivo: 'ESG' },
   15: { titulo: 'Inovação e meios de pagamento', arquivo: 'Inovacao-e-Meios-de-Pagamento' }
 };

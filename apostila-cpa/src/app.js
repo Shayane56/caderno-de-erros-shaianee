@@ -605,8 +605,40 @@
     el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
   }
 
+  /* ---------------- simulador do capítulo 12 ---------------- */
+  function calcPerfil(el) {
+    const sel = (k, rot, ops) => `<label class="calc-campo"><span>${rot}</span><select data-k="${k}">${ops.map((o, i) => `<option value="${i}"${i === 1 ? ' selected' : ''}>${o}</option>`).join('')}</select></label>`;
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Análise do perfil do investidor</b></div>
+      <div class="calc-entradas">${sel('h', '1. Quando vai precisar do dinheiro?', ['Em menos de 1 ano', 'De 1 a 3 anos', 'De 3 a 5 anos', 'Em mais de 5 anos'])}
+        ${sel('o', '2. Qual o objetivo principal?', ['Preservar o dinheiro', 'Ganhar um pouco acima da inflação', 'Crescer o patrimônio', 'Maximizar o retorno'])}
+        ${sel('q', '3. Se a carteira caísse 20% em um mês, você…', ['Resgataria tudo', 'Resgataria uma parte', 'Esperaria recuperar', 'Aplicaria mais'])}
+        ${sel('c', '4. Com quais produtos já investiu?', ['Só poupança', 'Renda fixa (CDB, Tesouro)', 'Fundos e multimercados', 'Ações e derivativos'])}
+        ${sel('r', '5. Tem reserva de emergência?', ['Não, e tenho dívidas caras', 'Não', 'Sim, de 3 a 6 meses', 'Sim, mais de 6 meses'])}
+        ${sel('p', '6. Quanto do patrimônio é este investimento?', ['Quase tudo', 'Mais da metade', 'Entre 20% e 50%', 'Menos de 20%'])}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const v = (k) => parseInt($(`[data-k="${k}"]`, el).value, 10) || 0;
+    function atualizar() {
+      const pts = v('h') + v('o') + v('q') + v('c') + v('r') + v('p');
+      let perfil = pts <= 6 ? 'Conservador' : pts <= 12 ? 'Moderado' : 'Arrojado';
+      const alertas = [];
+      if (v('r') <= 1) alertas.push('sem reserva de emergência, a <b>capacidade</b> de assumir risco é baixa');
+      if (v('h') === 0) alertas.push('prazo menor que 1 ano pede <b>liquidez e baixo risco</b>');
+      if (v('c') <= 1 && v('o') === 3) alertas.push('objetivo arrojado com <b>pouco conhecimento</b>: explicar bem os riscos');
+      if (v('q') === 0 && v('o') >= 2) alertas.push('quer crescer, mas <b>não tolera quedas</b>: expectativa precisa ser alinhada');
+      const limitado = perfil !== 'Conservador' && (v('r') === 0 || v('h') === 0);
+      if (limitado) perfil = 'Conservador';
+      const prods = { Conservador: 'Tesouro Selic, CDB de banco sólido, fundos DI e renda fixa simples', Moderado: 'renda fixa (inclusive IPCA+ e crédito de bom emissor), multimercados e uma parcela em ações ou FII', Arrojado: 'ações, FII, multimercados, crédito privado e investimentos no exterior, sem esquecer a reserva' }[perfil];
+      $('.calc-res', el).innerHTML = `<div class="calc-cards dois">
+          <div class="destaque"><small>Perfil sugerido</small><b>${perfil}</b><span>${pts} pontos de 18${limitado ? ' · rebaixado pela situação financeira ou pelo prazo' : ''}</span></div>
+          <div><small>Produtos compatíveis (exemplos)</small><b style="font-size:17px">${prods}</b><span>a classificação final segue a metodologia da instituição</span></div></div>
+        <p class="calc-veredito ${alertas.length ? '' : 'lci'}">${alertas.length ? 'Pontos de atenção: ' + alertas.join('; ') + '.' : 'Respostas coerentes entre si: objetivo, prazo, tolerância e capacidade apontam na mesma direção.'}</p>
+        <p class="calc-nota pequeno">Questionário didático, inspirado nos três pilares da Res. CVM 30 (objetivos, situação financeira e conhecimento). Não substitui a análise de perfil (API) de uma instituição.</p>`;
+    }
+    el.addEventListener('change', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii, previd: calcPrevid, cambio: calcCambio }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii, previd: calcPrevid, cambio: calcCambio, perfil: calcPerfil }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });
