@@ -39,7 +39,7 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 7 | 2 (40%) | Fundos de investimento e FII | pronto · itens 2.1.2 a 2.1.4 (CVM 175, FIF, tributação, FII) · simuladores de IR do fundo e do FII |
 | 8 | 2 (40%) | Previdência complementar | pronto · todo o item 2.2 (PGBL × VGBL, regimes, taxas, portabilidade, rendas) · simulador de IR no resgate |
 | 9 | 2 (40%) | Produtos de crédito 🔥 | pronto · todo o item 2.3 · simuladores da fatura do cartão e do cheque especial (com IOF) |
-| 10 | 2 (40%) | Serviços bancários e seguros | |
+| 10 | 2 (40%) | Serviços bancários e seguros | pronto · itens 2.4 e 2.5 (conta-salário, Pix, tarifas, atendimento, câmbio, seguros) · simulador do custo do câmbio |
 | 11 | 3 (30%) | Finanças pessoais e planejamento | pronto · itens 3.1 e 3.2 · simuladores de balanço pessoal e independência financeira |
 | 12 | 3 (30%) | Suitability, código ANBIMA e ética 🔥 | |
 | 13 | 3 (30%) | PLD, LGPD e crimes de mercado | |

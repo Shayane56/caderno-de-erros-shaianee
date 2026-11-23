@@ -22,6 +22,7 @@ const CAPS = {
   7: { titulo: 'Fundos de investimento e FII', arquivo: 'Fundos-de-Investimento-e-FII' },
   8: { titulo: 'Previdência complementar', arquivo: 'Previdencia-Complementar' },
   9: { titulo: 'Produtos de crédito', arquivo: 'Produtos-de-Credito' },
+  10: { titulo: 'Serviços bancários e seguros', arquivo: 'Servicos-Bancarios-e-Seguros' },
   11: { titulo: 'Finanças pessoais e planejamento', arquivo: 'Financas-Pessoais-e-Planejamento' },
   14: { titulo: 'ESG', arquivo: 'ESG' },
   15: { titulo: 'Inovação e meios de pagamento', arquivo: 'Inovacao-e-Meios-de-Pagamento' }

@@ -37,7 +37,7 @@
     { n: 7, m: 2, pd: '2.1.2 a 2.1.4', p: 'media', r: 'características, tributação e resgate', t: 'Fundos de investimento e FII', s: 'Resolução CVM 175, tipos de fundos, taxas, tributação e FII', tema: 'tema-ouro', ico: 'pizza' },
     { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
     { n: 9, m: 2, pd: '2.3', p: 'alta', r: 'consignado, cartão, cheque especial e encargos', t: 'Produtos de crédito', s: 'empréstimo, financiamento, leasing, cartão, consignado e CDC', tema: 'tema-ouro', ico: 'cartao' },
-    { n: 10, m: 2, pd: '2.4 e 2.5', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-ouro', ico: 'maquina' },
+    { n: 10, m: 2, pd: '2.4 e 2.5', r: 'Pix, tarifas, horário bancário e IOF de câmbio', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-ouro', ico: 'maquina' },
     { n: 11, m: 3, pd: '3.1 e 3.2', r: 'reserva de emergência, balanço pessoal, dívidas e IRPF', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-coral', ico: 'alvo' },
     { n: 12, m: 3, pd: '3.3 e 3.4.1 a 3.4.4', p: 'alta', r: 'conduta, ética e práticas vedadas', t: 'Suitability, código ANBIMA e ética', s: 'perfil do investidor, suitability, 9 princípios éticos e conflitos', tema: 'tema-coral', ico: 'balanca' },
     { n: 13, m: 3, pd: '3.4.5 a 3.4.7', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-coral', ico: 'escudo' },
@@ -586,8 +586,27 @@
     el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
   }
 
+  /* ---------------- simulador do capítulo 10 ---------------- */
+  function calcCambio(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Custo efetivo do câmbio</b></div>
+      <div class="calc-entradas quatro">${campo('u', 'Valor em dólares (US$)', 1000, 'min="0" step="100"')}${campo('c', 'Cotação comercial (R$ por US$)', 5.40, 'min="0" step="0.01"')}${campo('s', 'Spread da instituição (%)', 2, 'min="0" max="15" step="0.1"')}
+        <label class="calc-campo"><span>Como vai usar</span><select data-k="m"><option value="0.035" selected>Cartão (3,5%)</option><option value="0.035">Espécie (3,5%)</option><option value="0.035">Conta lá fora: gastar (3,5%)</option><option value="0.011">Conta lá fora: investir (1,1%)</option></select></label></div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => Math.max(0, num($(`[data-k="${k}"]`, el)));
+    function atualizar() {
+      const u = ler('u'), c = ler('c'), sp = ler('s') / 100, iof = parseFloat($('[data-k="m"]', el).value);
+      const taxa = c * (1 + sp), reais = u * taxa, vIof = reais * iof, total = reais + vIof, ef = u ? total / u : 0;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Cotação com spread</small><b>R$ ${fmtN(taxa, 4)}</b><span>${fmtN(c, 2)} + ${fmtN(sp * 100, 1)}% de spread</span></div>
+          <div><small>IOF (${fmtN(iof * 100, 1)}%)</small><b>${brl(vIof)}</b><span>sobre ${brl(reais)}</span></div>
+          <div class="destaque"><small>Total em reais</small><b>${brl(total)}</b><span>cada dólar sai por <strong>R$ ${fmtN(ef, 4)}</strong></span></div></div>
+        <p class="calc-veredito">O dólar efetivo ficou <b>${pct(c ? ef / c - 1 : 0, 2)}</b> acima da cotação comercial. Compare sempre o <b>VET</b> (valor efetivo total), que a instituição deve informar e que soma cotação, tarifas e IOF.</p>`;
+    }
+    el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii, previd: calcPrevid }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii, previd: calcPrevid, cambio: calcCambio }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

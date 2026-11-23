@@ -26,6 +26,7 @@ CAPITULOS = {
     7: "Fundos de investimento e FII",
     8: "Previdência complementar",
     9: "Produtos de crédito",
+    10: "Serviços bancários e seguros",
     11: "Finanças pessoais e planejamento",
     14: "ESG",
     15: "Inovação e meios de pagamento",
