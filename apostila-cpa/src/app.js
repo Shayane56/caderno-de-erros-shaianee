@@ -455,8 +455,57 @@
     el.addEventListener('input', atualizar); atualizar();
   }
 
+  /* ---------------- simuladores do capítulo 9 ---------------- */
+  const IOF_DIA = 0.000082, IOF_ADIC = 0.0038;
+  function calcFatura(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Fatura no rotativo e parcelamento</b></div>
+      <div class="calc-entradas quatro">${campo('f', 'Total da fatura (R$)', 2000, 'min="0" step="100"')}${campo('p', 'Valor pago (R$)', 500, 'min="0" step="50"')}${campo('r', 'Rotativo (% ao mês)', 14, 'min="0" max="30" step="0.5"')}${campo('j', 'Parcelamento (% ao mês)', 8, 'min="0" max="30" step="0.5"')}${faixa('n', 'Parcelas', 12, 2, 24)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const f = Math.max(0, ler('f')), p = Math.min(f, Math.max(0, ler('p'))), r = Math.max(0, ler('r')) / 100, j = Math.max(0, ler('j')) / 100;
+      const n = Math.round(Math.min(24, Math.max(2, ler('n'))));
+      $('[data-v="n"]', el).textContent = n;
+      const s = f - p;
+      if (s <= 0) { $('.calc-res', el).innerHTML = '<p class="calc-veredito lci">Fatura paga integralmente: <b>sem juros</b> e sem IOF. É o único jeito de usar o cartão de graça.</p>'; return; }
+      const juros = s * r, iof = s * IOF_ADIC + s * IOF_DIA * 30, prox = s + juros + iof, anual = Math.pow(1 + r, 12) - 1;
+      const pmt = j > 0 ? s * j / (1 - Math.pow(1 + j, -n)) : s / n, total = pmt * n, jp = total - s;
+      const passa = jp > s;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Vai para o rotativo</small><b>${brl(s)}</b><span>${brl(f)} − ${brl(p)} pagos · é o <strong>valor original</strong> da dívida</span></div>
+          <div class="destaque"><small>Juros na próxima fatura</small><b>${brl(juros)}</b><span>${brl(s)} × ${fmtN(r * 100, 1)}% · + IOF de ${brl(iof)} (0,38% + 0,0082% × 30 dias)</span></div>
+          <div><small>Taxa anual equivalente</small><b>${fmtN(anual * 100, 0)}% ao ano</b><span>(1 + ${fmtN(r * 100, 1)}%)<sup>12</sup> − 1</span></div></div>
+        <div class="calc-cards">
+          <div><small>Parcelando em ${n}x</small><b>${brl(pmt)}</b><span>por mês, a ${fmtN(j * 100, 1)}% ao mês (tabela Price)</span></div>
+          <div><small>Juros do parcelamento</small><b>${brl(jp)}</b><span>total pago ${brl(total)}</span></div>
+          <div class="${passa ? 'destaque' : ''}"><small>Teto legal de juros e encargos</small><b>${brl(s)}</b><span>100% do valor original: a dívida nunca passa de ${brl(2 * s)}</span></div></div>
+        <p class="calc-veredito ${passa ? '' : 'lci'}">${passa ? `Pela conta, os juros chegariam a ${brl(jp)}, mas a lei <b>limita a ${brl(s)}</b>: o excedente não pode ser cobrado.` : `Os juros do parcelamento ficam <b>abaixo do teto</b> de 100%.`} No rotativo, o saldo só pode ficar <b>até a próxima fatura</b>; depois, pagar ou parcelar.</p>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
+  function calcCheque(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Custo do cheque especial</b></div>
+      <div class="calc-entradas quatro">${campo('v', 'Valor usado (R$)', 1000, 'min="0" step="100"')}${campo('t', 'Taxa (% ao mês, teto de 8%)', 8, 'min="0" max="8" step="0.1"')}${faixa('d', 'Dias no vermelho', 10, 1, 30)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const v = Math.max(0, ler('v')), tIn = Math.max(0, ler('t')), t = Math.min(8, tIn) / 100;
+      const d = Math.round(Math.min(30, Math.max(1, ler('d'))));
+      $('[data-v="d"]', el).textContent = d;
+      const juros = v * t / 30 * d, iofD = v * IOF_DIA * d, iofA = v * IOF_ADIC, tot = juros + iofD + iofA;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Juros</small><b>${brl(juros)}</b><span>${brl(v)} × (${fmtN(t * 100, 1)}% ÷ 30) × ${d} dia${d > 1 ? 's' : ''}</span></div>
+          <div><small>IOF</small><b>${brl(iofD + iofA)}</b><span>diário ${brl(iofD)} (0,0082% × ${d}) + adicional ${brl(iofA)} (0,38%)</span></div>
+          <div class="destaque"><small>Custo total no mês</small><b>${brl(tot)}</b><span>debitado na data prevista no contrato</span></div></div>
+        <p class="calc-veredito">${tIn > 8 ? 'Atenção: para pessoa física e MEI, a taxa <b>não pode passar de 8% ao mês</b>; o simulador usou 8%. ' : ''}8% ao mês equivalem a cerca de <b>152% ao ano</b>. Se o uso não for pontual, troque por uma linha mais barata.</p>
+        <p class="calc-nota pequeno">Simulação didática com taxa diária proporcional (taxa mensal ÷ 30) sobre um saldo constante. Na prática, juros e IOF incidem sobre o saldo devedor de cada dia.</p>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });
