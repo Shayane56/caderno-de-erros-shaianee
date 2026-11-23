@@ -23,6 +23,7 @@ CAPITULOS = {
     4: "Regulação e infraestrutura de mercado",
     5: "Renda fixa",
     6: "Renda variável e COE",
+    7: "Fundos de investimento e FII",
     9: "Produtos de crédito",
     11: "Finanças pessoais e planejamento",
     14: "ESG",

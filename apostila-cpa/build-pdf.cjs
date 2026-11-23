@@ -19,6 +19,7 @@ const CAPS = {
   4: { titulo: 'Regulação e infraestrutura de mercado', arquivo: 'Regulacao-e-Infraestrutura' },
   5: { titulo: 'Renda fixa', arquivo: 'Renda-Fixa' },
   6: { titulo: 'Renda variável e COE', arquivo: 'Renda-Variavel-e-COE' },
+  7: { titulo: 'Fundos de investimento e FII', arquivo: 'Fundos-de-Investimento-e-FII' },
   9: { titulo: 'Produtos de crédito', arquivo: 'Produtos-de-Credito' },
   11: { titulo: 'Finanças pessoais e planejamento', arquivo: 'Financas-Pessoais-e-Planejamento' },
   14: { titulo: 'ESG', arquivo: 'ESG' },

@@ -504,8 +504,64 @@
     el.addEventListener('input', atualizar); atualizar();
   }
 
+  /* ---------------- simuladores do capítulo 7 ---------------- */
+  const IOF_TAB = [96, 93, 90, 86, 83, 80, 76, 73, 70, 66, 63, 60, 56, 53, 50, 46, 43, 40, 36, 33, 30, 26, 23, 20, 16, 13, 10, 6, 3, 0];
+  function calcFundo(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>IR e IOF no resgate do fundo</b></div>
+      <div class="calc-entradas quatro">${campo('v', 'Valor aplicado (R$)', 10000, 'min="0" step="1000"')}${campo('r', 'Rentabilidade bruta (% ao ano)', 12, 'min="0" max="60" step="0.5"')}
+        <label class="calc-campo"><span>Tipo de fundo</span><select data-k="t"><option value="lp" selected>Longo prazo</option><option value="cp">Curto prazo</option><option value="ac">Ações</option></select></label>${faixa('d', 'Dias aplicados', 400, 1, 1500)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function aliq(t, d) {
+      if (t === 'ac') return 0.15;
+      if (t === 'cp') return d <= 180 ? 0.225 : 0.20;
+      return d <= 180 ? 0.225 : d <= 360 ? 0.20 : d <= 720 ? 0.175 : 0.15;
+    }
+    function atualizar() {
+      const v = Math.max(0, ler('v')), r = Math.max(0, ler('r')) / 100, t = $('[data-k="t"]', el).value;
+      const d = Math.round(Math.min(1500, Math.max(1, ler('d'))));
+      $('[data-v="d"]', el).textContent = d + (d >= 365 ? ' (≈ ' + fmtN(d / 365, 1) + ' anos)' : '');
+      const bruto = v * (Math.pow(1 + r, d / 365) - 1);
+      const pIof = t !== 'ac' && d < 30 ? IOF_TAB[d - 1] / 100 : 0, iof = bruto * pIof;
+      const a = aliq(t, d), ir = (bruto - iof) * a, liq = bruto - iof - ir;
+      const cc = t === 'ac' ? 0 : Math.floor(d / 182.5);
+      const ccTxt = t === 'ac' ? 'Fundo de ações: <b>sem come-cotas</b>; os 15% são cobrados só no resgate.'
+        : `${cc ? `No período, houve cerca de <b>${cc} come-cotas</b> (maio e novembro), a <b>${t === 'cp' ? '20%' : '15%'}</b>; no resgate, cobra-se só o complemento até ${pct(a, 1)}.` : `Ainda não houve come-cotas: todo o IR (${pct(a, 1)}) é cobrado no resgate.`}`;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Rendimento bruto</small><b>${brl(bruto)}</b><span>${fmtN(r * 100, 1)}% ao ano por ${d} dias</span></div>
+          <div><small>IOF</small><b>${brl(iof)}</b><span>${t === 'ac' ? 'fundos de ações: alíquota zero' : d < 30 ? pct(pIof, 0) + ' do rendimento (resgate no ' + d + 'º dia)' : 'zero a partir do 30º dia'}</span></div>
+          <div><small>Imposto de renda</small><b>${brl(ir)}</b><span>${pct(a, 1)} sobre o rendimento ${iof ? 'depois do IOF' : ''}</span></div></div>
+        <div class="calc-cards dois">
+          <div class="destaque"><small>Rendimento líquido</small><b>${brl(liq)}</b><span>${v ? fmtN(liq / v * 100, 2) + '% sobre o valor aplicado' : ''}</span></div>
+          <div><small>Valor de resgate</small><b>${brl(v + liq)}</b><span>aplicado ${brl(v)} + rendimento líquido</span></div></div>
+        <p class="calc-veredito ${d < 30 && t !== 'ac' ? '' : 'lci'}">${ccTxt}${d < 30 && t !== 'ac' ? ' Resgatar antes de 30 dias faz o <b>IOF</b> comer boa parte do rendimento.' : ''}</p>
+        <p class="calc-nota pequeno">Simulação didática: rentabilidade constante, sem taxas e sem o efeito do come-cotas sobre a rentabilidade composta. Longo prazo e curto prazo dependem do prazo médio da carteira.</p>`;
+    }
+    el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
+  }
+
+  function calcFii(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Renda e imposto no FII</b></div>
+      <div class="calc-entradas quatro">${campo('q', 'Quantidade de cotas', 200, 'min="0" step="10"')}${campo('c', 'Preço de compra da cota (R$)', 100, 'min="0" step="1"')}${campo('m', 'Rendimento mensal por cota (R$)', 0.9, 'min="0" step="0.05"')}${campo('s', 'Preço de venda da cota (R$)', 105, 'min="0" step="1"')}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => Math.max(0, num($(`[data-k="${k}"]`, el)));
+    function atualizar() {
+      const q = ler('q'), c = ler('c'), m = ler('m'), sv = ler('s');
+      const dy = c ? m / c : 0, renda = q * m, ganho = (sv - c) * q, ir = Math.max(0, ganho) * 0.20;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Dividend yield mensal</small><b>${pct(dy, 2)}</b><span>${brl(m)} ÷ ${brl(c)} · ≈ ${pct(Math.pow(1 + dy, 12) - 1, 1)} ao ano</span></div>
+          <div class="destaque"><small>Renda mensal</small><b>${brl(renda)}</b><span>${fmtN(q, 0)} cotas × ${brl(m)} · <strong>isenta</strong> para PF, se cumpridas as condições</span></div>
+          <div><small>Investido</small><b>${brl(q * c)}</b><span>${fmtN(q, 0)} × ${brl(c)}</span></div></div>
+        <div class="calc-cards dois">
+          <div><small>${ganho >= 0 ? 'Lucro' : 'Prejuízo'} na venda</small><b>${brl(ganho)}</b><span>(${brl(sv)} − ${brl(c)}) × ${fmtN(q, 0)} cotas</span></div>
+          <div class="${ir ? 'destaque' : ''}"><small>IR sobre a venda (20%)</small><b>${brl(ir)}</b><span>${ir ? 'DARF até o último dia útil do mês seguinte, sem isenção de R$ 20 mil' : 'sem lucro, sem imposto na venda'}</span></div></div>
+        <p class="calc-veredito">Rendimento isento exige: cotas negociadas <b>só em bolsa</b> ou balcão organizado, fundo com <b>100 cotistas ou mais</b> e o investidor com <b>menos de 10%</b> das cotas.</p>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta, fatura: calcFatura, cheque: calcCheque, fundo: calcFundo, fii: calcFii }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

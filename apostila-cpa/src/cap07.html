@@ -1,0 +1,593 @@
+<article class="capitulo tema-ouro" id="cap-7" data-cap="7" data-titulo="Fundos de investimento e FII">
+
+<header class="cap-hero">
+  <div class="hero-foto">
+    <div class="hero-arte">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Uma pizza dividida em fatias, cada fatia é a cota de um investidor, e um prédio representando os fundos imobiliários">
+        <ellipse cx="150" cy="272" rx="118" ry="12" fill="#2b1a06" opacity=".4"/>
+        <g transform="translate(118 160)" stroke="#2b1a06" stroke-width="4">
+          <circle r="78" fill="#ffd38a"/>
+          <path d="M0 0 L0 -78 M0 0 L74 -24 M0 0 L46 63 M0 0 L-46 63 M0 0 L-74 -24" fill="none"/>
+          <path d="M0 0 L0 -78 A78 78 0 0 1 74 -24 Z" fill="#55d394"/>
+        </g>
+        <g transform="translate(208 128)" stroke="#2b1a06" stroke-width="4"><rect width="62" height="132" rx="6" fill="#7ab8ff"/>
+          <g fill="#fff5e0" stroke-width="2.5"><rect x="10" y="14" width="16" height="16"/><rect x="36" y="14" width="16" height="16"/><rect x="10" y="44" width="16" height="16"/><rect x="36" y="44" width="16" height="16"/><rect x="10" y="74" width="16" height="16"/><rect x="36" y="74" width="16" height="16"/></g>
+          <rect x="22" y="102" width="18" height="30" fill="#2b1a06"/></g>
+        <text x="150" y="46" text-anchor="middle" font-family="Kaushan Script, cursive" font-size="27" fill="#fff">cada um com sua fatia</text>
+      </svg>
+    </div>
+    <span class="hero-num">7</span>
+  </div>
+  <div>
+    <span class="hero-sobre">Capítulo 7 · Módulo 2 (40% da prova) · itens 2.1.2 a 2.1.4</span>
+    <h1 class="hero-titulo">Fundos de investimento e FII</h1>
+    <p class="hero-sub">Um fundo é uma <strong>vaquinha profissional</strong>: muita gente junta dinheiro e um gestor investe por todos. Este capítulo segue a <strong>Resolução CVM 175</strong> (o “novo marco” dos fundos), os <strong>tipos de fundo</strong>, as <strong>taxas</strong>, a <strong>tributação</strong> (come-cotas e IOF) e os <strong>fundos imobiliários</strong>, com dois simuladores.</p>
+    <div class="hero-acoes"><a class="btn-mao principal pequeno" href="#resumo-7">Ver o resumo em 2 páginas</a><a class="btn-mao pequeno" href="#c7-s17">Ir direto às questões</a></div>
+    <div class="hero-chips" style="margin-top:14px"><span>condomínio</span><span>classes e subclasses</span><span>cotas</span><span>resgate</span><span>conta e ordem</span><span>assembleia</span><span>administrador × gestor</span><span>taxas</span><span>PL negativo</span><span>FIF</span><span>come-cotas</span><span>FII</span></div>
+  </div>
+  <div class="hero-aprender">
+    <h2>Perguntas que você vai saber responder</h2>
+    <ul class="check">
+      <li>O que é um fundo e por que é um “condomínio”?</li>
+      <li>O que mudou com classes e subclasses?</li>
+      <li>Quanto tempo leva um resgate?</li>
+      <li>Quem é o administrador e quem é o gestor?</li>
+      <li>Quais são as taxas de um fundo?</li>
+      <li>O que acontece se o patrimônio ficar negativo?</li>
+      <li>Como funciona o come-cotas?</li>
+      <li>Rendimento de FII é isento?</li>
+    </ul>
+  </div>
+</header>
+
+<!-- 7.1 -->
+<section class="bloco" id="c7-s1" data-titulo="O que é um fundo">
+  <span class="sobretitulo">7.1 · A vaquinha profissional</span>
+  <h2 class="titulo-secao">Fundos de investimento: características, estratégias e riscos</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que investir por meio de um fundo, e não direto nos ativos?</p>
+  <p>Num fundo, os recursos de muitos investidores formam um <strong>patrimônio comum</strong>, aplicado por um <strong>gestor profissional</strong> segundo uma <strong>política de investimento</strong>. Cada investidor tem <strong>cotas</strong>, que são frações desse patrimônio: se a carteira valoriza, todas as cotas valorizam juntas.</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao verde"><h4>Vantagens</h4><p><strong>Gestão profissional</strong>, <strong>diversificação</strong> com pouco dinheiro, acesso a ativos difíceis para a pessoa física e praticidade (o fundo cuida de tudo).</p></div>
+    <div class="cartao coral"><h4>Custos e limites</h4><p>Paga <strong>taxas</strong>, o cliente não escolhe os ativos, há <strong>prazos de resgate</strong> e não há <strong>garantia do FGC</strong>.</p></div>
+    <div class="cartao azul"><h4>Para quem</h4><p>Cada classe tem um <strong>público-alvo</strong>: público em geral, <strong>qualificados</strong> (a partir de R$ 1 milhão) ou <strong>profissionais</strong> (a partir de R$ 10 milhões), conforme a CVM 30.</p></div>
+  </div>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Estratégia</th><th>O que busca</th></tr></thead>
+    <tbody>
+      <tr><td>Passiva (indexada)</td><td><strong>Acompanhar</strong> um índice (ex.: Ibovespa, CDI), com taxa menor</td></tr>
+      <tr><td>Ativa</td><td><strong>Superar</strong> o índice de referência (benchmark), com mais risco e, muitas vezes, taxa de performance</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa memorize"><span class="rotulo">Os riscos do fundo são os riscos da carteira</span>
+    <p><strong>Mercado</strong> (preços, juros, câmbio), <strong>crédito</strong> (emissor não pagar), <strong>liquidez</strong> (não conseguir vender os ativos ou atender resgates), <strong>concentração</strong> (muito em poucos ativos) e <strong>alavancagem</strong> (uso de derivativos que amplia ganhos e perdas). A rentabilidade passada <strong>não garante</strong> a futura.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O <b>fundo de investimento</b> é uma <b>comunhão de recursos</b>, constituído sob a forma de <b>condomínio de natureza especial</b>, destinado à aplicação em ativos financeiros, bens e direitos. Oferece <b>gestão profissional</b> e <b>diversificação</b>, mas não conta com a garantia do <b>FGC</b>, e seus riscos decorrem da composição da carteira e da política de investimento.</p>
+    <dl class="termos">
+      <dt>Comunhão de recursos</dt><dd>o dinheiro de todos junto</dd>
+      <dt>Condomínio</dt><dd>cada cotista é “dono” de uma fração do todo</dd>
+      <dt>Benchmark</dt><dd>o índice de referência do fundo</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.2 -->
+<section class="bloco quebra" id="c7-s2" data-titulo="CVM 175: estrutura">
+  <span class="sobretitulo">7.2 · O novo marco dos fundos</span>
+  <h2 class="titulo-secao">Resolução CVM 175: fundo, classes e subclasses</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Um fundo pode ter “vários fundos” dentro dele?</p>
+  <p>Pode. Desde a <strong>Resolução CVM 175</strong> (em vigor desde 2023, com adaptação concluída em 2025), um fundo pode ter várias <span class="mt">classes de cotas</span>, cada uma com <strong>patrimônio segregado</strong>, e cada classe pode ter <span class="mt">subclasses</span>, que diferem em <strong>público, prazos ou taxas</strong>.</p>
+
+  <figure class="figura" data-zoom>
+    <svg viewBox="0 0 760 290" role="img" aria-label="Estrutura do fundo: o fundo tem um regulamento; dentro dele, classes A e B, cada uma com patrimônio segregado; a classe A tem subclasses com taxas ou públicos diferentes">
+      <rect width="760" height="290" fill="#fff"/>
+      <rect x="250" y="16" width="260" height="58" rx="14" fill="#fff2dc" stroke="#a8701c" stroke-width="2.5"/>
+      <text x="380" y="42" text-anchor="middle" class="mao" font-size="21" fill="#a8701c">Fundo</text>
+      <text x="380" y="62" text-anchor="middle" font-size="12.5" fill="#1d2a31">regulamento · parte geral</text>
+      <path d="M330 74 L190 112 M430 74 L570 112" stroke="#1d2a31" stroke-width="2.5"/>
+      <g font-size="12.5" fill="#1d2a31" text-anchor="middle">
+        <rect x="70" y="112" width="240" height="70" rx="12" fill="#e6f0fb" stroke="#2f6fb0" stroke-width="2.5"/>
+        <text x="190" y="138" class="mao" font-size="19" fill="#2f6fb0">Classe A · Renda Fixa</text>
+        <text x="190" y="158">patrimônio segregado</text>
+        <text x="190" y="174">anexo do regulamento</text>
+        <rect x="450" y="112" width="240" height="70" rx="12" fill="#e4f4ec" stroke="#23905f" stroke-width="2.5"/>
+        <text x="570" y="138" class="mao" font-size="19" fill="#23905f">Classe B · Renda Fixa</text>
+        <text x="570" y="158">patrimônio segregado</text>
+        <text x="570" y="174">outra política, outro risco</text>
+        <path d="M150 182 L100 212 M230 182 L280 212" stroke="#1d2a31" stroke-width="2"/>
+        <rect x="30" y="212" width="140" height="52" rx="10" fill="#fff" stroke="#2f6fb0" stroke-width="2"/>
+        <text x="100" y="234" font-weight="800">Subclasse 1</text><text x="100" y="252">varejo · taxa 1%</text>
+        <rect x="210" y="212" width="140" height="52" rx="10" fill="#fff" stroke="#2f6fb0" stroke-width="2"/>
+        <text x="280" y="234" font-weight="800">Subclasse 2</text><text x="280" y="252">private · taxa 0,5%</text>
+      </g>
+      <rect x="430" y="214" width="290" height="48" rx="10" fill="#fff4a8" stroke="#a96300" stroke-width="1.5"/>
+      <text x="575" y="236" text-anchor="middle" font-size="12.5" fill="#1d2a31">um prejuízo da classe B <tspan font-weight="800">não atinge</tspan></text>
+      <text x="575" y="253" text-anchor="middle" font-size="12.5" fill="#1d2a31">o patrimônio da classe A</text>
+    </svg>
+    <figcaption class="legenda">Todas as classes são da <strong>mesma categoria</strong> (ex.: todas FIF). Subclasses compartilham a carteira da classe, mas podem ter público, prazos e taxas diferentes.</figcaption>
+  </figure>
+
+  <div class="grade-2">
+    <div class="cartao"><h4>Constituição e registro</h4><p>O fundo é constituído por <strong>deliberação conjunta dos prestadores de serviços essenciais</strong> (administrador e gestor), que aprovam o regulamento. O funcionamento depende de <strong>registro na CVM</strong>, concedido <strong>automaticamente</strong> com o envio eletrônico dos documentos. Cada classe tem o próprio registro.</p></div>
+    <div class="cartao"><h4>Denominação e PL mínimo</h4><p>O nome deve conter “<strong>Fundo de Investimento</strong>” e a categoria; classe com responsabilidade limitada leva o sufixo “<strong>Responsabilidade Limitada</strong>”. Após 90 dias de atividade, a classe que ficar <strong>90 dias seguidos</strong> com PL diário abaixo de <strong>R$ 1 milhão</strong> deve ser liquidada ou incorporada.</p></div>
+  </div>
+  <div class="caixa definicao"><span class="rotulo">Comunicação</span>
+    <p>Todas as informações e comunicações aos cotistas podem ser feitas por <strong>meio eletrônico</strong>. Se o cotista não atualizar seu endereço, o administrador fica dispensado de enviar as comunicações.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O regulamento do fundo pode prever <b>diferentes classes de cotas</b>, com direitos e obrigações distintos, devendo o administrador constituir <b>patrimônio segregado</b> para cada classe, que responde somente pelas obrigações da respectiva classe. As classes podem ter <b>subclasses</b>, diferenciadas por público-alvo, prazos e condições de aplicação, amortização e resgate, e taxas. O funcionamento do fundo depende de <b>prévio registro na CVM</b>.</p>
+    <dl class="termos">
+      <dt>Patrimônio segregado</dt><dd>cada classe tem seu “cofre” separado</dd>
+      <dt>Prestadores de serviços essenciais</dt><dd>administrador e gestor</dd>
+      <dt>Anexo / apêndice</dt><dd>partes do regulamento da classe / da subclasse</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.3 -->
+<section class="bloco quebra" id="c7-s3" data-titulo="Cotas, aplicação e resgate">
+  <span class="sobretitulo">7.3 · Entrar e sair do fundo</span>
+  <h2 class="titulo-secao">Cotas, emissão, integralização, resgate e amortização</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Pedi o resgate hoje. Quando o dinheiro cai?</p>
+  <p>As <span class="mt">cotas</span> são <strong>escriturais e nominativas</strong> e correspondem a frações do patrimônio da classe. O <strong>valor da cota</strong> = <strong>patrimônio líquido ÷ número de cotas</strong>. Ex.: PL de R$ 10 milhões e 1 milhão de cotas → cota de <strong>R$ 10,00</strong>.</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th></th><th>Classe aberta</th><th>Classe fechada</th></tr></thead>
+    <tbody>
+      <tr><td>Resgate</td><td>A <strong>qualquer momento</strong>, conforme os prazos do regulamento</td><td><strong>Não</strong> há resgate: só no fim do prazo, na liquidação ou por amortização</td></tr>
+      <tr><td>Como sair antes</td><td>Pedindo o resgate</td><td><strong>Vendendo</strong> a cota a outro investidor (em geral, na bolsa)</td></tr>
+      <tr><td>Novas cotas</td><td>Emitidas a cada aplicação</td><td>Emitidas por decisão da <strong>assembleia</strong>, em oferta</td></tr>
+      <tr><td>Transferência</td><td>Só em casos especiais (herança, decisão judicial, garantia)</td><td>Livre (termo de cessão ou bolsa)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grade-2">
+    <div class="cartao verde"><h4>Emissão, subscrição e integralização</h4><p><strong>Subscrever</strong> é se comprometer a comprar cotas; <strong>integralizar</strong> é pagar por elas, em regra em <strong>moeda corrente</strong>. Na classe aberta, a cota emitida usa o valor do <strong>dia</strong> ou do <strong>dia seguinte</strong> à integralização, conforme o regulamento. O gestor pode <strong>suspender novas aplicações</strong>, desde que para todos.</p></div>
+    <div class="cartao azul"><h4>Amortização</h4><p>Pagamento a <strong>todos</strong> os cotistas de parte do valor das cotas, <strong>sem reduzir o número de cotas</strong>. Comum em classes fechadas.</p></div>
+  </div>
+  <h3>O caminho do resgate</h3>
+  <div class="fluxo-horizontal">
+    <div class="passo-h"><b>Pedido</b><span>O cotista solicita o resgate (D+0).</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Conversão</b><span>As cotas viram reais pelo <strong>valor da cota do dia da conversão</strong>, no prazo do regulamento.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h destaque"><b>Pagamento</b><span>Até <strong>5 dias úteis</strong> após a conversão. Atraso: multa de <strong>0,5% ao dia</strong>, paga pelo administrador.</span></div>
+  </div>
+  <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+    <p>O valor recebido é o da cota no dia da <strong>conversão</strong>, não no dia do pedido: se a cota cair nesse intervalo, o cotista recebe menos. O regulamento também pode prever <strong>carência</strong> (prazo sem resgate) e <strong>barreiras de resgate</strong> (limite por dia em momentos de estresse).</p></div>
+  <div class="caixa memorize"><span class="rotulo">Fechamento para resgates</span>
+    <p>Em caso de <strong>fechamento dos mercados</strong> ou de <strong>iliquidez excepcional</strong> dos ativos (inclusive por excesso de pedidos), o administrador ou o gestor pode <strong>fechar a classe para resgates</strong>, comunicando fato relevante. Nesse caso, não há multa por atraso.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">As <b>cotas</b> são escriturais, nominativas e correspondem a frações do patrimônio da classe; o valor da cota resulta da divisão do <b>patrimônio líquido</b> pelo número de cotas. Na <b>classe aberta</b>, os cotistas podem solicitar o <b>resgate</b> conforme o regulamento, que estabelece os prazos entre o pedido, a <b>conversão</b> e o <b>pagamento</b>; na <b>classe fechada</b>, as cotas somente são resgatadas ao término do prazo de duração ou na liquidação, admitida a <b>amortização</b>.</p>
+    <dl class="termos">
+      <dt>Integralização</dt><dd>o pagamento das cotas subscritas</dd>
+      <dt>Conversão de cotas</dt><dd>transformar cotas em dinheiro (ou o contrário)</dd>
+      <dt>Carência</dt><dd>período em que não se pode resgatar</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.4 -->
+<section class="bloco" id="c7-s4" data-titulo="Distribuição e conta e ordem">
+  <span class="sobretitulo">7.4 · Quem vende o fundo</span>
+  <h2 class="titulo-secao">Distribuição e investimento por conta e ordem</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Comprei o fundo pelo app da corretora. Meu nome aparece no fundo?</p>
+  <p>Depende. A <strong>distribuição</strong> de cotas é feita por instituições do <strong>sistema de distribuição</strong> (bancos, corretoras, distribuidoras). Na modalidade <span class="mt">por conta e ordem</span>, o distribuidor aplica <strong>em nome próprio, por conta do cliente</strong>: no registro do fundo aparece o distribuidor, e o cliente (o <strong>cotista efetivo</strong>) fica no <strong>registro complementar</strong> mantido pelo distribuidor.</p>
+  <div class="grade-2">
+    <div class="cartao"><h4>Responsabilidades do distribuidor</h4><p>Assume o <strong>cadastro</strong>, a identificação (PLD), o <strong>suitability</strong>, o atendimento e o repasse de informações do cliente. As aplicações e os resgates de cada cliente ficam <strong>segregados</strong>, e os bens do cliente não se confundem com os do distribuidor.</p></div>
+    <div class="cartao"><h4>Participação política</h4><p>O cotista efetivo <strong>vota</strong> nas assembleias: o distribuidor deve informá-lo das convocações e deliberações e fornecer, se ele quiser, uma <strong>declaração da quantidade de cotas</strong> que detém, para que vote diretamente.</p></div>
+  </div>
+  <div class="caixa definicao"><span class="rotulo">Termo de adesão e lâmina</span>
+    <p>Ao entrar no fundo, o cotista assina o <strong>termo de adesão e ciência de risco</strong>, atestando que teve acesso ao <strong>regulamento</strong> (e à <strong>lâmina</strong>, nos fundos para o público em geral), conhece os <strong>riscos</strong> e sabe que <strong>não há garantia</strong> contra perdas nem do FGC.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O gestor pode contratar o distribuidor para realizar a distribuição e a subscrição de cotas <b>por conta e ordem</b> dos investidores. O distribuidor deve manter <b>registro complementar de cotistas</b>, efetuar as operações de forma <b>segregada</b> e assume os ônus e responsabilidades relacionados aos clientes, inclusive quanto ao cadastro, à identificação e à adequação dos investimentos ao perfil, além de viabilizar a <b>participação dos cotistas efetivos nas assembleias</b>.</p>
+    <dl class="termos">
+      <dt>Cotista efetivo</dt><dd>quem investe por conta e ordem do distribuidor</dd>
+      <dt>Registro complementar</dt><dd>a lista de clientes que o distribuidor mantém</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.5 -->
+<section class="bloco" id="c7-s5" data-titulo="Divulgação de informações">
+  <span class="sobretitulo">7.5 · Transparência</span>
+  <h2 class="titulo-secao">Divulgação de informações, cota e rentabilidade</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">O fundo pode anunciar “rendeu 30% no ano”?</p>
+  <p>Pode, mas com regras. A divulgação deve ser <strong>abrangente, equitativa e simultânea</strong> para todos os cotistas da classe.</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>O que</th><th>Regra</th></tr></thead>
+    <tbody>
+      <tr><td>Valor da cota e do PL</td><td>Classes abertas: <strong>diariamente</strong> (ou na periodicidade da liquidez, se não houver liquidez diária)</td></tr>
+      <tr><td>Documentos sempre disponíveis</td><td>Regulamento atualizado, <strong>descrição da tributação</strong>, política de voto e, no FIF para o público em geral, a <strong>lâmina</strong></td></tr>
+      <tr><td>Demonstração de desempenho</td><td>Para o público em geral, até o <strong>último dia útil de fevereiro</strong> de cada ano</td></tr>
+      <tr><td>Fato relevante</td><td>Divulgado <strong>assim que conhecido</strong> pelo administrador</td></tr>
+      <tr><td>Resultado da assembleia</td><td>Resumo aos cotistas em até <strong>30 dias</strong></td></tr>
+      <tr><td>Demonstrações contábeis</td><td>Exercício de <strong>12 meses</strong>, auditadas anualmente por <strong>auditor independente</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa pegadinha"><span class="rotulo">Rentabilidade no material de divulgação</span>
+    <p>Só pode ser divulgada após <strong>6 meses</strong> da primeira emissão de cotas; deve vir comparada a um <strong>índice compatível</strong> e com o aviso de que <strong>rentabilidade passada não é garantia de rentabilidade futura</strong>. O material deve ter linguagem <strong>serena e moderada</strong>, advertindo para os riscos.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O administrador deve <b>calcular e divulgar diariamente o valor da cota e do patrimônio líquido</b> das classes abertas e divulgar <b>fato relevante</b> tão logo dele tenha conhecimento. A divulgação de rentabilidade deve ser acompanhada de <b>comparação com índice de mercado compatível</b> e de advertência de que a <b>rentabilidade obtida no passado não representa garantia de rentabilidade futura</b>.</p>
+    <dl class="termos">
+      <dt>Lâmina</dt><dd>resumo padronizado do fundo para o varejo</dd>
+      <dt>Fato relevante</dt><dd>acontecimento que pode influenciar a decisão de investir</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.6 -->
+<section class="bloco" id="c7-s6" data-titulo="Assembleia de cotistas">
+  <span class="sobretitulo">7.6 · Quem manda no fundo</span>
+  <h2 class="titulo-secao">Assembleia de cotistas: geral e especial</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Quem decide trocar o gestor ou mudar a taxa?</p>
+  <p>A <span class="mt">assembleia de cotistas</span>. Na <strong>assembleia geral</strong>, são convocados <strong>todos</strong> os cotistas do fundo; na <strong>assembleia especial</strong>, só os cotistas de <strong>determinada classe ou subclasse</strong>, para assuntos exclusivos dela.</p>
+  <div class="grade-2">
+    <div class="cartao ambar"><h4>Compete privativamente à assembleia</h4><p>Aprovar as <strong>demonstrações contábeis</strong>; <strong>substituir</strong> administrador ou gestor; <strong>emitir novas cotas</strong> na classe fechada; fusão, incorporação, cisão, transformação ou <strong>liquidação</strong>; <strong>alterar o regulamento</strong>; aprovar o plano para <strong>PL negativo</strong>; pedir a <strong>insolvência</strong> da classe.</p></div>
+    <div class="cartao azul"><h4>Como funciona</h4><p>Convocação com <strong>10 dias</strong> de antecedência, no mínimo, com a ordem do dia. Pode ser convocada pelos prestadores essenciais, pelo custodiante ou por cotistas com <strong>5%</strong> das cotas. <strong>Instala-se com qualquer número</strong>; decide por <strong>maioria dos presentes</strong> (o regulamento pode exigir quórum qualificado).</p></div>
+  </div>
+  <div class="caixa pegadinha"><span class="rotulo">Não votam</span>
+    <p>O <strong>prestador de serviço</strong> (e seus sócios, diretores e empregados), partes relacionadas e o cotista com <strong>interesse conflitante</strong> com o fundo no assunto. Votam os inscritos no registro na <strong>data da convocação</strong>. Mudanças só para cumprir norma, trocar endereço ou <strong>reduzir taxa</strong> dispensam assembleia.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A <b>assembleia geral de cotistas</b> é aquela para a qual são convocados todos os cotistas do fundo; a <b>assembleia especial</b>, aquela para a qual são convocados somente os cotistas de determinada <b>classe ou subclasse</b>. A convocação deve ser feita com <b>10 dias</b> de antecedência, no mínimo; a assembleia se instala com qualquer número de cotistas e as deliberações são tomadas por <b>maioria de votos dos presentes</b>.</p>
+    <dl class="termos">
+      <dt>Ordem do dia</dt><dd>a lista de assuntos a votar</dd>
+      <dt>Quórum</dt><dd>número mínimo de votos para aprovar</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.7 -->
+<section class="bloco quebra" id="c7-s7" data-titulo="Prestadores de serviço e taxas">
+  <span class="sobretitulo">7.7 · Quem faz o quê e quanto custa</span>
+  <h2 class="titulo-secao">Prestação de serviços e remuneração</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Administrador e gestor são a mesma coisa?</p>
+  <p>Não. Na CVM 175, os dois são os <strong>prestadores de serviços essenciais</strong>, cada um na sua esfera, e respondem pelos próprios atos.</p>
+  <div class="grade-2">
+    <div class="cartao verde"><h4>Administrador (fiduciário)</h4><p>Cuida do <strong>funcionamento</strong> do fundo: registro de cotistas, cálculo da cota, informações à CVM e aos cotistas. Contrata <strong>tesouraria e controle dos ativos</strong>, <strong>escrituração das cotas</strong> e <strong>auditoria independente</strong>.</p></div>
+    <div class="cartao azul"><h4>Gestor</h4><p>Decide <strong>o que comprar e vender</strong> e negocia os ativos em nome da classe. Contrata <strong>intermediação</strong>, <strong>distribuição de cotas</strong>, consultoria e <strong>custódia</strong>. Responde pelos <strong>limites da carteira</strong>, pela <strong>gestão de liquidez</strong> e pelos <strong>testes de estresse</strong>; exerce o direito de voto dos ativos.</p></div>
+  </div>
+  <div class="caixa definicao"><span class="rotulo">Negociação em mercados organizados</span>
+    <p>As ordens de compra e venda devem ser emitidas pelo gestor com a <strong>identificação precisa do fundo e da classe</strong>. No FIF, o gestor não pode negociar <strong>ações fora de mercado organizado</strong> (salvo ofertas públicas, direito de preferência e situações semelhantes).</p></div>
+  <h3>As taxas</h3>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Taxa</th><th>Quem paga</th><th>Para quê</th></tr></thead>
+    <tbody>
+      <tr><td>Taxa de administração</td><td>O fundo</td><td>Remunera o <strong>administrador</strong> e os serviços que ele contrata</td></tr>
+      <tr><td>Taxa de gestão</td><td>O fundo</td><td>Remunera o <strong>gestor</strong> e os serviços que ele contrata</td></tr>
+      <tr><td>Taxa máxima de distribuição</td><td>O fundo</td><td>Total para remunerar os <strong>distribuidores</strong>, em % ao ano do PL, divulgado ao cotista</td></tr>
+      <tr><td>Taxa de performance</td><td>O fundo</td><td>Prêmio ao gestor pelo que <strong>superar o benchmark</strong></td></tr>
+      <tr><td>Taxa de ingresso</td><td>O <strong>cotista</strong>, ao aplicar</td><td>Vai para o <strong>patrimônio da classe</strong></td></tr>
+      <tr><td>Taxa de saída</td><td>O <strong>cotista</strong>, ao resgatar</td><td>Vai para o <strong>patrimônio da classe</strong> (desestimula saídas rápidas)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grade-2">
+    <div class="cartao coral"><h4>Taxa de performance (FIF)</h4><p>Ligada a um índice <strong>verificável</strong> e compatível com a política; <strong>nunca abaixo de 100%</strong> do índice; cobrada no mínimo a cada <strong>semestre</strong>, depois de descontadas todas as despesas; e <strong>proibida</strong> se a cota estiver abaixo da <strong>cota base</strong> (“linha d’água”). Na classe <strong>Renda Fixa</strong> para o público em geral, em regra, <strong>não</strong> é permitida.</p></div>
+    <div class="cartao"><h4>Acordos de remuneração</h4><p>Quando uma classe investe em outra, pode haver <strong>devolução de parte da taxa</strong> (rebate) da classe investida para a investidora. Nos fundos de fundos, as taxas informadas devem <strong>incluir as taxas dos fundos investidos</strong>. O prestador pode <strong>reduzir</strong> sua taxa sem assembleia.</p></div>
+  </div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">São <b>prestadores de serviços essenciais</b> o <b>administrador</b> e o <b>gestor</b>. A <b>taxa de administração</b> e a <b>taxa de gestão</b> são cobradas do fundo para remunerar, respectivamente, o administrador e o gestor; a <b>taxa máxima de distribuição</b> representa o montante total para remuneração dos distribuidores; as <b>taxas de ingresso e de saída</b> são pagas pelo cotista <b>ao patrimônio da classe</b> ao aplicar ou resgatar recursos.</p>
+    <dl class="termos">
+      <dt>Cota base</dt><dd>a cota da última cobrança de performance</dd>
+      <dt>Rebate</dt><dd>devolução de parte da taxa (acordo de remuneração)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.8 -->
+<section class="bloco" id="c7-s8" data-titulo="Vedações, obrigações e encargos">
+  <span class="sobretitulo">7.8 · As regras do jogo</span>
+  <h2 class="titulo-secao">Vedações, obrigações, normas de conduta e encargos</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">O gestor pode prometer 1% ao mês garantido?</p>
+  <p><strong>Não.</strong> É uma das <strong>vedações</strong> aos prestadores de serviços essenciais, que não podem, em nome do fundo:</p>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao coral"><h4>Vedações</h4><p>Receber <strong>depósito em conta corrente</strong>; tomar ou conceder <strong>empréstimos</strong> (salvo exceções); vender cotas <strong>à prestação</strong>; <strong>garantir rendimento predeterminado</strong>; pagar <strong>seguro contra perdas</strong> dos cotistas com recursos da classe; praticar <strong>liberalidades</strong>.</p></div>
+    <div class="cartao verde"><h4>Normas de conduta</h4><p>Agir com <strong>boa-fé, lealdade, diligência</strong> e transparência; buscar as <strong>melhores condições</strong> para o fundo; evitar <strong>conflitos de interesse</strong>; não receber vantagem que prejudique a independência do gestor.</p></div>
+    <div class="cartao azul"><h4>Encargos</h4><p>Despesas que podem ser <strong>debitadas direto do fundo</strong>: impostos e taxas, registros, auditoria, custódia, honorários advocatícios do fundo, despesas de assembleia, taxas de administração, gestão e performance. O que <strong>não</strong> for encargo é pago pelo prestador que contratou.</p></div>
+  </div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">É vedado aos prestadores de serviços essenciais, em nome do fundo, <b>receber depósito em conta corrente</b>, <b>contrair ou efetuar empréstimos</b> fora das hipóteses admitidas, <b>vender cotas à prestação</b>, <b>garantir rendimento predeterminado</b> aos cotistas, utilizar recursos da classe para <b>pagamento de seguro contra perdas financeiras</b> e praticar <b>atos de liberalidade</b>.</p>
+    <dl class="termos">
+      <dt>Liberalidade</dt><dd>dar algo sem contrapartida (doação)</dd>
+      <dt>Encargos</dt><dd>despesas que o próprio fundo pode pagar</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.9 -->
+<section class="bloco" id="c7-s9" data-titulo="Responsabilidade e PL negativo">
+  <span class="sobretitulo">7.9 · E se der muito errado?</span>
+  <h2 class="titulo-secao">Responsabilidade dos cotistas e patrimônio líquido negativo</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Dá para perder mais do que investi?</p>
+  <p>Depende do regulamento. Se o fundo usa muita alavancagem, o patrimônio pode ficar <strong>negativo</strong>. A CVM 175 criou a <span class="mt">responsabilidade limitada</span>:</p>
+  <div class="grade-2">
+    <div class="cartao verde"><h4>Responsabilidade limitada</h4><p>O regulamento limita a responsabilidade do cotista ao <strong>valor que ele subscreveu</strong>. A classe leva o sufixo “<strong>Responsabilidade Limitada</strong>”. O cotista perde no máximo o que colocou.</p></div>
+    <div class="cartao coral"><h4>Responsabilidade ilimitada</h4><p>Se o regulamento <strong>não limitar</strong>, os cotistas respondem pelo <strong>PL negativo</strong> e podem ter de <strong>aportar mais dinheiro</strong>. Com exposição a risco de capital, o cotista atesta no termo de adesão que conhece esse risco.</p></div>
+  </div>
+  <h3>PL negativo na classe com responsabilidade limitada</h3>
+  <div class="fluxo-horizontal">
+    <div class="passo-h"><b>Imediatamente</b><span>Fecha para resgates, suspende subscrições e amortizações, cancela resgates pendentes, avisa o gestor e divulga <strong>fato relevante</strong>.</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Em até 20 dias</b><span>Administrador e gestor fazem o <strong>plano de resolução</strong> (causas, balancete, proposta).</span></div>
+    <div class="seta-h" aria-hidden="true">→</div>
+    <div class="passo-h"><b>Assembleia</b><span>Convocada em até 2 dias úteis: aprova o plano, novos aportes, cisão, liquidação ou o pedido de <strong>insolvência</strong>.</span></div>
+  </div>
+  <div class="caixa memorize"><span class="rotulo">Insolvência</span>
+    <p>A assembleia pode pedir a <strong>declaração judicial de insolvência da classe</strong>; a própria <strong>CVM</strong> também pode pedir, se o PL negativo ameaçar o mercado. Declarada a insolvência, o registro da classe é cancelado.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">O regulamento pode prever que a <b>responsabilidade do cotista é limitada ao valor por ele subscrito</b>. Caso não limite, os cotistas respondem por eventual <b>patrimônio líquido negativo</b>. Verificado o PL negativo em classe de responsabilidade limitada, o administrador deve <b>fechar a classe para resgates</b>, divulgar <b>fato relevante</b> e, em até 20 dias, elaborar com o gestor um <b>plano de resolução</b>, a ser deliberado pela assembleia, que pode inclusive decidir pelo pedido de <b>declaração judicial de insolvência</b>.</p>
+    <dl class="termos">
+      <dt>PL negativo</dt><dd>as dívidas da classe superam os seus ativos</dd>
+      <dt>Insolvência</dt><dd>a “falência” da classe, declarada pela Justiça</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.10 -->
+<section class="bloco quebra" id="c7-s10" data-titulo="FIF: tipos e carteira">
+  <span class="sobretitulo">7.10 · Os fundos do dia a dia</span>
+  <h2 class="titulo-secao">Fundos de Investimento Financeiro (FIF): tipos, carteira e limites</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Como saber o que um fundo compra só pelo nome?</p>
+  <p>O <strong>Anexo I</strong> da CVM 175 trata dos <span class="mt">FIF</span>, classificados pelo <strong>principal fator de risco</strong> da carteira:</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tipo</th><th>Regra principal</th><th>Observações</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Renda Fixa</strong></td><td>Fator de risco: <strong>juros e/ou índice de preços</strong>; mínimo de <strong>80%</strong> em ativos ligados a esse fator</td><td>Sufixos: <strong>Curto Prazo</strong> (títulos até 375 dias, prazo médio &lt; 60 dias), <strong>Referenciado</strong> (95% acompanhando um índice), <strong>Simples</strong> (95% em títulos públicos ou de bancos de baixo risco), <strong>Dívida Externa</strong> (80% em títulos da dívida externa da União)</td></tr>
+      <tr><td><strong>Ações</strong></td><td>Mínimo de <strong>67%</strong> em ações, bônus e recibos de subscrição, cotas de fundos de ações, ETFs de ações e BDRs</td><td>Fator de risco: preço das ações</td></tr>
+      <tr><td><strong>Cambial</strong></td><td>Mínimo de <strong>80%</strong> em ativos ligados à <strong>moeda estrangeira</strong> ou ao cupom cambial</td><td>Ex.: fundo dólar</td></tr>
+      <tr><td><strong>Multimercado</strong></td><td><strong>Vários fatores de risco</strong>, sem compromisso de concentração</td><td>Pode investir em cotas de qualquer tipo de FIF</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grade-3 cartoes-compactos">
+    <div class="cartao"><h4>Crédito Privado</h4><p>RF, Multimercado ou Cambial com <strong>mais de 50%</strong> em ativos de emissores privados: sufixo “<strong>Crédito Privado</strong>” e alerta no termo de adesão.</p></div>
+    <div class="cartao"><h4>FI-Infra</h4><p>Fundos da <strong>Lei 12.431</strong>, que investem em debêntures de infraestrutura com benefício fiscal.</p></div>
+    <div class="cartao"><h4>Garantia de locação</h4><p>Cotas dadas em <strong>cessão fiduciária</strong> como garantia de aluguel. Classe aberta, mas as cotas cedidas não podem ser resgatadas.</p></div>
+  </div>
+  <h3>Limites da carteira</h3>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Por emissor (máximo do PL)</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Instituição financeira autorizada pelo BC</td><td><strong>20%</strong></td></tr>
+      <tr><td>Companhia aberta</td><td><strong>10%</strong></td></tr>
+      <tr><td>Pessoa física ou empresa que não é aberta nem banco</td><td><strong>5%</strong></td></tr>
+      <tr><td>União (títulos públicos) e fundos de investimento</td><td><strong>Sem limite</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="grade-2">
+    <div class="cartao azul"><h4>Ativos no exterior</h4><p>Público em geral: até <strong>20%</strong> do PL. Qualificados: até <strong>40%</strong> (ou mais, com regras no regulamento). Profissionais e “Renda Fixa – Dívida Externa”: <strong>sem limite</strong>.</p></div>
+    <div class="cartao ambar"><h4>Fundo de fundos e alavancagem</h4><p>A <strong>classe de investimento em cotas</strong> aplica no mínimo <strong>95%</strong> em cotas de outras classes. <strong>Margem bruta</strong> máxima com derivativos: RF <strong>20%</strong>, Ações e Cambial <strong>40%</strong>, Multimercado <strong>70%</strong> do PL.</p></div>
+  </div>
+  <div class="caixa memorize"><span class="rotulo">Classes restritas e prazos de enquadramento</span>
+    <p>Classe <strong>restrita</strong> é a destinada só a investidores <strong>qualificados e profissionais</strong>: tem regras mais flexíveis (limites por modalidade em dobro para qualificados; profissionais podem dispensar os limites por emissor). Uma nova classe aberta tem <strong>60 dias</strong> para se enquadrar nos limites; a fechada, <strong>180 dias</strong> após o fim da distribuição.</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">A classe tipificada como <b>Renda Fixa</b> deve ter como principal fator de risco a variação da <b>taxa de juros</b>, de <b>índice de preços</b> ou ambos, com no mínimo <b>80%</b> da carteira relacionada a esse fator. A classe de <b>Ações</b> deve ter no mínimo <b>67%</b> do patrimônio em ações e ativos equiparados; a <b>Cambial</b>, no mínimo <b>80%</b> em ativos relacionados à moeda estrangeira; a <b>Multimercado</b> envolve vários fatores de risco, sem compromisso de concentração.</p>
+    <dl class="termos">
+      <dt>Fator de risco</dt><dd>o que mais mexe com o valor da cota</dd>
+      <dt>Margem bruta</dt><dd>garantias exigidas pelas operações com derivativos</dd>
+      <dt>Enquadramento</dt><dd>cumprir os limites da carteira</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.11 -->
+<section class="bloco quebra" id="c7-s11" data-titulo="Tributação dos fundos">
+  <span class="sobretitulo">7.11 · O leão no fundo</span>
+  <h2 class="titulo-secao">Tributação: IR, come-cotas e IOF 🔥</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Por que o número de cotas diminui em maio e novembro?</p>
+  <p>Por causa do <span class="mt">come-cotas</span>: no <strong>último dia útil de maio e de novembro</strong>, o fundo <strong>antecipa o IR</strong> sobre o rendimento do período, reduzindo a quantidade de cotas. No resgate, cobra-se só a <strong>diferença</strong> até a alíquota final da tabela regressiva. A carteira do fundo é isenta: o imposto é cobrado do <strong>cotista</strong>.</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tipo de fundo</th><th>Come-cotas</th><th>Alíquota final no resgate</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Longo prazo</strong> (carteira com prazo médio acima de 365 dias)</td><td><strong>15%</strong></td><td>22,5% (até 180 dias) · 20% (181 a 360) · 17,5% (361 a 720) · <strong>15%</strong> (acima de 720)</td></tr>
+      <tr><td><strong>Curto prazo</strong> (prazo médio de até 365 dias)</td><td><strong>20%</strong></td><td>22,5% (até 180 dias) · <strong>20%</strong> (acima de 180)</td></tr>
+      <tr><td><strong>Ações</strong> (mínimo de 67% em ações)</td><td><strong>Não tem</strong></td><td><strong>15%</strong>, só no resgate, qualquer prazo</td></tr>
+    </tbody>
+  </table></div>
+  <div class="faixa-chave"><span class="big">IOF</span><p>Resgate em <strong>menos de 30 dias</strong> paga IOF <strong>regressivo</strong> sobre o rendimento: <strong>96%</strong> no 1º dia, caindo até <strong>zero no 30º</strong>. Fundos de <strong>ações</strong> têm IOF <strong>zero</strong>. O IR é calculado sobre o rendimento <strong>já descontado do IOF</strong>.</p></div>
+  <div class="grade-2">
+    <div class="cartao"><h4>Exemplo de come-cotas</h4><p>Fundo de longo prazo. Até maio, o rendimento foi de <strong>R$ 400</strong> → come-cotas de 15% = <strong>R$ 60</strong>. No resgate, com 300 dias e rendimento total de R$ 800, a alíquota final é 20% = R$ 160: paga-se o <strong>complemento de R$ 100</strong>.</p></div>
+    <div class="cartao"><h4>Exemplo de IOF</h4><p>Resgate no <strong>10º dia</strong> com rendimento de <strong>R$ 100</strong>: IOF = 66% × 100 = <strong>R$ 66</strong>. IR de 22,5% sobre os R$ 34 restantes = <strong>R$ 7,65</strong>. Sobram R$ 26,35 de rendimento.</p></div>
+  </div>
+  <div class="caixa atualizacao"><span class="rotulo">Desde 2024 (Lei 14.754/2023)</span>
+    <p>O come-cotas passou a valer também para os <strong>fundos fechados</strong> e os <strong>fundos exclusivos</strong>, que antes só pagavam IR no resgate. FIP, ETF de ações e FIDC que sejam “entidades de investimento” e os fundos de ações seguem <strong>sem come-cotas</strong> (15% só no resgate, distribuição ou amortização).</p></div>
+  <h3>Simulador · Quanto o leão leva do seu fundo?</h3>
+  <div class="calc" data-calc="fundo"></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">Os rendimentos das aplicações em fundos de investimento sujeitam-se à retenção do IR na fonte no <b>último dia útil dos meses de maio e novembro</b>, à alíquota de <b>15%</b> (fundos de longo prazo) ou <b>20%</b> (curto prazo), e na data do <b>resgate</b>, pelo percentual complementar até a alíquota da <b>tabela regressiva</b>. Os fundos de <b>ações</b> não se sujeitam à tributação periódica e são tributados à alíquota de <b>15%</b> no resgate. O <b>IOF</b> incide de forma regressiva sobre o rendimento dos resgates efetuados em prazo inferior a <b>30 dias</b>.</p>
+    <dl class="termos">
+      <dt>Come-cotas</dt><dd>antecipação semestral do IR, em cotas</dd>
+      <dt>Tabela regressiva</dt><dd>quanto mais tempo, menor a alíquota</dd>
+      <dt>Alíquota complementar</dt><dd>a diferença paga no resgate</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.12 -->
+<section class="bloco quebra" id="c7-s12" data-titulo="Fundos imobiliários (FII)">
+  <span class="sobretitulo">7.12 · Ser “dono” de shopping com R$ 100</span>
+  <h2 class="titulo-secao">Fundos de Investimento Imobiliário (FII) 🔥</h2>
+  <div class="linha-fina"></div>
+  <p class="gancho">Dá para receber “aluguel” todo mês sem comprar um imóvel?</p>
+  <p>Dá, com um <span class="mt">FII</span>. O fundo investe em <strong>empreendimentos imobiliários</strong> (imóveis, CRI, LCI, cotas de outros FII) e distribui a renda aos cotistas. Pelo <strong>Anexo III</strong> da CVM 175, as classes de FII são sempre <strong>fechadas</strong>: não há resgate, e quem quer sair <strong>vende as cotas na bolsa</strong>. Os imóveis ficam em <strong>propriedade fiduciária</strong> do administrador, separados do patrimônio dele.</p>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tipo</th><th>Investe em</th><th>Renda vem de</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tijolo</strong></td><td>Imóveis físicos: lajes corporativas, shoppings, galpões logísticos, agências</td><td><strong>Aluguéis</strong> (e venda de imóveis)</td></tr>
+      <tr><td><strong>Papel</strong></td><td><strong>CRI</strong>, LCI, LH e outros títulos imobiliários</td><td><strong>Juros</strong> dos títulos (em geral, CDI ou IPCA + taxa)</td></tr>
+      <tr><td><strong>Híbrido</strong></td><td>Os dois</td><td>Aluguéis e juros</td></tr>
+      <tr><td><strong>Fundo de fundos</strong></td><td>Cotas de outros FII</td><td>Rendimentos dos FII investidos</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grade-2">
+    <div class="cartao coral"><h4>Riscos</h4><p><strong>Liquidez</strong> (pode faltar comprador na bolsa), <strong>vacância</strong> (imóvel vazio não rende), <strong>crédito</strong> (inquilino ou devedor do CRI não pagar), <strong>concentração</strong> (um único imóvel ou inquilino) e <strong>mercado</strong> (a cota oscila com os juros).</p></div>
+    <div class="cartao verde"><h4>Dividendos (rendimentos)</h4><p>O FII deve distribuir no mínimo <strong>95% dos lucros</strong> apurados pelo <strong>regime de caixa</strong>, com base em balanço <strong>semestral</strong> (30/6 e 31/12). Na prática, a maioria paga <strong>todo mês</strong>. Ex.: rendimento de R$ 0,90 por cota de R$ 100 → <strong>0,9% ao mês</strong>.</p></div>
+    <div class="cartao"><h4>Taxas e administração</h4><p>Taxa de administração (e de gestão, se houver), que pode ter parcela variável ligada ao desempenho. No FII para o público em geral cujas cotas integrem um <strong>índice de mercado</strong> (como o IFIX), ela é calculada sobre o <strong>valor de mercado</strong> das cotas. Pode haver taxa de ingresso.</p></div>
+    <div class="cartao"><h4>Subscrição</h4><p>Novas cotas são emitidas por <strong>oferta pública</strong> aprovada em assembleia (ou prevista no regulamento), que define se os cotistas têm <strong>direito de preferência</strong> para manter a sua participação.</p></div>
+  </div>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Tributação do FII (pessoa física)</th><th>Regra</th></tr></thead>
+    <tbody>
+      <tr><td>Rendimentos distribuídos</td><td><strong>Isentos</strong> se: cotas negociadas <strong>só em bolsa</strong> ou balcão organizado, fundo com no mínimo <strong>100 cotistas</strong>, cotista com <strong>menos de 10%</strong> das cotas (ou dos rendimentos) e cotistas ligados com menos de 30%. Senão, IR de <strong>20%</strong> na fonte</td></tr>
+      <tr><td>Ganho na venda das cotas</td><td><strong>20%</strong>, pago pelo próprio investidor por <strong>DARF</strong> até o último dia útil do mês seguinte. <strong>Não</strong> há isenção de R$ 20 mil, como nas ações</td></tr>
+      <tr><td>IOF</td><td>Não incide na compra e venda em bolsa</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Simulador · Renda e imposto no FII</h3>
+  <div class="calc" data-calc="fii"></div>
+  <div class="caixa atualizacao"><span class="rotulo">O que não mudou</span>
+    <p>A MP 1.303/2025 propunha tributar os rendimentos de FII e Fiagro, mas <strong>perdeu a validade</strong> sem virar lei. A isenção da pessoa física continua, com as condições da Lei 11.033 (atualizadas pela Lei 14.754/2023, que subiu o mínimo para 100 cotistas e criou o limite de 30% para cotistas ligados).</p></div>
+  <div class="caixa prova"><span class="rotulo">Na prova, cai assim</span>
+    <p class="oficial">Os <b>FII</b> são constituídos em <b>regime fechado</b>, com cotas negociadas em <b>bolsa</b>, e devem distribuir no mínimo <b>95% dos lucros</b> apurados segundo o <b>regime de caixa</b>, com base em balanço semestral. Os rendimentos distribuídos são <b>isentos de IR para pessoas físicas</b> desde que o fundo tenha no mínimo 100 cotistas, com cotas negociadas exclusivamente em bolsa ou balcão organizado, e o cotista detenha menos de 10% das cotas. O <b>ganho de capital</b> na venda das cotas é tributado a <b>20%</b>.</p>
+    <dl class="termos">
+      <dt>Vacância</dt><dd>imóvel sem inquilino</dd>
+      <dt>Dividend yield</dt><dd>rendimento ÷ preço da cota</dd>
+      <dt>Regime de caixa</dt><dd>conta o que efetivamente entrou no caixa</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- 7.13 -->
+<section class="bloco quebra" id="c7-s13" data-titulo="Mapa mental">
+  <span class="sobretitulo">7.13 · Visão do todo</span>
+  <h2 class="titulo-secao">Mapa mental dos fundos</h2>
+  <div class="linha-fina"></div>
+  <p>Estrutura, gente, regras, tipos, imposto e imobiliário.</p>
+  <div class="mapa-caderno" data-mapa="fundos"></div>
+</section>
+
+<!-- 7.14 -->
+<section class="bloco" id="c7-s14" data-titulo="Pegadinhas de prova">
+  <span class="sobretitulo">7.14 · Não caia nessa</span>
+  <h2 class="titulo-secao">Pegadinhas de prova</h2>
+  <div class="linha-fina"></div>
+  <p>Leia a frase errada, tente lembrar a certa e só depois toque no cartão.</p>
+  <div class="ce fechado"><div class="errado">Os fundos de investimento têm garantia do FGC até R$ 250 mil.</div><div class="certo"><span class="toque">toque para ver</span>Fundos <strong>não</strong> têm garantia do FGC.</div></div>
+  <div class="ce fechado"><div class="errado">Na classe fechada, o cotista pode pedir o resgate quando quiser.</div><div class="certo"><span class="toque">toque para ver</span>Na fechada <strong>não há resgate</strong>: para sair antes, vende a cota (em geral, na bolsa).</div></div>
+  <div class="ce fechado"><div class="errado">O resgate é pago pelo valor da cota no dia do pedido.</div><div class="certo"><span class="toque">toque para ver</span>Pelo valor da cota na data da <strong>conversão</strong>; pagamento em até 5 dias úteis depois.</div></div>
+  <div class="ce fechado"><div class="errado">A taxa de saída remunera o administrador.</div><div class="certo"><span class="toque">toque para ver</span>Ingresso e saída são pagas pelo cotista <strong>ao patrimônio da classe</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">A taxa de performance pode ser cobrada mesmo que a cota esteja abaixo da última cobrança.</div><div class="certo"><span class="toque">toque para ver</span>É vedada abaixo da <strong>cota base</strong> (linha d’água), e o índice nunca pode ser menor que 100% do benchmark.</div></div>
+  <div class="ce fechado"><div class="errado">A assembleia especial reúne todos os cotistas do fundo.</div><div class="certo"><span class="toque">toque para ver</span>Essa é a <strong>geral</strong>. A especial reúne só os cotistas de uma <strong>classe ou subclasse</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">Um prejuízo da classe B pode ser coberto com o patrimônio da classe A do mesmo fundo.</div><div class="certo"><span class="toque">toque para ver</span>Cada classe tem <strong>patrimônio segregado</strong> e responde só por suas obrigações.</div></div>
+  <div class="ce fechado"><div class="errado">O fundo de ações tem come-cotas de 15% em maio e novembro.</div><div class="certo"><span class="toque">toque para ver</span>Fundo de ações <strong>não tem come-cotas</strong>: paga 15% só no resgate.</div></div>
+  <div class="ce fechado"><div class="errado">O come-cotas do fundo de curto prazo é de 15%.</div><div class="certo"><span class="toque">toque para ver</span>No curto prazo, o come-cotas é de <strong>20%</strong>; no longo prazo, 15%.</div></div>
+  <div class="ce fechado"><div class="errado">O lucro na venda de cotas de FII é isento até R$ 20 mil por mês.</div><div class="certo"><span class="toque">toque para ver</span>O ganho na venda de FII paga <strong>20%</strong>, sem isenção. Isentos (com condições) são os <strong>rendimentos</strong>.</div></div>
+  <div class="ce fechado"><div class="errado">O fundo pode garantir rentabilidade de 1% ao mês aos cotistas.</div><div class="certo"><span class="toque">toque para ver</span>É <strong>vedado</strong> garantir rendimento predeterminado.</div></div>
+</section>
+
+<!-- 7.15 -->
+<section class="bloco extra" id="c7-s15" data-titulo="Desafio: qual tipo de FIF?">
+  <span class="sobretitulo">7.15 · Jogo</span>
+  <h2 class="titulo-secao">Desafio relâmpago: qual tipo de fundo?</h2>
+  <div class="linha-fina"></div>
+  <p>Aparece a descrição da carteira. Em <strong>8 segundos</strong>, diga o tipo de FIF.</p>
+  <div class="jogo" data-jogo="fundos"></div>
+</section>
+
+<!-- 7.16 -->
+<section class="bloco" id="c7-s16" data-titulo="Itens do programa">
+  <span class="sobretitulo">7.16 · Confira o programa</span>
+  <h2 class="titulo-secao">O que o programa pede (itens 2.1.2 a 2.1.4)</h2>
+  <div class="linha-fina"></div>
+  <div class="tabela-rolagem"><table class="tabela">
+    <thead><tr><th>Item do programa</th><th>Onde está</th></tr></thead>
+    <tbody>
+      <tr><td>2.1.2.1 Características, estratégias, carteira, público-alvo e riscos</td><td><a href="#c7-s1">7.1</a></td></tr>
+      <tr><td>2.1.2.2.1 a 2.1.2.2.5 Características, constituição, comunicação, condomínio, registro, classes e subclasses, segregação</td><td><a href="#c7-s2">7.2</a></td></tr>
+      <tr><td>2.1.2.2.6 a 2.1.2.2.10 Cotas, classes abertas e fechadas, emissão, subscrição, integralização, resgate e amortização</td><td><a href="#c7-s3">7.3</a></td></tr>
+      <tr><td>2.1.2.2.11 a 2.1.2.2.13 Distribuição, conta e ordem, participação política</td><td><a href="#c7-s4">7.4</a></td></tr>
+      <tr><td>2.1.2.2.14 a 2.1.2.2.17 Divulgação de informações, comunicações, resultados, cota e rentabilidade</td><td><a href="#c7-s5">7.5</a></td></tr>
+      <tr><td>2.1.2.2.18 Assembleias gerais e especiais</td><td><a href="#c7-s6">7.6</a></td></tr>
+      <tr><td>2.1.2.2.19 e 2.1.2.2.20 Serviços essenciais, administração, gestão, negociação; taxas e acordos de remuneração</td><td><a href="#c7-s7">7.7</a></td></tr>
+      <tr><td>2.1.2.2.21 a 2.1.2.2.24 Vedações, obrigações, normas de conduta, encargos</td><td><a href="#c7-s8">7.8</a></td></tr>
+      <tr><td>2.1.2.2.25 Responsabilidade limitada e ilimitada, PL negativo, insolvência</td><td><a href="#c7-s9">7.9</a></td></tr>
+      <tr><td>2.1.2.3 FIF (Anexo I): serviços, carteira, limites, tipificação, crédito privado, cotas de fundos, risco de capital, classes restritas</td><td><a href="#c7-s10">7.10</a> (e 7.7, 7.9)</td></tr>
+      <tr><td>2.1.3 Tributação: IOF e IR</td><td><a href="#c7-s11">7.11</a> (com simulador)</td></tr>
+      <tr><td>2.1.4 FII: negociação, riscos, dividendos, taxas, subscrição, tijolo × papel × híbrido, tributação</td><td><a href="#c7-s12">7.12</a> (com simulador)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 7.17 -->
+<section class="bloco quebra" id="c7-s17" data-titulo="Questões com correção na hora">
+  <span class="sobretitulo">7.17 · Treino</span>
+  <h2 class="titulo-secao">Questões com correção na hora</h2>
+  <div class="linha-fina"></div>
+  <p>Questões <strong>inéditas</strong> no <strong>formato oficial da nova CPA</strong>, cobrindo CVM 175, FIF, tributação e FII. Cada erro vai para o seu <a href="#painel">caderno de erros</a>.</p>
+  <div class="lista-questoes" data-questoes="7"></div>
+</section>
+
+<!-- 7.18 -->
+<section class="bloco" id="c7-s18" data-titulo="Revisão e dicionário da prova">
+  <span class="sobretitulo">7.18 · Revisão</span>
+  <h2 class="titulo-secao">Revisão e dicionário da prova</h2>
+  <div class="linha-fina"></div>
+  <div class="tabela-rolagem"><table class="tabela dicionario">
+    <thead><tr><th>Quando a prova diz…</th><th>…quer dizer</th></tr></thead>
+    <tbody>
+      <tr><td>Condomínio de natureza especial</td><td><span class="trad">o fundo: cada cotista tem uma fração do todo</span></td></tr>
+      <tr><td>Patrimônio segregado</td><td><span class="trad">cada classe com seu próprio “cofre”</span></td></tr>
+      <tr><td>Prestadores de serviços essenciais</td><td><span class="trad">administrador e gestor</span></td></tr>
+      <tr><td>Integralização</td><td><span class="trad">pagar as cotas</span></td></tr>
+      <tr><td>Conversão de cotas</td><td><span class="trad">o dia em que as cotas viram dinheiro (ou o contrário)</span></td></tr>
+      <tr><td>Amortização</td><td><span class="trad">devolver parte do valor sem reduzir o número de cotas</span></td></tr>
+      <tr><td>Cotista efetivo</td><td><span class="trad">quem investe por conta e ordem do distribuidor</span></td></tr>
+      <tr><td>Assembleia especial</td><td><span class="trad">só os cotistas de uma classe ou subclasse</span></td></tr>
+      <tr><td>Taxa máxima de distribuição</td><td><span class="trad">o teto que o fundo paga aos distribuidores</span></td></tr>
+      <tr><td>Responsabilidade limitada</td><td><span class="trad">o cotista perde no máximo o que subscreveu</span></td></tr>
+      <tr><td>Come-cotas</td><td><span class="trad">IR antecipado em maio e novembro</span></td></tr>
+      <tr><td>Regime fechado (FII)</td><td><span class="trad">sem resgate: sai vendendo na bolsa</span></td></tr>
+      <tr><td>Vacância</td><td><span class="trad">imóvel vazio, sem aluguel</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>Revisão de 1 minuto</h3>
+  <ol class="frases-resumo">
+    <li><b>Fundo</b><span class="manuscrito">condomínio especial; sem FGC</span></li>
+    <li><b>Estrutura</b><span class="manuscrito">fundo → classes (patrimônio segregado) → subclasses</span></li>
+    <li><b>Cota</b><span class="manuscrito">PL ÷ número de cotas</span></li>
+    <li><b>Resgate</b><span class="manuscrito">pedido → conversão → pagamento em até 5 d.u.</span></li>
+    <li><b>Assembleia</b><span class="manuscrito">10 dias; qualquer número; maioria dos presentes</span></li>
+    <li><b>Essenciais</b><span class="manuscrito">administrador (funcionamento) e gestor (carteira)</span></li>
+    <li><b>Performance</b><span class="manuscrito">≥ 100% do índice, semestral, acima da cota base</span></li>
+    <li><b>FIF</b><span class="manuscrito">RF 80% · Ações 67% · Cambial 80% · Multi livre</span></li>
+    <li><b>Come-cotas</b><span class="manuscrito">maio e novembro: 15% LP, 20% CP; ações não</span></li>
+    <li><b>FII</b><span class="manuscrito">fechado; 95% semestral; rendimento isento com condições; venda 20%</span></li>
+  </ol>
+  <div class="frase-final"><span class="manuscrito">No fundo, você é dono de uma fatia: ganha e perde junto com todos.</span>Se lembrar de uma frase só deste capítulo, que seja esta.</div>
+</section>
+
+<!-- 7.19 -->
+<section class="bloco" id="c7-s19" data-titulo="Fontes e links para verificação">
+  <span class="sobretitulo">7.19 · Confira você mesma</span>
+  <h2 class="titulo-secao">Fontes e links para verificação</h2>
+  <div class="linha-fina"></div>
+  <p class="pequeno">Conteúdo conferido em novembro de 2026 nas fontes abaixo.</p>
+  <div class="tabela-rolagem"><table class="tabela fontes">
+    <thead><tr><th>Assunto</th><th>Fonte oficial</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Parte geral: condomínio, classes, cotas, resgate, conta e ordem, assembleia, taxas, vedações, PL negativo</td><td><a href="https://conteudo.cvm.gov.br/legislacao/resolucoes/resol175.html" target="_blank" rel="noopener">Resolução CVM 175/2022 (texto consolidado até a Res. 240/2026)</a><span class="org">CVM</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>FIF: tipos, sufixos, limites, exterior, performance, margem</td><td>Resolução CVM 175, Anexo Normativo I<span class="org">CVM</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>FII: regime fechado, propriedade fiduciária, taxa sobre valor de mercado (cotas em índice)</td><td>Resolução CVM 175, Anexo Normativo III<span class="org">CVM</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Come-cotas (maio e novembro, 15% e 20%), fundos fechados, fundos de ações</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/2023/lei-14754-12-dezembro-2023-795058-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 14.754/2023 (texto atualizado)</a><span class="org">Câmara dos Deputados</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Tabela regressiva do IR</td><td>Lei 11.033/2004, art. 1º<span class="org">Câmara dos Deputados</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>IOF regressivo em 30 dias; zero para fundos de ações</td><td><a href="https://www2.camara.leg.br/legin/fed/decret/2007/decreto-6306-14-dezembro-2007-566561-normaatualizada-pe.html" target="_blank" rel="noopener">Decreto 6.306/2007, art. 32 e anexo</a><span class="org">Câmara dos Deputados</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>FII: 95% semestral, IR de 20%</td><td><a href="https://www2.camara.leg.br/legin/fed/lei/1993/lei-8668-25-junho-1993-350597-normaatualizada-pl.html" target="_blank" rel="noopener">Lei 8.668/1993 (texto atualizado)</a><span class="org">Câmara dos Deputados</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Isenção dos rendimentos de FII (100 cotistas, 10%, 30% ligados)</td><td>Lei 11.033/2004, art. 3º, § 1º<span class="org">com redação da Lei 14.754/2023</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Qualificado (R$ 1 mi) e profissional (R$ 10 mi)</td><td>Resolução CVM 30/2021<span class="org">CVM · capítulo 4</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+      <tr><td>Prazo médio da carteira (365 dias) para longo/curto prazo</td><td>IN RFB 1.585/2015 e regulamentação da Receita<span class="org">Receita Federal</span></td><td><span class="selo-conf pend">conferir texto oficial</span></td></tr>
+      <tr><td>Programa oficial (itens 2.1.2 a 2.1.4)</td><td>Programa detalhado CPA, versão 1.2<span class="org">ANBIMA</span></td><td><span class="selo-conf ok">conferido</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno">Material de estudo independente. Não é produzido nem endossado pela ANBIMA, pela CVM ou pelos demais órgãos citados.</p>
+  <nav class="navega" aria-label="Navegação entre capítulos">
+    <a href="#cap-6"><small>← anterior</small><b>6 · Renda variável e COE</b></a>
+    <a class="prox" href="#resumo-7"><small>para revisar</small><b>Resumo do capítulo 7 →</b></a>
+  </nav>
+</section>
+</article>
