@@ -24,6 +24,7 @@ CAPITULOS = {
     5: "Renda fixa",
     6: "Renda variável e COE",
     14: "ESG",
+    15: "Inovação e meios de pagamento",
 }
 
 
