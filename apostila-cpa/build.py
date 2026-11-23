@@ -29,6 +29,7 @@ CAPITULOS = {
     10: "Serviços bancários e seguros",
     11: "Finanças pessoais e planejamento",
     12: "Suitability, código ANBIMA e ética",
+    13: "PLD, LGPD e crimes de mercado",
     14: "ESG",
     15: "Inovação e meios de pagamento",
 }

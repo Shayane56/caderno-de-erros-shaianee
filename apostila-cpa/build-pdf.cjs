@@ -25,6 +25,7 @@ const CAPS = {
   10: { titulo: 'Serviços bancários e seguros', arquivo: 'Servicos-Bancarios-e-Seguros' },
   11: { titulo: 'Finanças pessoais e planejamento', arquivo: 'Financas-Pessoais-e-Planejamento' },
   12: { titulo: 'Suitability, código ANBIMA e ética', arquivo: 'Suitability-Codigo-ANBIMA-e-Etica' },
+  13: { titulo: 'PLD, LGPD e crimes de mercado', arquivo: 'PLD-LGPD-e-Crimes-de-Mercado' },
   14: { titulo: 'ESG', arquivo: 'ESG' },
   15: { titulo: 'Inovação e meios de pagamento', arquivo: 'Inovacao-e-Meios-de-Pagamento' }
 };

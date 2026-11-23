@@ -40,7 +40,7 @@
     { n: 10, m: 2, pd: '2.4 e 2.5', r: 'Pix, tarifas, horário bancário e IOF de câmbio', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-ouro', ico: 'maquina' },
     { n: 11, m: 3, pd: '3.1 e 3.2', r: 'reserva de emergência, balanço pessoal, dívidas e IRPF', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-coral', ico: 'alvo' },
     { n: 12, m: 3, pd: '3.3 e 3.4.1 a 3.4.4', p: 'alta', r: 'conduta, ética e práticas vedadas', t: 'Suitability, código ANBIMA e ética', s: 'perfil do investidor, suitability, 9 princípios éticos e conflitos', tema: 'tema-coral', ico: 'balanca' },
-    { n: 13, m: 3, pd: '3.4.5 a 3.4.7', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-coral', ico: 'escudo' },
+    { n: 13, m: 3, pd: '3.4.5 a 3.4.7', r: 'COAF, KYC, LGPD, insider e manipulação', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-coral', ico: 'escudo' },
     { n: 14, m: 4, pd: '4.1 a 4.3', r: 'fundos IS × que integram ESG, estratégias e greenwashing', t: 'ESG', s: 'ambiental, social e governança, investimentos e fundos sustentáveis', tema: 'tema-roxo', ico: 'folha' },
     { n: 15, m: 4, pd: '4.4 a 4.7', r: 'Drex, Open Finance, tokenização e adquirente × subadquirente', t: 'Inovação e meios de pagamento', s: 'DeFi, tokenização, Drex, Open Finance, IA, fintechs e arranjos', tema: 'tema-roxo', ico: 'chip' }
   ];

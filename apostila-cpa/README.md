@@ -42,7 +42,7 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 10 | 2 (40%) | Serviços bancários e seguros | pronto · itens 2.4 e 2.5 (conta-salário, Pix, tarifas, atendimento, câmbio, seguros) · simulador do custo do câmbio |
 | 11 | 3 (30%) | Finanças pessoais e planejamento | pronto · itens 3.1 e 3.2 · simuladores de balanço pessoal e independência financeira |
 | 12 | 3 (30%) | Suitability, código ANBIMA e ética 🔥 | pronto · itens 3.3 e 3.4.1 a 3.4.4 (CVM 30, 9 princípios éticos, conflitos, riscos) · simulador de perfil |
-| 13 | 3 (30%) | PLD, LGPD e crimes de mercado | |
+| 13 | 3 (30%) | PLD, LGPD e crimes de mercado | pronto · itens 3.4.5 a 3.4.7 (Lei 9.613, CVM 50, LGPD, LC 105, Lei 6.385, CVM 62) |
 | 14 | 4 (10%) | ESG | pronto · itens 4.1 a 4.3 (fundos IS, CVM 175 art. 49, PRI) |
 | 15 | 4 (10%) | Inovação e meios de pagamento | pronto · itens 4.4 a 4.7 (DeFi, Drex, Open Finance, IA, fintechs, pagamentos) |
 
