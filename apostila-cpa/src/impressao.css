@@ -150,6 +150,13 @@ html.pdf .jogo { break-inside: avoid; }
 .capa.ouro .capa-selo { color: #fff4a8; }
 html.pdf .calc-entradas.quatro { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
+/* capa coral para os capítulos do Módulo 3 */
+.capa.coral { background: radial-gradient(120% 80% at 85% 8%, #f07a5e 0%, #b3311d 42%, #4a150c 100%); }
+.capa.coral .capa-selo { color: #fff1c2; }
+
 /* capa roxa para os capítulos do Módulo 4 */
 .capa.roxo { background: radial-gradient(120% 80% at 85% 8%, #8a6fd8 0%, #4a3a8a 42%, #1f1a3d 100%); }
 .capa.roxo .capa-selo { color: #ffd38a; }
+
+/* título de simulador não fica sozinho no pé da página */
+html.pdf h3:has(+ .calc), html.pdf h3:has(+ p + .calc), html.pdf h3 + p:has(+ .calc) { break-after: avoid; }

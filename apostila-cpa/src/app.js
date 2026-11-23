@@ -38,7 +38,7 @@
     { n: 8, m: 2, pd: '2.2', p: 'media', r: 'PGBL × VGBL e tributação', t: 'Previdência complementar', s: 'PGBL, VGBL, regimes de tributação, portabilidade e rendas', tema: 'tema-ouro', ico: 'ampulheta' },
     { n: 9, m: 2, pd: '2.3', p: 'alta', r: 'consignado, cartão, cheque especial e encargos', t: 'Produtos de crédito', s: 'empréstimo, financiamento, leasing, cartão, consignado e CDC', tema: 'tema-ouro', ico: 'cartao' },
     { n: 10, m: 2, pd: '2.4 e 2.5', t: 'Serviços bancários e seguros', s: 'conta, Pix, tarifas, câmbio, conta internacional e seguros', tema: 'tema-ouro', ico: 'maquina' },
-    { n: 11, m: 3, pd: '3.1 e 3.2', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-coral', ico: 'alvo' },
+    { n: 11, m: 3, pd: '3.1 e 3.2', r: 'reserva de emergência, balanço pessoal, dívidas e IRPF', t: 'Finanças pessoais e planejamento', s: 'ciclo de vida, orçamento, reserva, metas e IR da pessoa física', tema: 'tema-coral', ico: 'alvo' },
     { n: 12, m: 3, pd: '3.3 e 3.4.1 a 3.4.4', p: 'alta', r: 'conduta, ética e práticas vedadas', t: 'Suitability, código ANBIMA e ética', s: 'perfil do investidor, suitability, 9 princípios éticos e conflitos', tema: 'tema-coral', ico: 'balanca' },
     { n: 13, m: 3, pd: '3.4.5 a 3.4.7', t: 'PLD, LGPD e crimes de mercado', s: 'lavagem de dinheiro, KYC, LGPD, sigilo, insider e manipulação', tema: 'tema-coral', ico: 'escudo' },
     { n: 14, m: 4, pd: '4.1 a 4.3', r: 'fundos IS × que integram ESG, estratégias e greenwashing', t: 'ESG', s: 'ambiental, social e governança, investimentos e fundos sustentáveis', tema: 'tema-roxo', ico: 'folha' },
@@ -402,8 +402,61 @@
     el.addEventListener('input', atualizar); el.addEventListener('change', atualizar); atualizar();
   }
 
+  /* ---------------- simuladores do capítulo 11 ---------------- */
+  function calcBalanco(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Balanço patrimonial da família</b></div>
+      <div class="calc-entradas quatro">${campo('u', 'Ativos de uso: casa, carro (R$)', 350000, 'min="0" step="5000"')}${campo('l', 'Ativos líquidos: reserva, liquidez diária (R$)', 30000, 'min="0" step="1000"')}${campo('o', 'Outros investimentos (R$)', 20000, 'min="0" step="1000"')}${campo('d', 'Dívidas totais (R$)', 185000, 'min="0" step="1000"')}
+        ${campo('dc', 'Dívidas que vencem em até 12 meses (R$)', 5000, 'min="0" step="500"')}${campo('g', 'Despesas mensais (R$)', 6000, 'min="0" step="100"')}${campo('r', 'Renda líquida mensal (R$)', 10000, 'min="0" step="100"')}${campo('p', 'Parcelas de dívidas por mês (R$)', 3000, 'min="0" step="100"')}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => Math.max(0, num($(`[data-k="${k}"]`, el)));
+    function atualizar() {
+      const u = ler('u'), l = ler('l'), o = ler('o'), d = ler('d'), dc = ler('dc'), g = ler('g'), r = ler('r'), p = ler('p');
+      const at = u + l + o, pl = at - d;
+      const liq = dc > 0 ? l / dc : Infinity, cob = g > 0 ? l / g : Infinity, end = at > 0 ? d / at : 0, comp = r > 0 ? p / r : 0;
+      const sobra = r - g - p;
+      const alertas = [];
+      if (cob < 3) alertas.push('cobertura abaixo de 3 meses: priorize a <b>reserva de emergência</b>');
+      if (comp > 0.30) alertas.push('mais de 30% da renda vai para parcelas: evite <b>novas dívidas</b> e avalie trocar as mais caras');
+      if (pl < 0) alertas.push('patrimônio líquido <b>negativo</b>: a família deve mais do que tem');
+      if (sobra < 0) alertas.push('despesas + parcelas passam da renda: o orçamento está <b>no vermelho</b>');
+      $('.calc-res', el).innerHTML = `<div class="calc-cards dois">
+          <div><small>Ativos totais</small><b>${brl(at)}</b><span>uso ${brl(u)} + líquidos ${brl(l)} + outros ${brl(o)}</span></div>
+          <div class="destaque"><small>Patrimônio líquido</small><b>${brl(pl)}</b><span>ativos ${brl(at)} − passivos ${brl(d)}</span></div></div>
+        <div class="calc-cards">
+          <div><small>Liquidez</small><b>${isFinite(liq) ? fmtN(liq, 1) + ' vezes' : 'sem dívidas curtas'}</b><span>ativos líquidos ÷ dívidas de curto prazo</span></div>
+          <div><small>Cobertura de despesas</small><b>${isFinite(cob) ? fmtN(cob, 1) + ' meses' : '—'}</b><span>ativos líquidos ÷ despesas mensais</span></div>
+          <div><small>Endividamento</small><b>${pct(end, 0)} do patrimônio</b><span>dívidas ÷ ativos · parcelas = <strong>${pct(comp, 0)}</strong> da renda</span></div></div>
+        <p class="calc-veredito ${alertas.length ? '' : 'lci'}">${alertas.length ? 'Pontos de atenção: ' + alertas.join('; ') + '.' : 'Saúde financeira em ordem: reserva suficiente e dívidas sob controle.'} Sobra mensal para poupar: <b>${brl(sobra)}</b>.</p>`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
+  function calcAposenta(el) {
+    el.innerHTML = `<div class="calc-topo"><span class="calc-selo">Simulador</span><b>Independência financeira</b></div>
+      <div class="calc-entradas quatro">${campo('r', 'Renda mensal desejada, em valores de hoje (R$)', 5000, 'min="0" step="500"')}${campo('t', 'Taxa real ao ano (%)', 4, 'min="0.5" max="12" step="0.5"')}${campo('p', 'Patrimônio já investido (R$)', 0, 'min="0" step="5000"')}${faixa('n', 'Anos até a independência', 25, 1, 45)}</div>
+      <div class="calc-res" aria-live="polite"></div>`;
+    const ler = (k) => num($(`[data-k="${k}"]`, el));
+    function atualizar() {
+      const r = Math.max(0, ler('r')), t = Math.max(0.005, ler('t') / 100), p = Math.max(0, ler('p'));
+      const n = Math.round(Math.min(45, Math.max(1, ler('n'))));
+      $('[data-v="n"]', el).textContent = n;
+      const alvo = r * 12 / t, i = Math.pow(1 + t, 1 / 12) - 1, m = n * 12;
+      const fvP = p * Math.pow(1 + i, m), falta = Math.max(0, alvo - fvP);
+      const aporte = falta * i / (Math.pow(1 + i, m) - 1);
+      const total = aporte * m, juros = Math.max(0, alvo - total - p);
+      const aporte10 = n > 10 ? Math.max(0, alvo - p * Math.pow(1 + i, (n - 10) * 12)) * i / (Math.pow(1 + i, (n - 10) * 12) - 1) : null;
+      $('.calc-res', el).innerHTML = `<div class="calc-cards">
+          <div><small>Patrimônio-alvo</small><b>${brl(alvo)}</b><span>${brl(r * 12)} por ano ÷ ${fmtN(t * 100, 1)}% reais</span></div>
+          <div class="destaque"><small>Aporte mensal</small><b>${brl(aporte)}</b><span>por ${n} anos, a ${pct(i, 3)} reais ao mês${p ? ', somando ao patrimônio atual' : ''}</span></div>
+          <div><small>Parte que vem dos juros</small><b>${brl(juros)}</b><span>vêm dos juros compostos; você aporta ${brl(total)}${p ? ' + ' + brl(p) : ''}</span></div></div>
+        ${aporte10 !== null && falta > 0 ? `<p class="calc-veredito">Se começar <b>10 anos mais tarde</b> (prazo de ${n - 10} anos), o aporte sobe para <b>${brl(aporte10)}</b> por mês. O tempo é o maior aliado dos juros compostos.</p>` : ''}
+        ${falta === 0 ? '<p class="calc-veredito lci">O patrimônio atual, rendendo à taxa real informada, já chega ao alvo no prazo: não é preciso aportar.</p>' : ''}`;
+    }
+    el.addEventListener('input', atualizar); atualizar();
+  }
+
   function montarCalc(el) {
-    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv }[el.dataset.calc]; if (!f) return;
+    const f = { bola: calcBola, taxas: calcTaxas, amort: calcAmort, equiv: calcEquiv, irrv: calcIrrv, balanco: calcBalanco, aposenta: calcAposenta }[el.dataset.calc]; if (!f) return;
     f(el);
     if (MODO_PDF) {
       $$('input, select', el).forEach((x) => { x.disabled = true; });

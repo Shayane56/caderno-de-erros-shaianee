@@ -40,7 +40,7 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 8 | 2 (40%) | Previdência complementar | |
 | 9 | 2 (40%) | Produtos de crédito 🔥 | |
 | 10 | 2 (40%) | Serviços bancários e seguros | |
-| 11 | 3 (30%) | Finanças pessoais e planejamento | |
+| 11 | 3 (30%) | Finanças pessoais e planejamento | pronto · itens 3.1 e 3.2 · simuladores de balanço pessoal e independência financeira |
 | 12 | 3 (30%) | Suitability, código ANBIMA e ética 🔥 | |
 | 13 | 3 (30%) | PLD, LGPD e crimes de mercado | |
 | 14 | 4 (10%) | ESG | pronto · itens 4.1 a 4.3 (fundos IS, CVM 175 art. 49, PRI) |
