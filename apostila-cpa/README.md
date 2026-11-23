@@ -46,6 +46,10 @@ Plano em 15 capítulos, na ordem do **programa detalhado oficial da CPA** (ANBIM
 | 14 | 4 (10%) | ESG | pronto · itens 4.1 a 4.3 (fundos IS, CVM 175 art. 49, PRI) |
 | 15 | 4 (10%) | Inovação e meios de pagamento | pronto · itens 4.4 a 4.7 (DeFi, Drex, Open Finance, IA, fintechs, pagamentos) |
 
+**Apostila finalizada em novembro de 2026.** 15 capítulos, 15 resumos de 2 páginas, 433 questões inéditas.
+A revisão final conferiu as fontes no texto oficial das normas: **155 itens conferidos e 19 pendentes**.
+A lista completa, com links, está em [`FONTES.md`](FONTES.md).
+
 ## Como gerar
 
 ```bash
